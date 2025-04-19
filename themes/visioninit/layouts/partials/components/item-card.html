@@ -1,0 +1,63 @@
+{{/* layouts/partials/components/item-card.html */}}
+{{/*
+Expects a dictionary context with:
+- context: The page object (.) to display the card for.
+- class: (Optional) Additional CSS classes for the outer link/card.
+*/}}
+{{ $item := .context }} {{/* Assign context for easier reading */}}
+{{ $class := .class | default "" }} {{/* Optional class */}}
+
+{{/* --- Card structure --- */}}
+{{/* Outer element is the link and the card */}}
+<a href="{{ $item.RelPermalink }}" class="card campaign-card-link rounded-0 w-100 text-decoration-none d-flex flex-column h-100 {{ $class }}">
+
+  {{/* --- Image Handling --- */}}
+  {{ $imageSrc := "" }}
+  {{ $altText := $item.Title | default "Item preview" }}
+  {{ $ogImageResource := $item.Resources.GetMatch "og.png" }}
+  {{ $featuredImage := $item.Params.image }} {{/* Check for 'image' param in front matter */}}
+
+  {{ if $ogImageResource }}
+  {{/* Use og.png if available */}}
+  {{ $resized := $ogImageResource.Resize "600x q90" }}
+  {{ $imageSrc = $resized.RelPermalink }}
+  {{ else if $featuredImage }}
+  {{/* Fallback to 'image' param */}}
+  {{ $img := $item.Resources.GetMatch $featuredImage }} {{/* Try as page resource */}}
+  {{ if $img }}
+  {{ $resized := $img.Resize "600x q90" }}
+  {{ $imageSrc = $resized.RelPermalink }}
+  {{ else }}
+  {{ $imageSrc = $featuredImage | absURL }} {{/* Assume path relative to static */}}
+  {{ end }}
+  {{ end }}
+
+  {{/* Render image or placeholder */}}
+  {{ if $imageSrc }}
+  <img src="{{ $imageSrc }}" class="card-img-top campaign-card-image rounded-0" alt="{{ $altText }}">
+  {{ else }}
+  {{/* Placeholder if no image found */}}
+  <div class="card-img-top campaign-card-image-placeholder rounded-0 bg-light d-flex align-items-center justify-content-center">
+    {{/* Use a more generic icon like a file or project icon */}}
+    <i class="fa-regular fa-file-alt" style="font-size: 50px; color: #ccc;"></i>
+  </div>
+  {{ end }}
+  {{/* --- End Image Handling --- */}}
+
+  {{/* Card Body */}}
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title mb-2">{{ $item.Title }}</h5>
+    {{/* Use Description first, fallback to Summary, then truncate */}}
+    <p class="card-text small text-muted flex-grow-1">{{ $item.Description | default ($item.Summary | plainify) | truncate 120 }}</p>
+    {{/* Optional: Display Tags */}}
+    {{ with $item.Params.tags }}
+    <div class="mb-3">
+      {{ range first 4 . }} {{/* Show max 4 tags */}}
+      <span class="badge badge-light mr-1 mb-1 small p-2">{{ . }}</span>
+      {{ end }}
+    </div>
+    {{ end }}
+    {{/* Button / Link Text */}}
+    <span class="btn btn-sm btn-outline-primary mt-auto">View Details</span>
+  </div>
+</a> {{/* End card link */}}

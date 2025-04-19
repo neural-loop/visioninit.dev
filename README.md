@@ -1,12 +1,12 @@
-# Boycott Beacon Website
+# VisionInit Consultancy Website
 
 <p align="center">
-  The official website for the Boycott Beacon browser extension, built with Hugo. This site provides information about the extension, lists available boycott campaigns, and offers ways to support the project.
+  The official website for VisionInit IT Services Consultancy, showcasing services, portfolio, and expertise. Built with Hugo. <!-- <<< CHANGED -->
 </p>
 
 <h2 align="center">
-  <a target="_blank" href="https://boycott-beacon.github.io" rel="nofollow">👀 Live Site</a> |
-  <a target="_blank" href="https://pagespeed.web.dev/report?url=https://boycott-beacon.github.io">Page Speed Test</a>
+  <a target="_blank" href="https://visioninit.dev" rel="nofollow">👀 Live Site</a> | <!-- <<< CHANGED -->
+  <a target="_blank" href="https://pagespeed.web.dev/report?url=https://visioninit.dev">Page Speed Test</a> <!-- <<< CHANGED -->
 </h2>
 
 ---
@@ -18,26 +18,25 @@
 
 ---
 
-## 📌 Key Features
+## 📌 Key Features <!-- <<< UPDATED FEATURES -->
 
-*   **Extension Information:** Clear explanation of what Boycott Beacon is and how it works.
-*   **Privacy Focused:** Details the extension's commitment to user privacy with local processing.
-*   **Campaign Listing:** Browse available boycott campaign manifests.
-*   **Campaign Details:** View specific information, reasons, and citations for each campaign.
-*   **Easy Subscription:** Direct links to subscribe to campaigns via the Boycott Beacon extension (requires extension installed).
-*   **Support Options:** Information on how to support the project financially or through contributions.
-*   **Open Source:** Built with transparency in mind.
+*   **Services Overview:** Clear presentation of IT consultancy offerings.
+*   **Portfolio Showcase:** Highlights key projects and technical achievements.
+*   **About Section:** Details experience and professional philosophy.
+*   **Contact Information:** Easy ways to get in touch or schedule a consultation.
 *   **Responsive Design:** Adapts to various screen sizes.
-*   **Automated OG Image Generation:** Automatically creates social sharing preview images for content pages.
-*   **Automated Favicon Generation:** Generates necessary favicon formats from a source logo.
+*   **Built with Hugo:** Fast, secure static site generation.
+*   **Open Source Base:** Utilizes the structure of the Educenter Hugo theme.
+*   **Automated OG Image Generation:** Creates social sharing preview images.
+*   **Automated Favicon Generation:** Generates necessary favicon formats.
 
 ## 🛠️ Local Development
 
 1.  **Clone the repository:**
     ```bash
-    # Replace with your actual repository URL
-    git clone git@github.com:boycott-beacon/boycott-beacon.github.io.git
-    cd boycott-beacon-website
+    # Replace with your actual repository URL if different
+    git clone git@github.com:neural-loop/visioninit.dev.git
+    cd visioninit.dev
     ```
 
 2.  **Install Dependencies:**
@@ -56,7 +55,7 @@
       # On Debian/Ubuntu
       sudo apt-get update && sudo apt-get install imagemagick
       # On macOS (using Homebrew)
-      # brew install imagemagick
+      brew install imagemagick
       ```
   *   **wkhtmltoimage:** Required for generating Open Graph images. Download from the [wkhtmltopdf website](https://wkhtmltopdf.org/downloads.html) and ensure it's in your system's PATH.
 
@@ -74,20 +73,19 @@
 This project includes configuration files for easy deployment:
 
 *   **Netlify:** Click the button below or configure manually using `netlify.toml`.
-    [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=[YOUR_PROJECT_REPO_URL]) <!-- << UPDATE REPO URL -->
+    [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/neural-loop/visioninit.dev) <!-- <<< UPDATED REPO URL -->
 *   **Vercel:** Deploy using the Vercel dashboard or CLI. The `vercel.json` and `vercel-build.sh` files provide the necessary configuration. Ensure ImageMagick and wkhtmltoimage are available in the Vercel build environment (may require adjustments to `vercel-build.sh` or build settings).
 
 The build command (`npm run build`) handles image generation and the Hugo build process.
 
 ## 📝 License
 
-The specific code modifications and content for the Boycott Beacon website are released under the [MIT License](LICENSE).
+The specific code modifications and content for the VisionInit website are released under the [MIT License](LICENSE). <!-- <<< UPDATED -->
 
-The underlying Hugo theme structure is based on the "Educenter Hugo" theme by [Themefisher](https://themefisher.com) & [Gethugothemes](https://gethugothemes.com), which is also released under the MIT license (see `themes/boycott-beacon/LICENSE` if you kept the theme structure, or the original LICENSE file if merged).
+The underlying Hugo theme structure is based on the "Educenter Hugo" theme by [Themefisher](https://themefisher.com) & [Gethugothemes](https://gethugothemes.com), which is also released under the MIT license (see `themes/boycott-beacon/LICENSE`). <!-- <<< Adjusted path assumption -->
 
 ## 👍 Acknowledgements
 
 *   **Hugo:** The static site generator powering this website.
 *   **Educenter Theme:** The base theme structure provided by Themefisher/Gethugothemes.
 *   **ImageMagick & wkhtmltoimage:** Tools used for image generation scripts.
-*   **Contributors:** Everyone who helps improve Boycott Beacon!

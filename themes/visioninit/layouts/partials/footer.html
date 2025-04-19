@@ -1,0 +1,117 @@
+{{/* themes/boycott-beacon/layouts/partials/footer.html */}}
+<!-- footer -->
+<footer>
+  {{ $data := index site.Data site.Language.Lang }} {{/* Get homepage data */}}
+
+  {{/* Inside themes/visioninit/layouts/partials/footer.html - within the CTA section */}}
+  {{ if $data.homepage.cta.enable }}
+  {{ with $data.homepage.cta }}
+  <div class="newsletter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 ml-auto bg-primary py-5 newsletter-block">
+          <h3 class="text-white mb-3">{{ .title | default "Missing CTA Title" }}</h3>
+          {{ with .subtitle }}<h6 class="text-white font-secondary mb-3">{{ . }}</h6>{{ end }}
+          <p class="text-white mb-4">{{ .content | markdownify }}</p>
+          {{ if .button.enable }}
+          {{/* --- MODIFICATION START --- */}}
+          <a href="{{ site.Params.scheduling_link | safeURL }}" class="btn btn-light btn-lg" target="_blank" rel="noopener noreferrer">
+            {{ .button.label }}
+          </a>
+          {{/* --- MODIFICATION END --- */}}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+  {{ end }}
+
+
+  <!-- Footer Content (Starts below the overlapping CTA) -->
+  <div class="footer bg-footer section border-bottom">
+    <div class="container">
+      <div class="row">
+        <!-- Logo & Core Links -->
+        <div class="col-lg-4 col-md-6 col-sm-6 mb-5 mb-lg-0">
+          <a class="logo-footer d-inline-block mb-4" href="{{ site.BaseURL | relLangURL }}">
+            {{/* Use logo from params */}}
+            <img src="{{ site.Params.logo | default "/images/logo.png" | absURL }}" alt="{{ site.Title }}" class="img-fluid" style="max-height: 60px;"> {{/* Added style */}}
+          </a>
+          <ul class="list-unstyled">
+            {{/* Use params defined in hugo.toml */}}
+            {{ with site.Params.email }}<li class="mb-3"><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:{{ . }}" class="text-color">{{ . }}</a></li>{{ end }}
+            {{ with site.Params.chrome_web_store_link }}<li class="mb-3"><i class="fa-solid fa-bag-shopping mr-2"></i> <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">Chrome Web Store</a></li>{{ end }}
+            {{ with site.Params.github_repo }}<li class="mb-3"><i class="fa-brands fa-github mr-2"></i> <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">GitHub Repository</a></li>{{ end }}
+          </ul>
+        </div>
+
+        <!-- Quick Links (Using Main Menu) -->
+        <div class="col-lg-2 col-md-3 col-sm-6 col-6 mb-5 mb-lg-0">
+          <h4 class="text-white mb-4 text-uppercase small">Links</h4> {{/* Changed H4 Style */}}
+          <ul class="list-unstyled">
+            {{ range site.Menus.main }}
+            <li class="mb-3"><a class="text-color" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </div>
+
+
+        <!-- Legal Links -->
+        <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-left">
+          <h4 class="text-white mb-4 text-uppercase small">Legal</h4> {{/* Changed H4 Style */}}
+          <ul class="list-unstyled">
+            {{ range site.Menus.footer }}
+            <li class="mb-3"><a class="text-color" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+            {{ else }}
+            <li class="mb-3"><a href="{{ "/privacy/" | relLangURL }}" class="text-color">Privacy Policy</a></li>
+            <li class="mb-3"><a href="{{ "/terms/" | relLangURL }}" class="text-color">Terms of Service</a></li>
+            {{ end }}
+          </ul>
+        </div>
+
+        <!-- Social Links (Moved to Footer) -->
+        <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-right"> {{/* Adjusted alignment */}}
+          <h4 class="text-white mb-4 text-uppercase small">Connect</h4> {{/* Changed H4 Style */}}
+          <ul class="list-inline footer-socials">
+            {{ range site.Params.social }}
+            <li class="list-inline-item"><a class="d-inline-block p-2" href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .title }}"><i class="{{ .icon }} text-color" style="font-size: 1.5rem;"></i></a></li> {{/* Increased icon size */}}
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="copyright py-4 bg-primary text-light"> {{/* Keep background */}}
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center"> {{/* Center copyright */}}
+          <p class="mb-0 small">{{ site.Params.copyright | markdownify }}</p> {{/* Use small class */}}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- /footer -->
+
+{{ "<!-- JS Plugins -->" | safeHTML }}
+{{ range site.Params.plugins.js }}
+<script src="{{ .link | absURL }}"></script>
+{{ end }}
+
+
+{{ "<!-- Main Script -->" | safeHTML }}
+{{ $script := resources.Get "js/script.js" | minify }}
+<script src="{{ $script.Permalink }}"></script>
+
+<!-- Cookie Consent HTML (Only if enabled) -->
+{{ if site.Params.cookies.enable }}
+<div id="js-cookie-box"
+     class="cookie-box cookie-box-hide"
+     data-expire-days="{{ site.Params.cookies.expire_days | default 30 }}">
+  This site uses cookies to improve user experience. By continuing to use this website, you agree to their use.
+  <span id="js-cookie-button" class="btn btn-sm btn-outline-primary ml-2">I Accept</span>
+</div>
+{{ end }}

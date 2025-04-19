@@ -1,6 +1,6 @@
 {
-  "name": "boycott-beacon",
-  "version": "1.7.0",
+  "name": "visioninit-website",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "hugo server --buildFuture",

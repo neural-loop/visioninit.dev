@@ -1,28 +1,36 @@
-################### English navigation ####################
+################### VisionInit Navigation (English) ####################
 
-# Main Menu
 [[main]]
-name = "Campaigns"
-url = "campaigns/"
-weight = 1
-
+name = "Services"
+url = "/services/"
+weight = 2
 [[main]]
 name = "About"
-url = "about/"
-weight = 2
-
-[[main]]
+url = "/about/"
 weight = 3
-name = "Support Us"
-url = "support/"
+[[main]] # Optional: Add Portfolio if you created the section/page
+ name = "Portfolio"
+ url = "/portfolio/"
+ weight = 4
+[[main]] # Optional: Add Portfolio if you created the section/page
+ name = "Blog"
+ url = "/blog/"
+ weight = 4
+[[main]]
+name = "Contact"
+url = "/contact/"
+weight = 5 # Adjust weight based on optional items above
 
-# Footer Menu
+# Footer Menu (Matches the structure defined in root hugo.toml)
 [[footer]]
-name = "About"
-url = "about/"
+name = "Privacy Policy"
+url = "/privacy/"
+weight = 1
+[[footer]]
+name = "Terms of Service"
+url = "/terms/"
 weight = 2
-
 [[footer]]
-name = "Support Us"
-url = "support/"
+name = "Contact"
+url = "/contact/"
 weight = 3

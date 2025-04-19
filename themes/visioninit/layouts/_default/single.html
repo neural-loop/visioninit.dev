@@ -1,0 +1,71 @@
+{{ define "main" }}
+
+<!-- Details Section -->
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      {{/* Main Content Area */}}
+      {{/* --- MODIFIED LINE BELOW --- */}}
+      <div class="col-lg-12 order-2 order-lg-1"> {{/* Make content full width */}}
+        {{/* --- END MODIFIED LINE --- */}}
+        <div class="row">
+          {{/* Meta Information (Optional for Portfolio, but kept) */}}
+          <div class="col-12">
+            <ul class="list-inline text-muted small mb-4">
+              {{ with .Params.Author }}
+              <li class="list-inline-item mr-3">
+                <i class="fas fa-user fa-fw mr-1"></i>
+                <a href="{{ `author/` | relLangURL }}{{ . | urlize }}">{{ . | title }}</a>
+              </li>
+              {{ end }}
+              <li class="list-inline-item mr-3">
+                <i class="fas fa-calendar-alt fa-fw mr-1"></i>
+                {{ .PublishDate.Format "January 2, 2006" }}
+              </li>
+              {{ with .Params.Categories }}
+              <li class="list-inline-item mr-3">
+                <i class="fas fa-folder-open fa-fw mr-1"></i>
+                {{ range $index, $element := . }}
+                <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ if ne $index 0 }}, {{ end }}{{ . | title }}</a>
+                {{ end }}
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+
+          <!-- border -->
+          <div class="col-12 mb-4">
+            <div class="border-bottom"></div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="col-12 mb-5">
+            <div class="content"> {{/* Ensure .content class wraps markdown */}}
+              {{ .Content }}
+            </div>
+          </div>
+
+          <!-- Disqus comments -->
+          {{ if site.Config.Services.Disqus.Shortname }}
+          <div class="col-12 mt-4">
+            {{ template "_internal/disqus.html" . }}
+          </div>
+          {{ end }}
+        </div>
+      </div> {{/* End Main Content Col */}}
+
+      {{/* Sidebar (Commented out - unlikely for portfolio) */}}
+      {{/*
+      {{ if partial "sidebar-needed.html" . }}
+      <div class="col-lg-4 order-1 order-lg-2">
+        {{ partial "blog-sidebar.html" . }}
+      </div>
+      {{ end }}
+      */}}
+
+    </div> {{/* End row */}}
+  </div> {{/* End container */}}
+</section>
+<!-- /Details Section -->
+
+{{ end }} {{/* End define main */}}

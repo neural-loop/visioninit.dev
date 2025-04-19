@@ -1,63 +1,76 @@
 # ./data/en/homepage.yml
-# YAML Configuration for Boycott Beacon Extension Website/Landing Page
 
 slider:
   enable: true
   slider_item:
-    - title: "Align Your Browsing with Your Values."
-      content: "Boycott Beacon is a free, open-source browser extension that displays alerts on websites targeted by boycott campaigns you subscribe to. Take control of your online interactions."
+    - title: "Secure Development by Design"
+      content: "Building robust, scalable web solutions with security embedded from inception. Leveraging **20+ years of full-stack expertise** and proven security credentials to protect your digital assets and accelerate innovation."
       button:
         enable: true
-        label: "Install for Chrome (Pre-Release)"
-        link: "https://github.com/boycott-beacon/boycott-beacon-chrome-extension"
+        label: "Schedule Consultation"
+        link: "schedule"
+        style: "btn-primary"
       button2:
         enable: true
-        label: "Browse Campaigns"
-        link: "/campaigns/"
-        style: "btn-primary"
+        label: "Explore Services"
+        link: "/services/"
+        style: "btn-outline-primary text-white border-white"
+
 banner_feature:
   enable: true
   feature_item:
-    - name: "Real-time Alerts"
-      icon: "fa-solid fa-bell"
-      content: "Receive discreet notifications via a top banner when you visit a site listed in your subscribed boycott campaigns."
-    - name: "You Choose Campaigns"
-      icon: "fa-solid fa-list"
-      content: "Subscribe only to the boycott campaign manifests (simple lists) that matter to you. You're in control."
-    - name: "Privacy First"
-      icon: "fa-solid fa-shield"
-      content: "Works entirely locally. No tracking, no central servers storing your browsing or subscriptions. Fully open-source."
-    - name: "Easy Management"
-      icon: "fa-solid fa-gears"
-      content: "View details, citations, and temporarily mute alerts per-site via the ribbon. Manage subscriptions via the options page."
+    - name: "Secure Development Services" # Aligned with Service Category 1
+      icon: "fa-solid fa-shield-halved" # Security icon
+      content: "Architecting and building applications where security is a foundational element, minimizing risks and future costs."
+    - name: "Ethical Hacking & Assessments" # Aligned with Service Category 2
+      icon: "fa-solid fa-user-secret" # Hacker/Assessment icon
+      content: "Developer-led security testing providing practical, actionable remediation guidance your team can implement."
+    - name: "Full-Stack & Cloud Expertise" # Highlighting key strength
+      icon: "fa-solid fa-layer-group" # Stack/Layers icon
+      content: "Comprehensive solutions across frontend, backend, APIs, and cloud platforms (AWS, Google Cloud)."
+    - name: "Security Transformation" # Aligned with Service Category 3
+      icon: "fa-solid fa-arrows-rotate" # Transformation/Process icon
+      content: "Integrating security seamlessly into your development lifecycle (DevSecOps) and empowering your teams."
 
 how_it_works:
   enable: true
-  title: "Simple Steps to Get Started" # Changed title
-  # Define the steps
+  title: "Our Collaborative Approach" # Changed title
   steps:
-    - title: "Install Extension"
-      icon: "fa-solid fa-download" # Example icon
-      description: "Get the Boycott Beacon extension for your browser from the official store."
-      link_label: "Install Now"
-      link: "https://github.com/boycott-beacon/boycott-beacon-chrome-extension" # Use the same install link
-    - title: "Subscribe to Campaigns"
-      icon: "fa-solid fa-list" # Example icon
-      description: "Find public campaign manifest files (JSON lists) and add their URLs in the extension's options."
-      link_label: "Browse Example Campaigns"
-      link: "/campaigns/" # Link to your campaigns page
-    - title: "Browse & See Alerts"
-      icon: "fa-solid fa-eye" # Example icon
-      description: "The extension automatically checks sites you visit against your subscribed lists and displays a banner if there's a match."
-      link_label: "" # No link needed for this step usually
-      link: ""
-
-# --- NEW VIDEO FEATURE SECTION ---
+    - title: "1. Discovery & Strategy"
+      icon: "fa-solid fa-comments" # Communication/Understanding icon
+      description: "We start by thoroughly understanding your goals, technical landscape, and security requirements to define a clear path forward."
+      link_label: "Start the Conversation" # Link to contact
+      link: "schedule" # Use param shortcode hint (actual link in template)    - title: "2. Solution Design & Secure Build"
+      icon: "fa-solid fa-file-code" # Code/Blueprint icon
+      description: "Architecting and developing your solution with security principles embedded throughout the process, using best practices and appropriate technologies."
+      link_label: "View Our Services" # Link to services
+      link: "/services/"
+    - title: "2. Rigorous Testing & Refinement"
+      icon: "fa-solid fa-vial-circle-check" # Testing/Validation icon
+      description: "Comprehensive testing, including security assessments and code reviews, ensures quality, resilience, and adherence to requirements."
+      # link_label: "Learn About Assessments" # Optional link to specific service
+      # link: "/services/security-assessment/"
+    - title: "3. Deployment & Partnership"
+      icon: "fa-solid fa-rocket" # Launch/Support icon
+      description: "Managing deployment and offering ongoing support or knowledge transfer to ensure your solution delivers long-term value."
+      # link_label: "Discuss Ongoing Support" # Optional link to contact
+      # link: "/contact/"
+# --- UPDATED VIDEO FEATURE SECTION ---
 video_feature:
+  enable: false # <<< DISABLED FOR NOW - Enable and update src if you have a relevant video
+  title: "Understanding Secure Development" # Placeholder title
+  description: "A brief overview of our approach to integrating security throughout the development lifecycle." # Placeholder description
+  video_src: "videos/your-consultancy-video.mp4" # <<< UPDATE if you re-enable
+  video_width: "800"
+  video_height: "auto"
+
+# --- UPDATED CTA SECTION ---
+cta:
   enable: true
-  title: "See Boycott Beacon in Action"
-  description: "Watch this short video to see how easy it is to install the extension, subscribe to a campaign, and receive boycott alerts while browsing."
-  video_src: "videos/boycott-beacon.mp4" # Path relative to the static directory
-  video_width: "800" # Adjust width as needed
-  video_height: "auto" # Adjust height as needed
-# --- END VIDEO FEATURE SECTION ---
+  title: "Ready to Build with Confidence?" # More engaging title
+  subtitle: "Secure Your Digital Future"
+  content: "Partner with VisionInit to create web applications that are not only functional and scalable but also fundamentally secure. Let's discuss how we can address your specific technical and security challenges."
+  button:
+    enable: true
+    label: "Schedule a Free Consultation" # Specific CTA
+    link: "{{< param scheduling_link >}}" # Use param shortcode hint (actual link in template)

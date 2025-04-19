@@ -1,31 +1,128 @@
+######################## VisionInit Configuration ####################
+# Base URL MUST end with a slash
+baseURL = "https://visioninit.dev/"
+title = "VisionInit - Professional IT Services & Solutions"
+theme = "visioninit" # Keep theme folder name for now
+# Default time zone for time stamps
+timeZone = "America/New_York" # Adjust if needed
+# Pagination (can adjust later if needed)
+paginate = 6
+# Summary length for auto-generated excerpts
+summaryLength = 20
+# google analytics (replace with your actual ID if you use GA4)
+# googleAnalytics = "G-XXXXXXXXXX"
+# disable languages if not needed (example shown)
+# disableLanguages = ["fr"]
+hasCJKLanguage = false # Keep false unless you use CJK languages
 
-#################### default parameters ################################
+#################### Parameters (site-wide variables) ##################
 [params]
-logo = "images/logo.png"
+logo = "/images/logo-visioninit.png" # <<< NEW: Path to your consultancy logo (relative to static/)
+favicon = "/favicon.ico" # Path to your favicon (relative to static/)
 # Meta data
-description = "This is meta description"
-author = "BoycottBeacon"
-# contact info
-address = ""
-mobile = ""
-email = ""
-# contact form action
-contact_form_action = "#" # contact form works with https://formspree.io
-# Google Analitycs
-google_analitycs_id = "" # your id
-# top header
-top_header = true
-og_preview_effect_probability = 85 # Chance (out of 100) the effect plays on load
-og_preview_effect_duration = 750 # Duration of the effect in milliseconds
-og_preview_effect_types = ["glitch", "static", "warble"] # Available effect types
+description = "VisionInit provides expert IT consultancy, full-stack web development, cloud solutions, and security assessments. Partner with Justin Riddiough for robust and scalable technical solutions."
+author = "Justin Riddiough / VisionInit"
+
+# Contact Info (Optional, used in theme potentially)
+address = "" # Add if relevant
+mobile = "(650) 918-7322" # From resume
+email = "jriddiough@gmail.com" # From resume
+# Contact form action (Update if you use a form service like Formspree, Netlify Forms, etc.)
+contact_form_action = "/contact/" # Example: point to a contact page
+scheduling_link = "https://cal.com/visioninit"
+
+# Social Links (Used in header/footer - Update links)
+[[params.social]]
+title = "LinkedIn"
+icon = "fa-brands fa-linkedin" # Font Awesome icon class
+link = "https://www.linkedin.com/in/riddiough"
+[[params.social]]
+title = "GitHub"
+icon = "fa-brands fa-github"
+link = "https://github.com/neural-loop" # Your GitHub
+[[params.social]]
+title = "Email"
+icon = "fa-solid fa-envelope"
+link = "mailto:jriddiough@gmail.com"
+
+# Consultancy Specific Params (Optional, can be used in layouts)
+tagline = "Developing Excellence, Securing Futures"
+# Example Call to Action params
+[params.cta]
+enable = true # Used in index.html potentially
+title = "Ready to Elevate Your Technology?"
+subtitle = "Let's Discuss Your Project"
+button_label = "Schedule a Consultation"
+button_link = "/contact/" # Link to contact page or scheduling tool
 
 
-############################# Build ##############################
+# Top Header (Disable for cleaner look, was enabled in original)
+top_header = false
+
+# Cookie Consent (Keep settings from original if desired)
+[params.cookies]
+enable = true
+expire_days = 30 # Or adjust as needed
+
+# Plugins (Keep CSS/JS plugins from the original theme for now)
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" # Ensure this is the latest FA version you want
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.bundle.min.js" # Includes Popper
+[[params.plugins.js]]
+link = "plugins/js-cookie/js.cookie.min.js" # For cookie consent
+
+############################# Menus ##############################
+# Main navigation
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+[[menu.main]]
+name = "Services"
+url = "/services/"
+weight = 2
+[[menu.main]]
+name = "About"
+url = "/about/"
+weight = 3
+# [[menu.main]] # Optional Blog/Insights section
+#   name = "Insights"
+#   url = "/blog/"
+#   weight = 4
+[[menu.main]]
+name = "Contact"
+url = "/contact/"
+weight = 5
+
+# Footer navigation (can mirror main or be different)
+[[menu.footer]]
+name = "Privacy Policy"
+url = "/privacy/"
+weight = 1
+[[menu.footer]]
+name = "Terms of Service"
+url = "/terms/"
+weight = 2
+[[menu.footer]]
+name = "Contact"
+url = "/contact/"
+weight = 3
+
+############################# Build Configuration ##############################
+# Keep build settings from output.txt for now
 [build]
 noJSConfigInAssets = false
 useResourceCacheWhen = 'fallback'
 [build.buildStats]
-enable = true
+enable = false # Can disable stats locally if not needed
 [[build.cachebusters]]
 source = 'assets/.*\.(js|ts|jsx|tsx)'
 target = '(js|scripts|javascript)'
@@ -36,24 +133,25 @@ target = '(css|styles|scss|sass)'
 source = 'assets/.*\.(.*)$'
 target = '$1'
 
-
 ############################# Outputs ##############################
 [outputs]
 home = ["HTML", "RSS"]
+page = ["HTML"]
+section = ["HTML"]
+taxonomy = ["HTML", "RSS"]
+term = ["HTML", "RSS"]
 
 ############################# Imaging ##############################
 [imaging]
-# See https://github.com/disintegration/imaging
-# Default JPEG or WebP quality setting. Default is 75.
 quality = 90
-resampleFilter = "lanczos"
+resampleFilter = "Lanczos"
 
 ############################# Caches ###############################
+# Keep cache settings from output.txt
 [caches]
 [caches.images]
 dir = ":resourceDir/_gen"
 maxAge = "720h"
-
 [caches.assets]
 dir = ":resourceDir/_gen"
 maxAge = "720h"
@@ -61,45 +159,23 @@ maxAge = "720h"
 ############################# Markup ###############################
 [markup]
 [markup.goldmark.renderer]
-unsafe = true
+unsafe = true # Allows raw HTML in markdown, needed by some themes/shortcodes
+[markup.highlight]
+# Optional: configure code highlighting if you plan a blog/docs
+# codeFences = true
+# guessSyntax = false
+# hl_Lines = ""
+# lineNoStart = 1
+# lineNos = false
+# lineNumbersInTable = true
+# noClasses = true
+# style = "github" # Choose a style: https://xyproto.github.io/splash/docs/all.html
+# tabWidth = 4
 
-############################# Plugins ##############################
-
-# CSS Plugins
-[[params.plugins.css]]
-link = "plugins/bootstrap/bootstrap.min.css"
-[[params.plugins.css]]
-link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" # Example CDN link, check for latest version
-
-# JS Plugins
-[[params.plugins.js]]
-link = "plugins/jQuery/jquery.min.js"
-# JS Plugins
-[[params.plugins.js]]
-link = "plugins/popper/popper.min.js"
-[[params.plugins.js]]
-link = "plugins/bootstrap/bootstrap.bundle.min.js"
-[[params.plugins.js]]
-link = "plugins/js-cookie/js.cookie.min.js" # If you store it locally
-# cookies
-[params.cookies]
-enable = true
-expire_days = 14
-
-
-############################# social site ########################
-[[params.social]]
-title = "github"
-icon = "fa-brands fa-github"
-link = "https://github.com/boycott-beacon/"
-[[params.social]]
-title = "X"
-icon = "fa-brands fa-x-twitter"
-link = "https://x.com/boycottbeacon/"
-[[params.social]]
-title = "Bluesky"
-icon = "fa-brands fa-bluesky" # Font Awesome icon for Bluesky
-link = "https://bsky.app/profile/boycottbeacon.bsky.social"
-
-[[imports]]
-path = "github.com/gethugothemes/hugo-modules/videos"
+############################# Module Imports ##############################
+# Keep module imports if the theme depends on them
+[module]
+[[module.imports]]
+path = "github.com/gethugothemes/hugo-modules/images"
+[[module.imports]]
+path = "github.com/gethugothemes/hugo-modules/videos" # Added in output.txt, keep for now

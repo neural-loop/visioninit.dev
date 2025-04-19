@@ -1,0 +1,123 @@
+/* Button style */
+.btn {
+  font-size: 16px;
+  font-family: $primary-font;
+  text-transform: capitalize;
+  // Adjusted padding slightly to accommodate potential thicker borders
+  padding: 14px 38px;
+  border-radius: 0; // Keep blocky corners
+  font-weight: 500;
+  border: 1px solid transparent; // Base border, transparent initially for solid buttons
+  position: relative;
+  z-index: 1;
+  // Use standard CSS transitions for background, color, border
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  overflow: hidden; // Keep this if needed for other effects, but ::before is gone
+  white-space: nowrap;
+
+  // REMOVED the ::before pseudo-element and its hover logic
+
+  &:active,
+  &:hover,
+  &.focus,
+  &:focus,
+  &.active {
+    outline: 0;
+    box-shadow: none !important;
+    // General hover state - specific button types will override
+  }
+}
+
+.btn-sm {
+  font-size: 14px;
+  // Adjust padding for sm buttons too
+  padding: 8px 33px; // Original: 10px 35px -> 10-2, 35-2
+}
+
+.btn-xs {
+  font-size: 12px;
+  padding: 5px 15px; // Keep xs padding as is or adjust slightly if needed
+}
+
+// --- Solid Primary Button ---
+.btn-primary {
+  color: $white;
+  background-color: $primary-color;
+  border-color: $primary-color; // Ensure border matches bg
+
+  &:active,
+  &:hover,
+  &.focus,
+  &:focus,
+  &.active {
+    // Simple darken on hover
+    background-color: darken($primary-color, 10%);
+    border-color: darken($primary-color, 10%);
+    color: $white; // Keep text white
+  }
+}
+
+// --- Outline Primary Button (Blocky) ---
+.btn-outline-primary {
+  color: $primary-color;
+  background-color: transparent;
+  border: 3px solid $primary-color; // <<< Increased border width
+  // Adjust padding specifically for this thicker border
+  padding: 12px 35px; // 14px - 2px (diff from 1px base), 38px - 3px
+
+  // Specific padding adjustments for btn-sm.btn-outline-primary
+  &.btn-sm {
+    padding: 6px 30px; // 8px - 2px, 33px - 3px
+  }
+  // Add for btn-xs if you use it with outline
+  // &.btn-xs {
+  //   padding: 3px 12px; // 5px - 2px, 15px - 3px
+  // }
+
+
+  &:active,
+  &:hover,
+  &.focus,
+  &:focus,
+  &.active {
+    // Fill with primary color on hover
+    background-color: $primary-color;
+    border-color: $primary-color; // Keep border color consistent
+    color: $white; // Change text to white
+  }
+
+  // --- Specific Override for Hero Button ---
+  // Targets .btn-outline-primary used with text-white and border-white classes
+  &.text-white.border-white {
+    border-color: $white !important; // Force white border
+    color: $white !important;       // Force white text
+
+    &:active,
+    &:hover,
+    &.focus,
+    &:focus,
+    &.active {
+      background-color: $white; // Fill with white on hover
+      border-color: $white;     // Keep border white
+      color: $primary-color !important; // Change text to primary color
+    }
+  }
+}
+
+// --- Light Button ---
+.btn-light {
+  color: $primary-color;
+  background-color: $white;
+  border-color: $white;
+
+  &:active,
+  &:hover,
+  &.focus,
+  &:focus,
+  &.active {
+    // Simple darken on hover
+    background-color: darken($white, 8%);
+    border-color: darken($white, 8%);
+    color: $primary-color; // Keep text primary
+  }
+}
