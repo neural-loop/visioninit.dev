@@ -1,9 +1,11 @@
 ---
-title: "Design Reactor - HP Experience Demonstration Center"
+title: "HP Experience Demonstration Center (Design Reactor)"
 date: 2013-12-31 # End date from resume (Vision Init Self period)
 description: "Created backend interfaces for content management powering interactive touch screens at the HP Experience Demonstration Center, facilitating client briefings and tours."
 tags: ["Web Development", "Backend Development", "PHP", "Content Management", "Interactive Displays", "Drupal"] # Added tags
 draft: false
+image: hpexperience.png
+service_areas: ["custom-web-application-development", "cloud-infrastructure-devops-solutions", "seo-content-strategy-optimization", "ai-data-integration-services"] # ADD THIS TAXONOMY
 ---
 
 ## Project: HP Experience Demonstration Center (via Design Reactor)

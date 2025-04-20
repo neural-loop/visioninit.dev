@@ -4,6 +4,8 @@ date: 2015-12-31 # End date from resume
 description: "Drupal Developer for MapLight, creating data-driven interfaces and Drupal solutions to reveal money's influence on politics, supporting open government initiatives."
 tags: ["Web Development", "Drupal", "PHP", "Data Visualization", "Open Government", "Non-Profit", "Performance Monitoring", "New Relic", "Selenium", "Testing"] # Added tags
 draft: false
+service_areas: ["custom-web-application-development", "cloud-infrastructure-devops-solutions", "seo-content-strategy-optimization", "ai-data-integration-services"] # ADD THIS TAXONOMY
+image: maplight.png
 ---
 
 ## Project: MapLight - Revealing Money's Influence on Politics

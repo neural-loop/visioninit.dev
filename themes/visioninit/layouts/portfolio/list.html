@@ -1,0 +1,40 @@
+{{ define "main" }}
+<section class="section portfolio-list">
+  <div class="container">
+
+    {{/* Page Title and Optional Content from /portfolio/_index.md */}}
+    <div class="row mb-5">
+      <div class="col-12">
+        {{ with .Content }}
+        <div class="content mb-4">{{ . }}</div>
+        {{ end }}
+        {{/* Optional: Link to browse by service area */}}
+        <p><a href="{{ "/services/" | relLangURL }}">Browse portfolio projects by service area</a>.</p>
+      </div>
+    </div>
+
+    {{/* Portfolio Grid - Show ALL portfolio items */}}
+    <div class="row">
+      {{ $paginator := .Paginate .Pages }}
+      {{ range $paginator.Pages }}
+      <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch portfolio-item-col">
+        {{/* Use the standard vertical card */}}
+        {{ partial "components/portfolio-card.html" (dict "context" .) }}
+      </div>
+      {{ else }}
+      <div class="col-12 text-center">
+        <p class="text-muted">No portfolio projects found.</p>
+      </div>
+      {{ end }} {{/* End range */}}
+    </div>
+
+    {{/* Pagination */}}
+    <div class="row mt-4">
+      <div class="col-12">
+        {{ template "_internal/pagination.html" . }}
+      </div>
+    </div>
+
+  </div> {{/* End container */}}
+</section>
+{{ end }} {{/* End define main */}}

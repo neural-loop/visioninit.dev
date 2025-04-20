@@ -2,6 +2,14 @@ body {
   background-color: $body-color;
   overflow-x: hidden;
 }
+html {
+  // Smooth scrolling when clicking anchors (optional but nice)
+  scroll-behavior: smooth;
+
+  // Offset for the sticky header height + some buffer
+  // ADJUST THIS VALUE based on your actual header height
+  scroll-padding-top: 120px;
+}
 
 ::selection {
   background: lighten($color: $primary-color, $amount: 10);

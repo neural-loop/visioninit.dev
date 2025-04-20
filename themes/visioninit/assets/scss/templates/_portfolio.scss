@@ -1,0 +1,74 @@
+// Import this file in main.scss: @import 'templates/portfolio';
+
+// --- Portfolio List Styles ---
+
+.portfolio-list {
+  // Add any specific section styling if needed
+}
+
+.portfolio-item-col {
+  // Ensures columns behave correctly with flex stretching
+}
+
+.portfolio-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  overflow: hidden; // Prevent content spill on transforms
+
+  &:hover {
+    transform: translateY(-5px); // Subtle lift effect
+    box-shadow: 0 0.5rem 1rem rgba($black, 0.1) !important; // Slightly stronger shadow
+  }
+
+  .portfolio-card-image-link {
+    display: block; // Ensure link covers image area
+    overflow: hidden; // Keep image zoom effect contained
+  }
+
+  .portfolio-card-image {
+    aspect-ratio: 1.91 / 1;     // Maintain aspect ratio
+    object-fit: cover;          // Ensure image covers the container
+    object-position: top center; // <<< ADD THIS: Align image top-center within its box
+    transition: transform 0.3s ease;
+    transform-origin: top center; // Keep this: Scale originates from the top
+  }
+
+  &:hover .portfolio-card-image {
+    transform: scale(1.05); // Slight zoom effect on image on card hover
+  }
+
+  .card-body {
+    // Adjust padding or other body styles if needed
+  }
+
+  .portfolio-card-title a {
+    text-decoration: none;
+    &:hover {
+      color: $primary-color !important; // Ensure title hover uses primary color
+    }
+    // The stretched-link makes the whole card clickable, so explicit hover on title isn't strictly needed
+  }
+
+  .portfolio-card-description {
+    line-height: 1.5; // Improve readability
+  }
+
+  .portfolio-card-tags {
+    .badge {
+      font-size: 0.7rem; // Smaller tag font size
+      font-weight: 500;
+      background-color: lighten($light, 1%); // Very light background
+      color: $text-color-light;
+    }
+  }
+
+  .stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+  }
+}
+

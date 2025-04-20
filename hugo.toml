@@ -15,6 +15,11 @@ summaryLength = 20
 # disableLanguages = ["fr"]
 hasCJKLanguage = false # Keep false unless you use CJK languages
 
+# Configure Taxonomies
+[taxonomies]
+category = "categories"
+tag = "tags"
+
 #################### Parameters (site-wide variables) ##################
 [params]
 logo = "/images/logo-visioninit.png" # <<< NEW: Path to your consultancy logo (relative to static/)

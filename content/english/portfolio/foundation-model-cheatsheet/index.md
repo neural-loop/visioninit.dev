@@ -4,6 +4,8 @@ date: 2024-03-15 # Aligned with AI Models end date
 description: "Developed fmcheatsheet.org using Hugo, creating an interactive online platform for the Foundation Model Development Cheatsheet to promote responsible AI practices."
 tags: ["Web Development", "Hugo", "SEO", "Community Building", "AI", "Responsible AI", "Foundation Models", "Open Source", "Collaboration"] # Added tags
 draft: false
+service_areas: ["custom-web-application-development", "cloud-infrastructure-devops-solutions", "seo-content-strategy-optimization", "ai-data-integration-services"] # ADD THIS TAXONOMY
+image: fmcheatsheet.png
 ---
 
 ## Project: Foundation Model Cheatsheet Website

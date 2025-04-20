@@ -1,0 +1,75 @@
+{{/* themes/visioninit/layouts/partials/components/bounty-card.html */}}
+{{ $item := .context }}
+{{ $placeholder_dimensions := "300x200" }} {{/* Placeholder size for horizontal card */}}
+{{ $placeholder_bg := "eee" }}
+{{ $placeholder_text_color := "aaa" }}
+{{ $placeholder_text := $item.Title | truncate 15 }}
+
+{{ $image_path := "" }}
+{{ $image_alt := $item.Title | default "Bounty item image" }}
+
+{{/* Image Logic: Prioritize 'image', then 'og.png', then placeholder */}}
+{{ with $item.Params.image }}
+{{ $imgRes := $item.Resources.GetMatch . }}
+{{ if $imgRes }}
+{{ $image_path = ($imgRes.Resize "400x q85").RelPermalink }} {{/* Slightly smaller resize */}}
+{{ else }}
+{{ $image_path = . | absURL }}
+{{ end }}
+{{ else }}
+{{ with $item.Resources.GetMatch "og.png" }}
+{{ $image_path = (.Resize "400x q85").RelPermalink }}
+{{ end }}
+{{ end }}
+
+{{/* Placeholder if still no image */}}
+{{ if not $image_path }}
+{{ $image_path = printf "https://via.placeholder.com/%s/%s/%s?text=%s" $placeholder_dimensions $placeholder_bg $placeholder_text_color (urlquery $placeholder_text) }}
+{{ end }}
+
+<div class="card portfolio-bounty-card overflow-hidden rounded-0 border-0 shadow-sm h-100">
+  <div class="row g-0">
+    {{/* Image Column */}}
+    <div class="col-md-4 bounty-card-image-col d-flex align-items-center justify-content-center bg-light"> {{/* Added helper classes */}}
+      <a href="{{ $item.RelPermalink }}" class="d-block p-2"> {{/* Link wraps image */}}
+        <img src="{{ $image_path }}" class="img-fluid rounded-0 bounty-card-image" alt="{{ $image_alt }}">
+      </a>
+    </div>
+    {{/* Content Column */}}
+    <div class="col-md-8">
+      <div class="card-body d-flex flex-column h-100">
+        <h5 class="card-title mb-1">
+          <a href="{{ $item.RelPermalink }}" class="text-dark stretched-link">{{ $item.Title }}</a>
+        </h5>
+        <p class="card-text mb-2">
+          <small class="text-muted">
+            <i class="fas fa-calendar-alt fa-fw"></i> {{ $item.Date.Format "January 2, 2006" }}
+          </small>
+        </p>
+        <p class="card-text small text-muted mb-3 flex-grow-1">
+          {{ $item.Description | default ($item.Summary | plainify | truncate 150) }}
+        </p>
+        {{ with $item.Params.tags }}
+        {{/* Filter out the 'bug-bounty' tag itself from display if desired */}}
+        {{ $displayTags := slice }}
+        {{ range . }}
+        {{ if ne . "bug-bounty" }}
+        {{ $displayTags = $displayTags | append . }}
+        {{ end }}
+        {{ end }}
+        {{ if $displayTags }}
+        <div class="portfolio-card-tags mb-3">
+          {{ range first 3 $displayTags }} {{/* Show max 3 other tags */}}
+          <span class="badge badge-light mr-1 mb-1 p-2 border">{{ . }}</span>
+          {{ end }}
+          {{ if gt (len $displayTags) 3 }}
+          <span class="badge badge-light mr-1 mb-1 p-2 border">…</span>
+          {{ end }}
+        </div>
+        {{ end }}
+        {{ end }}
+        {{/* Stretched link on title makes card clickable */}}
+      </div>
+    </div>
+  </div>
+</div>

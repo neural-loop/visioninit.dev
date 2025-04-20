@@ -4,6 +4,8 @@ date: 2007-12-31 # Launch date mentioned in old portfolio
 description: "Launched the initial OsCommerce e-commerce site for Digital Sound Factory, providing high-quality, license-free audio sound downloads for software synthesizers."
 tags: ["Web Development", "E-commerce", "OsCommerce", "PHP", "Audio", "Music Technology"]
 draft: false
+service_areas: ["custom-web-application-development", "cloud-infrastructure-devops-solutions", "seo-content-strategy-optimization", "ai-data-integration-services"] # ADD THIS TAXONOMY
+image: digitalsoundfactory.png
 ---
 
 ## Project: Digital Sound Factory E-commerce Site (for KeyFax New Media)

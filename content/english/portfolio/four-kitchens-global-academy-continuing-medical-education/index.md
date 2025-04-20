@@ -1,9 +1,11 @@
 ---
-title: "Four Kitchens - Global Academy CME Project (Contract)"
+title: "Global Academy CME Project (Four Kitchens)"
 date: 2017-12-31 # End date from resume
 description: "Contract Drupal Developer contributing to the launch of Global Academy CME, focusing on data migration features, backlog fixes, and Behat testing."
 tags: ["Web Development", "Drupal", "PHP", "Data Migration", "Behat", "Testing", "Agency", "Contract", "Medical Education"] # Added tags
 draft: false
+image: fourkitchens.png
+service_areas: ["custom-web-application-development", "cloud-infrastructure-devops-solutions", "seo-content-strategy-optimization", "ai-data-integration-services"] # ADD THIS TAXONOMY
 ---
 
 ## Project: Global Academy for Continuing Medical Education (via Four Kitchens)

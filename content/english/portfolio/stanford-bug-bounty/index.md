@@ -1,12 +1,13 @@
 ---
-title: "Stanford Graduate School of Business - Web Development"
-date: 2020-12-31
+title: "Stanford Bug Bounty"
+date: 2020-12-31 # End date from resume
 description: "Senior Web Developer role involving custom Drupal module/theme development, site redesign ('Voices'), performance optimization, and migration support for Stanford GSB."
-tags: ["Web Development", "Drupal", "PHP", "Drupal API", "Performance Optimization", "Marketing Collaboration", "Security", "Bug Bounty", "Stanford University", "CMS", "Full-Stack", "Secure Development", "Vulnerability Assessment"] # Keep relevant descriptive tags
+tags: ["Web Development", "Drupal", "PHP", "Drupal API", "Performance Optimization", "Marketing Collaboration", "Security", "Bug Bounty", "Stanford University"] # Added tags
 draft: false
-service_areas: ["custom-web-application-development"] # ADD THIS TAXONOMY
+service_areas: ["web-security-ethical-hacking"] # ADD THIS TAXONOMY
 image: stanfordgsb.jpg
 ---
+
 ## Project: Stanford Graduate School of Business Website
 
 **Role:** Senior Web Developer (2017 - 2020)

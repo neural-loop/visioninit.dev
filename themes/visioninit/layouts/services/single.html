@@ -1,0 +1,43 @@
+{{ define "main" }}
+<section class="section service-detail">
+  <div class="container">
+
+    {{/* Service Title & Content */}}
+    <div class="row mb-5">
+      <div class="col-lg-10 mx-auto">
+        <div class="content service-description">
+          {{ .Content }} {{/* Content from the service's .md file */}}
+        </div>
+      </div>
+    </div>
+
+    {{/* Related Portfolio Projects Section */}}
+    {{ $serviceTag := .Params.service_tag }}
+    {{ if $serviceTag }}
+    {{ $relatedProjects := where site.RegularPages "Type" "portfolio" "Params.tags" "intersect" (slice $serviceTag) }}
+    {{ if $relatedProjects }}
+    <div class="row mt-5 pt-4 border-top">
+      <div class="col-12">
+        {{/* Heading moved into the .Content of the service page */}}
+        {{/* <h2 class="h3 mb-4">Related Projects</h2> */}}
+      </div>
+    </div>
+    <div class="row">
+      {{ range $relatedProjects }}
+      <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch portfolio-item-col">
+        {{ partial "components/portfolio-card.html" (dict "context" .) }}
+      </div>
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="row mt-5 pt-4 border-top">
+      <div class="col-lg-10 mx-auto text-center">
+        <p class="text-muted fst-italic">No specific portfolio projects tagged for this service yet.</p>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+
+  </div> {{/* End container */}}
+</section>
+{{ end }} {{/* End define main */}}

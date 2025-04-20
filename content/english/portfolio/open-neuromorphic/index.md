@@ -4,6 +4,8 @@ date: 2024-03-15
 description: "Provided web development expertise to Open Neuromorphic, redesigning their website, optimizing SEO, and streamlining content to support the open-source neuromorphic computing community."
 tags: ["Web Development", "Hugo", "SEO", "Community Building", "AI", "Neuromorphic Computing", "Open Source", "Collaboration"] # Added tags
 draft: false
+service_areas: ["custom-web-application-development", "cloud-infrastructure-devops-solutions", "seo-content-strategy-optimization", "ai-data-integration-services"] # ADD THIS TAXONOMY
+image: openneuromorphic.png
 ---
 
 ## Empowering Neuromorphic Computing: A Shared Vision with Open Neuromorphic

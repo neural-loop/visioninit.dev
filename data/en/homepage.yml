@@ -19,18 +19,18 @@ slider:
 banner_feature:
   enable: true
   feature_item:
-    - name: "Secure Development Services" # Aligned with Service Category 1
+    - name: "Custom Web Development" # Service 1
+      icon: "fa-solid fa-code" # Code icon
+      content: "Building tailored, scalable, and secure web applications from concept to deployment using modern technologies."
+    - name: "Cloud & DevOps Solutions" # Service 2
+      icon: "fa-solid fa-cloud-arrow-up" # Cloud/Upload icon
+      content: "Optimizing infrastructure, automating deployments (CI/CD), and ensuring high availability on platforms like GCP & AWS."
+    - name: "Web Security & Hacking" # Service 3
       icon: "fa-solid fa-shield-halved" # Security icon
-      content: "Architecting and building applications where security is a foundational element, minimizing risks and future costs."
-    - name: "Ethical Hacking & Assessments" # Aligned with Service Category 2
-      icon: "fa-solid fa-user-secret" # Hacker/Assessment icon
-      content: "Developer-led security testing providing practical, actionable remediation guidance your team can implement."
-    - name: "Full-Stack & Cloud Expertise" # Highlighting key strength
-      icon: "fa-solid fa-layer-group" # Stack/Layers icon
-      content: "Comprehensive solutions across frontend, backend, APIs, and cloud platforms (AWS, Google Cloud)."
-    - name: "Security Transformation" # Aligned with Service Category 3
-      icon: "fa-solid fa-arrows-rotate" # Transformation/Process icon
-      content: "Integrating security seamlessly into your development lifecycle (DevSecOps) and empowering your teams."
+      content: "Proactive security assessments, ethical hacking, and secure development practices to protect your digital assets."
+    - name: "SEO & Content Strategy" # Service 4
+      icon: "fa-solid fa-magnifying-glass-chart" # SEO/Analytics icon
+      content: "Enhancing online visibility through technical SEO, performance optimization, and effective content workflows."
 
 how_it_works:
   enable: true

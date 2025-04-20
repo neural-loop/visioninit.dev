@@ -1,9 +1,11 @@
 ---
-title: "Design Reactor - HP & DVF Experience Lounge"
-date: 2013-12-31 # End date from resume (Vision Init Self period)
+title: "HP & DVF Experience Lounge (Design Reactor)"
+date: 2013-12-31
 description: "Developed backend systems and content interfaces for a multi-media event collaboration between HP and Diane von Furstenberg, showcasing brand integration and digital experiences."
 tags: ["Web Development", "Backend Development", "PHP", "Content Management", "Event Technology", "Brand Activation", "Drupal"] # Added tags
 draft: false
+image: hpdvf.png
+service_areas: ["custom-web-application-development", "cloud-infrastructure-devops-solutions", "seo-content-strategy-optimization", "ai-data-integration-services"] # ADD THIS TAXONOMY
 ---
 
 ## Project: HP & DVF Experience Lounge (via Design Reactor)

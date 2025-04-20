@@ -3,19 +3,19 @@
 [[main]]
 name = "Services"
 url = "/services/"
-weight = 2
-[[main]]
-name = "About"
-url = "/about/"
-weight = 3
+weight = 1
 [[main]] # Optional: Add Portfolio if you created the section/page
  name = "Portfolio"
  url = "/portfolio/"
- weight = 4
+ weight = 2
 [[main]] # Optional: Add Portfolio if you created the section/page
  name = "Blog"
  url = "/blog/"
- weight = 4
+ weight = 3
+[[main]]
+name = "About"
+url = "/about/"
+weight = 4
 [[main]]
 name = "Contact"
 url = "/contact/"

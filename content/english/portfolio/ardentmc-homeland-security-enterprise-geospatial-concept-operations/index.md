@@ -1,9 +1,11 @@
 ---
-title: "ArdentMC - GeoCONOPS Platform (HSE)"
+title: "Homeland Security Enterprise - GeoCONOPS Platform (ArdentMC)"
 date: 2016-12-31 # End date from resume
 description: "Senior CMS Applications Developer building complex Drupal 7 web applications, themes, and plugins for the Homeland Security Enterprise GeoCONOPS platform."
 tags: ["Web Development", "Drupal", "PHP", "Drupal 7", "Government", "GeoPlatform", "Open Data", "Consulting", "Homeland Security"] # Added tags
 draft: false
+service_areas: ["custom-web-application-development", "cloud-infrastructure-devops-solutions", "seo-content-strategy-optimization", "ai-data-integration-services"] # ADD THIS TAXONOMY
+image: geoconops.png
 ---
 
 ## Project: Homeland Security Enterprise - Geospatial Concept of Operations (via ArdentMC)
