@@ -1,0 +1,89 @@
+{{/* themes/visioninit/layouts/partials/components/portfolio-card-wide.html */}}
+{{/*
+Expects a dictionary context with:
+- projectData: The portfolio item data object from data/portfolio.yml
+- currentServiceTag: The string tag of the service being viewed (e.g., "custom-web-application-development")
+*/}}
+{{ $projectData := .projectData }}
+{{ $currentServiceTag := .currentServiceTag | default "" }}
+
+{{/* --- Image Handling - Now reads from $projectData --- */}}
+{{ $placeholder_dimensions := "300x200" }}
+{{ $placeholder_bg := "eee" }}
+{{ $placeholder_text_color := "aaa" }}
+{{ $placeholder_text := $projectData.title | truncate 15 }}
+
+{{ $image_filename := $projectData.image | default "" }}
+{{ $image_path := "" }}
+{{ $image_alt := $projectData.title | default "Portfolio item image" }}
+
+{{ if $image_filename }}
+{{/* Construct path assuming image is in /static/images/portfolio/ */}}
+{{ $image_path = printf "/images/portfolio/%s" $image_filename | absURL }}
+{{ else }}
+{{ $image_path = printf "https://via.placeholder.com/%s/%s/%s?text=%s" $placeholder_dimensions $placeholder_bg $placeholder_text_color (urlquery $placeholder_text) }}
+{{ end }}
+
+{{/* --- Wide Card Structure --- */}}
+<div class="card portfolio-card-wide overflow-hidden rounded-0 border h-100">
+  <div class="row g-0 h-100">
+
+    {{/* --- Image Column - NO LINK --- */}}
+    <div class="col-md-4 portfolio-card-wide-image-col bg-gray">
+      <img src="{{ $image_path }}" class="ml-0 pr-2 img-fluid portfolio-card-wide-image pl-4" alt="{{ $image_alt }}">
+    </div>
+
+    {{/* --- Content Column --- */}}
+    <div class="col-md-8 portfolio-card-wide-content-col">
+      <div class="card-body d-flex flex-column h-100 p-4">
+
+        {{/* --- Title - NO LINK, Read from Data --- */}}
+        <h5 class="card-title mb-3 portfolio-card-title text-dark">
+          {{ $projectData.title }}
+        </h5>
+
+        {{/* --- START: Display Specific Service Contributions --- */}}
+        {{ if $currentServiceTag }}
+        {{/* Access contributions directly from the data object */}}
+        {{ $contributionsMap := $projectData.service_contributions }}
+        {{ $serviceContribution := index $contributionsMap $currentServiceTag }}
+
+        {{ with $serviceContribution }}
+        {{ with .summary }}
+        <p class="portfolio-contribution-summary small text-muted mb-3"><strong>Contribution Summary:</strong> {{ . | markdownify }}</p>
+        {{ end }}
+        {{ with .points }}
+        <ul class="portfolio-contribution-points list-unstyled small mb-3">
+          {{ range . }}
+          <li style="line-height: 1.4em" class="pb-2"><i class="fa-solid fa-check-circle text-success fa-fw mr-1"></i>{{ . | markdownify }}</li>
+          {{ end }}
+        </ul>
+        {{ end }}
+        {{ else }}
+        {{/* Fallback description from data if specific contribution missing */}}
+        <p class="card-text portfolio-card-description small text-muted mb-3 flex-grow-1">
+          {{ $projectData.description | default ($projectData.role_overview | default "Project details available upon request.") | truncate 150 }}
+        </p>
+        {{ end }}
+        {{ else }}
+        {{/* Fallback description from data if no tag passed */}}
+        <p class="card-text portfolio-card-description small text-muted mb-3 flex-grow-1">
+          {{ $projectData.description | default ($projectData.role_overview | default "Project details available upon request.") | truncate 150 }}
+        </p>
+        {{ end }}
+        {{/* --- END: Display Specific Service Contributions --- */}}
+
+        {{/* Tags pushed to bottom, read from data */}}
+        {{ with $projectData.tags }}
+        <div class="portfolio-card-tags mt-auto">
+          {{ range first 20 . }}
+          <span class="badge badge-light mr-1 mb-1 p-2 border">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+
+      </div> {{/* End card-body */}}
+    </div> {{/* End content column */}}
+
+  </div> {{/* End row */}}
+</div> {{/* End card */}}

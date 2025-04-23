@@ -4,14 +4,38 @@
 name = "Services"
 url = "/services/"
 weight = 1
-[[main]] # Optional: Add Portfolio if you created the section/page
- name = "Portfolio"
- url = "/portfolio/"
- weight = 2
-[[main]] # Optional: Add Portfolio if you created the section/page
- name = "Blog"
- url = "/blog/"
- weight = 3
+
+[[main]]
+parent = "Services"
+name = "Custom Web Application Development"
+url = "/services/custom-web-application-development/"
+weight = 1
+
+[[main]]
+parent = "Services"
+name = "Web Security & Ethical Hacking"
+url = "/services/web-security-ethical-hacking/"
+weight = 2
+
+[[main]]
+parent = "Services"
+name = "SEO & Content Strategy Optimization"
+url = "/services/seo-content-strategy-optimization/"
+weight = 3
+
+[[main]]
+parent = "Services"
+name = "AI & Data Integration Services"
+url = "/services/ai-data-integration-services/"
+weight = 4
+
+[[main]]
+parent = "Services"
+name = "Cloud Infrastructure & DevOps Solutions"
+url = "/services/cloud-infrastructure-devops-solutions/"
+weight = 5
+
+
 [[main]]
 name = "About"
 url = "/about/"

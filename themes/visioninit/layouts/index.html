@@ -2,6 +2,7 @@
 
 {{ $data := index site.Data site.Language.Lang }}
 
+{{/* --- Hero Section --- */}}
 {{ if $data.homepage.slider.enable }}
 {{ with $data.homepage.slider }}
 <section class="hero-section overlay bg-cover" data-background="{{ .bg_image | absURL }}">
@@ -13,17 +14,17 @@
         <p class="text-muted mb-4">{{ .content | markdownify }}</p>
         <div class="hero-buttons">
           {{ if .button.enable }}
-            {{ $button_link := "" }}
-            {{ if eq .button.link "schedule" }}
-              {{ $button_link = site.Params.scheduling_link }}
-            {{ else }}
-              {{ $button_link = .button.link }}
-            {{ end }}
-             <a href="{{ $button_link | safeURL }}"
-               class="btn btn-primary mr-2 mb-2"
-               {{ if eq .button.link "schedule" }}target="_blank" rel="noopener noreferrer"{{ else if or (strings.HasPrefix .button.link "http://") (strings.HasPrefix .button.link "https://") }}target="_blank" rel="noopener noreferrer"{{ end }}>
-            {{ .button.label }}
-            </a>
+          {{ $button_link := "" }}
+          {{ if eq .button.link "schedule" }}
+          {{ $button_link = site.Params.scheduling_link }}
+          {{ else }}
+          {{ $button_link = .button.link }}
+          {{ end }}
+          <a href="{{ $button_link | safeURL }}"
+             class="btn btn-primary mr-2 mb-2"
+             {{ if eq .button.link "schedule" }}target="_blank" rel="noopener noreferrer"{{ else if or (strings.HasPrefix .button.link "http://") (strings.HasPrefix .button.link "https://") }}target="_blank" rel="noopener noreferrer"{{ end }}>
+          {{ .button.label }}
+          </a>
           {{ end }}
           {{ if .button2.enable }}
           {{ $button2_style := .button2.style | default "btn-primary" }}
@@ -38,76 +39,78 @@
 {{ end }}
 {{ end }}
 
-{{ if $data.homepage.banner_feature.enable }}
-{{ with $data.homepage.banner_feature }}
-<section class="bg-gray overflow-md-hidden">
+
+{{/* --- START: Subscription Tiers Section (Using Original Offset Layout) --- */}}
+{{ $tiers_data := $data.homepage.subscription_tiers }}
+{{ if and $tiers_data.enable $tiers_data.tiers }}
+<section class="bg-gray overflow-md-hidden"> {{/* <<< Original outer section classes */}}
   <div class="container-fluid p-0">
     <div class="row no-gutters">
+
+      {{/* Left Offset Column (Empty) - Creates the visual offset */}}
       <div class="col-xl-4 col-lg-5 align-self-end">
-         
+        {{/* This space remains empty */}}
       </div>
+
+      {{/* Right Content Column - Contains the actual content including tiers */}}
       <div class="col-xl-8 col-lg-7">
-        <div class="row feature-blocks bg-gray">
-          {{ range .feature_item }}
-          <div class="col-md-6 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
-            <i class="{{ .icon }} mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
-            <h3 class="mb-xl-4 mb-lg-3 mb-4">{{ .name | markdownify }}</h3>
-            <p>{{ .content | markdownify }}</p>
-          </div>
-          {{ end }}
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="row feature-blocks bg-gray"> {{/* <<< Original inner row for padding/bg */}}
+          <div class="col-12"> {{/* Make content span the full width of this right column */}}
+
+            {{/* Section Title & Subtitle (Centered within this column) */}}
+            <div class="text-center mb-5"> {{/* Added text-center and margin */}}
+              {{ with $tiers_data.title }}<h2 class="section-title">{{ . | markdownify }}</h2>{{ end }}
+              {{ with $tiers_data.subtitle }}<p class="lead text-muted">{{ . | markdownify }}</p>{{ end }}
+            </div>
+
+            {{/* Tier Cards Grid (Nested row for side-by-side placement) */}}
+            <div class="row justify-content-center"> {{/* Center the cards within the available space of the right column */}}
+              {{ range $tiers_data.tiers }}
+              <div class="col-md-6 mb-4 d-flex align-items-stretch"> {{/* Two columns on medium+, stacking on smaller */}}
+                {{/* Call the reusable card partial */}}
+                {{ partial "components/subscription-card.html" (dict "context" .) }}
+              </div>
+              {{ end }}
+            </div> {{/* End nested row for cards */}}
+
+          </div> {{/* End col-12 */}}
+        </div> {{/* End feature-blocks row */}}
+      </div> {{/* End right content column */}}
+
+    </div> {{/* End main row no-gutters */}}
+  </div> {{/* End container-fluid */}}
 </section>
 {{ end }}
-{{ end }}
+{{/* --- END: Subscription Tiers Section --- */}}
+{{/* --- START: Core Services Section (Copied from /services/ logic) --- */}}
+{{ $servicesPages := where site.RegularPages "Section" "services" }} {{/* Get all pages in the services section */}}
+{{ $sortedServices := $servicesPages.ByWeight }} {{/* Sort them by weight */}}
+{{ $displayServices := $sortedServices | first 5 }} {{/* Limit to first 5 (adjust if needed) */}}
 
-
-{{/* --- How It Works Section --- */}}
-{{ if $data.homepage.how_it_works.enable }}
-<section class="section-sm">
+{{ if $displayServices }}
+<section class="section bg-white"> {{/* Added bg-light for visual separation */}}
   <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="section-title">{{ $data.homepage.how_it_works.title }}</h2>
+    {{/* Section Title */}}
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center mb-5">
+        <h2 class="section-title">Core Services</h2>
+        <p class="text-muted">Explore the key areas where VisionInit delivers expert solutions.</p>
       </div>
     </div>
-    <div class="row justify-content-center text-center">
-      {{/* Inside themes/visioninit/layouts/index.html - within the how_it_works section */}}
-      {{ range $data.homepage.how_it_works.steps }}
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="px-3">
-          <i class="{{ .icon }} feature-icon mb-4" style="font-size: 60px;"></i>
-          <h4 class="mb-3">{{ .title }}</h4>
-          <p class="mb-4">{{ .description }}</p>
-          {{/* Inside themes/visioninit/layouts/index.html - How It Works Button */}}
-          {{ if and .link .link_label }}
-          {{ $step_link := "" }}
-          {{ $is_schedule_link := false }}
-          {{ if eq .link "schedule" }}
-          {{/* --- MODIFIED PARAMETER PATH --- */}}
-          {{ $step_link = site.Params.services.scheduling.cal_com_link }}
-          {{ $is_schedule_link = true }}
-          {{ else }}
-          {{ $step_link = .link }}
-          {{ end }}
 
-          <a href="{{ if $is_schedule_link }}{{ $step_link | safeURL }}{{ else }}{{ $step_link | absLangURL }}{{ end }}"
-             class="btn btn-sm btn-primary"
-             {{ if $is_schedule_link }}target="_blank" rel="noopener noreferrer"{{ else if or (strings.HasPrefix .link "http://") (strings.HasPrefix .link "https://") }}target="_blank" rel="noopener noreferrer"{{ end }}>
-          {{ .link_label }}
-          </a>
-          {{ end }}
-        </div>
+    {{/* Service Grid */}}
+    <div class="row justify-content-center">
+      {{ range $displayServices }}
+      <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
+        {{/* Call the partial - reuse the same card structure */}}
+        {{ partial "components/service-card.html" (dict "context" .) }}
       </div>
       {{ end }}
     </div>
   </div>
 </section>
 {{ end }}
-
-
+{{/* --- END: Core Services Section --- */}}
 {{/* --- Video Feature Section --- */}}
 {{ if $data.homepage.video_feature.enable }}
 {{ with $data.homepage.video_feature }}
@@ -135,8 +138,7 @@
 {{ end }}
 
 
-{{/* --- REMOVED THE OLD FULL-WIDTH CTA SECTION FROM HERE --- */}}
-{{/* The CTA is now handled globally in footer.html */}}
+{{/* --- Global CTA is handled in footer.html --- */}}
 
 
 {{ end }} {{/* End define "main" */}}

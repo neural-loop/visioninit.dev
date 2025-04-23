@@ -1,36 +1,60 @@
 {{ define "main" }}
 
-<!-- about content -->
+<!-- About Section -->
 <section class="section">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
+    {{/* --- Row 1: Image Left, Text Right --- */}}
+    {{ with .Params.image1 }}
+    {{ $image := . }}
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <figure class="content-image-figure">
+          <img src="{{ $image.src | absURL }}" class="img-fluid rounded shadow-sm w-100" alt="{{ $image.alt }}">
+          {{ with $image.caption }}
+          <figcaption class="figure-caption text-center small mt-2">{{ . | markdownify }}</figcaption>
+          {{ end }}
+        </figure>
+      </div>
+      <div class="col-lg-8">
         <div class="content">
-          {{ .Content }}
+          {{ $.Params.text_block_1 | markdownify }}
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- /about content -->
+    {{ end }} {{/* End check image1 */}}
 
-{{/* Team Members Section */}}
-{{ if .Params.members }}
-<section class="section pt-0"> {{/* Use pt-0 if spacing looks too much after main content */}}
-  <div class="container">
-    <div class="row justify-content-center"> {{/* Optional: center if cards don't fill width */}}
-      {{ $sortedMembers := sort .Params.members "member_id" "asc" }}
-      {{ range $sortedMembers }}
-      {{/* Use Bootstrap columns. col-lg-10 or col-12 makes it wider */}}
-      <div class="col-lg-10 col-md-12"> {{/* ADJUST columns as needed */}}
-        {{ partial "components/team-card.html" . }}
+    {{/* --- Row 2: Full Width Text Block --- */}}
+    {{ with .Params.text_block_2 }}
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10"> {{/* Match intro column width */}}
+        <div class="content">
+          {{ . | markdownify }}
+        </div>
       </div>
-      {{ end }}
     </div>
-  </div>
+    {{ end }} {{/* End check text_block_2 */}}
+
+    {{/* --- Row 3: Text Left, Image Right --- */}}
+    {{ with .Params.image2 }}
+    {{ $image := . }}
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-8 order-lg-1 order-2"> {{/* Text first visually on mobile */}}
+        <div class="content">
+          {{ $.Params.text_block_3 | markdownify }}
+        </div>
+      </div>
+      <div class="col-lg-4 order-lg-2 order-1 mb-4 mb-lg-0"> {{/* Image first visually on mobile */}}
+        <figure class="content-image-figure">
+          <img src="{{ $image.src | absURL }}" class="img-fluid rounded shadow-sm w-100" alt="{{ $image.alt }}">
+          {{ with $image.caption }}
+          <figcaption class="figure-caption text-center small mt-2">{{ . | markdownify }}</figcaption>
+          {{ end }}
+        </figure>
+      </div>
+    </div>
+    {{ end }} {{/* End check image2 */}}
+  </div> {{/* End container */}}
 </section>
-{{ end }}
-{{/* End Team Members Section */}}
+<!-- /About Section -->
 
-
-{{ end }}
+{{ end }} {{/* End define main */}}

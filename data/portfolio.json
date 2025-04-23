@@ -1,0 +1,303 @@
+[
+  {
+    "id": "maplight",
+    "title": "MapLight - Drupal Development for Political Transparency",
+    "date": "2015-12-31",
+    "description": "Drupal Developer for MapLight, creating data-driven interfaces and Drupal solutions to reveal money's influence on politics, supporting open government initiatives.",
+    "tags": ["Drupal", "PHP", "Data Visualization", "Open Government", "Non-Profit"],
+    "role": "Drupal Developer (2013 - 2015)",
+    "role_overview": "Applied Software Development Lifecycle knowledge to develop and maintain Drupal sites (maplight.org, votersedge.org) for MapLight, a non-profit focused on political transparency. Architected data-driven solutions and ensured high performance.",
+    "service_areas": ["custom-web-application-development", "cloud-infrastructure-devops-solutions"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Developed and architected data-centric Drupal sites, including custom modules and theming.",
+        "points": [
+          "Developed Drupal sites (maplight.org, votersedge.org) including custom module development and theming.",
+          "Utilized Drupal modules to architect enterprise solutions for data management, display logic, and information architecture."
+        ]
+      },
+      "cloud-infrastructure-devops-solutions": {
+        "summary": "Ensured site reliability and performance through monitoring and supported DevOps tooling.",
+        "points": [
+          "Spearheaded availability monitoring using synthetic tests (Selenium), identifying performance issues.",
+          "Ensured high performance utilizing tools like New Relic and Blazemeter.",
+          "Supported configuration management of tools like JIRA, Confluence, and Bamboo."
+        ]
+      }
+    },
+    "image": "p-maplight-1.png"
+  },
+  {
+    "id": "stanford-gsb",
+    "title": "Stanford Graduate School of Business - Web Development & Security",
+    "date": "2020-12-31",
+    "description": "Senior Web Developer role involving custom Drupal development, migration support, performance optimization, and significant security contributions via bug bounty program.",
+    "tags": ["Drupal", "PHP", "Security", "Bug Bounty", "Secure Development", "Vulnerability Assessment", "Performance Optimization", "Salesforce"],
+    "role": "Senior Web Developer (2017 - 2020)",
+    "role_overview": "Contributed significantly to the development, enhancement, and security of the Stanford Graduate School of Business web presence. Involved full-stack Drupal development, migration support, performance tuning, security testing, and close collaboration with marketing and technical teams.",
+    "service_areas": ["custom-web-application-development", "web-security-ethical-hacking"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Performed extensive custom Drupal development, supported major migrations, and collaborated on feature implementation like 'Voices'.",
+        "points": [
+          "Developed custom Drupal modules, themes, and distributions (PHP, Drupal APIs).",
+          "Supported migration from Drupal 7 to Drupal 9 (Salesforce integration, content type migration).",
+          "Partnered with marketing on site redesign and 'Voices' functionality.",
+          "Refactored code for improved responsiveness and applied caching strategies.",
+          "Worked effectively with release engineers and frontend developers.",
+          "Maintained Linux development build and onboarded colleagues/contractors."
+        ]
+      },
+      "web-security-ethical-hacking": {
+        "summary": "Actively participated in Stanford's Bug Bounty program, identifying and reporting multiple vulnerabilities.",
+        "points": [
+          "Identified and reported several vulnerabilities through the Stanford Bug Bounty program (~$1500 awarded).",
+          "Contributed to enhancing organizational security posture through proactive testing."
+        ]
+      }
+    },
+    "image": "p-stanfordgsb-1.jpg"
+  },
+  {
+    "id": "hackerone-reward",
+    "title": "Business Logic Errors - HackerOne Reward",
+    "date": "2023-10-15",
+    "description": "Identified and responsibly disclosed a security vulnerability via HackerOne, contributing to platform security ($500 bounty awarded).",
+    "tags": ["Security Research", "Vulnerability Disclosure", "Bug Bounty", "HackerOne"],
+    "role": "Independent Security Researcher",
+    "role_overview": "Identified and reported a security vulnerability through the HackerOne platform, collaborating with the affected company's security team for remediation.",
+    "service_areas": ["web-security-ethical-hacking"],
+    "service_contributions": {
+      "web-security-ethical-hacking": {
+        "summary": "Identified and responsibly disclosed a security vulnerability (Flaw In Business Logic) via the HackerOne platform, contributing to improved security posture and receiving a $500 bounty.",
+        "points": [
+          "Conducted responsible disclosure according to HackerOne's security policy.",
+          "Provided detailed steps to reproduce the identified vulnerability.",
+          "Collaborated with the security team during the remediation process.",
+          "Received acknowledgement and a $500 bounty reward for the finding."
+        ]
+      }
+    },
+    "image": "p-hackerzero.png"
+  },
+  {
+    "id": "ai-models",
+    "title": "AI Models Platform (Acquired)",
+    "date": "2024-03-15",
+    "image": "p-aimodels-1.png",
+    "description": "Founder & Lead Developer for aimodels.org, a curated directory empowering open-source AI innovation, leading to acquisition.",
+    "tags": ["Hugo", "SEO", "Community Building", "AI", "Cloud", "Google Cloud", "Python", "Founder"],
+    "role": "Founder & Lead Developer (2021 - 2024)",
+    "role_overview": "Architected, developed, and managed aimodels.org, a Hugo-based platform focused on open-source AI models. Oversaw all aspects from conception through development, cloud administration (GCP), SEO, and community engagement, culminating in a successful acquisition.",
+    "service_areas": ["custom-web-application-development", "seo-content-strategy-optimization", "ai-data-integration-services"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Led the full lifecycle development of the Hugo-based platform and collaborated on related community sites.",
+        "points": [
+          "Architected and built the scalable Hugo static site.",
+          "Managed full project lifecycle from conception to deployment and maintenance.",
+          "Fostered community collaboration through development of related sites (open-neuromorphic.org, fmcheatsheet.org)."
+        ]
+      },
+      "seo-content-strategy-optimization": {
+        "summary": "Implemented robust SEO strategies resulting in significant organic traffic growth.",
+        "points": [
+          "Executed technical SEO and on-page optimization.",
+          "Structured content for improved search engine discoverability."
+        ]
+      },
+      "ai-data-integration-services": {
+        "summary": "Utilized Google Cloud services to host the platform and manage AI model data.",
+        "points": [
+          "Deployed and managed the application on Google Cloud Run.",
+          "Used Cloud Build for CI/CD and Cloud SQL for database management related to model data.",
+          "Developed Python scripts or processes for data handling (implied)."
+        ]
+      }
+    }
+  },
+  {
+    "id": "open-neuromorphic",
+    "title": "Open Neuromorphic Community Collaboration",
+    "date": "2024-03-15",
+    "description": "Provided web development expertise to Open Neuromorphic, redesigning their website, optimizing SEO, and streamlining content to support the open-source neuromorphic computing community.",
+    "tags": ["Hugo", "SEO", "Community Building", "Open Source"],
+    "role": "Collaborator / Web Developer (via AI Models initiative)",
+    "role_overview": "As part of the AI Models community effort, contributed web expertise to Open Neuromorphic, enhancing their online presence to better serve the open-source neuromorphic computing community.",
+    "service_areas": ["custom-web-application-development", "seo-content-strategy-optimization"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Executed a website redesign focused on improving user experience and content clarity.",
+        "points": [
+          "Redesigned the website for a seamless and engaging visitor experience.",
+          "Streamlined website content for conciseness and user-friendliness.",
+          "Aligned terminology (e.g., 'Events' to 'Workshops')."
+        ]
+      },
+      "seo-content-strategy-optimization": {
+        "summary": "Improved website discoverability through strategic SEO enhancements.",
+        "points": [
+          "Boosted search engine visibility via meta tags, descriptions, and dedicated pages."
+        ]
+      }
+    },
+    "image": "p-openneuro-1.png"
+  },
+  {
+    "id": "foundation-model-cheatsheet",
+    "title": "Foundation Model Cheatsheet Website",
+    "date": "2024-03-15",
+    "description": "Developed fmcheatsheet.org using Hugo, creating an interactive online platform for the Foundation Model Development Cheatsheet to promote responsible AI practices.",
+    "tags": ["Hugo", "SEO", "Responsible AI", "Open Source"],
+    "role": "Collaborator / Web Developer (via AI Models initiative)",
+    "role_overview": "As part of the AI Models community effort, built the fmcheatsheet.org platform using Hugo to provide an interactive and accessible resource for the Foundation Model Development Cheatsheet, promoting responsible AI.",
+    "service_areas": ["custom-web-application-development", "seo-content-strategy-optimization"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Built a user-friendly Hugo site from scratch to replace a previous Streamlit app, enhancing usability and interaction.",
+        "points": [
+          "Replaced the previous Streamlit app with a more intuitive Hugo-based site.",
+          "Enabled easier navigation and discovery of resources.",
+          "Provided more direct interaction compared to academic papers."
+        ]
+      },
+      "seo-content-strategy-optimization": {
+        "summary": "Optimized the website for search engines to improve discoverability.",
+        "points": [
+          "Built the website with SEO and growth in mind."
+        ]
+      }
+    },
+    "image": "p-fmcheatsheet-1.png"
+  },
+  {
+    "id": "four-kitchens-cme",
+    "title": "Global Academy CME Project (Four Kitchens)",
+    "date": "2017-12-31",
+    "description": "Contract Drupal Developer contributing to the launch of Global Academy CME, focusing on data migration features, backlog fixes, and Behat testing.",
+    "tags": ["Drupal", "PHP", "Data Migration"],
+    "role": "Drupal Developer (Contract, 2017)",
+    "role_overview": "Engaged by Four Kitchens agency to provide critical development support for the launch of the Global Academy for Continuing Medical Education website (globalacademycme.com), focusing on feature development and stability.",
+    "service_areas": ["custom-web-application-development"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Provided key Drupal development contributions, including data migration and testing, to ensure a successful site launch.",
+        "points": [
+          "Provided additional development push toward website completion and launch.",
+          "Produced a feature to enable migration of complex 'micro-site' pages into Drupal content with minimal downtime.",
+          "Provided test coverage utilizing Behat.",
+          "Worked with internal teams and clients to translate business requirements into technical solutions.",
+          "Addressed backlog items and implemented fixes."
+        ]
+      }
+    },
+    "image": "p-fourkitchens-4.png"
+  },
+  {
+    "id": "ardentmc-geoconops",
+    "title": "Homeland Security Enterprise - GeoCONOPS Platform (ArdentMC)",
+    "date": "2016-12-31",
+    "description": "Senior CMS Applications Developer building complex Drupal 7 web applications, themes, and plugins for the Homeland Security Enterprise GeoCONOPS platform.",
+    "tags": ["Drupal", "PHP", "Drupal 7", "Government", "GeoPlatform", "Open Data", "Homeland Security"],
+    "role": "Senior CMS Applications Developer (Consulting, 2015 - 2016)",
+    "role_overview": "As a consultant via ArdentMC, leveraged deep expertise in Drupal 7 full-stack development to build and enhance the Geospatial Concept of Operations (GeoCONOPS) portal, part of the federal GeoPlatform initiative, focusing on improving geospatial data sharing within the Homeland Security Enterprise (HSE).",
+    "service_areas": ["custom-web-application-development"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Developed and maintained complex Drupal 7 components for the GeoCONOPS platform, focusing on project delivery and technical communication.",
+        "points": [
+          "Built complex Drupal 7 web applications, themes, and plugins.",
+          "Coordinated efforts using FogBugz issue tracking to streamline delivery within an expedited contract window.",
+          "Transitioned efforts towards a virtual environment, improving response times.",
+          "Translated complex technical challenges for non-developer stakeholders.",
+          "Supported open formats and data standards inherent in the GeoPlatform."
+        ]
+      }
+    },
+    "image": "p-geoconops-1.png"
+  },
+  {
+    "id": "hp-experience-center",
+    "title": "HP Experience Demonstration Center (Design Reactor)",
+    "date": "2013-12-31",
+    "description": "Created backend interfaces for content management powering interactive touch screens at the HP Experience Demonstration Center, facilitating client briefings and tours.",
+    "tags": ["PHP", "Content Management", "Interactive Displays", "Drupal"],
+    "role": "Web Developer (Part of Vision Init Self 2004-2013)",
+    "role_overview": "Developed the backend content management interface for the HP Experience Demonstration Center's interactive touch screens, enabling staff to manage dynamic content for client briefings and tours.",
+    "service_areas": ["custom-web-application-development"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Built the backend PHP/Drupal interface for managing content on interactive displays.",
+        "points": [
+          "Produced the interface allowing staff to manage content for interactive screens.",
+          "Enabled dynamic updates for collaboration rooms, capability demos, and tours.",
+          "Supported HP's goal of showcasing innovation to clients."
+        ]
+      }
+    },
+    "image": "p-hpdvf-4-1.png"
+  },
+  {
+    "id": "hp-dvf-lounge",
+    "title": "HP & DVF Experience Lounge (Design Reactor)",
+    "date": "2013-12-31",
+    "description": "Developed backend systems and content interfaces for a multi-media event collaboration between HP and Diane von Furstenberg, showcasing brand integration and digital experiences.",
+    "tags": ["Backend Development", "PHP", "Content Management", "Event Technology"],
+    "role": "Web Developer (Part of Vision Init Self 2004-2013)",
+    "role_overview": "Developed backend systems and content management interfaces for a high-profile HP & Diane von Furstenberg event, enabling content delivery to interactive touch screens.",
+    "service_areas": ["custom-web-application-development"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Built configurable backend interfaces for managing event content on interactive displays.",
+        "points": [
+          "Launched backend products/interfaces enabling content entry for interactive touch screens.",
+          "Designed solutions with ease of maintenance and configurability.",
+          "Supported a unique digital experience blending fashion and technology."
+        ]
+      }
+    },
+    "image": "p-hpdvf-2.png"
+  },
+  {
+    "id": "aflorecer",
+    "title": "Aflorecer Art School & Retreat Center Website",
+    "date": "2013-12-31",
+    "description": "Provided technical consultation and website delivery for Aflorecer, an art school and retreat center focused on community and flourishing.",
+    "tags": ["Arts", "Consulting", "Web Development"],
+    "role": "Web Developer / Consultant (Part of Vision Init Self 2004-2013)",
+    "role_overview": "Provided web development and technical consulting services for Aflorecer, an art school and retreat center, delivering their online presence.",
+    "service_areas": ["custom-web-application-development"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Consulted on web technologies and delivered the complete website solution.",
+        "points": [
+          "Advised the client on web technologies and strategies.",
+          "Presented suitable template options for the website build.",
+          "Developed and delivered the complete website solution."
+        ]
+      }
+    },
+    "image": "p-aflorecer.png"
+  },
+  {
+    "id": "digital-sound-factory",
+    "title": "Digital Sound Factory E-commerce Site (KeyFax)",
+    "date": "2007-12-31",
+    "description": "Launched the initial OsCommerce e-commerce site for Digital Sound Factory, providing high-quality, license-free audio sound downloads for software synthesizers.",
+    "tags": ["E-commerce", "OsCommerce", "PHP", "Music Technology"],
+    "role": "Web Developer (Part of Vision Init Self 2004-2013)",
+    "role_overview": "Developed and launched the original OsCommerce-based e-commerce website for Digital Sound Factory in 2007, enabling online sales for a new venture focused on high-quality digital audio sounds.",
+    "service_areas": ["custom-web-application-development"],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Built and launched the initial e-commerce store using OsCommerce and PHP.",
+        "points": [
+          "Implemented the online store using the OsCommerce platform.",
+          "Successfully delivered the first version of the site, enabling online sales.",
+          "Supported a new venture in the music technology space."
+        ]
+      }
+    },
+    "image": "p-digitalsoundfactory.png"
+  }
+]

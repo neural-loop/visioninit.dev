@@ -101,10 +101,22 @@
 <script src="{{ .link | absURL }}"></script>
 {{ end }}
 
+{{ "<!-- Main Script Bundle -->" | safeHTML }}
+{{ $mainJS := resources.Get "js/script.js" }}
+{{ $accordionJS := resources.Get "js/accordion.js" }} {{/* Get the module's JS from assets */}}
 
-{{ "<!-- Main Script -->" | safeHTML }}
-{{ $script := resources.Get "js/script.js" | minify }}
-<script src="{{ $script.Permalink }}"></script>
+{{/* Combine scripts if both exist */}}
+{{ $jsSlice := slice }}
+{{ if $mainJS }}{{ $jsSlice = $jsSlice | append $mainJS }}{{ end }}
+{{ if $accordionJS }}{{ $jsSlice = $jsSlice | append $accordionJS }}{{ end }}
+
+{{/* Process the combined slice */}}
+{{ if gt (len $jsSlice) 0 }}
+{{ $jsBundle := $jsSlice | resources.Concat "js/bundle.js" | minify | fingerprint "sha512" }}
+<script src="{{ $jsBundle.Permalink }}" integrity="{{ $jsBundle.Data.Integrity }}"></script>
+{{ else }}
+{{ warnf "No main JS files found (script.js or accordion.js) in assets." }}
+{{ end }}
 
 <!-- Cookie Consent HTML (Only if enabled) -->
 {{ if site.Params.cookies.enable }}

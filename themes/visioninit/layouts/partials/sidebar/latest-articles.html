@@ -1,6 +1,6 @@
 {{/* layouts/partials/sidebar/latest-articles.html */}}
 {{/* Expects the page context '.' */}}
-<div class="bg-white">
+<div class="offset-shadow-box bg-white p-4 mb-5">
   <h4 class="mb-4">{{ i18n "latest_article" }}</h4>
   {{ $latestPosts := first 3 (where site.RegularPages.ByDate.Reverse "Type" "post") }} {{/* Use RegularPages for content posts, sort by date */}}
 

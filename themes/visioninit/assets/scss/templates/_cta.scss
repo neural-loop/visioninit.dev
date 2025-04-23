@@ -1,0 +1,18 @@
+// Add near the end of _common.scss or in a new _cta.scss file
+// themes/visioninit/assets/scss/templates/_cta.scss
+.service-cta-box {
+  // Base styles (bg, padding, text-align, border-radius) handled by HTML classes.
+  // Border & shadow handled by .offset-shadow-box class.
+
+  // Optional: Keep this if you specifically want the colored top border
+  // border-top: 3px solid $primary-color;
+
+  // Keep text color adjustments if needed
+  h3, p { // Assuming h3 exists or might be added
+    color: $text-color-dark;
+  }
+  p {
+    color: $text-color;
+  }
+  // Button styling handled by Bootstrap btn classes
+}

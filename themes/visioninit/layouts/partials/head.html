@@ -62,4 +62,17 @@
   <link rel="shortcut icon" href="{{ `images/favicon.png` | absURL }}" type="image/x-icon">
   <link rel="icon" href="{{ `images/favicon.png` | absURL }}" type="image/x-icon">
 
+  {{/* --- START: Google Analytics --- */}}
+  {{ if hugo.IsProduction }}
+  <!-- Google tag (gtag.js) - Direct Paste -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNVVVFY1DH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JNVVVFY1DH');
+  </script>
+  {{ end }}
+  {{/* --- END: Google Analytics --- */}}
 </head>

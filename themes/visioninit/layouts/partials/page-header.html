@@ -8,11 +8,15 @@
         <ul class="list-inline custom-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
           {{- $data := newScratch }}
           <!-- Home Link -->
-          <li class="list-inline-item h2" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <!-- Home Link -->
+          {{/* Add breadcrumb-home-item class */}}
+          <li class="list-inline-item h2 breadcrumb-home-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             {{- $data.Set "counter" 0 }}
             {{- $data.Add "counter" 1 }}
-            <a class="text-primary font-secondary" itemprop="item" href="{{ site.BaseURL | relLangURL }}">
-              <span itemprop="name">Home</span>
+            {{/* Added breadcrumb-home-link class, aria-label, removed text-primary */}}
+            <a class="breadcrumb-home-link font-secondary" itemprop="item" href="{{ site.BaseURL | relLangURL }}" aria-label="Home">
+              <i class="fa-solid fa-house" aria-hidden="true"></i> {{/* Added icon, aria-hidden */}}
+              {{/* Removed the span with Home text */}}
             </a>
             <meta itemprop="position" content='{{ $data.Get "counter" }}' />
           </li>
@@ -33,9 +37,11 @@
 
           <!-- Current Page Link -->
           <li class="list-inline-item h5"><i class="fa-solid fa-angle-right text-white"></i></li>
-          <li class="list-inline-item text-white h3 font-secondary" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          {{/* Removed h3 class from li. Added breadcrumb-current-page class */}}
+          <li class="list-inline-item breadcrumb-current-page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             {{- $data.Add "counter" 1 }}
-            <span itemprop="name">{{ .Title }}</span>
+            {{/* Changed span to h1. Added text-white, font-secondary classes here */}}
+            <h1 class="text-white font-secondary" itemprop="name">{{ .Title }}</h1>
             <meta itemprop="position" content='{{ $data.Get "counter" }}' />
           </li>
         </ul>

@@ -1,46 +1,47 @@
 {{/* themes/visioninit/layouts/partials/components/portfolio-card.html */}}
 {{ $item := .context }}
-{{ $placeholder_dimensions := "600x315" }} {{/* Approx 1.91:1 ratio, adjust if needed */}}
-{{ $placeholder_bg := "eee" }} {{/* Light gray background */}}
-{{ $placeholder_text_color := "aaa" }} {{/* Gray text */}}
-{{ $placeholder_text := $item.Title | truncate 20 }} {{/* Use truncated title as placeholder text */}}
+{{/* ... (placeholder and image logic remains the same) ... */}}
+{{ $placeholder_dimensions := "600x315" }}
+{{ $placeholder_bg := "eee" }}
+{{ $placeholder_text_color := "aaa" }}
+{{ $placeholder_text := $item.Title | truncate 20 }}
 
 {{ $image_path := "" }}
 {{ $image_alt := $item.Title | default "Portfolio item image" }}
-
-{{/* Image Logic: Prioritize 'image', then 'og.png', then placeholder */}}
 {{ with $item.Params.image }}
 {{ $imgRes := $item.Resources.GetMatch . }}
 {{ if $imgRes }}
 {{ $image_path = ($imgRes.Resize "600x q85").RelPermalink }}
 {{ else }}
-{{ $image_path = . | absURL }} {{/* Assume static path if not a resource */}}
+{{ $image_path = . | absURL }}
 {{ end }}
 {{ else }}
 {{ with $item.Resources.GetMatch "og.png" }}
 {{ $image_path = (.Resize "600x q85").RelPermalink }}
 {{ end }}
 {{ end }}
-
-{{/* If still no image, use placeholder */}}
 {{ if not $image_path }}
 {{ $image_path = printf "https://via.placeholder.com/%s/%s/%s?text=%s" $placeholder_dimensions $placeholder_bg $placeholder_text_color (urlquery $placeholder_text) }}
 {{ end }}
 
 <div class="card portfolio-card h-100 rounded-0 border-0 shadow-sm">
-  <a href="{{ $item.RelPermalink }}" class="portfolio-card-image-link">
+  {{/* --- Image - NO LINK --- */}}
+  <div class="portfolio-card-image-container"> {{/* Optional container if needed */}}
     <img src="{{ $image_path }}" class="card-img-top portfolio-card-image rounded-0" alt="{{ $image_alt }}">
-  </a>
+  </div>
+  {{/* --- END Image - NO LINK --- */}}
   <div class="card-body d-flex flex-column">
-    <h5 class="card-title mb-2 portfolio-card-title">
-      <a href="{{ $item.RelPermalink }}" class="text-dark stretched-link">{{ $item.Title }}</a>
+    {{/* --- Title - NO LINK --- */}}
+    <h5 class="card-title mb-2 portfolio-card-title text-dark">
+      {{ $item.Title }}
     </h5>
+    {{/* --- END Title - NO LINK --- */}}
     <p class="card-text portfolio-card-description small text-muted mb-3 flex-grow-1">
       {{ $item.Description | default ($item.Summary | plainify | truncate 100) }}
     </p>
     {{ with $item.Params.tags }}
-    <div class="portfolio-card-tags mb-3">
-      {{ range first 3 . }} {{/* Show max 3 tags */}}
+    <div class="portfolio-card-tags mt-auto"> {{/* Pushed to bottom */}}
+      {{ range first 3 . }}
       <span class="badge badge-light mr-1 mb-1 p-2 border">{{ . }}</span>
       {{ end }}
       {{ if gt (len .) 3 }}
@@ -48,8 +49,5 @@
       {{ end }}
     </div>
     {{ end }}
-    {{/* The stretched-link on the title makes the whole card clickable */}}
-    {{/* Optionally add a specific "View Project" button if preferred */}}
-    {{/* <a href="{{ $item.RelPermalink }}" class="btn btn-sm btn-outline-primary mt-auto">View Project</a> */}}
   </div>
 </div>

@@ -20,6 +20,7 @@ VERSION:	Versoin Number
 @import 'common';
 
 // Template Specific or Component Styles
+@import 'templates/accordion';
 @import 'templates/navigation';
 @import 'templates/slider';
 @import 'templates/homepage';
@@ -27,4 +28,6 @@ VERSION:	Versoin Number
 @import 'templates/cookie-consent';
 @import 'templates/toc';
 @import 'templates/portfolio';
+@import 'templates/cta';
+@import 'templates/subscription';
 

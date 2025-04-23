@@ -89,27 +89,6 @@
     });
     setTimeout(initializeOgPreviewEffects, 100); // Small delay
 
-    // Handle campaign subscription clicks
-    $('[data-beacon-subscribe]').each(function() {
-      $(this).on('click', function(e) {
-        // Check if extension API is available
-        if (typeof boycottBeacon !== 'undefined' && typeof boycottBeacon.subscribeToCampaign === 'function') {
-          e.preventDefault(); // Prevent default link behavior only if extension handles it
-          const subscribeUrl = $(this).attr('href');
-          console.log("Attempting to subscribe via Boycott Beacon:", subscribeUrl); // Optional: for debugging
-          try {
-            boycottBeacon.subscribeToCampaign(subscribeUrl);
-          } catch (error) {
-            console.error("Error calling boycottBeacon.subscribeToCampaign:", error);
-          }
-        } else {
-          // Optional: Log if the extension isn't detected
-          console.log("Boycott Beacon extension not detected or subscribeToCampaign function missing.");
-          // Allow default link behavior (e.g., navigating to the campaign.json)
-        }
-      });
-    });
-
     // Cookie Consent Logic
     const cookieBox = document.getElementById('js-cookie-box');
     const cookieButton = document.getElementById('js-cookie-button');
@@ -137,36 +116,6 @@
         };
       }
     } // End if (cookieBox && cookieButton && Cookies)
-// --- Portfolio Tag Filtering Logic ---
-    const filterButtons = document.querySelectorAll('.portfolio-tag-filter');
-    const portfolioItems = document.querySelectorAll('.portfolio-item'); // Target the column div
-
-    if (filterButtons.length > 0 && portfolioItems.length > 0) {
-      filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const filterValue = this.getAttribute('data-filter');
-
-          // Update active button state
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
-
-          // Filter items
-          portfolioItems.forEach(item => {
-            const itemTags = item.getAttribute('data-tags'); // Get space-separated tags
-
-            if (filterValue === 'all' || (itemTags && itemTags.split(' ').includes(filterValue))) {
-              item.style.display = ''; // Show item (reset display)
-              // You might want a fade-in effect here later
-            } else {
-              item.style.display = 'none'; // Hide item
-              // You might want a fade-out effect here later
-            }
-          });
-        });
-      });
-    }
-    // --- End Portfolio Tag Filtering ---
-
   }); // END $(document).ready()
 
 

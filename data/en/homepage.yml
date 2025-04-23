@@ -16,45 +16,37 @@ slider:
         link: "/services/"
         style: "btn-outline-primary text-white border-white"
 
-banner_feature:
+subscription_tiers:
   enable: true
-  feature_item:
-    - name: "Custom Web Development" # Service 1
-      icon: "fa-solid fa-code" # Code icon
-      content: "Building tailored, scalable, and secure web applications from concept to deployment using modern technologies."
-    - name: "Cloud & DevOps Solutions" # Service 2
-      icon: "fa-solid fa-cloud-arrow-up" # Cloud/Upload icon
-      content: "Optimizing infrastructure, automating deployments (CI/CD), and ensuring high availability on platforms like GCP & AWS."
-    - name: "Web Security & Hacking" # Service 3
-      icon: "fa-solid fa-shield-halved" # Security icon
-      content: "Proactive security assessments, ethical hacking, and secure development practices to protect your digital assets."
-    - name: "SEO & Content Strategy" # Service 4
-      icon: "fa-solid fa-magnifying-glass-chart" # SEO/Analytics icon
-      content: "Enhancing online visibility through technical SEO, performance optimization, and effective content workflows."
+  title: "Security Sidekick Plans" # Title for the section on the homepage
+  subtitle: "Choose the level of ongoing security support that fits your needs." # Subtitle
+  tiers:
+    - name: "Sure Shot"
+      price: "$500"
+      price_suffix: "one-time" # Suffix describes the payment
+      description: "Perfect for addressing a single, specific security question or review. Get expert eyes on one critical item." # Short description for homepage card
+      # Optional: Add 1-2 key highlights if desired using 'features:' list like before
+      # features:
+      #   - icon: "fa-solid fa-bullseye"
+      #     text: "One dedicated security request."
+      button:
+        label: "Learn More"
+        link: "/security-sidekick/" # Links to the main page for now
 
-how_it_works:
-  enable: true
-  title: "Our Collaborative Approach" # Changed title
-  steps:
-    - title: "1. Discovery & Strategy"
-      icon: "fa-solid fa-comments" # Communication/Understanding icon
-      description: "We start by thoroughly understanding your goals, technical landscape, and security requirements to define a clear path forward."
-      link_label: "Start the Conversation" # Link to contact
-      link: "schedule" # Use param shortcode hint (actual link in template)    - title: "2. Solution Design & Secure Build"
-      icon: "fa-solid fa-file-code" # Code/Blueprint icon
-      description: "Architecting and developing your solution with security principles embedded throughout the process, using best practices and appropriate technologies."
-      link_label: "View Our Services" # Link to services
-      link: "/services/"
-    - title: "2. Rigorous Testing & Refinement"
-      icon: "fa-solid fa-vial-circle-check" # Testing/Validation icon
-      description: "Comprehensive testing, including security assessments and code reviews, ensures quality, resilience, and adherence to requirements."
-      # link_label: "Learn About Assessments" # Optional link to specific service
-      # link: "/services/security-assessment/"
-    - title: "3. Deployment & Partnership"
-      icon: "fa-solid fa-rocket" # Launch/Support icon
-      description: "Managing deployment and offering ongoing support or knowledge transfer to ensure your solution delivers long-term value."
-      # link_label: "Discuss Ongoing Support" # Optional link to contact
-      # link: "/contact/"
+    - name: "Steady Shot"
+      price: "$4995"
+      price_suffix: "/month"
+      description: "Comprehensive ongoing security guidance. Unlimited requests (one active), code reviews, vulnerability advice, and proactive support."
+      # Optional: Add 1-2 key highlights
+      # features:
+      #   - icon: "fa-solid fa-shield-heart"
+      #     text: "Unlimited requests (one active)."
+      #   - icon: "fa-solid fa-clock-rotate-left"
+      #     text: "Typical 48-72hr turnaround."
+      button:
+        label: "Learn More"
+        link: "/security-sidekick/" # Links to the main page for now
+
 # --- UPDATED VIDEO FEATURE SECTION ---
 video_feature:
   enable: false # <<< DISABLED FOR NOW - Enable and update src if you have a relevant video

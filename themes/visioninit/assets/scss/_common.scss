@@ -260,8 +260,61 @@ a h4{
       }
     }
   }
+
+  li.breadcrumb-home-item {
+    // Adjust vertical alignment if needed to match text separators better
+    vertical-align: middle;
+    // Potentially adjust margin if spacing looks off
+    // margin-right: 5px;
+  }
+
+  li a.breadcrumb-home-link {
+    display: inline-flex;       // Use flex for easier centering of the icon
+    align-items: center;
+    justify-content: center;
+    padding: 0.3em 0.7em;       // Adjust vertical/horizontal padding for shape/size
+    border-radius: 50em;        // High value creates a pill/oval shape
+    background-color: rgba($white, 0.1); // Subtle background fill
+    color: $white !important;   // Ensure icon is white
+    font-size: 0.4em;           // Make the shape/icon slightly smaller than H2 text size
+    line-height: 1;             // Prevent extra line height issues
+    text-decoration: none !important; // Override default link styles
+    border-bottom: none !important;   // Explicitly remove underline
+    margin-bottom: 18px;
+    // Ensure icon inside is styled correctly (redundant if color is on <a>, but safe)
+    i {
+      color: $white;
+      line-height: inherit; // Ensure icon inherits line height
+    }
+
+    &:hover {
+      background-color: rgba($white, 0.25); // Slightly more visible background on hover
+      border-color: rgba($white, 0.9);    // Stronger border on hover
+      color: $white !important;           // Keep icon white
+      text-decoration: none !important;   // Ensure no underline on hover
+      border-bottom: none !important;
+    }
+  }
+
+  // Adjust separator alignment if necessary
+  li.h5 { // The list item containing the separator icon
+    vertical-align: middle; // Match alignment with the home icon item
+  }
 }
 
+li.breadcrumb-current-page h1 {
+  // Override default H1 styles to match H3 visual appearance
+  font-size: 25px;        // Explicitly set H3 font size (or use $h3-font-size variable if available)
+  line-height: 1.2;       // Match default heading line-height
+  font-weight: 700;       // Match default heading font-weight
+  margin: 0;              // Remove any default H1 margins
+  color: $white;          // Ensure color is white (redundant with class, but safe)
+  font-family: $secondary-font; // Ensure font is correct (redundant with class, but safe)
+
+  // Important: Prevent inheriting other styles that might make it look like a link
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
 /* /page title */
 
 .list-styled{
@@ -324,7 +377,6 @@ textarea.form-control{
 }
 
 
-// === START .content SECTION - WITH LINK & LIST FIXES ===
 // === START .content SECTION - WITH LINK & LIST FIXES ===
 .content {
   // WARNING: This global rule applies margin to ALL descendants.
@@ -453,6 +505,62 @@ textarea.form-control{
   }
 
 } // === END OF .content SECTION ===
+
+.content {
+  // Add specific size overrides for headings within the content area
+  // Adjust these font-size values to match the desired look from other pages.
+  // You might need to inspect element on a "good" page to find the exact sizes.
+  h1, .h1 {
+    font-size: 2rem; // Example: Adjust as needed (Default was 60px)
+    // Add line-height if needed: line-height: 1.2;
+  }
+
+  h2, .h2 {
+    font-size: 1.7rem; // Example: Adjust as needed (Default was 40px)
+    // line-height: 1.2;
+    padding-bottom: 5px;
+  }
+
+  h3, .h3 {
+    font-size: 1.3rem; // Example: Adjust as needed (Default was 25px)
+    // line-height: 1.2;
+  }
+
+  h4, .h4 {
+    font-size: 1rem; // Example: Adjust as needed (Default was 20px)
+    // line-height: 1.2;
+  }
+
+  h5, .h5 {
+    font-size: 1rem; // Example: Adjust as needed (Default was 18px)
+    // line-height: 1.2;
+  }
+
+  h6, .h6 {
+    font-size: 1rem; // Example: Adjust as needed (Default was 16px)
+    // line-height: 1.2;
+  }
+
+  // Ensure headings within cards in the content area also get consistent styling
+  // (This might be slightly redundant if the cards are correctly nested, but safe)
+  .card {
+    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+      // Re-apply the desired sizes or ensure they inherit correctly
+      // If the sizes above work, you might not need this nested block.
+      // Example: Use the specific sizes again if needed
+      &.h3 {
+        font-size: 1.75rem;
+      }
+
+      &.h4 {
+        font-size: 1.5rem;
+      }
+
+      // etc.
+    }
+  }
+}
+
 .teacher-thumb-sm{
   height: 85px;
   width: 85px;
@@ -503,3 +611,15 @@ a[target='_blank'] {
   content: none !important; /* Remove the icon content */
 }
 
+// Reusable Static Offset Shadow Box Style
+.offset-shadow-box {
+  border: 1px solid $border-color; // Base border
+  border-radius: 0;                // Ensure blocky corners
+  // Apply the static offset shadow (adjust color/opacity as needed)
+  box-shadow: -5px 5px 0px 0px rgba($black, 0.075);
+  // Override potential default Bootstrap shadows if combined
+  &.shadow, &.shadow-sm, &.shadow-lg {
+    box-shadow: -5px 5px 0px 0px rgba($black, 0.075) !important;
+  }
+  // No hover effect defined here, shadow is always present
+}

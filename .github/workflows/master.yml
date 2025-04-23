@@ -67,7 +67,7 @@ jobs:
         id: base_url
         run: |
           if [[ "${{ github.repository_owner }}.github.io" == "boycott-beacon.github.io" ]]; then
-            BASE_URL="https://boycott-beacon.github.io/"
+            BASE_URL="https://github.io/"
           else
             REPO_NAME=$(echo "${{ github.repository }}" | cut -d '/' -f 2)
             if [[ "${{ github.repository_owner }}" == "${{ github.repository_owner }}" ]]; then

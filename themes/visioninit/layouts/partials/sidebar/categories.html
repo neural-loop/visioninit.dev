@@ -1,6 +1,6 @@
 {{/* layouts/partials/sidebar/categories.html */}}
 {{/* Expects the page context '.' */}}
-<div class="bg-white mb-5">
+<div class="offset-shadow-box bg-white p-4 mb-5">
   <h4 class="mb-4">{{ i18n "categories" }}</h4>
   {{- if isset site.Taxonomies "categories" }}
   {{- if not (eq (len site.Taxonomies.categories) 0) }}

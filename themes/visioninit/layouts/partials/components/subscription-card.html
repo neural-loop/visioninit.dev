@@ -1,0 +1,32 @@
+{{/* themes/visioninit/layouts/partials/components/subscription-card.html */}}
+{{/*
+Expects a dictionary context with:
+- context: The tier data object from homepage.yml
+*/}}
+{{ $tier := .context }}
+
+<div class="card subscription-card offset-shadow-box bg-white p-4 p-md-5 text-center rounded-0 h-100 d-flex flex-column"> {{/* Added h-100, d-flex, flex-column */}}
+  <h3 class="h5 mb-3 text-dark font-weight-bold">{{ $tier.name }}</h3>
+  <h4 class="h3 mb-3 text-primary font-weight-bold">{{ $tier.price }}<small class="text-muted font-weight-normal ml-1">{{ $tier.price_suffix }}</small></h4>
+
+  <p class="card-text text-muted small mb-4 flex-grow-1">{{ $tier.description | markdownify }}</p> {{/* Added flex-grow-1 */}}
+
+  {{/* Optional: Display features if defined in YAML */}}
+  {{ with $tier.features }}
+  <ul class="list-unstyled text-left mb-4 subscription-features small">
+    {{ range . }}
+    <li class="mb-2 d-flex align-items-start">
+      <i class="{{ .icon | default "fa-solid fa-check" }} text-success mr-2 mt-1 fa-fw"></i>
+      <span>{{ .text | markdownify }}</span>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+
+  {{/* Button - Pushed to bottom */}}
+  <div class="mt-auto">
+    <a href="{{ $tier.button.link | absLangURL }}" class="btn btn-primary">
+      {{ $tier.button.label }}
+    </a>
+  </div>
+</div>

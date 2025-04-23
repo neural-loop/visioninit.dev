@@ -1,43 +1,71 @@
+{{/* themes/visioninit/layouts/services/single.html */}}
 {{ define "main" }}
 <section class="section service-detail">
   <div class="container">
 
-    {{/* Service Title & Content */}}
-    <div class="row mb-5">
-      <div class="col-lg-10 mx-auto">
+    {{/* --- Service Title & Content --- */}}
+    <div class="row">
+      <div class="col-lg-8">
         <div class="content service-description">
-          {{ .Content }} {{/* Content from the service's .md file */}}
+          {{ .Content }}
+        </div>
+      </div>
+      {{/* --- Call to Action Box --- */}}
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="service-cta-box offset-shadow-box bg-light p-md-4 text-center rounded-0">
+          <p class="mb-4">Let's discuss how this service can help achieve your specific goals.</p>
+          <a href="{{ site.Params.scheduling_link | safeURL }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">
+            Schedule Consultation
+          </a>
         </div>
       </div>
     </div>
 
-    {{/* Related Portfolio Projects Section */}}
+    {{/* --- Related Portfolio Projects Section --- */}}
     {{ $serviceTag := .Params.service_tag }}
     {{ if $serviceTag }}
-    {{ $relatedProjects := where site.RegularPages "Type" "portfolio" "Params.tags" "intersect" (slice $serviceTag) }}
-    {{ if $relatedProjects }}
-    <div class="row mt-5 pt-4 border-top">
-      <div class="col-12">
-        {{/* Heading moved into the .Content of the service page */}}
-        {{/* <h2 class="h3 mb-4">Related Projects</h2> */}}
-      </div>
-    </div>
-    <div class="row">
-      {{ range $relatedProjects }}
-      <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch portfolio-item-col">
-        {{ partial "components/portfolio-card.html" (dict "context" .) }}
-      </div>
-      {{ end }}
-    </div>
-    {{ else }}
-    <div class="row mt-5 pt-4 border-top">
-      <div class="col-lg-10 mx-auto text-center">
-        <p class="text-muted fst-italic">No specific portfolio projects tagged for this service yet.</p>
-      </div>
-    </div>
+    {{ $currentServiceTagSlice := slice $serviceTag }}
+    {{ $allPortfolioData := site.Data.portfolio }}
+    {{ $relatedProjectsData := slice }}
+    {{ range $allPortfolioData }}
+    {{ if and .service_areas (intersect .service_areas $currentServiceTagSlice) }}
+    {{ $relatedProjectsData = $relatedProjectsData | append . }}
     {{ end }}
     {{ end }}
 
+    {{ if $relatedProjectsData }}
+    {{/* --- ADD SORTING BY DATE (DESCENDING) --- */}}
+    {{ $sortedRelatedProjects := sort $relatedProjectsData "date" "desc" }}
+    {{/* --- END SORTING --- */}}
+
+    <div class="row">
+      <div class="col-12">
+        <p class="h3 mb-4 pt-4 pb-4">Showcasing specific contributions related to <strong class="text-dark">{{ .Title }}</strong>:</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      {{/* --- MODIFY RANGE TO USE SORTED DATA --- */}}
+      {{ range $sortedRelatedProjects }}
+      <div class="col-lg-12 mb-4 d-flex align-items-stretch portfolio-item-col">
+        {{ partial "components/portfolio-card-wide.html" (dict "projectData" . "currentServiceTag" $serviceTag) }}
+      </div>
+      {{ end }}
+      {{/* --- END MODIFY RANGE --- */}}
+    </div>
+    {{ else }}
+    <div class="row mt-5 pt-4">
+      <div class="col-lg-10 mx-auto text-center">
+        <p class="text-muted fst-italic mt-4">No specific portfolio projects tagged with the '<strong class="text-dark">{{ $serviceTag }}</strong>' service area yet.</p>
+      </div>
+    </div>
+    {{ end }}
+    {{ else }}
+    <div class="row mt-5 pt-4">
+      <div class="col-lg-10 mx-auto text-center">
+        <p class="text-warning small mt-4">Warning: The `service_tag` parameter is not defined in this service page's front matter. Cannot find related projects.</p>
+      </div>
+    </div>
+    {{ end }}
   </div> {{/* End container */}}
 </section>
-{{ end }} {{/* End define main */}}
+{{ end }}
