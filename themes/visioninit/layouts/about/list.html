@@ -9,7 +9,7 @@
     <div class="row align-items-center mb-5">
       <div class="col-lg-4 mb-4 mb-lg-0">
         <figure class="content-image-figure">
-          <img src="{{ $image.src | absURL }}" class="img-fluid rounded shadow-sm w-100" alt="{{ $image.alt }}">
+          <img src="{{ $image.src | absURL }}" class="img-fluid rounded shadow-sm w-100" alt="{{ $image.alt }}" width="690" height="396">
           {{ with $image.caption }}
           <figcaption class="figure-caption text-center small mt-2">{{ . | markdownify }}</figcaption>
           {{ end }}
@@ -45,7 +45,7 @@
       </div>
       <div class="col-lg-4 order-lg-2 order-1 mb-4 mb-lg-0"> {{/* Image first visually on mobile */}}
         <figure class="content-image-figure">
-          <img src="{{ $image.src | absURL }}" class="img-fluid rounded shadow-sm w-100" alt="{{ $image.alt }}">
+          <img src="{{ $image.src | absURL }}" class="img-fluid rounded shadow-sm w-100" alt="{{ $image.alt }}" height="690" width="460">
           {{ with $image.caption }}
           <figcaption class="figure-caption text-center small mt-2">{{ . | markdownify }}</figcaption>
           {{ end }}
