@@ -3,25 +3,68 @@
 <footer>
   {{ $data := index site.Data site.Language.Lang }} {{/* Get homepage data */}}
 
-  {{/* Inside themes/visioninit/layouts/partials/footer.html - within the CTA section */}}
   {{ if $data.homepage.cta.enable }}
   {{ with $data.homepage.cta }}
-  {{/* <<< This ID is the target for the scroll <<< */}}
+  {{/* <<< ID for scrolling remains the same <<< */}}
   <div class="newsletter" id="schedule-consultation">
     <div class="container">
       <div class="row">
         <div class="col-md-9 ml-auto bg-primary py-5 newsletter-block">
           <h3 class="text-white mb-3">{{ .title | default "Missing CTA Title" }}</h3>
-          {{ with .subtitle }}<h6 class="text-white font-secondary mb-3">{{ . }}</h6>{{ end }}
-          <p class="text-white">{{ .content | markdownify }}</p>
-          <div style="width:100%;" id="my-cal-inline"></div> {{/* Keep the original ID - Cal.com JS would target this if added elsewhere */}}
+          {{ with .subtitle }}<h4 class="text-white font-secondary mb-3 h6">{{ . }}</h4>{{ end }} {{/* Changed h6 to h4 for semantics, kept h6 class for style */}}
+          <p class="text-white mb-4">{{ .content | markdownify }}</p>
+
+          {{/* --- Toggle Buttons --- */}}
+          <div class="mb-4 text-center">
+            <button id="show-form-btn" class="btn btn-sm btn-light mr-2">
+              {{/* Added fa-paper-plane icon with right margin */}}
+              <i class="fa-solid fa-paper-plane mr-2" aria-hidden="true"></i>Send a Message
+            </button>
+            <button id="show-calendar-btn" class="btn btn-sm btn-outline-light">
+              {{/* Added fa-calendar-check icon with right margin */}}
+              <i class="fa-solid fa-calendar-check mr-2" aria-hidden="true"></i>Schedule a Meeting
+            </button>
+          </div>
+
+          {{/* --- Contact Form Container (Visible by default) --- */}}
+          <div id="contact-form-container">
+            {{/* Form points to PHP, ID for JS, NO Netlify attributes */}}
+            <form id="contact-message-form" action="/send-email.php" method="POST">
+              {{/* Removed Netlify hidden fields & attributes */}}
+              <div class="form-group mb-3">
+                <label for="name" class="visually-hidden">Your Name</label>
+                <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Your Name" required>
+              </div>
+              <div class="form-group mb-3">
+                <label for="email" class="visually-hidden">Your Email</label>
+                <input type="email" name="email" id="email" class="form-control form-control-sm" placeholder="Your Email" required>
+              </div>
+              <div class="form-group mb-3">
+                <label for="message" class="visually-hidden">Your Message</label>
+                <textarea name="message" id="message" class="form-control form-control-sm" rows="4" placeholder="Your Message" required></textarea>
+              </div>
+              {{/* Div for feedback messages */}}
+              <div id="form-feedback" class="mt-3 small"></div>
+              <button type="submit" class="btn btn-light btn-block">Send Message</button>
+            </form>
+          </div>
+          {{/* --- Calendar Container (Hidden by default) --- */}}
+          {{ $calLink := site.Params.scheduling_link | default "YOUR_CAL_LINK" }} {{/* Get link from hugo.toml */}}
+          <div id="calendar-container" class="d-none">
+            {{/* The Cal.com embed div - MAKE SURE data-cal-link is correct! */}}
+            <div style="width:100%; height:100%; overflow:scroll;"
+                 id="my-cal-inline"
+                 data-cal-link="{{ $calLink }}">
+            </div>
+            {{/* Preload script attributes added by cal.js, keep div simple */}}
+          </div>
+
         </div>
       </div>
     </div>
   </div>
   {{ end }}
   {{ end }}
-
 
   <!-- Footer Content (Starts below the overlapping CTA) -->
   <div class="footer bg-footer section border-bottom">

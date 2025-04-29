@@ -22,55 +22,42 @@
     });
   });
 
+  // --- START: OG Preview Effect Function ---
   function initializeOgPreviewEffects() {
     const effectWrappers = document.querySelectorAll('.og-preview-wrapper[data-effect-probability]');
-
     effectWrappers.forEach(wrapper => {
       const probability = parseInt(wrapper.dataset.effectProbability, 10) || 0;
       const duration = parseInt(wrapper.dataset.effectDuration, 10) || 750;
       const effectOverlay = wrapper.querySelector('.og-effect-overlay');
-      // Get available effects from config (passed via hugo.toml -> JS variable if needed, or hardcode)
-      // Hardcoding is simpler for now if hugo.toml list doesn't change often:
-      const availableEffects = ['glitch', 'static', 'warble']; // Match CSS classes 'effect-...'
+      const availableEffects = ['glitch', 'static', 'warble']; // Make sure these classes exist in CSS
 
       if (!effectOverlay || availableEffects.length === 0) {
-        console.warn('OG Preview effect overlay not found or no effects defined.');
-        return; // Skip if overlay doesn't exist or no effects configured
+        return;
       }
 
-      // Roll the dice!
       const shouldPlayEffect = Math.random() * 100 < probability;
 
       if (shouldPlayEffect) {
-        console.log('Playing OG Preview effect...');
-        // Choose a random effect
         const chosenEffect = availableEffects[Math.floor(Math.random() * availableEffects.length)];
         const effectClass = `effect-${chosenEffect}`;
 
-        // --- Special handling for Warble ---
-        // Warble looks best applied to the image itself.
-        // For simplicity here, we'll apply it to the overlay and give overlay the bg.
-        // If applying to image: const imageElement = wrapper.querySelector('.og-preview-image');
-
-        // Apply classes and duration
         effectOverlay.style.animationDuration = `${duration}ms`;
         effectOverlay.classList.add(effectClass, 'animate-effect');
 
-        // --- Clean up after animation ---
-        effectOverlay.addEventListener('animationend', () => {
-          console.log('OG Preview effect finished.');
-          effectOverlay.classList.remove(effectClass, 'animate-effect');
-          effectOverlay.style.animationDuration = ''; // Reset duration
-          // If applying filter to image for warble, remove it here:
-          // if (chosenEffect === 'warble' && imageElement) {
-          //   imageElement.style.filter = '';
-          // }
-        }, { once: true }); // Listener removes itself after firing once
+        // Optional: Add specific setup for certain effects if needed (like applying SVG filter)
+        const imageElement = wrapper.querySelector('.og-preview-image');
+        if (chosenEffect === 'warble' && imageElement) {
+          imageElement.style.filter = 'url(#og-warble-filter)';
+        }
 
-        // --- Optional: Apply warble filter to image element directly ---
-        // if (chosenEffect === 'warble' && imageElement) {
-        //   imageElement.style.filter = 'url(#og-warble-filter)';
-        // }
+        effectOverlay.addEventListener('animationend', () => {
+          effectOverlay.classList.remove(effectClass, 'animate-effect');
+          effectOverlay.style.animationDuration = '';
+          // Optional: Remove filter after animation
+          if (chosenEffect === 'warble' && imageElement) {
+            imageElement.style.filter = '';
+          }
+        }, { once: true });
       }
     });
   }
@@ -80,43 +67,188 @@
   // Execute when the DOM is fully loaded
   $(document).ready(function () {
 
-    // Animation
-    $('.has-animation').each(function (index) {
-      $(this).delay($(this).data('delay')).queue(function () {
-        $(this).addClass('animate-in');
-        $(this).dequeue(); // Important to continue the queue
-      });
-    });
+    // Initialize OG Preview Effects (if enabled)
     setTimeout(initializeOgPreviewEffects, 100); // Small delay
 
     // Cookie Consent Logic
     const cookieBox = document.getElementById('js-cookie-box');
     const cookieButton = document.getElementById('js-cookie-button');
 
-    // Check if the cookie box element exists on the page and js-cookie is loaded
     if (cookieBox && cookieButton && typeof Cookies !== 'undefined') {
-      // Check if the cookie hasn't been set
       if (!Cookies.get('cookie-box')) {
-        // Show the cookie box
         cookieBox.classList.remove('cookie-box-hide');
-
-        // Add click listener to the accept button
         cookieButton.onclick = function () {
-          // Read expire days from data attribute
           const expireDaysAttr = cookieBox.getAttribute('data-expire-days');
-          const expireDays = parseInt(expireDaysAttr) || 30; // Default to 30 if attribute is missing or invalid
-
-          // Set the cookie using js-cookie library
+          const expireDays = parseInt(expireDaysAttr) || 30;
           Cookies.set('cookie-box', true, {
             expires: expireDays,
-            path: '/' // Set path to ensure cookie applies site-wide
+            path: '/'
           });
-          // Hide the cookie box
           cookieBox.classList.add('cookie-box-hide');
         };
       }
-    } // End if (cookieBox && cookieButton && Cookies)
-  }); // END $(document).ready()
+    } // End Cookie Consent Logic
 
+    // --- START: Contact/Calendar Toggle Logic ---
+    const showFormBtn = document.getElementById('show-form-btn');
+    const showCalendarBtn = document.getElementById('show-calendar-btn');
+    const formContainer = document.getElementById('contact-form-container');
+    const calendarContainer = document.getElementById('calendar-container');
+    const calEmbedDiv = document.getElementById('my-cal-inline'); // Get the target div
+
+    let calInitialized = false; // Flag to track if we've tried to initialize Cal
+
+    function showFormView() {
+      if (formContainer && calendarContainer && showFormBtn && showCalendarBtn) {
+        formContainer.classList.remove('d-none');
+        calendarContainer.classList.add('d-none');
+        // Update button styles
+        showFormBtn.classList.add('btn-light');
+        showFormBtn.classList.remove('btn-outline-light');
+        showCalendarBtn.classList.add('btn-outline-light');
+        showCalendarBtn.classList.remove('btn-light');
+      }
+    }
+
+    function showCalendarView() {
+      if (formContainer && calendarContainer && showFormBtn && showCalendarBtn && calEmbedDiv) {
+        // Update view visibility
+        formContainer.classList.add('d-none');
+        calendarContainer.classList.remove('d-none');
+        // Update button styles
+        showCalendarBtn.classList.add('btn-light');
+        showCalendarBtn.classList.remove('btn-outline-light');
+        showFormBtn.classList.add('btn-outline-light');
+        showFormBtn.classList.remove('btn-light');
+
+        // Check if Cal object exists and if the embed div needs initialization
+        if (typeof Cal === 'function') {
+          // Only try to initialize if we haven't successfully done it before OR if the iframe isn't there yet
+          if (!calInitialized || !calEmbedDiv.querySelector('iframe')) {
+            try {
+              Cal("init"); // Trigger initialization for elements with data-cal-link
+              // Check *after* calling init if the iframe appeared
+              if (calEmbedDiv.querySelector('iframe')) {
+                calInitialized = true; // Mark as initialized successfully
+              } else {
+                // Optional: Display a message if init doesn't seem to work
+                if (!calendarContainer.querySelector('.cal-error-message')) { // Avoid adding multiple error messages
+                  const errorMsg = document.createElement('p');
+                  errorMsg.className = 'text-warning text-center small mt-4 cal-error-message';
+                  errorMsg.textContent = 'Trying to load calendar... If it doesn\'t appear, please refresh the page.';
+                  calendarContainer.appendChild(errorMsg);
+                }
+              }
+            } catch (e) {
+              // Error during Cal("init")
+              if (!calendarContainer.querySelector('.cal-error-message')) {
+                const errorMsg = document.createElement('p');
+                errorMsg.className = 'text-danger text-center small mt-4 cal-error-message';
+                errorMsg.textContent = 'Error initializing calendar. Please refresh or use the message form.';
+                calendarContainer.appendChild(errorMsg);
+              }
+              calInitialized = false; // Reset flag on error
+            }
+          }
+        } else {
+          // Cal object not found - global script might have failed
+          if (!calendarContainer.querySelector('.cal-error-message')) {
+            const errorMsg = document.createElement('p');
+            errorMsg.className = 'text-danger text-center small mt-4 cal-error-message';
+            errorMsg.textContent = 'Calendar components failed to load. Please refresh or use the message form.';
+            calendarContainer.appendChild(errorMsg);
+          }
+        }
+
+        // Check for data-cal-link attribute presence (independent of Cal object)
+        if (!calEmbedDiv.dataset.calLink) {
+          if (!calendarContainer.querySelector('.cal-error-message')) {
+            const errorMsg = document.createElement('p');
+            errorMsg.className = 'text-danger text-center small mt-4 cal-error-message';
+            errorMsg.textContent = 'Calendar configuration error.';
+            calendarContainer.appendChild(errorMsg);
+          }
+        }
+
+      } else {
+        // Could not show calendar view - essential elements missing
+      }
+    }
+
+    // Add Event Listeners for Toggle
+    if (showFormBtn) {
+      showFormBtn.addEventListener('click', showFormView);
+    }
+    if (showCalendarBtn) {
+      showCalendarBtn.addEventListener('click', showCalendarView);
+    }
+
+    // Initial State for Toggle
+    if (formContainer && calendarContainer && showFormBtn && showCalendarBtn) {
+      showFormView(); // Start with the form visible
+    }
+    // --- END: Contact/Calendar Toggle Logic ---
+
+
+    // --- START: AJAX Contact Form Submission ---
+    const contactForm = document.getElementById('contact-message-form');
+    const formFeedback = document.getElementById('form-feedback');
+    const submitButton = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
+
+    if (contactForm && formFeedback && submitButton) {
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const submitButtonOriginalText = submitButton.innerHTML;
+
+        // Provide visual feedback
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+        formFeedback.innerHTML = ''; // Clear previous feedback
+        formFeedback.className = 'mt-3 small'; // Reset classes
+
+        fetch(contactForm.action, { // Action should be "/send_email.php"
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json' // Expect JSON response
+          }
+        })
+          .then(response => {
+            if (!response.ok) {
+              // Handle HTTP errors (like 404, 500)
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json(); // Parse the JSON response from PHP
+          })
+          .then(data => {
+            if (data.status === 'success') {
+              formFeedback.textContent = data.message;
+              formFeedback.classList.add('alert', 'alert-success');
+              contactForm.reset(); // Clear the form fields
+            } else {
+              // Display error message from PHP
+              formFeedback.textContent = data.message || 'An error occurred.';
+              formFeedback.classList.add('alert', 'alert-danger');
+            }
+          })
+          .catch(error => {
+            console.error('Form submission error:', error); // Keep this console error for debugging fetch issues
+            formFeedback.textContent = 'A network error occurred sending your message. Please try again.';
+            formFeedback.classList.add('alert', 'alert-danger');
+          })
+          .finally(() => {
+            // Restore button regardless of success or error
+            submitButton.disabled = false;
+            submitButton.innerHTML = submitButtonOriginalText;
+          });
+      });
+    }
+    // --- END: AJAX Contact Form Submission ---
+
+
+  }); // END $(document).ready()
 
 })(jQuery);
