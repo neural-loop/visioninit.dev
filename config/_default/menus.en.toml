@@ -42,7 +42,7 @@ url = "/about/"
 weight = 4
 [[main]]
 name = "Contact"
-url = "/contact/"
+url = "#schedule-consultation"
 weight = 5 # Adjust weight based on optional items above
 
 # Footer Menu (Matches the structure defined in root hugo.toml)
@@ -56,5 +56,5 @@ url = "/terms/"
 weight = 2
 [[footer]]
 name = "Contact"
-url = "/contact/"
+url = "#schedule-consultation"
 weight = 3

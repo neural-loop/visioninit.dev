@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.visioninit\.dev [NC]
+RewriteRule ^(.*)$ https://visioninit.dev/$1 [L,R=301]
+
+# Optional: Force HTTPS (if not already handled by hosting)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

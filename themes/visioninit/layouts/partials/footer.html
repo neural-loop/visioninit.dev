@@ -1,4 +1,4 @@
-{{/* themes/boycott-beacon/layouts/partials/footer.html */}}
+{{/* themes/visioninit/layouts/partials/footer.html */}}
 <!-- footer -->
 <footer>
   {{ $data := index site.Data site.Language.Lang }} {{/* Get homepage data */}}
@@ -6,20 +6,15 @@
   {{/* Inside themes/visioninit/layouts/partials/footer.html - within the CTA section */}}
   {{ if $data.homepage.cta.enable }}
   {{ with $data.homepage.cta }}
-  <div class="newsletter">
+  {{/* <<< This ID is the target for the scroll <<< */}}
+  <div class="newsletter" id="schedule-consultation">
     <div class="container">
       <div class="row">
         <div class="col-md-9 ml-auto bg-primary py-5 newsletter-block">
           <h3 class="text-white mb-3">{{ .title | default "Missing CTA Title" }}</h3>
           {{ with .subtitle }}<h6 class="text-white font-secondary mb-3">{{ . }}</h6>{{ end }}
-          <p class="text-white mb-4">{{ .content | markdownify }}</p>
-          {{ if .button.enable }}
-          {{/* --- MODIFICATION START --- */}}
-          <a href="{{ site.Params.scheduling_link | safeURL }}" class="btn btn-light btn-lg" target="_blank" rel="noopener noreferrer">
-            {{ .button.label }}
-          </a>
-          {{/* --- MODIFICATION END --- */}}
-          {{ end }}
+          <p class="text-white">{{ .content | markdownify }}</p>
+          <div style="width:100%;" id="my-cal-inline"></div> {{/* Keep the original ID - Cal.com JS would target this if added elsewhere */}}
         </div>
       </div>
     </div>
@@ -51,7 +46,18 @@
           <h4 class="text-white mb-4 text-uppercase small">Links</h4> {{/* Changed H4 Style */}}
           <ul class="list-unstyled">
             {{ range site.Menus.main }}
-            <li class="mb-3"><a class="text-color" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+            <li class="mb-3">
+              {{ $mainFooterURL := .URL }}
+              {{ $processedMainFooterURL := "" }}
+              {{/* --- START CHANGE: Check if URL is an anchor link --- */}}
+              {{ if strings.HasPrefix $mainFooterURL "#" }}
+              {{ $processedMainFooterURL = $mainFooterURL | safeURL }}
+              {{ else }}
+              {{ $processedMainFooterURL = $mainFooterURL | absLangURL }}
+              {{ end }}
+              {{/* --- END CHANGE --- */}}
+              <a class="text-color" href="{{ $processedMainFooterURL }}">{{ .Name }}</a>
+            </li>
             {{ end }}
           </ul>
         </div>
@@ -62,8 +68,20 @@
           <h4 class="text-white mb-4 text-uppercase small">Legal</h4> {{/* Changed H4 Style */}}
           <ul class="list-unstyled">
             {{ range site.Menus.footer }}
-            <li class="mb-3"><a class="text-color" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+            <li class="mb-3">
+              {{ $legalFooterURL := .URL }}
+              {{ $processedLegalFooterURL := "" }}
+              {{/* --- START CHANGE: Check if URL is an anchor link --- */}}
+              {{ if strings.HasPrefix $legalFooterURL "#" }}
+              {{ $processedLegalFooterURL = $legalFooterURL | safeURL }}
+              {{ else }}
+              {{ $processedLegalFooterURL = $legalFooterURL | absLangURL }}
+              {{ end }}
+              {{/* --- END CHANGE --- */}}
+              <a class="text-color" href="{{ $processedLegalFooterURL }}">{{ .Name }}</a>
+            </li>
             {{ else }}
+            {{/* Fallback if no footer menu defined */}}
             <li class="mb-3"><a href="{{ "/privacy/" | relLangURL }}" class="text-color">Privacy Policy</a></li>
             <li class="mb-3"><a href="{{ "/terms/" | relLangURL }}" class="text-color">Terms of Service</a></li>
             {{ end }}

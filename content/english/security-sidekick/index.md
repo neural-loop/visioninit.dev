@@ -12,37 +12,36 @@ Choose the plan that best fits your current requirements: get ongoing support wi
 
 ## Choose Your Plan
 
-We offer two distinct options to provide the right level of security partnership:
-
 <div class="row justify-content-center mb-5">
-  <div class="col-md-6 col-lg-5 mb-4 d-flex align-items-stretch">
+  <div class="col-md-6 col-lg-6 mb-4 d-flex align-items-stretch">
     <div class="card subscription-card offset-shadow-box bg-white p-4 p-md-5 text-center rounded-0 h-100 d-flex flex-column">
       <h3 class="h4 mb-3 text-dark font-weight-bold">Sure Shot</h3>
       <h4 class="h3 mb-3 text-primary font-weight-bold">$500<small class="text-muted font-weight-normal ml-1">one-time</small></h4>
       <p class="card-text text-muted small mb-4 flex-grow-1">Ideal for addressing a <b>single, specific security question, review, or configuration check.</b> Get targeted expert feedback on one critical item when you need it most.</p>
       <p class="small text-muted font-italic mb-4">Best for: Quick checks, specific vulnerability questions, pre-launch reviews of small features.</p>
       <div class="mt-auto">
-        <a href="{{< param "scheduling_link" >}}?utm_source=sidekick_page&utm_campaign=sure_shot_cta" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-          Request Sure Shot
+        <a href="https://buy.stripe.com/eVa5nDdmZaNv0Ny4gg" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+          Order Sure Shot
         </a>
       </div>
     </div>
   </div>
 
-  <div class="col-md-6 col-lg-5 mb-4 d-flex align-items-stretch">
+  <div class="col-md-6 col-lg-6 mb-4 d-flex align-items-stretch">
     <div class="card subscription-card offset-shadow-box bg-white p-4 p-md-5 text-center rounded-0 h-100 d-flex flex-column">
       <h3 class="h4 mb-3 text-dark font-weight-bold">Steady Shot</h3>
       <h4 class="h3 mb-3 text-primary font-weight-bold">$4995<small class="text-muted font-weight-normal ml-1">/month</small></h4>
       <p class="card-text text-muted small mb-4 flex-grow-1">Comprehensive, ongoing security partnership. Includes <b>unlimited requests (one active)</b>, code reviews, vulnerability guidance, proactive advice, and continuous support.</p>
       <p class="small text-muted font-italic mb-4">Best for: Teams needing regular security input, ongoing development, proactive posture improvement.</p>
       <div class="mt-auto">
-        <a href="{{< param "scheduling_link" >}}?utm_source=sidekick_page&utm_campaign=steady_shot_cta" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-          Discuss Steady Shot
+        <a href="https://buy.stripe.com/14k3fv5UxaNvao8dQR" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+          Order Steady Shot
         </a>
       </div>
     </div>
   </div>
 </div>
+
 
 *Note: Both plans currently initiate via a consultation call to ensure we fully understand your needs.*
 
@@ -131,13 +130,3 @@ While requests are unlimited, each should be reasonably scoped. Extremely large 
 {{< accordion title="What if I need help outside typical business hours?" >}}
 The Security Sidekick service operates during standard business hours (US Eastern Time, Monday-Friday, excluding holidays). Urgent, off-hours support or incident response would fall outside the scope of these subscription plans.
 {{< /accordion >}}
-
-## Get Started with Security Sidekick
-
-Strengthen your security posture with flexible, expert support. Schedule a consultation to discuss the best plan for you.
-
-<div class="text-center my-4">
-    <a href="{{< param "scheduling_link" >}}" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
-        <i class="fa-solid fa-calendar-check mr-2"></i> Schedule Your Consultation Now
-    </a>
-</div>

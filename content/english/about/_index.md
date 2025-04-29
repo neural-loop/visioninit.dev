@@ -63,6 +63,6 @@ Our mission is to leverage this blend of deep technical skill, operational under
 
 **Ready to discuss how VisionInit can help bring your vision to life securely and efficiently?**
 
-<a href="{{< param "scheduling_link" >}}" class="btn btn-primary my-3" target="_blank" rel="noopener noreferrer">
+<a href="#schedule-consultation" class="btn btn-primary my-3">
 <i class="fa-solid fa-calendar-check mr-2"></i> Schedule a Consultation
 </a>

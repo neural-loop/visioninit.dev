@@ -1,3 +1,5 @@
+<!-- ./themes/visioninit/layouts/partials/header.html -->
+
 <!-- header -->
 <header class="fixed-top header">
   <!-- top header -->
@@ -45,13 +47,31 @@
               </a>
               <div class="dropdown-menu">
                 {{ range .Children }}
-                <a class="dropdown-item" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+                {{ $childURL := .URL }}
+                {{ $processedChildURL := "" }}
+                {{/* --- START CHANGE: Check if URL is an anchor link --- */}}
+                {{ if strings.HasPrefix $childURL "#" }}
+                {{ $processedChildURL = $childURL | safeURL }} {{/* Output directly if anchor */}}
+                {{ else }}
+                {{ $processedChildURL = $childURL | absLangURL }} {{/* Process normally otherwise */}}
+                {{ end }}
+                {{/* --- END CHANGE --- */}}
+                <a class="dropdown-item" href="{{ $processedChildURL }}">{{ .Name }}</a>
                 {{ end }}
               </div>
             </li>
             {{ else }}
             <li class="nav-item">
-              <a class="nav-link" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+              {{ $topLevelURL := .URL }}
+              {{ $processedTopLevelURL := "" }}
+              {{/* --- START CHANGE: Check if URL is an anchor link --- */}}
+              {{ if strings.HasPrefix $topLevelURL "#" }}
+              {{ $processedTopLevelURL = $topLevelURL | safeURL }} {{/* Output directly if anchor */}}
+              {{ else }}
+              {{ $processedTopLevelURL = $topLevelURL | absLangURL }} {{/* Process normally otherwise */}}
+              {{ end }}
+              {{/* --- END CHANGE --- */}}
+              <a class="nav-link" href="{{ $processedTopLevelURL }}">{{ .Name }}</a>
             </li>
             {{ end }}
             {{ end }}

@@ -9,23 +9,21 @@ timeZone = "America/New_York" # Adjust if needed
 paginate = 6
 # Summary length for auto-generated excerpts
 summaryLength = 20
+
+disableKinds = ["taxonomy", "term"]
+
 # google analytics (replace with your actual ID if you use GA4)
 # googleAnalytics = "G-XXXXXXXXXX"
 # disable languages if not needed (example shown)
 # disableLanguages = ["fr"]
 hasCJKLanguage = false # Keep false unless you use CJK languages
 
-# Configure Taxonomies
-[taxonomies]
-category = "categories"
-tag = "tags"
-
 #################### Parameters (site-wide variables) ##################
 [params]
 logo = "/logo.png" # <<< NEW: Path to your consultancy logo (relative to static/)
 favicon = "/favicon.ico" # Path to your favicon (relative to static/)
 # Meta data
-description = "VisionInit provides expert IT consultancy, full-stack web development, cloud solutions, and security assessments. Partner with Justin Riddiough for robust and scalable technical solutions."
+description = "Expert IT consultancy: Full-stack web development, cloud solutions, and web security assessments. Partner with Justin Riddiough for technical solutions."
 author = "Justin Riddiough / VisionInit"
 
 # Contact Info (Optional, used in theme potentially)
@@ -77,6 +75,8 @@ link = "plugins/jQuery/jquery.min.js"
 link = "plugins/bootstrap/bootstrap.bundle.min.js" # Includes Popper
 [[params.plugins.js]]
 link = "plugins/js-cookie/js.cookie.min.js" # For cookie consent
+[[params.plugins.js]]
+link = "plugins/cal/cal.js" # For cookie consent
 
 
 ############################# Menus ##############################
@@ -135,11 +135,11 @@ target = '$1'
 
 ############################# Outputs ##############################
 [outputs]
-home = ["HTML", "RSS"]
-page = ["HTML"]
-section = ["HTML"]
-taxonomy = ["HTML", "RSS"]
-term = ["HTML", "RSS"]
+home = ["HTML", "Sitemap"]
+page = ["HTML", "Sitemap"]
+section = ["HTML", "Sitemap"]
+
+
 
 ############################# Imaging ##############################
 [imaging]
@@ -176,3 +176,8 @@ unsafe = true # Allows raw HTML in markdown, needed by some themes/shortcodes
   [services.googleAnalytics]
     ID = "G-JNVVVFY1DH"
 
+[sitemap]
+changefreq = "weekly" # How frequently the content is likely to change (e.g., "always", "hourly", "daily", "weekly", "monthly", "yearly", "never")
+priority = 0.5        # Priority of this URL relative to other URLs on your site (0.0 to 1.0)
+filename = "sitemap.xml" # Default filename (usually no need to change)
+disableKinds = ['homepage']

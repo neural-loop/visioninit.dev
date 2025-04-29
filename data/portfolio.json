@@ -85,59 +85,82 @@
     "title": "AI Models Platform (Acquired)",
     "date": "2024-03-15",
     "image": "p-aimodels-1.png",
-    "description": "Founder & Lead Developer for aimodels.org, a curated directory empowering open-source AI innovation, leading to acquisition.",
-    "tags": ["Hugo", "SEO", "Community Building", "AI", "Cloud", "Google Cloud", "Python", "Founder"],
+    "description": "Founder & Lead Developer for aimodels.org, a highly visible platform for open-source AI innovation (acquired). Achieved top SEO rankings for competitive terms and engineered a large-scale audio generation pipeline demonstrating RVC model capabilities.",
+    "tags": ["Hugo", "SEO", "Community Building", "AI", "Cloud", "Google Cloud", "Python", "Founder", "RVC", "Audio Processing", "Data Pipeline", "Automation", "Traffic Growth"],
     "role": "Founder & Lead Developer (2021 - 2024)",
-    "role_overview": "Architected, developed, and managed aimodels.org, a Hugo-based platform focused on open-source AI models. Oversaw all aspects from conception through development, cloud administration (GCP), SEO, and community engagement, culminating in a successful acquisition.",
-    "service_areas": ["custom-web-application-development", "seo-content-strategy-optimization", "ai-data-integration-services"],
+    "role_overview": "Architected, developed, and managed aimodels.org, a Hugo-based platform focused on open-source AI models. Oversaw all aspects from conception through development, cloud administration (GCP), and community engagement. Implemented successful SEO strategies driving significant organic traffic and developed a novel large-scale audio generation pipeline using RVC models, culminating in a successful acquisition.",
+    "service_areas": ["custom-web-application-development", "seo-content-strategy-optimization", "ai-data-integration-services", "cloud-infrastructure-devops-solutions"],
     "service_contributions": {
       "custom-web-application-development": {
-        "summary": "Led the full lifecycle development of the Hugo-based platform and collaborated on related community sites.",
+        "summary": "Led the full lifecycle development of the Hugo-based platform, including backend automation pipelines and collaboration on related community sites.",
         "points": [
           "Architected and built the scalable Hugo static site.",
+          "Developed the automation pipeline for the RVC audio generation project (Python, scripting).",
           "Managed full project lifecycle from conception to deployment and maintenance.",
           "Fostered community collaboration through development of related sites (open-neuromorphic.org, fmcheatsheet.org)."
         ]
       },
       "seo-content-strategy-optimization": {
-        "summary": "Implemented robust SEO strategies resulting in significant organic traffic growth.",
+        "summary": "Implemented robust SEO strategies resulting in top search rankings for key industry terms and significant organic traffic growth.",
         "points": [
-          "Executed technical SEO and on-page optimization.",
-          "Structured content for improved search engine discoverability."
+          "Achieved top organic search results for competitive terms like 'Download AI Models', 'AI Benchmark Tools', and 'Open Source AI Communities'.",
+          "Executed technical SEO, on-page optimization, and structured content for maximum search engine discoverability.",
+          "These strategies directly contributed to substantial and sustained organic traffic growth for the platform."
         ]
       },
       "ai-data-integration-services": {
-        "summary": "Utilized Google Cloud services to host the platform and manage AI model data.",
+        "summary": "Engineered a large-scale data pipeline to process and generate ~12,000 unique audio samples using ~450 RVC models, showcasing model diversity and driving significant user engagement.",
+        "points": [
+          "Designed and implemented an automated pipeline to showcase ~450 RVC voice models.",
+          "Processed permissively licensed songs (Pixabay) involving vocal splitting, RVC model application, and audio recombination.",
+          "Generated ~12,000 unique song samples (approx. 27 diverse song contexts per model) to demonstrate model capabilities.",
+          "This content initiative proved to be a major driver of site traffic and user engagement.",
+          "Managed associated AI model metadata and data handling processes (implying Cloud SQL use)."
+        ]
+      },
+      "cloud-infrastructure-devops-solutions": {
+        "summary": "Utilized Google Cloud Platform (GCP) for scalable application hosting, CI/CD, and database management.",
         "points": [
           "Deployed and managed the application on Google Cloud Run.",
-          "Used Cloud Build for CI/CD and Cloud SQL for database management related to model data.",
-          "Developed Python scripts or processes for data handling (implied)."
+          "Used Cloud Build for CI/CD and Cloud SQL for database management."
         ]
       }
     }
   },
   {
     "id": "open-neuromorphic",
-    "title": "Open Neuromorphic Community Collaboration",
+    "title": "Open Neuromorphic Community Enablement & Visibility",
     "date": "2024-03-15",
-    "description": "Provided web development expertise to Open Neuromorphic, redesigning their website, optimizing SEO, and streamlining content to support the open-source neuromorphic computing community.",
-    "tags": ["Hugo", "SEO", "Community Building", "Open Source"],
-    "role": "Collaborator / Web Developer (via AI Models initiative)",
-    "role_overview": "As part of the AI Models community effort, contributed web expertise to Open Neuromorphic, enhancing their online presence to better serve the open-source neuromorphic computing community.",
-    "service_areas": ["custom-web-application-development", "seo-content-strategy-optimization"],
+    "description": "Provided comprehensive web development, SEO, platform configuration, and branding expertise to Open Neuromorphic, significantly enhancing their online presence, operational efficiency, and community engagement.",
+    "tags": ["Hugo", "SEO", "Community Building", "Open Source", "Platform Configuration", "Branding", "YouTube", "Discord", "Streamyard"],
+    "role": "Collaborator / Web & Community Platform Specialist (via AI Models initiative)",
+    "role_overview": "As part of the AI Models community effort, contributed broad web and technical expertise to Open Neuromorphic. This involved building their core web platform, optimizing for search visibility, configuring community tools (streaming, communication), and establishing branding guidelines to elevate their presence and support the open-source neuromorphic computing community.",
+    "service_areas": ["custom-web-application-development", "seo-content-strategy-optimization", "cloud-infrastructure-devops-solutions"],
     "service_contributions": {
       "custom-web-application-development": {
-        "summary": "Executed a website redesign focused on improving user experience and content clarity.",
+        "summary": "Led the development of a new, user-friendly Hugo website and configured key community platforms (streaming, communication) to enhance engagement and professionalism.",
         "points": [
-          "Redesigned the website for a seamless and engaging visitor experience.",
-          "Streamlined website content for conciseness and user-friendliness.",
-          "Aligned terminology (e.g., 'Events' to 'Workshops')."
+          "Developed and launched a new Hugo-based website, providing a robust and scalable platform for the community's content.",
+          "Configured Streamyard streaming platform, including professional branding setup, enabling high-quality workshop delivery.",
+          "Introduced Discord configuration enhancements, such as self-assignable interest/expertise roles, to foster better community organization and contribution.",
+          "Streamlined website content structure and terminology for improved clarity and user experience."
         ]
       },
       "seo-content-strategy-optimization": {
-        "summary": "Improved website discoverability through strategic SEO enhancements.",
+        "summary": "Implemented SEO and content strategies resulting in top search rankings against industry giants, significant organic growth, and enhanced brand consistency across platforms.",
         "points": [
-          "Boosted search engine visibility via meta tags, descriptions, and dedicated pages."
+          "Achieved and maintained a top 3 average search position (~2.7) for the core term 'neuromorphic computing hardware', establishing ONM as a key authority.",
+          "The hardware directory became a primary organic traffic driver (>4,600 clicks, >139,000 impressions in 2 years).",
+          "Designed and implemented a consistent thumbnail scheme for YouTube workshops, reinforcing the ONM brand identity and improving content discoverability.",
+          "Boosted overall search visibility through technical SEO, meta tag optimization, and structured content architecture."
+        ]
+      },
+      "cloud-infrastructure-devops-solutions": {
+        "summary": "Configured and optimized essential community tools and platforms to improve operational efficiency and member interaction.",
+        "points": [
+          "Set up and branded the Streamyard platform for professional live workshop sessions.",
+          "Implemented Discord role management features to improve member identification and engagement.",
+          "Provided general technical administration support for key community platforms (YouTube, Discord)."
         ]
       }
     },
@@ -145,26 +168,27 @@
   },
   {
     "id": "foundation-model-cheatsheet",
-    "title": "Foundation Model Cheatsheet Website",
+    "title": "Foundation Models Cheatsheet - Interactive Web Platform",
     "date": "2024-03-15",
-    "description": "Developed fmcheatsheet.org using Hugo, creating an interactive online platform for the Foundation Model Development Cheatsheet to promote responsible AI practices.",
-    "tags": ["Hugo", "SEO", "Responsible AI", "Open Source"],
-    "role": "Collaborator / Web Developer (via AI Models initiative)",
-    "role_overview": "As part of the AI Models community effort, built the fmcheatsheet.org platform using Hugo to provide an interactive and accessible resource for the Foundation Model Development Cheatsheet, promoting responsible AI.",
+    "description": "Developed fmcheatsheet.org, an interactive Hugo platform for the *Foundation Models Cheatsheet* paper, collaborating with researchers from leading institutions (Google, MIT, Stanford CRFM, Hugging Face, etc.) to promote responsible AI practices.",
+    "tags": ["Hugo", "SEO", "Responsible AI", "Open Source", "Collaboration", "UI/UX", "Resource Directory", "Academic Outreach"],
+    "role": "Collaborator / Lead Web Developer (via AI Models initiative)",
+    "role_overview": "Built fmcheatsheet.org using Hugo as an interactive online platform for the influential Foundation Model Development Cheatsheet paper. Collaborated closely with the paper's authors from AI2, EleutherAI, Google, Hugging Face, Masakhane, MIT, MLCommons, Princeton, Stanford CRFM, UCSB, UCL, and UW. Led an iterative web design process, incorporating multi-channel feedback to translate the academic resource into an accessible, SEO-optimized web format with a clear resource directory, enhancing its reach and promoting responsible AI development.",
     "service_areas": ["custom-web-application-development", "seo-content-strategy-optimization"],
     "service_contributions": {
       "custom-web-application-development": {
-        "summary": "Built a user-friendly Hugo site from scratch to replace a previous Streamlit app, enhancing usability and interaction.",
+        "summary": "Transformed the Foundation Models Cheatsheet paper into an interactive, user-friendly Hugo website through a collaborative, iterative design process with researchers from multiple leading institutions.",
         "points": [
-          "Replaced the previous Streamlit app with a more intuitive Hugo-based site.",
-          "Enabled easier navigation and discovery of resources.",
-          "Provided more direct interaction compared to academic papers."
+          "Built the Hugo site from scratch, providing a more intuitive and engaging user experience compared to static paper formats.",
+          "Designed and implemented a clear resource directory structure, enhancing navigation and discoverability of specific guidance.",
+          "Managed an iterative design and development process, incorporating feedback from diverse stakeholders across multiple communication channels to achieve a cohesive final product."
         ]
       },
       "seo-content-strategy-optimization": {
-        "summary": "Optimized the website for search engines to improve discoverability.",
+        "summary": "Optimized the website structure and content for search engines to maximize the reach and impact of this key responsible AI resource.",
         "points": [
-          "Built the website with SEO and growth in mind."
+          "Built the website applying SEO best practices to enhance discoverability by practitioners and researchers.",
+          "Structured content logically for both user navigation and effective search engine indexing."
         ]
       }
     },
