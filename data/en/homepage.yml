@@ -3,7 +3,6 @@
 slider:
   enable: true
   # bg_image: "images/banner.jpg" # <<< REMOVE or COMMENT OUT this line
-  video_poster: "/images/hero-poster.jpg" # <<< ADD This: Path to a poster image (e.g., first frame of video, or relevant static image)
   slider_item:
     - title: "Secure Development by Design"
       content: "Building robust, scalable web solutions with security embedded from inception. Leveraging **20+ years of full-stack expertise** and proven security credentials to protect your digital assets and accelerate innovation."
