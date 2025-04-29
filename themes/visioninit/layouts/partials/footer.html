@@ -3,34 +3,32 @@
 <footer>
   {{ $data := index site.Data site.Language.Lang }} {{/* Get homepage data */}}
 
+  {{/* --- CTA Section (Newsletter Block) --- */}}
   {{ if $data.homepage.cta.enable }}
   {{ with $data.homepage.cta }}
-  {{/* <<< ID for scrolling remains the same <<< */}}
+  {{/* ID for scrolling */}}
   <div class="newsletter" id="schedule-consultation">
     <div class="container">
       <div class="row">
         <div class="col-md-9 ml-auto bg-primary py-5 newsletter-block">
           <h3 class="text-white mb-3">{{ .title | default "Missing CTA Title" }}</h3>
-          {{ with .subtitle }}<h4 class="text-white font-secondary mb-3 h6">{{ . }}</h4>{{ end }} {{/* Changed h6 to h4 for semantics, kept h6 class for style */}}
+          {{ with .subtitle }}<h4 class="text-white font-secondary mb-3 h6">{{ . }}</h4>{{ end }}
           <p class="text-white mb-4">{{ .content | markdownify }}</p>
 
           {{/* --- Toggle Buttons --- */}}
           <div class="mb-4 text-center">
             <button id="show-form-btn" class="btn btn-sm btn-light mr-2">
-              {{/* Added fa-paper-plane icon with right margin */}}
               <i class="fa-solid fa-paper-plane mr-2" aria-hidden="true"></i>Send a Message
             </button>
             <button id="show-calendar-btn" class="btn btn-sm btn-outline-light">
-              {{/* Added fa-calendar-check icon with right margin */}}
               <i class="fa-solid fa-calendar-check mr-2" aria-hidden="true"></i>Schedule a Meeting
             </button>
           </div>
 
-          {{/* --- Contact Form Container (Visible by default) --- */}}
+          {{/* --- Contact Form Container --- */}}
           <div id="contact-form-container">
-            {{/* Form points to PHP, ID for JS, NO Netlify attributes */}}
-            <form id="contact-message-form" action="/send-email.php" method="POST">
-              {{/* Removed Netlify hidden fields & attributes */}}
+            {{/* Points to PHP script, ID for JS */}}
+            <form id="contact-message-form" action="/send_email.php" method="POST">
               <div class="form-group mb-3">
                 <label for="name" class="visually-hidden">Your Name</label>
                 <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Your Name" required>
@@ -48,79 +46,83 @@
               <button type="submit" class="btn btn-light btn-block">Send Message</button>
             </form>
           </div>
-          {{/* --- Calendar Container (Hidden by default) --- */}}
-          {{ $calLink := site.Params.scheduling_link | default "YOUR_CAL_LINK" }} {{/* Get link from hugo.toml */}}
-          <div id="calendar-container" class="d-none">
-            {{/* The Cal.com embed div - MAKE SURE data-cal-link is correct! */}}
-            <div style="width:100%; height:100%; overflow:scroll;"
+
+          {{/* --- Calendar Container --- */}}
+          {{ $calLink := site.Params.scheduling_link | default "YOUR_CAL_LINK_MISSING_IN_HUGO.TOML" }}
+          <div id="calendar-container" class="d-none"> {{/* Still starts hidden */}}
+            {{ if ne $calLink "YOUR_CAL_LINK_MISSING_IN_HUGO.TOML" }}
+            {{/* The div Cal.com targets */}}
+            <div style="width:100%; height:100%; min-height: 650px; overflow:scroll;"
                  id="my-cal-inline"
                  data-cal-link="{{ $calLink }}">
+              {{/* Optional: Add a loading indicator here */}}
+              <p id="cal-loading-indicator" class="text-center text-white py-5">Loading Calendar...</p>
             </div>
-            {{/* Preload script attributes added by cal.js, keep div simple */}}
+            {{ else }}
+            <p class="text-warning small">Calendar scheduling link is not configured.</p>
+            {{ end }}
+            {{/* Error message placeholder */}}
+            <div id="cal-error-message" class="text-center small mt-4"></div>
           </div>
-
         </div>
+
       </div>
     </div>
   </div>
+  </div>
   {{ end }}
   {{ end }}
+  {{/* --- End CTA Section --- */}}
 
-  <!-- Footer Content (Starts below the overlapping CTA) -->
+  <!-- Footer Content -->
   <div class="footer bg-footer section border-bottom">
     <div class="container">
       <div class="row">
         <!-- Logo & Core Links -->
         <div class="col-lg-4 col-md-6 col-sm-6 mb-5 mb-lg-0">
           <a class="logo-footer d-inline-block mb-4" href="{{ site.BaseURL | relLangURL }}">
-            {{/* Use logo from params */}}
-            <img src="{{ site.Params.logo | default "/images/logo.png" | absURL }}" alt="{{ site.Title }}" class="img-fluid" style="max-height: 60px;"> {{/* Added style */}}
+            <img src="{{ site.Params.logo | default "/logo.png" | absURL }}" alt="{{ site.Title }}" class="img-fluid" height="59" width="60" style="max-height: 60px;">
           </a>
           <ul class="list-unstyled">
-            {{/* Use params defined in hugo.toml */}}
             {{ with site.Params.email }}<li class="mb-3"><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:{{ . }}" class="text-color">{{ . }}</a></li>{{ end }}
-            {{ with site.Params.chrome_web_store_link }}<li class="mb-3"><i class="fa-solid fa-bag-shopping mr-2"></i> <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">Chrome Web Store</a></li>{{ end }}
+            {{/* Removed Chrome Web Store Link Example */}}
+            {{/* {{ with site.Params.chrome_web_store_link }}<li class="mb-3"><i class="fa-solid fa-bag-shopping mr-2"></i> <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">Chrome Web Store</a></li>{{ end }} */}}
             {{ with site.Params.github_repo }}<li class="mb-3"><i class="fa-brands fa-github mr-2"></i> <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">GitHub Repository</a></li>{{ end }}
           </ul>
         </div>
 
         <!-- Quick Links (Using Main Menu) -->
         <div class="col-lg-2 col-md-3 col-sm-6 col-6 mb-5 mb-lg-0">
-          <h4 class="text-white mb-4 text-uppercase small">Links</h4> {{/* Changed H4 Style */}}
+          <h4 class="text-white mb-4 text-uppercase small">Links</h4>
           <ul class="list-unstyled">
             {{ range site.Menus.main }}
             <li class="mb-3">
               {{ $mainFooterURL := .URL }}
               {{ $processedMainFooterURL := "" }}
-              {{/* --- START CHANGE: Check if URL is an anchor link --- */}}
               {{ if strings.HasPrefix $mainFooterURL "#" }}
               {{ $processedMainFooterURL = $mainFooterURL | safeURL }}
               {{ else }}
               {{ $processedMainFooterURL = $mainFooterURL | absLangURL }}
               {{ end }}
-              {{/* --- END CHANGE --- */}}
               <a class="text-color" href="{{ $processedMainFooterURL }}">{{ .Name }}</a>
             </li>
             {{ end }}
           </ul>
         </div>
 
-
         <!-- Legal Links -->
         <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-left">
-          <h4 class="text-white mb-4 text-uppercase small">Legal</h4> {{/* Changed H4 Style */}}
+          <h4 class="text-white mb-4 text-uppercase small">Legal</h4>
           <ul class="list-unstyled">
             {{ range site.Menus.footer }}
             <li class="mb-3">
               {{ $legalFooterURL := .URL }}
               {{ $processedLegalFooterURL := "" }}
-              {{/* --- START CHANGE: Check if URL is an anchor link --- */}}
               {{ if strings.HasPrefix $legalFooterURL "#" }}
               {{ $processedLegalFooterURL = $legalFooterURL | safeURL }}
               {{ else }}
               {{ $processedLegalFooterURL = $legalFooterURL | absLangURL }}
               {{ end }}
-              {{/* --- END CHANGE --- */}}
               <a class="text-color" href="{{ $processedLegalFooterURL }}">{{ .Name }}</a>
             </li>
             {{ else }}
@@ -131,25 +133,26 @@
           </ul>
         </div>
 
-        <!-- Social Links (Moved to Footer) -->
-        <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-right"> {{/* Adjusted alignment */}}
-          <h4 class="text-white mb-4 text-uppercase small">Connect</h4> {{/* Changed H4 Style */}}
+        <!-- Social Links -->
+        <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-right">
+          <h4 class="text-white mb-4 text-uppercase small">Connect</h4>
           <ul class="list-inline footer-socials">
             {{ range site.Params.social }}
-            <li class="list-inline-item"><a class="d-inline-block p-2" href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .title }}"><i class="{{ .icon }} text-color" style="font-size: 1.5rem;"></i></a></li> {{/* Increased icon size */}}
+            <li class="list-inline-item"><a class="d-inline-block p-2" href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .title }}"><i class="{{ .icon }} text-color" style="font-size: 1.5rem;"></i></a></li>
             {{ end }}
           </ul>
         </div>
       </div>
     </div>
   </div>
+  <!-- /Footer Content -->
 
   <!-- Copyright -->
-  <div class="copyright py-4 bg-primary text-light"> {{/* Keep background */}}
+  <div class="copyright py-4 bg-primary text-light">
     <div class="container">
       <div class="row">
-        <div class="col-12 text-center"> {{/* Center copyright */}}
-          <p class="mb-0 small">{{ site.Params.copyright | markdownify }}</p> {{/* Use small class */}}
+        <div class="col-12 text-center">
+          <p class="mb-0 small">{{ site.Params.copyright | markdownify }}</p>
         </div>
       </div>
     </div>
@@ -159,7 +162,8 @@
 
 {{ "<!-- JS Plugins -->" | safeHTML }}
 {{ range site.Params.plugins.js }}
-<script src="{{ .link | absURL }}"></script>
+{{/* Add defer attribute */}}
+<script src="{{ .link | absURL }}" defer></script>
 {{ end }}
 
 {{ "<!-- Main Script Bundle -->" | safeHTML }}
@@ -174,7 +178,8 @@
 {{/* Process the combined slice */}}
 {{ if gt (len $jsSlice) 0 }}
 {{ $jsBundle := $jsSlice | resources.Concat "js/bundle.js" | minify | fingerprint "sha512" }}
-<script src="{{ $jsBundle.Permalink }}" integrity="{{ $jsBundle.Data.Integrity }}"></script>
+{{/* Add defer attribute */}}
+<script src="{{ $jsBundle.Permalink }}" integrity="{{ $jsBundle.Data.Integrity }}" defer></script>
 {{ else }}
 {{ warnf "No main JS files found (script.js or accordion.js) in assets." }}
 {{ end }}
