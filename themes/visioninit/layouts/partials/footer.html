@@ -28,7 +28,7 @@
           {{/* --- Contact Form Container --- */}}
           <div id="contact-form-container">
             {{/* Points to PHP script, ID for JS */}}
-            <form id="contact-message-form" action="/send_email.php" method="POST">
+            <form id="contact-message-form" action="/send-email.php" method="POST">
               <div class="form-group mb-3">
                 <label for="name" class="visually-hidden">Your Name</label>
                 <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Your Name" required>
@@ -52,11 +52,10 @@
           <div id="calendar-container" class="d-none"> {{/* Still starts hidden */}}
             {{ if ne $calLink "YOUR_CAL_LINK_MISSING_IN_HUGO.TOML" }}
             {{/* The div Cal.com targets */}}
-            <div style="width:100%; height:100%; min-height: 650px; overflow:scroll;"
+            <div style="width:100%;  overflow:scroll;"
                  id="my-cal-inline"
                  data-cal-link="{{ $calLink }}">
               {{/* Optional: Add a loading indicator here */}}
-              <p id="cal-loading-indicator" class="text-center text-white py-5">Loading Calendar...</p>
             </div>
             {{ else }}
             <p class="text-warning small">Calendar scheduling link is not configured.</p>
