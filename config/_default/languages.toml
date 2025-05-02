@@ -2,11 +2,5 @@
 [en]
 languageName = "En"
 languageCode = "en-us"
-contentDir = "content/english"
 weight = 1
-
-[en.params]
-home = "Home"
-# copyright
-copyright = "Copyright &copy; 2025 VisionInit Solutions"
 

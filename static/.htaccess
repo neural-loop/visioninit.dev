@@ -1,12 +1,15 @@
+# Enable Rewrite Engine
 RewriteEngine On
 
-# Redirect www to non-www
+# Redirect www to non-www (HTTPS)
 RewriteCond %{HTTP_HOST} ^www\.visioninit\.dev [NC]
 RewriteRule ^(.*)$ https://visioninit.dev/$1 [L,R=301]
 
+# Security and Performance Headers (Requires mod_headers)
 <IfModule mod_headers.c>
     # --- Content Security Policy (CSP) - WITH unsafe-inline ---
     # Keeping unsafe-inline due to site constraints (Acknowledged risk)
+    # Ensure all listed domains are necessary.
     Header set Content-Security-Policy "\
         default-src 'self'; \
         script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com https://app.cal.com https://cal.com https://*.stripe.com 'unsafe-inline'; \
@@ -22,21 +25,48 @@ RewriteRule ^(.*)$ https://visioninit.dev/$1 [L,R=301]
         upgrade-insecure-requests;"
 
     # --- HTTP Strict Transport Security (HSTS) ---
+    # Ensures browsers only connect via HTTPS. Only enable if your site ALWAYS uses HTTPS.
     Header set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
 
     # --- Cross-Origin-Opener-Policy (COOP) ---
     Header set Cross-Origin-Opener-Policy "same-origin-allow-popups"
 
     # --- X-Frame-Options (XFO) ---
+    # Provides clickjacking protection for older browsers (CSP frame-ancestors is preferred).
     Header set X-Frame-Options "SAMEORIGIN"
 
     # --- X-Content-Type-Options ---
+    # Prevents MIME-type sniffing.
     Header set X-Content-Type-Options "nosniff"
 
     # --- Referrer-Policy ---
+    # Controls how much referrer information is sent.
     Header set Referrer-Policy "strict-origin-when-cross-origin"
 
     # --- Permissions-Policy (Restrictive Default) ---
+    # Defines features available to the site.
     Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), fullscreen=(self)"
+</IfModule>
 
+# Enable Gzip Compression (Requires mod_deflate)
+<IfModule mod_deflate.c>
+    # Compress common text-based file types
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE image/svg+xml # SVGs are text-based and compress well
+
+    # -- RECOMMENDED TO REMOVE THE FOLLOWING LINES --
+    # JPG, PNG, GIF are already compressed. Gzipping them rarely helps
+    # and can sometimes slightly increase size + adds server overhead.
+    # AddOutputFilterByType DEFLATE image/jpg
+    # AddOutputFilterByType DEFLATE image/png
+    # AddOutputFilterByType DEFLATE image/gif
+    # AddOutputFilterByType DEFLATE image/jpeg
 </IfModule>

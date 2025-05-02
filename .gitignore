@@ -1,43 +1,27 @@
-Thumbs.db
+# Hugo build output
+public/
+resources/_gen/
+assets/js/bundle.js*
+assets/css/main.css*
+
+# Generated OG images within content
+content/**/og.png
+
+# Generated favicons and logo in static
+static/favicon*.png
+static/favicon.ico
+static/apple-touch-icon.png
+static/logo.png
+# Add any other generated static files (site.webmanifest, safari-pinned-tab.svg etc.)
+
+# Node modules
+node_modules/
+
+# Temporary files
+*.tmp
+temp-og.html
+content/**/temp-og.html
+
+# OS generated files
 .DS_Store
-.dist
-.tmp
-.lock
-.sass-cache
-npm-debug.log
-node_modules
-builds
-package-lock.json
-public
-resources
-.hugo_build.lock
-jsconfig.json
-hugo_stats.json
-go.sum
-yarn.lock
-*/*/og.png
-/content/english/blog/chosing-tech-stack/og.png
-/content/english/blog/first-post/og.png
-/content/english/blog/importance-of-pen-testing/og.png
-/content/english/blog/og.png
-/content/english/contact/og.png
-/content/english/portfolio/aflorecer-art-school/og.png
-/content/english/portfolio/ai-models/og.png
-/content/english/portfolio/ardentmc-homeland-security-enterprise-geospatial-concept-operations/og.png
-/content/english/portfolio/digital-sound-factory/og.png
-/content/english/portfolio/foundation-model-cheatsheet/og.png
-/content/english/portfolio/four-kitchens-global-academy-continuing-medical-education/og.png
-/content/english/portfolio/hp-and-dvf-experience-lounge-design-reactor/og.png
-/content/english/portfolio/hp-experience-demo-center/og.png
-/content/english/portfolio/hackerone-vulnerability/og.png
-/content/english/portfolio/maplight-revealing-moneys-influence-on-politics/og.png
-/content/english/portfolio/open-neuromorphic/og.png
-/content/english/portfolio/stanford-graduate-school-business/og.png
-/content/english/portfolio/og.png
-/content/english/services/ai-data-integration-services/og.png
-/content/english/services/cloud-infrastructure-devops-solutions/og.png
-/content/english/services/custom-web-application-development/og.png
-/content/english/services/seo-content-strategy-optimization/og.png
-/content/english/services/web-security-ethical-hacking/og.png
-/content/english/services/og.png
-/output.txt
+Thumbs.db
