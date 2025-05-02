@@ -1,0 +1,106 @@
+// assets/scss/templates/_sticky_header.scss
+
+.sticky-breadcrumbs-wrapper {
+  position: sticky;
+  // top offset is now handled dynamically by JavaScript
+  z-index: 1020; // Below main nav (1030), above content
+  background-color: $light;
+  box-shadow: 0 2px 4px rgba($black, 0.08);
+  // Set a consistent base font size for the bar
+  font-size: 0.85rem; // Adjust as needed
+
+  // Control padding within the sticky bar via the container
+  > .container {
+    padding-top: 0.3rem;    // Reduced padding
+    padding-bottom: 0.3rem;
+  }
+
+  .custom-breadcrumb {
+    margin-bottom: 0 !important; // Remove list margin
+    line-height: 1.4; // Consistent line height
+
+    li {
+      vertical-align: middle; // Align items vertically
+      display: inline-flex;   // Use flex for alignment
+      align-items: center;
+      margin-right: 0.25rem;
+
+      // General Link Styling (Ancestors)
+      a:not(.breadcrumb-home-link) {
+        color: $text-color-light;
+        font-weight: 400;
+        font-family: $primary-font;
+        font-size: inherit; // Inherit from wrapper
+        text-decoration: none !important;
+        border-bottom: 1px solid transparent;
+        padding-bottom: 1px;
+        transition: color 0.2s ease, border-color 0.2s ease;
+        &:hover {
+          color: $primary-color;
+          border-bottom-color: $primary-color;
+        }
+      }
+
+      // Home Icon Link
+      a.breadcrumb-home-link {
+        background-color: rgba($primary-color, 0.08);
+        color: $primary-color !important;
+        border-radius: 50em;
+        padding: 0.3em 0.6em;
+        line-height: 1;
+        font-size: 1em; // Make icon link text size match others
+        margin: 0;
+        border-bottom: none !important;
+        i {
+          color: $primary-color !important;
+          font-size: 0.9em; // Slightly smaller icon within the link
+        }
+        &:hover {
+          background-color: rgba($primary-color, 0.15);
+          border-color: transparent !important;
+          color: darken($primary-color, 5%) !important;
+          i { color: darken($primary-color, 5%) !important; }
+        }
+      }
+
+      // Separator Icons
+      &.h5 i { // Target the list item containing the icon
+        color: $text-color-light;
+        font-size: 0.8em;
+        margin: 0 0.25rem;
+        line-height: 1.4; // Match breadcrumb line-height
+      }
+
+      // Current Page Text (Targeting the span now)
+      &.breadcrumb-current-page span {
+        color: $text-color-dark;
+        font-family: $primary-font; // Use primary font
+        font-weight: 600; // Make current page bolder
+        font-size: inherit; // Inherit base size from wrapper
+        padding-bottom: 1px; // Align baseline
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+// --- Body Padding for FIXED Navigation ---
+// Apply padding equal to the SHRUNK nav height always.
+// This prevents content jumping when the nav sticks/unsticks.
+body {
+  padding-top: $sticky-nav-height;
+}
+
+// --- Main Content Padding for STICKY Breadcrumbs ---
+// Target the <main> element (or adjust selector if needed)
+main {
+  // JS will dynamically set this padding based on breadcrumb height
+  padding-top: $sticky-breadcrumb-height; // Set fallback initial padding
+}
+
+// --- Page Title Section Padding Reset ---
+// This section scrolls, it doesn't need padding related to sticky elements above it.
+.page-title-section {
+  padding-top: 90px; // Restore its own internal top padding
+  padding-bottom: 80px; // Restore its own internal bottom padding
+}

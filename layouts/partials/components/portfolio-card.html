@@ -11,13 +11,13 @@
 {{ with $item.Params.image }}
 {{ $imgRes := $item.Resources.GetMatch . }}
 {{ if $imgRes }}
-{{ $image_path = ($imgRes.Resize "600x q85").RelPermalink }}
+{{ $image_path = ($imgRes.Resize "600x q90").RelPermalink }}
 {{ else }}
 {{ $image_path = . | absURL }}
 {{ end }}
 {{ else }}
 {{ with $item.Resources.GetMatch "og.png" }}
-{{ $image_path = (.Resize "600x q85").RelPermalink }}
+{{ $image_path = (.Resize "600x q90").RelPermalink }}
 {{ end }}
 {{ end }}
 {{ if not $image_path }}

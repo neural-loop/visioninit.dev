@@ -44,7 +44,6 @@ name = "Contact"
 url = "#schedule-consultation"
 weight = 5                     # Adjust weight based on optional items above
 
-# Footer Menu (Matches the structure defined in root hugo.toml)
 [[footer]]
 name = "Privacy Policy"
 url = "/privacy/"
@@ -57,3 +56,11 @@ weight = 2
 name = "Contact"
 url = "#schedule-consultation"
 weight = 3
+# --- Add this block ---
+[[footer]]
+name = "Style Guide (Dev)"
+url = "/dev/"
+weight = 99 # Place it last
+identifier = "styleguide" # Unique identifier
+[footer.params]
+developmentOnly = true # Custom parameter

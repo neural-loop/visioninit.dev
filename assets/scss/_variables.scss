@@ -1,5 +1,5 @@
 // Color Variables
-$primary-color: rgb(23, 151, 179);
+$primary-color: #1797B3;
 $secondary-color: #000000;
 $text-color: #5c5c77;
 $text-color-light: #8585a4;
@@ -17,3 +17,7 @@ $text-lighten: #d6d6e0; // <<< ADDED THIS LINE
 $primary-font: 'Poppins', sans-serif;
 $secondary-font: 'futura-bold';
 $icon-font: 'themify';
+
+$sticky-nav-height: 50px; // Approximate height of the main nav when sticky (adjust after testing)
+$sticky-breadcrumb-height: 90px; // Approximate height of the breadcrumb bar (adjust after testing)
+$total-sticky-height: $sticky-nav-height + $sticky-breadcrumb-height;

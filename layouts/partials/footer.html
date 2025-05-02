@@ -109,10 +109,27 @@
         </div>
 
         <!-- Legal Links -->
+        <!-- Legal Links -->
         <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-left">
           <h4 class="text-white mb-4 text-uppercase small">Legal</h4>
           <ul class="list-unstyled">
             {{ range site.Menus.footer }}
+            {{/* --- START: Conditional Style Guide Link --- */}}
+            {{ $isDevOnly := .Params.developmentOnly }}
+            {{ if and $isDevOnly (not hugo.IsProduction) }}
+            {{/* Show only in development */}}
+            <li class="mb-3">
+              {{ $legalFooterURL := .URL }}
+              {{ $processedLegalFooterURL := "" }}
+              {{ if strings.HasPrefix $legalFooterURL "#" }}
+              {{ $processedLegalFooterURL = $legalFooterURL | safeURL }}
+              {{ else }}
+              {{ $processedLegalFooterURL = $legalFooterURL | absLangURL }}
+              {{ end }}
+              <a class="text-warning" href="{{ $processedLegalFooterURL }}">{{ .Name }}</a> {{/* Highlight dev link */}}
+            </li>
+            {{ else if not $isDevOnly }}
+            {{/* Show non-dev links */}}
             <li class="mb-3">
               {{ $legalFooterURL := .URL }}
               {{ $processedLegalFooterURL := "" }}
@@ -123,6 +140,8 @@
               {{ end }}
               <a class="text-color" href="{{ $processedLegalFooterURL }}">{{ .Name }}</a>
             </li>
+            {{ end }}
+            {{/* --- END: Conditional Style Guide Link --- */}}
             {{ else }}
             {{/* Fallback if no footer menu defined */}}
             <li class="mb-3"><a href="{{ "/privacy/" | relLangURL }}" class="text-color">Privacy Policy</a></li>
@@ -130,7 +149,6 @@
             {{ end }}
           </ul>
         </div>
-
         <!-- Social Links -->
         <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-right">
           <h4 class="text-white mb-4 text-uppercase small">Connect</h4>

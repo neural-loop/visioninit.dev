@@ -25,17 +25,11 @@
 
 .navbar-collapse {
   @include desktop {
-    // Styles for screens <= 991px wide (mobile/tablet)
-    background: $primary-color; // Set background to primary color
-    padding-top: 10px; // Add some padding above the links (optional, adjust as needed)
-    padding-bottom: 10px; // Add the requested 50px padding below links
-    // Add a border. Using the *same* color might make it invisible.
-    // Let's use a slightly darker shade for subtle definition, or keep it the same if preferred.
-    border-bottom: 3px solid darken($primary-color, 5%); // 3px border, slightly darker than the background
-    // OR use the exact same color (might be less visible):
-    // border-bottom: 3px solid $primary-color;
+    background: $primary-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid darken($primary-color, 5%);
   }
-  // Any styles outside the @include desktop block apply to larger screens
 }
 @media (max-width: 991px) {
   .navigation {
@@ -55,8 +49,15 @@
 
 .nav-bg {
   background-color: #182b45;
+  position: fixed;
+  top: 0;
+  left: 0; // Add left: 0
+  right: 0; // Add right: 0
+  width: 100%;
+  z-index: 1030; // Ensure it's above breadcrumbs
+  box-shadow: 0 2px 5px rgba($black, 0.1); // Add shadow when sticky
+  transition: background-color 0.2s ease;
 }
-
 .nav-item {
   .nav-link {
     text-transform: uppercase;
@@ -107,6 +108,8 @@ link:focus,
 
 .navbar-expand-lg .navbar-nav .nav-link {
   padding: 40px 0px;
+  // Add transition for padding change on sticky
+  transition: padding 0.2s ease;
 
   @include desktop {
     padding: 20px;
@@ -136,11 +139,11 @@ link:focus,
       box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
       border-bottom: 5px solid $primary-color;
       padding: 15px;
-      top: 96px;
+      top: 96px; // Original top position
       border-radius: 0;
       display: block;
       visibility: hidden;
-      transition: 0.3s ease;
+      transition: 0.3s ease; // Keep existing transition
       opacity: 0;
       transform: translateY(20px);
       background: $white;
@@ -187,22 +190,53 @@ link:focus,
 }
 
 .navbar-toggler {
-  border-color: rgba(
-    $white,
-    0.5
-  ) !important; // Make the button border visible against dark background
+  border-color: rgba($white, 0.5) !important;
   border-width: 3px;
   &:focus {
-    outline: none; // Optional: remove focus outline
+    outline: none;
     box-shadow: none;
   }
 }
 
 .navbar-toggler-icon {
-  // This targets the default Bootstrap 5 icon (SVG background)
-  // We override the default SVG with one explicitly using a white stroke.
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-  // Ensure it has dimensions if they were somehow removed
   width: 1.5em;
   height: 1.5em;
+}
+
+
+// --- START: Added rules for sticky header height reduction ---
+
+// Reduce padding on nav links when sticky
+.navigation.nav-bg .navbar-expand-lg .navbar-nav .nav-link {
+  padding-top: 15px;    // Reduced top padding
+  padding-bottom: 15px; // Reduced bottom padding
+}
+
+// Reduce logo size when sticky
+.navigation.nav-bg .navbar-brand img.header-logo {
+  max-height: 40px; // Target height
+  width: auto;      // Allow width to adjust
+  transition: max-height 0.2s ease; // Add transition for logo height
+}
+
+// Adjust dropdown menu position when sticky
+.navigation.nav-bg .navbar .dropdown-menu {
+  // New height ~50px + buffer. Adjust this value if needed after testing.
+  top: 60px;
+  transition: top 0.2s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; // Combine transitions
+}
+
+.navigation.nav-bg .navbar-expand-lg .navbar-nav .nav-link {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.navigation.nav-bg .navbar-brand img.header-logo {
+  max-height: 40px;
+  width: auto;
+  transition: max-height 0.2s ease;
+}
+.navigation.nav-bg .navbar .dropdown-menu {
+  top: $sticky-nav-height; // Use variable
+  transition: top 0.2s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
