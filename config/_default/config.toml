@@ -1,6 +1,5 @@
 ######################## VisionInit Configuration ####################
 # Base URL MUST end with a slash
-baseURL = "https://visioninit.dev/"
 title = "VisionInit - Professional IT Services & Solutions"
 # Default time zone for time stamps
 timeZone = "America/New_York" # Adjust if needed
@@ -11,11 +10,7 @@ summaryLength = 20
 
 disableKinds = ["taxonomy", "term"]
 
-publishDir = "tmp/public"
-resourceDir = "tmp/resources"
-
 hasCJKLanguage = false # Keep false unless you use CJK languages
-
 
 #################### Parameters (site-wide variables) ##################
 [params]
@@ -54,7 +49,6 @@ subtitle = "Let's Discuss Your Project"
 button_label = "Schedule a Consultation"
 button_link = "/contact/" # Link to contact page or scheduling tool
 
-
 # Top Header (Disable for cleaner look, was enabled in original)
 top_header = false
 
@@ -63,7 +57,6 @@ top_header = false
 enable = true
 expire_days = 30 # Or adjust as needed
 
-# Plugins (Keep CSS/JS plugins from the original theme for now)
 # CSS Plugins
 [[params.plugins.css]]
 link = "plugins/bootstrap/bootstrap.min.css"
@@ -104,8 +97,6 @@ home = ["HTML", "Sitemap"]
 page = ["HTML", "Sitemap"]
 section = ["HTML", "Sitemap"]
 
-
-
 ############################# Imaging ##############################
 [imaging]
 quality = 90
@@ -120,10 +111,6 @@ maxAge = "720h"
 [caches.assets]
 dir = ":resourceDir/_gen"
 maxAge = "720h"
-
-[services]
-[services.googleAnalytics]
-ID = "G-JNVVVFY1DH"
 
 [sitemap]
 changefreq = "weekly" # How frequently the content is likely to change (e.g., "always", "hourly", "daily", "weekly", "monthly", "yearly", "never")

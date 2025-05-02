@@ -1,0 +1,5 @@
+baseURL = "https://visioninit.dev/"
+
+[services]
+[services.googleAnalytics]
+ID = "G-JNVVVFY1DH"
