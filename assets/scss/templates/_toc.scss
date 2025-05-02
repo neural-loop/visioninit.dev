@@ -2,6 +2,7 @@
 
 .toc-sidebar {
   position: sticky;
+
   // Adjust top offset to clear your sticky header + some padding
   // Inspect your header height or use a variable if available.
   top: 120px;
@@ -78,6 +79,7 @@ h1[id]::after, h2[id]::after, h3[id]::after, h4[id]::after, h5[id]::after, h6[id
   // Optional: add a transition for smoother effect if not using keyframes for width/opacity directly
   // transition: width 0.3s ease-out, opacity 0.3s ease-out;
 }
+
 // themes/visioninit/assets/scss/templates/_toc.scss
 
 /* --- Heading Highlight on Target (for ToC clicks) --- */
@@ -119,10 +121,12 @@ h6[id]:target::after {
     width: 0;
     opacity: 0;
   }
+
   10% {
     width: 100%;
     opacity: 1;
   }
+
   100% {
     width: 100%;
     opacity: 0;

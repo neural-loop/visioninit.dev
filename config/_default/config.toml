@@ -11,10 +11,9 @@ summaryLength = 20
 
 disableKinds = ["taxonomy", "term"]
 
-# google analytics (replace with your actual ID if you use GA4)
-# googleAnalytics = "G-XXXXXXXXXX"
-# disable languages if not needed (example shown)
-# disableLanguages = ["fr"]
+publishDir = "tmp/public"
+resourceDir = "tmp/resources"
+
 hasCJKLanguage = false # Keep false unless you use CJK languages
 
 

@@ -1,16 +1,15 @@
 .hero-section {
-  padding: 180px 0 180px;
+  padding: 180px 0;
 }
 
 .hero-slider {
-
   .prevArrow,
   .nextArrow {
     position: absolute;
     bottom: -123px;
     z-index: 9;
     padding: 15px;
-    color: rgba($color: $white, $alpha: .5);
+    color: rgba($color: $white, $alpha: 50%);
     border: 0;
     font-size: 30px;
     transition: all linear .2s;
@@ -55,7 +54,7 @@
         overflow: hidden;
         height: 10px;
         width: 10px;
-        background: rgba($color: $white, $alpha: .5);
+        background: rgba($color: $white, $alpha: 50%);
         border: 0;
         outline: 0;
       }

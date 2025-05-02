@@ -3,6 +3,7 @@
   font-size: 16px;
   font-family: $primary-font;
   text-transform: capitalize;
+
   // Adjusted padding slightly to accommodate potential thicker borders
   padding: 14px 38px;
   border-radius: 0; // Keep blocky corners
@@ -10,6 +11,7 @@
   border: 1px solid transparent; // Base border, transparent initially for solid buttons
   position: relative;
   z-index: 1;
+
   // Use standard CSS transitions for background, color, border
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
   overflow: hidden; // Keep this if needed for other effects, but ::before is gone
@@ -24,12 +26,14 @@
   &.active {
     outline: 0;
     box-shadow: none !important;
+
     // General hover state - specific button types will override
   }
 }
 
 .btn-sm {
   font-size: 14px;
+
   // Adjust padding for sm buttons too
   padding: 8px 33px; // Original: 10px 35px -> 10-2, 35-2
 }
@@ -69,6 +73,7 @@
   &.btn-sm {
     padding: 6px 30px; // 8px - 2px, 33px - 3px
   }
+
   // Add for btn-xs if you use it with outline
   // &.btn-xs {
   //   padding: 3px 12px; // 5px - 2px, 15px - 3px

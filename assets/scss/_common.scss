@@ -2,6 +2,7 @@ body {
   background-color: $body-color;
   overflow-x: hidden;
 }
+
 html {
   // Smooth scrolling when clicking anchors (optional but nice)
   scroll-behavior: smooth;
@@ -19,7 +20,7 @@ html {
 ol,
 ul {
   list-style-type: none;
-  margin: 0px;
+  margin: 0;
 }
 
 img {
@@ -63,6 +64,7 @@ a.text-light:hover {
 h4{
   transition: .2s ease;
 }
+
 a h4{
   &:hover{
     color: $primary-color;
@@ -264,6 +266,7 @@ a h4{
   li.breadcrumb-home-item {
     // Adjust vertical alignment if needed to match text separators better
     vertical-align: middle;
+
     // Potentially adjust margin if spacing looks off
     // margin-right: 5px;
   }
@@ -281,6 +284,7 @@ a h4{
     text-decoration: none !important; // Override default link styles
     border-bottom: none !important;   // Explicitly remove underline
     margin-bottom: 18px;
+
     // Ensure icon inside is styled correctly (redundant if color is on <a>, but safe)
     i {
       color: $white;
@@ -319,9 +323,11 @@ li.breadcrumb-current-page h1 {
 
 .list-styled{
   padding-left: 25px;
+
   li{
     position: relative;
     margin-bottom: 15px;
+
     &::before{
       position: absolute;
       content: "";
@@ -354,6 +360,7 @@ textarea.form-control{
 /* pagination */
 .pagination {
   justify-content: center;
+
   .page-item {
     margin: 0 10px;
 
@@ -401,6 +408,7 @@ textarea.form-control{
   fieldset {
     margin-bottom: 1.5rem; // Use a relative unit like rem, adjust value as needed (1.5rem is often ~24px)
   }
+
   // <<< END ADD >>>
 
   // --- FIX: LINK STYLES (Excluding Buttons) ---
@@ -425,8 +433,10 @@ textarea.form-control{
     &:hover {
       border-bottom-color: transparent !important;
     }
+
     // NOTE: If using Option 2, the rule added in Option 1 for `a.btn i` is no longer needed!
   }
+
   // --- END LINK FIXES ---
 
   h1, h2, h3, h4, h5, h6 {
@@ -474,6 +484,7 @@ textarea.form-control{
     text-align: left;
     width: 100%;
     max-width: 100%;
+
     // margin-bottom: 1rem; // Remove or keep if you want different margin than block rule
     border: 1px solid #dee2e6;
 
@@ -501,6 +512,7 @@ textarea.form-control{
     // pre block itself gets margin from block rule above
     padding: 10px 20px;
     background: $light;
+
     // margin-bottom: 20px; // Remove or keep if you want different margin than block rule
   }
 
@@ -616,10 +628,12 @@ a[target='_blank'] {
   border: 1px solid $border-color; // Base border
   border-radius: 0;                // Ensure blocky corners
   // Apply the static offset shadow (adjust color/opacity as needed)
-  box-shadow: -5px 5px 0px 0px rgba($black, 0.075);
+  box-shadow: -5px 5px 0 0 rgba($black, 0.075);
+
   // Override potential default Bootstrap shadows if combined
   &.shadow, &.shadow-sm, &.shadow-lg {
-    box-shadow: -5px 5px 0px 0px rgba($black, 0.075) !important;
+    box-shadow: -5px 5px 0 0 rgba($black, 0.075) !important;
   }
+
   // No hover effect defined here, shadow is always present
 }

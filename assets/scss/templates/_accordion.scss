@@ -68,6 +68,7 @@
   font-family: $primary-font; // Body font
   font-size: 0.95rem;
   line-height: 1.7;
+
   // Smooth transition for max-height and padding
   transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
 
@@ -80,6 +81,7 @@
     p { margin-bottom: 1rem; }
     ul, ol { margin-bottom: 1rem; padding-left: 25px; }
     li { margin-bottom: 0.5rem; }
+
     // Reuse theme list style for UL
     ul li::before {
       position: absolute;

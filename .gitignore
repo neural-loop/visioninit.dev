@@ -25,3 +25,12 @@ content/**/temp-og.html
 # OS generated files
 .DS_Store
 Thumbs.db
+/tmp/resources/_gen/assets/scss/scss/main.scss_b3f4232925c658d00be24d192aa94d49.content
+/tmp/resources/_gen/assets/scss/scss/main.scss_b3f4232925c658d00be24d192aa94d49.json
+/layouts/sitemap.xml
+/.hugo_build.lock
+/hugo_stats.json
+/output.txt
+/package-lock.json
+/go.sum
+/.idea/stylesheetLinters/stylelint.xml

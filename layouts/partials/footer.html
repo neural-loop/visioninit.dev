@@ -1,8 +1,7 @@
 {{/* themes/visioninit/layouts/partials/footer.html */}}
 <!-- footer -->
 <footer>
-  {{ $data := index site.Data site.Language.Lang }} {{/* Get homepage data */}}
-
+  {{ $data := index site.Data  }}
   {{/* --- CTA Section (Newsletter Block) --- */}}
   {{ if $data.homepage.cta.enable }}
   {{ with $data.homepage.cta }}
