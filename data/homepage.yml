@@ -15,7 +15,7 @@ slider:
         enable: true
         label: 'Explore Services'
         link: '#core-services'
-        style: 'btn-outline-primary text-white border-white'
+        style: 'btn-outline-primary text-black border-black'
 
 subscription_tiers:
   enable: true

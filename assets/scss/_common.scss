@@ -111,11 +111,25 @@ a h4 {
     width: 100%;
     top: 0;
     left: 0;
-    background: $secondary-color;
-    opacity: 0.8;
+
+    // --- Gradient Overlay ---
+    // Define the base color for the overlay.
+    // Using $secondary-color (black by default) as a common choice.
+    // Replace with $primary-color or another variable/hex if needed.
+    $overlay-base-color: $primary-contrast-color;
+    $overlay-second-color: #8889ae;
+    background: linear-gradient(
+        to top, // Direction: from bottom to top
+        rgba($overlay-second-color, 1.0) 0%,    // Start at bottom: 100% opaque
+        rgba($overlay-base-color, 0.3) 20%,   // At 20% height: 30% opaque
+        rgba($overlay-base-color, 0.0) 40%,   // At 40% height: 0% opaque (transparent)
+        rgba($overlay-base-color, 0.0) 100%  // Stays transparent to the top
+    );
+
+    // Remove the separate opacity property, it's now handled by the gradient alpha values
+    // opacity: 0.8; // REMOVE THIS
   }
 }
-
 .outline-0 {
   outline: 0 !important;
 }
@@ -229,6 +243,15 @@ a h4 {
 /* page title */
 .page-title-section {
   padding: 200px 0 80px;
+  h1 {
+    // Override the color potentially set by .text-white
+    color: $text-color-dark !important; // Use a dark heading color
+  }
+
+  p {
+    // Override the color potentially set by .text-muted, .text-lighten, or .text-white
+    color: $text-color !important; // Use the standard text color
+  }
 }
 
 .custom-breadcrumb {
