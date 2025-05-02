@@ -9,13 +9,28 @@ const STATIC_OUTPUT_DIR = join(process.cwd(), 'static'); // Base static director
 // Desired output files, sizes, and subdirectories within static/
 const IMAGE_CONFIG = [
   // Favicons (output to static root)
-  { filename: 'favicon-16x16.png', size: 16, outputSubDir: '', forceSquare: true },
-  { filename: 'favicon-32x32.png', size: 32, outputSubDir: '', forceSquare: true },
-  { filename: 'apple-touch-icon.png', size: 180, outputSubDir: '', forceSquare: true },
+  {
+    filename: 'favicon-16x16.png',
+    size: 16,
+    outputSubDir: '',
+    forceSquare: true,
+  },
+  {
+    filename: 'favicon-32x32.png',
+    size: 32,
+    outputSubDir: '',
+    forceSquare: true,
+  },
+  {
+    filename: 'apple-touch-icon.png',
+    size: 180,
+    outputSubDir: '',
+    forceSquare: true,
+  },
   { filename: 'favicon.png', size: 96, outputSubDir: '', forceSquare: true },
   { filename: 'favicon.ico', size: 32, outputSubDir: '', forceSquare: true },
   // Main Logo (output to static/images/, resize based on height)
-  { filename: 'logo.png', height: 80, outputSubDir: '', forceSquare: false }
+  { filename: 'logo.png', height: 80, outputSubDir: '', forceSquare: false },
 ];
 
 // --- Helper Functions ---
@@ -35,7 +50,8 @@ async function ensureDir(dirPath) {
   try {
     await mkdir(dirPath, { recursive: true });
   } catch (err) {
-    if (err.code !== 'EEXIST') { // Ignore error if directory already exists
+    if (err.code !== 'EEXIST') {
+      // Ignore error if directory already exists
       throw err;
     }
   }
@@ -51,7 +67,9 @@ async function generateImagesWithImageMagick() {
     console.log('✅ ImageMagick (convert) found.');
   } catch (err) {
     console.error('❌ Error: ImageMagick `convert` command not found.');
-    console.error('   Please install ImageMagick (e.g., `sudo apt-get install imagemagick` on Ubuntu/Debian)');
+    console.error(
+      '   Please install ImageMagick (e.g., `sudo apt-get install imagemagick` on Ubuntu/Debian)'
+    );
     console.error('   Or ensure it is available in your PATH.');
     process.exit(1);
   }
@@ -59,7 +77,9 @@ async function generateImagesWithImageMagick() {
   // 2. Check if source logo exists
   if (!(await fileExists(SOURCE_LOGO))) {
     console.error(`❌ Error: Source logo not found at ${SOURCE_LOGO}`);
-    console.error('   Ensure your logo is placed correctly in the assets/images directory.');
+    console.error(
+      '   Ensure your logo is placed correctly in the assets/images directory.'
+    );
     process.exit(1);
   }
   console.log(`🔍 Found source logo: ${SOURCE_LOGO}`);
@@ -94,7 +114,9 @@ async function generateImagesWithImageMagick() {
       resizeOption = `-resize x${config.height}`; // Resize based on height
       // No extent needed, let width be proportional
     } else {
-      console.warn(`   ⚠️ Skipping ${config.filename}: No size or height specified.`);
+      console.warn(
+        `   ⚠️ Skipping ${config.filename}: No size or height specified.`
+      );
       continue;
     }
 
@@ -109,7 +131,9 @@ async function generateImagesWithImageMagick() {
       console.log(`   ✅ Saved ${outputPath}`);
       successCount++;
     } catch (err) {
-      console.error(`   ❌ Error generating ${config.filename}: ${err.message || 'ImageMagick command failed'}`);
+      console.error(
+        `   ❌ Error generating ${config.filename}: ${err.message || 'ImageMagick command failed'}`
+      );
       errorCount++;
     }
   }
@@ -123,7 +147,10 @@ async function generateImagesWithImageMagick() {
 }
 
 // --- Execution ---
-generateImagesWithImageMagick().catch(err => {
-  console.error('\n🔥 Critical error during image generation script execution:', err);
+generateImagesWithImageMagick().catch((err) => {
+  console.error(
+    '\n🔥 Critical error during image generation script execution:',
+    err
+  );
   process.exit(1);
 });

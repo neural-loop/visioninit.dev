@@ -35,7 +35,6 @@ name = "Cloud Infrastructure & DevOps Solutions"
 url = "/services/cloud-infrastructure-devops-solutions/"
 weight = 5
 
-
 [[main]]
 name = "About"
 url = "/about/"
@@ -43,7 +42,7 @@ weight = 4
 [[main]]
 name = "Contact"
 url = "#schedule-consultation"
-weight = 5 # Adjust weight based on optional items above
+weight = 5                     # Adjust weight based on optional items above
 
 # Footer Menu (Matches the structure defined in root hugo.toml)
 [[footer]]

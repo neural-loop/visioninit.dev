@@ -1,5 +1,5 @@
 ---
-title: "Security Sidekick Subscription Plans"
+title: 'Security Sidekick Subscription Plans'
 description: "Choose your level of expert security support. Get dedicated guidance with our 'Steady Shot' monthly plan or address specific needs with a 'Sure Shot' single request."
 draft: false # Set to false to publish
 ---
@@ -42,8 +42,7 @@ Choose the plan that best fits your current requirements: get ongoing support wi
   </div>
 </div>
 
-
-*Note: Both plans currently initiate via a consultation call to ensure we fully understand your needs.*
+_Note: Both plans currently initiate via a consultation call to ensure we fully understand your needs._
 
 ## What's Included (Steady Shot Plan Focus)
 
@@ -88,7 +87,7 @@ The **Steady Shot** monthly subscription provides continuous access to these cor
   </div>
 </div>
 
-*The **Sure Shot** plan covers **one** request similar in nature to those handled under Steady Shot (e.g., a single code review, answering a specific configuration question, interpreting one scan report).*
+_The **Sure Shot** plan covers **one** request similar in nature to those handled under Steady Shot (e.g., a single code review, answering a specific configuration question, interpreting one scan report)._
 
 ## How It Works
 
@@ -109,11 +108,12 @@ No. Both plans are designed for focused reviews, guidance, and configuration che
 {{< /accordion >}}
 
 {{< accordion title="What types of requests are best for Sure Shot?" >}}
-*   Reviewing a specific pull request (within reasonable scope).
-*   Asking for guidance on configuring a particular service securely (e.g., an S3 bucket policy).
-*   Getting a second opinion on a vulnerability finding from an automated scanner.
-*   Clarification on a specific security best practice.
-    {{< /accordion >}}
+
+- Reviewing a specific pull request (within reasonable scope).
+- Asking for guidance on configuring a particular service securely (e.g., an S3 bucket policy).
+- Getting a second opinion on a vulnerability finding from an automated scanner.
+- Clarification on a specific security best practice.
+  {{< /accordion >}}
 
 {{< accordion title="How are requests prioritized for Steady Shot?" >}}
 Requests are typically handled in the order they are received in your queue. We process one active request at a time per subscription.

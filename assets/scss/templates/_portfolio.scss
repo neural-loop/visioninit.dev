@@ -22,15 +22,14 @@
   box-shadow: -5px 5px 0 0 rgba($black, 0.05);
   transition: box-shadow 0.2s ease-in-out;
 
-
   .row {
     // Ensure row takes full height if card has h-100
   }
 
   // --- Style the Image Column (Container) ---
   .portfolio-card-wide-image-col {
-    display: flex;          // Use flexbox for centering
-    align-items: center;    // Vertically center content (the image)
+    display: flex; // Use flexbox for centering
+    align-items: center; // Vertically center content (the image)
     justify-content: center; // Horizontally center content (the image)
     // Background color is set by bg-light class in HTML, important for 'contain'
     padding: 0.5rem; // Optional: Add some padding around the image within the column
@@ -40,8 +39,8 @@
   .portfolio-card-wide-image {
     object-fit: contain; // <<< CHANGED: Make the entire image fit within the box
     object-position: center center; // Keep centering the image content
-    max-width: 100%;     // <<< ADDED: Prevent image exceeding container width
-    max-height: 100%;    // <<< ADDED: Prevent image exceeding container height
+    max-width: 100%; // <<< ADDED: Prevent image exceeding container width
+    max-height: 100%; // <<< ADDED: Prevent image exceeding container height
     // Remove width/height: 100% if previously set here, rely on max values
     // width: auto;      // Let the browser determine width based on height/contain
     // height: auto;     // Let the browser determine height based on width/contain

@@ -34,7 +34,7 @@ a:focus {
   text-decoration: none;
 }
 
-a{
+a {
   color: inherit;
 }
 
@@ -42,7 +42,7 @@ a,
 button,
 select {
   cursor: pointer;
-  transition: .2s ease;
+  transition: 0.2s ease;
 
   &:focus {
     outline: 0;
@@ -54,19 +54,19 @@ a:hover {
 }
 
 a.text-primary:hover {
-  color: $primary-color!important;
+  color: $primary-color !important;
 }
 
 a.text-light:hover {
-  color: $primary-color!important;
+  color: $primary-color !important;
 }
 
-h4{
-  transition: .2s ease;
+h4 {
+  transition: 0.2s ease;
 }
 
-a h4{
-  &:hover{
+a h4 {
+  &:hover {
     color: $primary-color;
   }
 }
@@ -112,7 +112,7 @@ a h4{
     top: 0;
     left: 0;
     background: $secondary-color;
-    opacity: .8;
+    opacity: 0.8;
   }
 }
 
@@ -148,7 +148,7 @@ a h4{
   color: $text-color-light !important;
 }
 
-.text-lighten{
+.text-lighten {
   color: #d6d6e0 !important;
 }
 
@@ -218,11 +218,11 @@ a h4{
   }
 }
 
-.vertical-align-middle{
+.vertical-align-middle {
   vertical-align: middle;
 }
 
-.icon-md{
+.icon-md {
   font-size: 36px;
 }
 
@@ -233,11 +233,14 @@ a h4{
 
 .custom-breadcrumb {
   li {
-    a { // <<< Target links within list items
+    a {
+      // <<< Target links within list items
       text-decoration: none !important; // Ensure no default underline
       border-bottom: 2px solid transparent; // Reserve space
       padding-bottom: 1px; // Gap
-      transition: color 0.2s ease, border-color 0.2s ease; // Transition for color and border
+      transition:
+        color 0.2s ease,
+        border-color 0.2s ease; // Transition for color and border
 
       &:hover {
         // Keep existing hover colors if defined by specific classes like text-primary
@@ -246,14 +249,15 @@ a h4{
       }
     }
 
-    &.nasted { // Keep nasted styles as they were
+    &.nasted {
+      // Keep nasted styles as they were
       position: relative;
       padding-left: 25px;
 
       &::before {
         position: absolute;
         font-family: $icon-font;
-        content: "\e649";
+        content: '\e649';
         font-size: 20px;
         top: 50%;
         left: -5px;
@@ -272,17 +276,17 @@ a h4{
   }
 
   li a.breadcrumb-home-link {
-    display: inline-flex;       // Use flex for easier centering of the icon
+    display: inline-flex; // Use flex for easier centering of the icon
     align-items: center;
     justify-content: center;
-    padding: 0.3em 0.7em;       // Adjust vertical/horizontal padding for shape/size
-    border-radius: 50em;        // High value creates a pill/oval shape
+    padding: 0.3em 0.7em; // Adjust vertical/horizontal padding for shape/size
+    border-radius: 50em; // High value creates a pill/oval shape
     background-color: rgba($white, 0.1); // Subtle background fill
-    color: $white !important;   // Ensure icon is white
-    font-size: 0.4em;           // Make the shape/icon slightly smaller than H2 text size
-    line-height: 1;             // Prevent extra line height issues
+    color: $white !important; // Ensure icon is white
+    font-size: 0.4em; // Make the shape/icon slightly smaller than H2 text size
+    line-height: 1; // Prevent extra line height issues
     text-decoration: none !important; // Override default link styles
-    border-bottom: none !important;   // Explicitly remove underline
+    border-bottom: none !important; // Explicitly remove underline
     margin-bottom: 18px;
 
     // Ensure icon inside is styled correctly (redundant if color is on <a>, but safe)
@@ -292,27 +296,31 @@ a h4{
     }
 
     &:hover {
-      background-color: rgba($white, 0.25); // Slightly more visible background on hover
-      border-color: rgba($white, 0.9);    // Stronger border on hover
-      color: $white !important;           // Keep icon white
-      text-decoration: none !important;   // Ensure no underline on hover
+      background-color: rgba(
+        $white,
+        0.25
+      ); // Slightly more visible background on hover
+      border-color: rgba($white, 0.9); // Stronger border on hover
+      color: $white !important; // Keep icon white
+      text-decoration: none !important; // Ensure no underline on hover
       border-bottom: none !important;
     }
   }
 
   // Adjust separator alignment if necessary
-  li.h5 { // The list item containing the separator icon
+  li.h5 {
+    // The list item containing the separator icon
     vertical-align: middle; // Match alignment with the home icon item
   }
 }
 
 li.breadcrumb-current-page h1 {
   // Override default H1 styles to match H3 visual appearance
-  font-size: 25px;        // Explicitly set H3 font size (or use $h3-font-size variable if available)
-  line-height: 1.2;       // Match default heading line-height
-  font-weight: 700;       // Match default heading font-weight
-  margin: 0;              // Remove any default H1 margins
-  color: $white;          // Ensure color is white (redundant with class, but safe)
+  font-size: 25px; // Explicitly set H3 font size (or use $h3-font-size variable if available)
+  line-height: 1.2; // Match default heading line-height
+  font-weight: 700; // Match default heading font-weight
+  margin: 0; // Remove any default H1 margins
+  color: $white; // Ensure color is white (redundant with class, but safe)
   font-family: $secondary-font; // Ensure font is correct (redundant with class, but safe)
 
   // Important: Prevent inheriting other styles that might make it look like a link
@@ -321,16 +329,16 @@ li.breadcrumb-current-page h1 {
 }
 /* /page title */
 
-.list-styled{
+.list-styled {
   padding-left: 25px;
 
-  li{
+  li {
     position: relative;
     margin-bottom: 15px;
 
-    &::before{
+    &::before {
       position: absolute;
-      content: "";
+      content: '';
       height: 10px;
       width: 10px;
       border-radius: 50%;
@@ -341,12 +349,12 @@ li.breadcrumb-current-page h1 {
   }
 }
 
-textarea.form-control{
+textarea.form-control {
   height: 200px;
   padding: 20px;
 }
 
-#map_canvas{
+#map_canvas {
   height: 500px;
 }
 
@@ -355,7 +363,6 @@ textarea.form-control{
   max-height: 100px;
   object-fit: cover;
 }
-
 
 /* pagination */
 .pagination {
@@ -382,7 +389,6 @@ textarea.form-control{
     }
   }
 }
-
 
 // === START .content SECTION - WITH LINK & LIST FIXES ===
 .content {
@@ -418,14 +424,17 @@ textarea.form-control{
     text-decoration: none !important;
     border-bottom: 2px solid transparent;
     padding-bottom: 1px;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
 
     &:hover {
       color: darken($primary-color, 10%);
       border-bottom-color: $primary-color;
     }
 
-    &[target='_blank'] { } // Inherits general ::after rule
+    &[target='_blank'] {
+    } // Inherits general ::after rule
   }
 
   // --- FIX: Ensure Buttons Are Unaffected ---
@@ -439,18 +448,32 @@ textarea.form-control{
 
   // --- END LINK FIXES ---
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-bottom: 1rem; // Specific heading margin (adjust value)
   }
 
   // --- LIST STYLES - REVISED FOR CONSISTENCY ---
-  ol { padding-left: 20px; }
-  ul { padding-left: 0; list-style-type: none; }
+  ol {
+    padding-left: 20px;
+  }
+  ul {
+    padding-left: 0;
+    list-style-type: none;
+  }
 
   li {
     margin-bottom: 1rem; // Adjust spacing between list items
-    p { margin-bottom: 0.5rem; } // Adjust spacing for paragraphs *within* a list item
-    > *:last-child { margin-bottom: 0 !important; }
+    p {
+      margin-bottom: 0.5rem;
+    } // Adjust spacing for paragraphs *within* a list item
+    > *:last-child {
+      margin-bottom: 0 !important;
+    }
   }
 
   ul li {
@@ -460,7 +483,7 @@ textarea.form-control{
 
     &::before {
       position: absolute;
-      content: "\f054";
+      content: '\f054';
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
       font-size: 14px;
@@ -469,7 +492,7 @@ textarea.form-control{
       transform: translateY(-50%);
       line-height: 1;
       color: $primary-color;
-      transition: .3s ease;
+      transition: 0.3s ease;
       display: inline-block;
       font-style: normal;
       font-variant: normal;
@@ -488,15 +511,22 @@ textarea.form-control{
     // margin-bottom: 1rem; // Remove or keep if you want different margin than block rule
     border: 1px solid #dee2e6;
 
-    th, td {
-      padding: .75rem;
+    th,
+    td {
+      padding: 0.75rem;
       vertical-align: top;
       border: 1px solid #dee2e6;
       margin-bottom: 0; // Ensure cells don't inherit block margin
     }
-    thead { background: darken($color: $light, $amount: 2); }
-    tbody { background: $light; }
-    tbody td { text-align: left !important; }
+    thead {
+      background: darken($color: $light, $amount: 2);
+    }
+    tbody {
+      background: $light;
+    }
+    tbody td {
+      text-align: left !important;
+    }
   }
 
   blockquote {
@@ -515,40 +545,45 @@ textarea.form-control{
 
     // margin-bottom: 20px; // Remove or keep if you want different margin than block rule
   }
-
 } // === END OF .content SECTION ===
 
 .content {
   // Add specific size overrides for headings within the content area
   // Adjust these font-size values to match the desired look from other pages.
   // You might need to inspect element on a "good" page to find the exact sizes.
-  h1, .h1 {
+  h1,
+  .h1 {
     font-size: 2rem; // Example: Adjust as needed (Default was 60px)
     // Add line-height if needed: line-height: 1.2;
   }
 
-  h2, .h2 {
+  h2,
+  .h2 {
     font-size: 1.7rem; // Example: Adjust as needed (Default was 40px)
     // line-height: 1.2;
     padding-bottom: 5px;
   }
 
-  h3, .h3 {
+  h3,
+  .h3 {
     font-size: 1.3rem; // Example: Adjust as needed (Default was 25px)
     // line-height: 1.2;
   }
 
-  h4, .h4 {
+  h4,
+  .h4 {
     font-size: 1rem; // Example: Adjust as needed (Default was 20px)
     // line-height: 1.2;
   }
 
-  h5, .h5 {
+  h5,
+  .h5 {
     font-size: 1rem; // Example: Adjust as needed (Default was 18px)
     // line-height: 1.2;
   }
 
-  h6, .h6 {
+  h6,
+  .h6 {
     font-size: 1rem; // Example: Adjust as needed (Default was 16px)
     // line-height: 1.2;
   }
@@ -556,7 +591,18 @@ textarea.form-control{
   // Ensure headings within cards in the content area also get consistent styling
   // (This might be slightly redundant if the cards are correctly nested, but safe)
   .card {
-    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6 {
       // Re-apply the desired sizes or ensure they inherit correctly
       // If the sizes above work, you might not need this nested block.
       // Example: Use the specific sizes again if needed
@@ -573,31 +619,30 @@ textarea.form-control{
   }
 }
 
-.teacher-thumb-sm{
+.teacher-thumb-sm {
   height: 85px;
   width: 85px;
   object-fit: cover;
 }
 
-
 /* Add external link icon (General Rule) */
 a[target='_blank'] {
   &::after {
-    content: "\f35d";                      // <<< CHANGED: FA Unicode for fa-arrow-up-right-from-square
-    font-family: 'Font Awesome 6 Free';  // <<< CHANGED: Use Font Awesome font family
-    font-weight: 900;                      // <<< ADDED: Required for FA solid icons
+    content: '\f35d'; // <<< CHANGED: FA Unicode for fa-arrow-up-right-from-square
+    font-family: 'Font Awesome 6 Free'; // <<< CHANGED: Use Font Awesome font family
+    font-weight: 900; // <<< ADDED: Required for FA solid icons
     display: inline-block;
-    font-size: 0.8em;                      // Keep original size or adjust
-    font-style: normal;                   // Recommended for FA
-    font-variant: normal;                 // Recommended for FA
-    text-rendering: auto;                // Recommended for FA
+    font-size: 0.8em; // Keep original size or adjust
+    font-style: normal; // Recommended for FA
+    font-variant: normal; // Recommended for FA
+    text-rendering: auto; // Recommended for FA
     -webkit-font-smoothing: antialiased; // Recommended for FA
-    margin-left: 4px;                      // Keep spacing
-    vertical-align: baseline;              // Keep alignment (or try 'middle', 'text-bottom' if needed)
-    color: inherit;                        // Keep color inheritance
-    text-decoration: none;                 // Keep underline removal
-    transition: color 0.2s ease;           // Keep transition
-    speak: none;                           // Keep accessibility attribute
+    margin-left: 4px; // Keep spacing
+    vertical-align: baseline; // Keep alignment (or try 'middle', 'text-bottom' if needed)
+    color: inherit; // Keep color inheritance
+    text-decoration: none; // Keep underline removal
+    transition: color 0.2s ease; // Keep transition
+    speak: none; // Keep accessibility attribute
   }
 }
 
@@ -609,8 +654,7 @@ a[target='_blank'] {
 .team-card-socials a[target='_blank']::after,
 .author-card .social-links a[target='_blank']::after,
 .orgs-card .org-links a[target='_blank']::after,
-.runner-icons a[target='_blank']::after
-{
+.runner-icons a[target='_blank']::after {
   content: none !important; /* Remove the icon content */
   display: none !important; /* Ensure it takes no space */
 }
@@ -618,20 +662,21 @@ a[target='_blank'] {
 .social-share-overlay .social-icon[target='_blank']::after,
 .social-share-overlay .social-icon i.fa-x-twitter, // Target FA icon within the link too if needed
 .social-share-overlay .social-icon[href*="x.com"]::after, // More generic target for X link
-.copyright .list-inline a[target='_blank']::after
-{
+.copyright .list-inline a[target='_blank']::after {
   content: none !important; /* Remove the icon content */
 }
 
 // Reusable Static Offset Shadow Box Style
 .offset-shadow-box {
   border: 1px solid $border-color; // Base border
-  border-radius: 0;                // Ensure blocky corners
+  border-radius: 0; // Ensure blocky corners
   // Apply the static offset shadow (adjust color/opacity as needed)
   box-shadow: -5px 5px 0 0 rgba($black, 0.075);
 
   // Override potential default Bootstrap shadows if combined
-  &.shadow, &.shadow-sm, &.shadow-lg {
+  &.shadow,
+  &.shadow-sm,
+  &.shadow-lg {
     box-shadow: -5px 5px 0 0 rgba($black, 0.075) !important;
   }
 

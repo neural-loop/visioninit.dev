@@ -4,7 +4,12 @@ const { execSync } = require('child_process');
 
 // --- Configuration ---
 const CONTENT_ROOT_DIR = join(process.cwd(), 'content', 'english');
-const TEMPLATE_PATH = join(process.cwd(), 'assets', 'og-template', 'template.html');
+const TEMPLATE_PATH = join(
+  process.cwd(),
+  'assets',
+  'og-template',
+  'template.html'
+);
 const LOGO_PATH_RELATIVE_TO_ROOT = 'assets/images/logo-source.png';
 const SITE_NAME = 'https://visioninit.dev'; // Your site's name or domain
 const OUTPUT_FILENAME = 'og.png';
@@ -72,9 +77,13 @@ function extractFrontMatter(content) {
 
   if (frontMatterMatch && frontMatterMatch[1]) {
     const frontMatterContent = frontMatterMatch[1];
-    const titleMatch = frontMatterContent.match(/^(?:title|Title):\s*["']?(.*?)["']?\s*$/m);
+    const titleMatch = frontMatterContent.match(
+      /^(?:title|Title):\s*["']?(.*?)["']?\s*$/m
+    );
     // Look for description, allow multi-line descriptions enclosed in quotes or basic single line
-    const descriptionMatch = frontMatterContent.match(/^(?:description|Description):\s*["']?([\s\S]*?)["']?\s*$/m);
+    const descriptionMatch = frontMatterContent.match(
+      /^(?:description|Description):\s*["']?([\s\S]*?)["']?\s*$/m
+    );
     const draftMatch = frontMatterContent.match(/^draft:\s*(true)\s*$/m);
 
     if (titleMatch && titleMatch[1]) {
@@ -112,7 +121,6 @@ async function getImageDataUri(filePath) {
   }
 }
 
-
 // --- Main Generation Logic ---
 async function generateOGImages() {
   const absoluteLogoPath = join(process.cwd(), LOGO_PATH_RELATIVE_TO_ROOT);
@@ -122,27 +130,37 @@ async function generateOGImages() {
   debugLog(`Attempting to load logo from: ${absoluteLogoPath}`);
   if (await pathExists(absoluteLogoPath)) {
     logoDataUri = await getImageDataUri(absoluteLogoPath);
-    if(logoDataUri) {
+    if (logoDataUri) {
       debugLog(`Logo loaded and encoded successfully.`);
     } else {
-      console.warn(`⚠️ Warning: Could not load or encode logo. OG images will be generated without it.`);
+      console.warn(
+        `⚠️ Warning: Could not load or encode logo. OG images will be generated without it.`
+      );
     }
   } else {
-    console.warn(`⚠️ Warning: Logo file not found at ${absoluteLogoPath}. OG images will be generated without it.`);
+    console.warn(
+      `⚠️ Warning: Logo file not found at ${absoluteLogoPath}. OG images will be generated without it.`
+    );
   }
 
   try {
     // 1. Verify content dir and template exist
     debugLog(`Content directory: ${CONTENT_ROOT_DIR}`);
     debugLog(`Template path: ${TEMPLATE_PATH}`);
-    if (!(await pathExists(CONTENT_ROOT_DIR))) { /* ... */ } // Existing checks...
-    if (!(await pathExists(TEMPLATE_PATH))) { /* ... */ }
+    if (!(await pathExists(CONTENT_ROOT_DIR))) {
+      /* ... */
+    } // Existing checks...
+    if (!(await pathExists(TEMPLATE_PATH))) {
+      /* ... */
+    }
 
     // 2. Find markdown files
     debugLog('Searching for index.md and _index.md files...');
     const markdownFiles = await findMarkdownFiles(CONTENT_ROOT_DIR);
     debugLog(`Found ${markdownFiles.length} potential markdown files`);
-    if (markdownFiles.length === 0) { /* ... */ return; }
+    if (markdownFiles.length === 0) {
+      /* ... */ return;
+    }
 
     debugLog('Reading template file...');
     const template = await readFile(TEMPLATE_PATH, 'utf8');
@@ -173,7 +191,8 @@ async function generateOGImages() {
           skippedCount++;
           continue;
         }
-        if (!description) { // <<< Check for description
+        if (!description) {
+          // <<< Check for description
           debugLog(`No description found in ${mdFile}, skipping...`);
           skippedCount++;
           continue;
@@ -205,7 +224,6 @@ async function generateOGImages() {
         // Clean up temp file
         debugLog(`Removing temp file: ${tempHtmlPath}`);
         await unlink(tempHtmlPath);
-
       } catch (err) {
         // ... (existing error handling) ...
         console.error(`❌ Failed processing ${mdFile}:`, err.message);
@@ -213,14 +231,19 @@ async function generateOGImages() {
         errorCount++;
         // Attempt cleanup even on error
         if (await pathExists(tempHtmlPath)) {
-          try { await unlink(tempHtmlPath); } catch (cleanupErr) { /* Ignore cleanup error */ }
+          try {
+            await unlink(tempHtmlPath);
+          } catch (cleanupErr) {
+            /* Ignore cleanup error */
+          }
         }
       }
     }
 
     console.log('\n✨ OG image generation complete!');
-    console.log(`📊 Summary: ${successCount} generated, ${skippedCount} skipped, ${errorCount} errors.`);
-
+    console.log(
+      `📊 Summary: ${successCount} generated, ${skippedCount} skipped, ${errorCount} errors.`
+    );
   } catch (err) {
     // ... (existing error handling) ...
     console.error('\n🔥 Critical error during script execution:', err.message);

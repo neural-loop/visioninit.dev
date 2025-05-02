@@ -13,17 +13,18 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
 
 // Assumed mixins (replace with your actual mixins)
 @mixin desktop {
-  @media (min-width: 992px) { // Example: Adjust breakpoint as needed for "large+"
+  @media (min-width: 992px) {
+    // Example: Adjust breakpoint as needed for "large+"
     @content;
   }
 }
 
 @mixin tablet {
-  @media (max-width: 991.98px) { // Example: Adjust breakpoint as needed for "medium and smaller"
+  @media (max-width: 991.98px) {
+    // Example: Adjust breakpoint as needed for "medium and smaller"
     @content;
   }
 }
-
 
 .og-preview-wrapper {
   position: relative;
@@ -41,7 +42,9 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
     0 4px 12px rgba($black, 0.1),
     0 0 0 1px rgba($white, 0.1),
     0 0 20px rgba($white, 0.3);
-  transition: transform $transition-duration ease, box-shadow $transition-duration ease;
+  transition:
+    transform $transition-duration ease,
+    box-shadow $transition-duration ease;
   aspect-ratio: 1.91/1; // <<< Keep the original aspect ratio globally
 
   &:hover {
@@ -110,16 +113,26 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow $transition-duration ease, border-color 0.2s ease; // <<< ADD border-color transition
+  transition:
+    box-shadow $transition-duration ease,
+    border-color 0.2s ease; // <<< ADD border-color transition
   text-decoration: none;
   flex-shrink: 0;
   box-shadow: -3px 3px 0px 0px $border-color;
   border: 2px solid transparent; // <<< ADD: Initial transparent border
 
-  &.twitter { background: rgba($secondary-color, .8); }
-  &.bluesky { background: rgba($secondary-color, .8); } // <<< ADDED BLUESKY
-  &.facebook { background: rgba($secondary-color, .8); }
-  &.linkedin { background: rgba($secondary-color, .8); }
+  &.twitter {
+    background: rgba($secondary-color, 0.8);
+  }
+  &.bluesky {
+    background: rgba($secondary-color, 0.8);
+  } // <<< ADDED BLUESKY
+  &.facebook {
+    background: rgba($secondary-color, 0.8);
+  }
+  &.linkedin {
+    background: rgba($secondary-color, 0.8);
+  }
 
   &:hover {
     // Slightly larger offset and slightly darker shadow color on hover
@@ -155,14 +168,16 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
     color: $white;
     opacity: 0.8;
     transition: opacity 0.2s ease;
-    &:hover { opacity: 1; }
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
 .og-preview-image {
   // ... (existing styles) ...
   position: relative; // Ensure it's a positioning context
-  overflow: hidden;   // Hide effect overflows if necessary
+  overflow: hidden; // Hide effect overflows if necessary
 }
 
 // --- ADDED: Effect Overlay and Styles ---
@@ -173,7 +188,8 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
   opacity: 0;
   pointer-events: none; // Don't interfere with clicks
   z-index: 2; // Above image overlay, below social icons
-  will-change: opacity, transform, background, filter; // Hint browser for animation optimization
+  will-change:
+    opacity, transform, background, filter; // Hint browser for animation optimization
 
   // Shared animation properties (applied by JS)
   &.animate-effect {
@@ -191,9 +207,12 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
   // Simple static: Use a repeating noise background image (create one or find one online)
   // background-image: url('/images/static-noise.png'); // <<< Replace with your noise pattern path
   // Or simulate with a gradient:
-  background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
-  radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px);
-  background-size: 1px 1px, 3px 3px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+    radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size:
+    1px 1px,
+    3px 3px;
 }
 
 // 2. Glitch Effect (using pseudo-elements)
@@ -207,7 +226,7 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
     background-color: rgba($primary-color, 0.2); // Tint
     animation: glitch-anim 150ms infinite linear alternate-reverse;
     opacity: 0.8;
-    transform: translate3d(0,0,0); // Promote to own layer
+    transform: translate3d(0, 0, 0); // Promote to own layer
   }
 
   &::after {
@@ -227,15 +246,22 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
   filter: url(#og-warble-filter); // Apply the SVG filter
 }
 
-
 // --- Keyframe Animations ---
 
 // Sweep animation (controls opacity mainly)
 @keyframes effect-sweep {
-  0% { opacity: 0; }
-  15% { opacity: 0.7; } // Quickly fade in effect
-  85% { opacity: 0.6; } // Hold effect
-  100% { opacity: 0; } // Fade out
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  } // Quickly fade in effect
+  85% {
+    opacity: 0.6;
+  } // Hold effect
+  100% {
+    opacity: 0;
+  } // Fade out
 }
 
 // Glitch animation parts
@@ -250,32 +276,47 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
   // Ensure reset at end if needed, though sweep handles fade out
   100% {
     clip-path: inset(0);
-    transform: translate(0,0);
+    transform: translate(0, 0);
   }
 }
-
 
 /* --- Responsive Adjustments --- */
 
 @include desktop {
-  .og-preview-wrapper { max-width: 100%; margin: 20px auto 0; padding: 6px; }
+  .og-preview-wrapper {
+    max-width: 100%;
+    margin: 20px auto 0;
+    padding: 6px;
+  }
   .og-preview-container {
-    max-width: 280px; margin: 0 auto;
-    &:hover { transform: scale(1.2); }
+    max-width: 280px;
+    margin: 0 auto;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
 
-@include tablet { // Styles for tablet and smaller
+@include tablet {
+  // Styles for tablet and smaller
   .og-preview-container {
-    box-shadow: 0 4px 20px rgba($black, 0.15), 0 0 0 1px rgba($white, 0.2), 0 0 30px rgba($white, 0.4);
-    &:hover { transform: none; } // Keep hover disabled
+    box-shadow:
+      0 4px 20px rgba($black, 0.15),
+      0 0 0 1px rgba($white, 0.2),
+      0 0 30px rgba($white, 0.4);
+    &:hover {
+      transform: none;
+    } // Keep hover disabled
   }
 
   .og-preview-image {
     background-size: contain; // <<< CHANGE: Ensure whole image fits
   }
 
-  .image-dark-overlay { background: rgba($black, 0); transition: none; }
+  .image-dark-overlay {
+    background: rgba($black, 0);
+    transition: none;
+  }
 
   .social-share-overlay {
     opacity: 1;
@@ -286,17 +327,25 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
     transform: translateY(-50%); // Keep vertical positioning
   }
 
-  .sharing-runner { transform: translateY(100%); transition: none; } // Keep hidden
+  .sharing-runner {
+    transform: translateY(100%);
+    transition: none;
+  } // Keep hidden
 
-  .social-icons-container { gap: 8px; }
+  .social-icons-container {
+    gap: 8px;
+  }
   .social-icon {
     width: $social-icon-height-tablet;
     height: $social-icon-height-tablet;
     font-size: 18px;
     border-width: 1px; // <<< Optional: thinner border on smaller screens
     box-shadow: -3px 3px 0px 0px rgba($border-color, 1);
-
   }
-  .runner-icons i { font-size: 14px; }
-  .sharing-runner span { font-size: 13px; }
+  .runner-icons i {
+    font-size: 14px;
+  }
+  .sharing-runner span {
+    font-size: 13px;
+  }
 }

@@ -6,12 +6,14 @@
   // Adjust top offset to clear your sticky header + some padding
   // Inspect your header height or use a variable if available.
   top: 120px;
-  max-height: calc(100vh - 140px); // Example: viewport height minus top offset and some bottom space
+  max-height: calc(
+    100vh - 140px
+  ); // Example: viewport height minus top offset and some bottom space
   overflow-y: auto;
   font-size: 0.85rem; // Slightly smaller font size
 
   .toc-title {
-    font-size: .7rem; // Adjust title size
+    font-size: 0.7rem; // Adjust title size
     font-weight: 600;
     color: $text-color-dark;
     border-bottom: 1px solid $border-color;
@@ -23,7 +25,8 @@
     list-style: none;
     padding-left: 0; // Remove default padding
 
-    ul { // Nested lists (h3, h4, etc.)
+    ul {
+      // Nested lists (h3, h4, etc.)
       padding-left: 1rem; // Indent nested levels
       margin-top: 0.25rem;
       margin-bottom: 0.25rem;
@@ -44,7 +47,10 @@
 
     &:hover {
       color: $primary-color;
-      background-color: lighten($light, 2%); // Slight background highlight on hover
+      background-color: lighten(
+        $light,
+        2%
+      ); // Slight background highlight on hover
       border-left-color: lighten($primary-color, 30%);
     }
 
@@ -55,19 +61,28 @@
       border-left-color: $primary-color; // Active indicator color
     }
   }
-
 }
 /* --- Heading Highlight on Target (for ToC clicks) --- */
 
 // Ensure headings can be positioned relative to
-h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+h1[id],
+h2[id],
+h3[id],
+h4[id],
+h5[id],
+h6[id] {
   position: relative; // Needed for the absolute positioning of ::after
   // Optional: Add a small bottom padding if underline feels too close
   // padding-bottom: 5px;
 }
 
 // Define the underline style using ::after
-h1[id]::after, h2[id]::after, h3[id]::after, h4[id]::after, h5[id]::after, h6[id]::after {
+h1[id]::after,
+h2[id]::after,
+h3[id]::after,
+h4[id]::after,
+h5[id]::after,
+h6[id]::after {
   content: '';
   position: absolute;
   left: 0;
@@ -85,14 +100,24 @@ h1[id]::after, h2[id]::after, h3[id]::after, h4[id]::after, h5[id]::after, h6[id
 /* --- Heading Highlight on Target (for ToC clicks) --- */
 
 // Ensure headings can be positioned relative to
-h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+h1[id],
+h2[id],
+h3[id],
+h4[id],
+h5[id],
+h6[id] {
   position: relative; // Needed for the absolute positioning of ::after
   // Optional: Add a small bottom padding if underline feels too close
   // padding-bottom: 5px;
 }
 
 // Define the underline style using ::after
-h1[id]::after, h2[id]::after, h3[id]::after, h4[id]::after, h5[id]::after, h6[id]::after {
+h1[id]::after,
+h2[id]::after,
+h3[id]::after,
+h4[id]::after,
+h5[id]::after,
+h6[id]::after {
   content: '';
   position: absolute;
   left: 0;

@@ -1,12 +1,12 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 const getFolderName = (rootfolder) => {
   const configPath = path.join(
     rootfolder,
-    "exampleSite/config/_default/hugo.toml"
+    'exampleSite/config/_default/hugo.toml'
   );
-  const getConfig = fs.readFileSync(configPath, "utf8");
+  const getConfig = fs.readFileSync(configPath, 'utf8');
   const match = getConfig.match(/theme\s*=\s*\[?"([^"\]]+)"\]?/);
   let selectedTheme = null;
   if (match && match[1]) {
@@ -46,12 +46,12 @@ const iterateFilesAndFolders = (rootFolder, { destinationRoot }) => {
 };
 
 const setupProject = () => {
-  const rootfolder = path.join(__dirname, "../");
-  if (!fs.existsSync(path.join(rootfolder, "themes"))) {
-    const folderList = ["layouts", "assets", "static"];
+  const rootfolder = path.join(__dirname, '../');
+  if (!fs.existsSync(path.join(rootfolder, 'themes'))) {
+    const folderList = ['layouts', 'assets', 'static'];
     const folderName = getFolderName(rootfolder);
     const newfolderName = createNewfolder(
-      path.join(rootfolder, "themes"),
+      path.join(rootfolder, 'themes'),
       folderName
     );
 
@@ -68,7 +68,7 @@ const setupProject = () => {
       }
     });
 
-    const exampleSite = path.join(rootfolder, "exampleSite");
+    const exampleSite = path.join(rootfolder, 'exampleSite');
     iterateFilesAndFolders(exampleSite, { destinationRoot: rootfolder });
     deleteFolder(exampleSite);
   }

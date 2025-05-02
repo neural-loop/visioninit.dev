@@ -30,13 +30,16 @@
   border: none; // Remove button default border
   border-bottom: 1px solid $border-color; // Separator line when closed
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 
   &:hover {
     background-color: lighten($light, 2%); // Subtle hover background
     color: $primary-color; // Highlight text on hover
 
-    .accordion-icon { // Ensure icon also highlights on header hover
+    .accordion-icon {
+      // Ensure icon also highlights on header hover
       color: $primary-color;
     }
   }
@@ -55,37 +58,55 @@
   margin-left: 1rem; // Space between text and icon
   color: $text-color-light; // Default icon color
   flex-shrink: 0;
-  transform: rotate(-90deg); // Default state (pointing right/up depending on SVG)
-  transition: transform 0.3s ease, color 0.2s ease;
+  transform: rotate(
+    -90deg
+  ); // Default state (pointing right/up depending on SVG)
+  transition:
+    transform 0.3s ease,
+    color 0.2s ease;
 }
 
 .accordion-content {
   max-height: 0; // Initially hidden (controlled by JS adding .active class to .accordion)
   overflow: hidden;
   padding: 0 1.25rem; // No vertical padding when closed
-  background-color: lighten($light, 1%); // Slightly off-white background for content
+  background-color: lighten(
+    $light,
+    1%
+  ); // Slightly off-white background for content
   color: $text-color;
   font-family: $primary-font; // Body font
   font-size: 0.95rem;
   line-height: 1.7;
 
   // Smooth transition for max-height and padding
-  transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
+  transition:
+    max-height 0.35s ease-in-out,
+    padding 0.35s ease-in-out;
 
   // Inner content styling (ensure correct spacing)
-  .content-inner { // We'll wrap the content in the shortcode/partial later
+  .content-inner {
+    // We'll wrap the content in the shortcode/partial later
     padding: 1.5rem 0; // Vertical padding *inside* the wrapper when open
     > *:last-child {
       margin-bottom: 0;
     }
-    p { margin-bottom: 1rem; }
-    ul, ol { margin-bottom: 1rem; padding-left: 25px; }
-    li { margin-bottom: 0.5rem; }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul,
+    ol {
+      margin-bottom: 1rem;
+      padding-left: 25px;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
 
     // Reuse theme list style for UL
     ul li::before {
       position: absolute;
-      content: "\f054"; // Font Awesome check or arrow
+      content: '\f054'; // Font Awesome check or arrow
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
       font-size: 12px;
@@ -94,7 +115,7 @@
       transform: translateY(-50%);
       line-height: 1;
       color: $primary-color;
-      transition: .3s ease;
+      transition: 0.3s ease;
     }
   }
 }
@@ -106,7 +127,10 @@
   .accordion-header {
     color: $primary-color; // Keep header text primary
     border-bottom-color: transparent; // Hide bottom border of header when open
-    background-color: lighten($light, 2%); // Keep hover background maybe? Or revert to white? Let's try white.
+    background-color: lighten(
+      $light,
+      2%
+    ); // Keep hover background maybe? Or revert to white? Let's try white.
     // background-color: $white; // Option: Revert to plain white when open
   }
 

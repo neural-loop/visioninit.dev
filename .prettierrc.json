@@ -1,9 +1,5 @@
-// .prettierrc.json
 {
-  "plugins": [
-    "prettier-plugin-go-template",
-    "prettier-plugin-toml"
-  ],
+  "plugins": ["prettier-plugin-go-template", "prettier-plugin-toml"],
   "bracketSameLine": false,
   "printWidth": 80,
   "tabWidth": 2,
@@ -11,5 +7,4 @@
   "semi": true,
   "singleQuote": true,
   "trailingComma": "es5"
-  // Keep other settings like goTemplateBracketSpacing if you added them
 }

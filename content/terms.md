@@ -1,5 +1,5 @@
 ---
-title: "Terms of Service"
+title: 'Terms of Service'
 description: "VisionInit's Terms of Service govern the use of this website and our services."
 draft: false
 # exclude_sitemap: false # Keep this page IN the sitemap
@@ -13,13 +13,13 @@ By accessing or using the Site or Services, you agree to be bound by these Terms
 
 ### 1. Use of the Site and Services
 
-*   **Eligibility:** You must be at least 18 years old to use the Site and Services.
-*   **License:** We grant you a limited, non-exclusive, non-transferable, and revocable license to use the Site and Services for your personal or internal business purposes, subject to these Terms.
-*   **Prohibited Conduct:** You agree not to:
-  *   Use the Site or Services for any illegal purpose or in violation of any local, state, national, or international law.
-  *   Violate or encourage others to violate the rights of third parties, including intellectual property rights.
-  *   Interfere with the security-related features of the Site or Services.
-  *   Interfere with the operation of the Site or Services or any user's enjoyment of them, including by uploading or otherwise disseminating viruses, adware, spyware, worms, or other malicious code.
+- **Eligibility:** You must be at least 18 years old to use the Site and Services.
+- **License:** We grant you a limited, non-exclusive, non-transferable, and revocable license to use the Site and Services for your personal or internal business purposes, subject to these Terms.
+- **Prohibited Conduct:** You agree not to:
+- Use the Site or Services for any illegal purpose or in violation of any local, state, national, or international law.
+- Violate or encourage others to violate the rights of third parties, including intellectual property rights.
+- Interfere with the security-related features of the Site or Services.
+- Interfere with the operation of the Site or Services or any user's enjoyment of them, including by uploading or otherwise disseminating viruses, adware, spyware, worms, or other malicious code.
 
 ### 2. Intellectual Property
 
@@ -27,7 +27,7 @@ The Site and Services, including all content, visual interfaces, graphics, desig
 
 ### 3. Subscription Services (Security Sidekick)
 
-*   Use of specific subscription services, such as the "Security Sidekick" plans, may be subject to additional terms and conditions presented to you at the time of purchase or sign-up.
+- Use of specific subscription services, such as the "Security Sidekick" plans, may be subject to additional terms and conditions presented to you at the time of purchase or sign-up.
 
 ### 4. Disclaimers; No Warranties
 

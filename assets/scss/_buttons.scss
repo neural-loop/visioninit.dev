@@ -13,7 +13,10 @@
   z-index: 1;
 
   // Use standard CSS transitions for background, color, border
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
   overflow: hidden; // Keep this if needed for other effects, but ::before is gone
   white-space: nowrap;
 
@@ -79,7 +82,6 @@
   //   padding: 3px 12px; // 5px - 2px, 15px - 3px
   // }
 
-
   &:active,
   &:hover,
   &.focus,
@@ -95,7 +97,7 @@
   // Targets .btn-outline-primary used with text-white and border-white classes
   &.text-white.border-white {
     border-color: $white !important; // Force white border
-    color: $white !important;       // Force white text
+    color: $white !important; // Force white text
 
     &:active,
     &:hover,
@@ -103,7 +105,7 @@
     &:focus,
     &.active {
       background-color: $white; // Fill with white on hover
-      border-color: $white;     // Keep border white
+      border-color: $white; // Keep border white
       color: $primary-color !important; // Change text to primary color
     }
   }

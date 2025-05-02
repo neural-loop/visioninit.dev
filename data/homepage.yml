@@ -4,40 +4,40 @@ slider:
   enable: true
   # bg_image: "images/banner.jpg" # <<< REMOVE or COMMENT OUT this line
   slider_item:
-    - title: "Secure Development by Design"
-      content: "Building robust, scalable web solutions with security embedded from inception. Leveraging **20+ years of full-stack expertise** and proven security credentials to protect your digital assets and accelerate innovation."
+    - title: 'Secure Development by Design'
+      content: 'Building robust, scalable web solutions with security embedded from inception. Leveraging **20+ years of full-stack expertise** and proven security credentials to protect your digital assets and accelerate innovation.'
       button:
         enable: true
-        label: "Schedule Consultation"
-        link: "schedule"
-        style: "btn-primary"
+        label: 'Schedule Consultation'
+        link: 'schedule'
+        style: 'btn-primary'
       button2:
         enable: true
-        label: "Explore Services"
-        link: "#core-services"
-        style: "btn-outline-primary text-white border-white"
+        label: 'Explore Services'
+        link: '#core-services'
+        style: 'btn-outline-primary text-white border-white'
 
 subscription_tiers:
   enable: true
-  title: "Security Sidekick Plans" # Title for the section on the homepage
-  subtitle: "Choose the level of ongoing security support that fits your needs." # Subtitle
+  title: 'Security Sidekick Plans' # Title for the section on the homepage
+  subtitle: 'Choose the level of ongoing security support that fits your needs.' # Subtitle
   tiers:
-    - name: "Sure Shot"
-      price: "$500"
-      price_suffix: "one-time" # Suffix describes the payment
-      description: "Perfect for addressing a single, specific security question or review. Get expert eyes on one critical item." # Short description for homepage card
+    - name: 'Sure Shot'
+      price: '$500'
+      price_suffix: 'one-time' # Suffix describes the payment
+      description: 'Perfect for addressing a single, specific security question or review. Get expert eyes on one critical item.' # Short description for homepage card
       # Optional: Add 1-2 key highlights if desired using 'features:' list like before
       # features:
       #   - icon: "fa-solid fa-bullseye"
       #     text: "One dedicated security request."
       button:
-        label: "Learn More"
-        link: "/security-sidekick/" # Links to the main page for now
+        label: 'Learn More'
+        link: '/security-sidekick/' # Links to the main page for now
 
-    - name: "Steady Shot"
-      price: "$4995"
-      price_suffix: "/month"
-      description: "Comprehensive ongoing security guidance. Unlimited requests (one active), code reviews, vulnerability advice, and proactive support."
+    - name: 'Steady Shot'
+      price: '$4995'
+      price_suffix: '/month'
+      description: 'Comprehensive ongoing security guidance. Unlimited requests (one active), code reviews, vulnerability advice, and proactive support.'
       # Optional: Add 1-2 key highlights
       # features:
       #   - icon: "fa-solid fa-shield-heart"
@@ -45,25 +45,25 @@ subscription_tiers:
       #   - icon: "fa-solid fa-clock-rotate-left"
       #     text: "Typical 48-72hr turnaround."
       button:
-        label: "Learn More"
-        link: "/security-sidekick/" # Links to the main page for now
+        label: 'Learn More'
+        link: '/security-sidekick/' # Links to the main page for now
 
 # --- UPDATED VIDEO FEATURE SECTION ---
 video_feature:
   enable: false # <<< DISABLED FOR NOW - Enable and update src if you have a relevant video
-  title: "Understanding Secure Development" # Placeholder title
-  description: "A brief overview of our approach to integrating security throughout the development lifecycle." # Placeholder description
-  video_src: "videos/your-consultancy-video.mp4" # <<< UPDATE if you re-enable
-  video_width: "800"
-  video_height: "auto"
+  title: 'Understanding Secure Development' # Placeholder title
+  description: 'A brief overview of our approach to integrating security throughout the development lifecycle.' # Placeholder description
+  video_src: 'videos/your-consultancy-video.mp4' # <<< UPDATE if you re-enable
+  video_width: '800'
+  video_height: 'auto'
 
 # --- UPDATED CTA SECTION ---
 cta:
   enable: true
-  title: "Ready to Build with Confidence?" # More engaging title
-  subtitle: "Secure Your Digital Future"
+  title: 'Ready to Build with Confidence?' # More engaging title
+  subtitle: 'Secure Your Digital Future'
   content: "Partner with VisionInit to create web applications that are not only functional and scalable but also fundamentally secure. Let's discuss how we can address your specific technical and security challenges."
   button:
     enable: true
-    label: "Schedule a Free Consultation" # Specific CTA
-    link: "{{< param scheduling_link >}}" # Use param shortcode hint (actual link in template)
+    label: 'Schedule a Free Consultation' # Specific CTA
+    link: '{{< param scheduling_link >}}' # Use param shortcode hint (actual link in template)

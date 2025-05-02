@@ -1,6 +1,6 @@
 .top-header {
   font-size: 12px;
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
   transform-origin: top;
   font-weight: 600;
 
@@ -12,7 +12,7 @@
 
 .navigation {
   background: linear-gradient(to right, transparent 50%, $primary-color 50%);
-  transition: .2s ease;
+  transition: 0.2s ease;
 
   @include desktop {
     background: $secondary-color;
@@ -24,10 +24,11 @@
 }
 
 .navbar-collapse {
-  @include desktop { // Styles for screens <= 991px wide (mobile/tablet)
-    background: $primary-color;       // Set background to primary color
-    padding-top: 10px;                // Add some padding above the links (optional, adjust as needed)
-    padding-bottom: 10px;             // Add the requested 50px padding below links
+  @include desktop {
+    // Styles for screens <= 991px wide (mobile/tablet)
+    background: $primary-color; // Set background to primary color
+    padding-top: 10px; // Add some padding above the links (optional, adjust as needed)
+    padding-bottom: 10px; // Add the requested 50px padding below links
     // Add a border. Using the *same* color might make it invisible.
     // Let's use a slightly darker shade for subtle definition, or keep it the same if preferred.
     border-bottom: 3px solid darken($primary-color, 5%); // 3px border, slightly darker than the background
@@ -60,7 +61,7 @@
   .nav-link {
     text-transform: uppercase;
     font-weight: 600;
-    color: #FFF;
+    color: #fff;
   }
 
   margin: 0 15px;
@@ -72,11 +73,11 @@
     bottom: 0;
     height: 6px;
     width: 100%;
-    content: "";
+    content: '';
     background: $white;
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
   }
 
   &:hover,
@@ -97,10 +98,10 @@ link:focus,
   color: $white;
 }
 
-.navbar-dark .navbar-nav .active>.nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link.show,
-.navbar-dark .navbar-nav .show>.nav-link {
+.navbar-dark .navbar-nav .show > .nav-link {
   color: $white;
 }
 
@@ -127,7 +128,7 @@ link:focus,
       .dropdown-menu {
         visibility: visible;
         opacity: 1;
-        transform: translateY(0)
+        transform: translateY(0);
       }
     }
 
@@ -139,7 +140,7 @@ link:focus,
       border-radius: 0;
       display: block;
       visibility: hidden;
-      transition: .3s ease;
+      transition: 0.3s ease;
       opacity: 0;
       transform: translateY(20px);
       background: $white;
@@ -165,7 +166,7 @@ link:focus,
     &-item {
       position: relative;
       color: $text-color-dark;
-      transition: .2s ease;
+      transition: 0.2s ease;
       text-transform: capitalize;
       font-family: $primary-font;
 
@@ -186,7 +187,10 @@ link:focus,
 }
 
 .navbar-toggler {
-  border-color: rgba($white, 0.5) !important; // Make the button border visible against dark background
+  border-color: rgba(
+    $white,
+    0.5
+  ) !important; // Make the button border visible against dark background
   border-width: 3px;
   &:focus {
     outline: none; // Optional: remove focus outline

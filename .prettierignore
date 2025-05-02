@@ -10,11 +10,14 @@ node_modules/
 
 # Vendor libraries and static assets that shouldn't be reformatted
 static/plugins/
-static/fonts/ # Add if you have custom fonts here
+static/fonts/
 
 # Hugo layout/template files - too risky to format reliably
 layouts/**/*.html
 assets/og-template/template.html
+
+# ---> ADD THIS LINE <---
+*.toml
 
 # Generated files
 package-lock.json

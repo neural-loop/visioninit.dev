@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 const createNewfolder = (rootfolder, folderName) => {
   const newFolder = path.join(rootfolder, folderName);
@@ -16,9 +16,9 @@ const deleteFolder = (folderPath) => {
 const getFolderName = (rootfolder) => {
   const configPath = path.join(
     rootfolder,
-    "exampleSite/config/_default/hugo.toml"
+    'exampleSite/config/_default/hugo.toml'
   );
-  const getConfig = fs.readFileSync(configPath, "utf8");
+  const getConfig = fs.readFileSync(configPath, 'utf8');
   const match = getConfig.match(/theme\s*=\s*\[?"([^"\]]+)"\]?/);
   let selectedTheme = null;
   if (match && match[1]) {
@@ -46,28 +46,28 @@ const iterateFilesAndFolders = (rootFolder, { destinationRoot }) => {
 };
 
 const setupTheme = () => {
-  const rootFolder = path.join(__dirname, "../");
+  const rootFolder = path.join(__dirname, '../');
 
-  if (!fs.existsSync(path.join(rootFolder, "exampleSite"))) {
+  if (!fs.existsSync(path.join(rootFolder, 'exampleSite'))) {
     const includesFiles = [
-      "tailwind.config.js",
-      "postcss.config.js",
-      "go.mod",
-      "hugo.toml",
-      "assets",
-      "config",
-      "data",
-      "content",
-      "i18n",
-      "static",
+      'tailwind.config.js',
+      'postcss.config.js',
+      'go.mod',
+      'hugo.toml',
+      'assets',
+      'config',
+      'data',
+      'content',
+      'i18n',
+      'static',
     ];
 
-    const folder = createNewfolder(rootFolder, "exampleSite");
+    const folder = createNewfolder(rootFolder, 'exampleSite');
 
     fs.readdirSync(rootFolder, { withFileTypes: true }).forEach((file) => {
       if (includesFiles.includes(file.name)) {
         if (file.isDirectory()) {
-          const destination = path.join(rootFolder, "exampleSite", file.name);
+          const destination = path.join(rootFolder, 'exampleSite', file.name);
           fs.mkdirSync(destination, { recursive: true });
           iterateFilesAndFolders(path.join(rootFolder, file.name), {
             destinationRoot: destination,
@@ -82,7 +82,7 @@ const setupTheme = () => {
       }
     });
 
-    const themes = path.join(rootFolder, "themes");
+    const themes = path.join(rootFolder, 'themes');
     iterateFilesAndFolders(path.join(themes, getFolderName(rootFolder)), {
       destinationRoot: rootFolder,
     });
