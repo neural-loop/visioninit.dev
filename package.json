@@ -13,14 +13,15 @@
     "theme-setup": "node ./scripts/themeSetup.js",
     "og-images": "node scripts/generateOGImages.js",
     "generate-favicons": "node scripts/generateFavicons.js",
-    "format": "prettier --write \"**/*.{js,json,md,toml,scss,html}\""
-  },
+    "format": "prettier --write ."  },
   "dependencies": {
     "mime-types": "^3.0.1"
   },
   "devDependencies": {
     "postcss-scss": "^4.0.9",
     "prettier": "^3.5.3",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-toml": "^2.0.4",
     "stylelint": "^16.19.1",
     "stylelint-config-standard-scss": "^14.0.0"
   }
