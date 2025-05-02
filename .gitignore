@@ -34,3 +34,4 @@ Thumbs.db
 /package-lock.json
 /go.sum
 /.idea/stylesheetLinters/stylelint.xml
+/tmp/
