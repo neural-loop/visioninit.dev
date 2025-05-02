@@ -6,7 +6,7 @@ draft: false
 exclude_sitemap: true # Exclude this page from the sitemap.xml
 tableOfContents:
   startLevel: 2 # Start ToC from H2 headings
-  endLevel: 3   # Include up to H3 headings
+  endLevel: 3 # Include up to H3 headings
   ordered: false # Use unordered list (bullets)
 ---
 
@@ -19,6 +19,7 @@ This style guide demonstrates how standard Markdown elements are rendered visual
 Standard HTML headings (`h1` through `h6`) are styled as follows when generated from Markdown.
 
 **Example Markdown:**
+
 ```
 # Heading 1
 ## Heading 2
@@ -31,10 +32,15 @@ Standard HTML headings (`h1` through `h6`) are styled as follows when generated 
 **Rendered Output:**
 
 # Heading 1
+
 ## Heading 2
+
 ### Heading 3
+
 #### Heading 4
+
 ##### Heading 5
+
 ###### Heading 6
 
 ---
@@ -44,6 +50,7 @@ Standard HTML headings (`h1` through `h6`) are styled as follows when generated 
 Standard paragraphs provide the base text styling. Links within the content area are styled with the primary color and an underline effect on hover. External links automatically receive an icon via CSS.
 
 **Example Markdown:**
+
 ```
 This is a standard paragraph defining the base font size, line height, and text color. It can include **bold text** using double asterisks and _italic text_ using single underscores or asterisks. Use `backticks` for inline code.
 
@@ -54,7 +61,7 @@ Content links look like [this internal link](#) which stays on the page. Links t
 
 This is a standard paragraph defining the base font size, line height, and text color. It can include **bold text** using double asterisks and _italic text_ using single underscores or asterisks. Use `backticks` for inline code.
 
-Content links look like [this internal link](#) which stays on the page. Links to external sites like [the Hugo documentation](https://gohugo.io/){:target="_blank"} automatically get an external link icon. Autodetected links like https://visioninit.dev also work.
+Content links look like [this internal link](#) which stays on the page. Links to external sites like [the Hugo documentation](https://gohugo.io/){:target="\_blank"} automatically get an external link icon. Autodetected links like https://visioninit.dev also work.
 
 ---
 
@@ -65,6 +72,7 @@ Content links look like [this internal link](#) which stays on the page. Links t
 Unordered lists within the `.content` area use a custom bullet style.
 
 **Example Markdown:**
+
 ```
 *   List item one using the default style.
 *   List item two, demonstrating wrapping text that continues onto the next line.
@@ -79,21 +87,22 @@ Unordered lists within the `.content` area use a custom bullet style.
 
 **Rendered Output:**
 
-*   List item one using the default style.
-*   List item two, demonstrating wrapping text that continues onto the next line.
-*   List item three with **bold text** and a [link to nowhere](#).
-*   A nested list example:
-  *   Nested item A.
-  *   Nested item B with further nesting:
-    *   Deeply nested item 1.
-    *   Deeply nested item 2.
-*   Final top-level item.
+- List item one using the default style.
+- List item two, demonstrating wrapping text that continues onto the next line.
+- List item three with **bold text** and a [link to nowhere](#).
+- A nested list example:
+- Nested item A.
+- Nested item B with further nesting:
+- Deeply nested item 1.
+- Deeply nested item 2.
+- Final top-level item.
 
 #### Ordered Lists (`ol`)
 
 Ordered lists use standard browser numbering, inheriting text styles.
 
 **Example Markdown:**
+
 ```
 1.  First item in an ordered list.
 2.  Second item, showing standard numbering progression.
@@ -108,9 +117,9 @@ Ordered lists use standard browser numbering, inheriting text styles.
 1.  First item in an ordered list.
 2.  Second item, showing standard numbering progression.
 3.  Third item with a link [like this internal link](#).
-  1.  Nested ordered item 3a. This demonstrates indentation.
-  2.  Nested ordered item 3b.
-4.  Fourth top-level item.
+4.  Nested ordered item 3a. This demonstrates indentation.
+5.  Nested ordered item 3b.
+6.  Fourth top-level item.
 
 ---
 
@@ -119,6 +128,7 @@ Ordered lists use standard browser numbering, inheriting text styles.
 Blockquotes provide a visually distinct way to emphasize quoted text.
 
 **Example Markdown:**
+
 ```
 > This is a blockquote. It's typically used for quoting text from another source. It might have a slightly different background or border to set it apart. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
 >
@@ -138,7 +148,8 @@ Blockquotes provide a visually distinct way to emphasize quoted text.
 Preformatted code blocks are used for displaying code snippets. Syntax highlighting styles depend on the Hugo configuration in `config/_default/markup.toml`. The container style is in `assets/scss/_common.scss`.
 
 **Example Markdown (using ````` for the outer block and language hint):**
-```
+
+````
 ```python
 import os
 
@@ -152,7 +163,7 @@ if __name__ == "__main__":
 user = os.getenv("USER", "World")
 greet(user)
 ``\`
-```
+````
 
 **Rendered Output:**
 
@@ -177,6 +188,7 @@ greet(user)
 Basic table styling is provided for standard Markdown tables.
 
 **Example Markdown:**
+
 ```
 | Feature         | Status      | Notes                           |
 | :-------------- | :---------: | :------------------------------ |
@@ -188,12 +200,12 @@ Basic table styling is provided for standard Markdown tables.
 
 **Rendered Output:**
 
-| Feature         | Status      | Notes                           |
-| :-------------- | :---------: | :------------------------------ |
-| Authentication  | Implemented | Uses JWT for session management |
-| User Profiles   | Pending     | Basic structure in place        |
-| Data Export     | Complete    | Supports CSV and JSON formats   |
-| API Integration | Partial     | Connected to service A, B pending |
+| Feature         |   Status    | Notes                             |
+| :-------------- | :---------: | :-------------------------------- |
+| Authentication  | Implemented | Uses JWT for session management   |
+| User Profiles   |   Pending   | Basic structure in place          |
+| Data Export     |  Complete   | Supports CSV and JSON formats     |
+| API Integration |   Partial   | Connected to service A, B pending |
 
 ---
 
@@ -202,6 +214,7 @@ Basic table styling is provided for standard Markdown tables.
 Horizontal rules create thematic breaks between sections.
 
 **Example Markdown:**
+
 ```
 Content above the rule.
 
@@ -226,11 +239,11 @@ Content above the rule.
 
 Content below the rule.
 
-***
+---
 
 Another rule using asterisks.
 
-___
+---
 
 And one using underscores.
 

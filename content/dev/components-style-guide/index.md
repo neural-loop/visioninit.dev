@@ -6,7 +6,7 @@ draft: false
 exclude_sitemap: true # Exclude this page from the sitemap.xml
 tableOfContents:
   startLevel: 2 # Start ToC from H2 headings
-  endLevel: 3   # Include up to H3 headings
+  endLevel: 3 # Include up to H3 headings
   ordered: false # Use unordered list (bullets)
 ---
 
@@ -16,22 +16,22 @@ This style guide provides a reference for developers and site builders working o
 
 Key color variables used throughout the theme are defined in `assets/scss/_variables.scss`.
 
-*(This section uses a table with the `colorswatch` shortcode for visual clarity)*
+_(This section uses a table with the `colorswatch` shortcode for visual clarity)_
 
-| Variable Name       | Value             | Swatch                                  | Usage Notes                                                    |
-| :------------------ | :---------------- | :-------------------------------------- | :------------------------------------------------------------- |
-| `$primary-color`    | `#1797B3` | {{< colorswatch color="#1797B3" >}} | Links, accents, buttons, active states                       |
-| `$secondary-color`  | `#000000`         | {{< colorswatch color="#000000" >}}      | Overlays, some backgrounds/accents                           |
-| `$text-color-dark`  | `#1e1e4b`         | {{< colorswatch color="#1e1e4b" >}}      | Primary heading color, dark text elements                      |
-| `$text-color`       | `#5c5c77`         | {{< colorswatch color="#5c5c77" >}}      | Standard paragraph text                                        |
-| `$text-color-light` | `#8585a4`         | {{< colorswatch color="#8585a4" >}}      | Lighter text, meta info, helper text                         |
-| `$text-lighten`     | `#d6d6e0`         | {{< colorswatch color="#d6d6e0" >}}      | Very light text (e.g., on page headers, newsletter block)    |
-| `$body-color`       | `#ffffff`         | {{< colorswatch color="#ffffff" >}}      | Main site background                                           |
-| `$border-color`     | `#ededf1`         | {{< colorswatch color="#ededf1" >}}      | Standard borders, dividers                                     |
-| `$light`            | `#f8f9fe`         | {{< colorswatch color="#f8f9fe" >}}      | Light background variant (blockquotes, code, some cards)     |
-| `$gray`             | `#f8f8f8`         | {{< colorswatch color="#f8f8f8" >}}      | Alternate light background (offset boxes, subscription section) |
-| `$white`            | `#fff`            | {{< colorswatch color="#fff" >}}         | White text, backgrounds                                        |
-| `$black`            | `#000`            | {{< colorswatch color="#000" >}}         | Black text, backgrounds                                        |
+| Variable Name       | Value     | Swatch                              | Usage Notes                                                     |
+| :------------------ | :-------- | :---------------------------------- | :-------------------------------------------------------------- |
+| `$primary-color`    | `#1797B3` | {{< colorswatch color="#1797B3" >}} | Links, accents, buttons, active states                          |
+| `$secondary-color`  | `#000000` | {{< colorswatch color="#000000" >}} | Overlays, some backgrounds/accents                              |
+| `$text-color-dark`  | `#1e1e4b` | {{< colorswatch color="#1e1e4b" >}} | Primary heading color, dark text elements                       |
+| `$text-color`       | `#5c5c77` | {{< colorswatch color="#5c5c77" >}} | Standard paragraph text                                         |
+| `$text-color-light` | `#8585a4` | {{< colorswatch color="#8585a4" >}} | Lighter text, meta info, helper text                            |
+| `$text-lighten`     | `#d6d6e0` | {{< colorswatch color="#d6d6e0" >}} | Very light text (e.g., on page headers, newsletter block)       |
+| `$body-color`       | `#ffffff` | {{< colorswatch color="#ffffff" >}} | Main site background                                            |
+| `$border-color`     | `#ededf1` | {{< colorswatch color="#ededf1" >}} | Standard borders, dividers                                      |
+| `$light`            | `#f8f9fe` | {{< colorswatch color="#f8f9fe" >}} | Light background variant (blockquotes, code, some cards)        |
+| `$gray`             | `#f8f8f8` | {{< colorswatch color="#f8f8f8" >}} | Alternate light background (offset boxes, subscription section) |
+| `$white`            | `#fff`    | {{< colorswatch color="#fff" >}}    | White text, backgrounds                                         |
+| `$black`            | `#000`    | {{< colorswatch color="#000" >}}    | Black text, backgrounds                                         |
 
 ---
 
@@ -42,6 +42,7 @@ Button styles are defined in `assets/scss/_buttons.scss`. They use Bootstrap cla
 ### Standard Buttons
 
 **Example HTML Structure:**
+
 ```html
 <button class="btn btn-primary">Primary</button>
 <button class="btn btn-outline-primary">Outline</button>
@@ -54,6 +55,7 @@ Button styles are defined in `assets/scss/_buttons.scss`. They use Bootstrap cla
 ### Small Buttons (`.btn-sm`)
 
 **Example HTML Structure:**
+
 ```html
 <button class="btn btn-sm btn-primary">Primary Small</button>
 <button class="btn btn-sm btn-outline-primary">Outline Small</button>
@@ -66,6 +68,7 @@ Button styles are defined in `assets/scss/_buttons.scss`. They use Bootstrap cla
 ### Extra Small Buttons (`.btn-xs`)
 
 **Example HTML Structure:**
+
 ```html
 <button class="btn btn-xs btn-primary">Primary XS</button>
 <button class="btn btn-xs btn-outline-primary">Outline XS</button>
@@ -80,8 +83,11 @@ Button styles are defined in `assets/scss/_buttons.scss`. They use Bootstrap cla
 Used on dark/image backgrounds. Add `.text-white.border-white` to `.btn-outline-primary`.
 
 **Example HTML Structure:**
+
 ```html
-<button class="btn btn-outline-primary text-white border-white">Hero Outline</button>
+<button class="btn btn-outline-primary text-white border-white">
+  Hero Outline
+</button>
 ```
 
 **Live Rendered Output (on dark background):**
@@ -100,6 +106,7 @@ Various card styles are used for different content types.
 **Common Usage:** Sidebar widgets (blog), Subscription plan cards, Service CTA box.
 
 **Example HTML Structure:**
+
 ```html
 <div class="offset-shadow-box bg-white p-4">...Content...</div>
 ```
@@ -114,10 +121,11 @@ Various card styles are used for different content types.
 **Common Usage:** Service cards (homepage, `/services/`).
 
 **Example HTML Structure (using `<a>`):**
+
 ```html
 <a href="#" class="card rounded-0 border hover-shadow ...">
-<i class="fa-solid fa-code feature-icon"></i>
-<h5>Title</h5>
+  <i class="fa-solid fa-code feature-icon"></i>
+  <h5>Title</h5>
   <p>Description</p>
 </a>
 ```
@@ -171,6 +179,7 @@ Reusable content snippets callable within Markdown.
 **Function:** Creates collapsible content sections.
 
 **Example Shortcode Usage:**
+
 ```go-text-template
 {{</* accordion title="Your Question Here?" */>}}
 The answer content, supporting **Markdown**, goes inside the shortcode tags.
@@ -184,7 +193,6 @@ This is the content revealed when the accordion is opened. It uses the standard 
 More content can go here. You can put **Markdown** inside the accordion shortcode.
 {{< /accordion >}}
 
-
 ### Image
 
 **Shortcode:** `image`
@@ -192,6 +200,7 @@ More content can go here. You can put **Markdown** inside the accordion shortcod
 **Function:** Inserts an image with alignment, caption, etc.
 
 **Example Shortcode Usage:**
+
 ```go-text-template
 {{</* image src="/images/about/..." alt="..." caption="..." align="right" maxWidth="30%" */>}}
 ```
@@ -205,6 +214,7 @@ More content can go here. You can put **Markdown** inside the accordion shortcod
 **Function:** Displays a small colored rectangle.
 
 **Example Shortcode Usage:**
+
 ```go-text-template
 {{</* colorswatch color="#1796b2" */>}}
 ```
@@ -221,15 +231,28 @@ Styled for the dark background of the footer newsletter/contact block.
 **Source:** `assets/scss/templates/_homepage.scss` (`.newsletter-block`), `assets/scss/_common.scss`.
 
 **Example Structure (Inputs, Textarea, Toggle Buttons):**
+
 ```html
 <form>
-  <input type="text" class="form-control form-control-sm" placeholder="Name">
-  <input type="email" class="form-control form-control-sm" placeholder="Email">
-  <textarea class="form-control form-control-sm" rows="4" placeholder="Message"></textarea>
+  <input type="text" class="form-control form-control-sm" placeholder="Name" />
+  <input
+    type="email"
+    class="form-control form-control-sm"
+    placeholder="Email"
+  />
+  <textarea
+    class="form-control form-control-sm"
+    rows="4"
+    placeholder="Message"
+  ></textarea>
   <button type="submit" class="btn btn-light btn-block">Send</button>
 </form>
-<button class="btn btn-sm btn-light"><i class="fa-solid fa-paper-plane"></i> Message</button>
-<button class="btn btn-sm btn-outline-light"><i class="fa-solid fa-calendar-check"></i> Schedule</button>
+<button class="btn btn-sm btn-light">
+  <i class="fa-solid fa-paper-plane"></i> Message
+</button>
+<button class="btn btn-sm btn-outline-light">
+  <i class="fa-solid fa-calendar-check"></i> Schedule
+</button>
 ```
 
 **Live Rendered Output (simulated context):**
@@ -241,11 +264,11 @@ Styled for the dark background of the footer newsletter/contact block.
 
 These structural partials define major page sections. Refer to the source files for details.
 
-*   `layouts/partials/header.html` (Navigation)
-*   `layouts/partials/page-header.html` (Breadcrumbs, Title, OG Preview)
-*   `layouts/partials/og-preview.html` (OG Image component in header)
-*   `layouts/partials/footer.html` (Footer columns, CTA, Copyright)
-*   `layouts/partials/sidebar/*.html` (Blog sidebar widgets)
-*   `layouts/partials/components/*.html` (Reusable cards - listed above)
+- `layouts/partials/header.html` (Navigation)
+- `layouts/partials/page-header.html` (Breadcrumbs, Title, OG Preview)
+- `layouts/partials/og-preview.html` (OG Image component in header)
+- `layouts/partials/footer.html` (Footer columns, CTA, Copyright)
+- `layouts/partials/sidebar/*.html` (Blog sidebar widgets)
+- `layouts/partials/components/*.html` (Reusable cards - listed above)
 
 ---

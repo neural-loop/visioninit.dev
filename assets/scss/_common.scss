@@ -119,11 +119,15 @@ a h4 {
     $overlay-base-color: $primary-contrast-color;
     $overlay-second-color: #8889ae;
     background: linear-gradient(
-        to top, // Direction: from bottom to top
-        rgba($overlay-second-color, 1.0) 0%,    // Start at bottom: 100% opaque
-        rgba($overlay-base-color, 0.3) 20%,   // At 20% height: 30% opaque
-        rgba($overlay-base-color, 0.0) 40%,   // At 40% height: 0% opaque (transparent)
-        rgba($overlay-base-color, 0.0) 100%  // Stays transparent to the top
+      to top,
+      // Direction: from bottom to top
+      rgba($overlay-second-color, 1) 0%,
+      // Start at bottom: 100% opaque
+      rgba($overlay-base-color, 0.3) 20%,
+      // At 20% height: 30% opaque
+      rgba($overlay-base-color, 0) 40%,
+      // At 40% height: 0% opaque (transparent)
+      rgba($overlay-base-color, 0) 100% // Stays transparent to the top
     );
 
     // Remove the separate opacity property, it's now handled by the gradient alpha values

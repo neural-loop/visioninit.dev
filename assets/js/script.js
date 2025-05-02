@@ -37,7 +37,8 @@
 
     // --- Scroll handler ---
     const onScroll = () => {
-      const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollPos =
+        window.pageYOffset || document.documentElement.scrollTop;
       // Stick point is when the top of the .navigation element is about to go off-screen
       const navStickPoint = header.offsetTop + topHeaderHeight; // Calculate where nav normally sits
       const navShouldStick = scrollPos > navStickPoint;
@@ -53,7 +54,6 @@
           adjustBreadcrumbTop(); // Update top based on potentially new nav height
           adjustMainPadding(); // Main padding depends on breadcrumb height, recalculate
         });
-
       } else if (!navShouldStick && isNavSticky) {
         // Becoming un-sticky
         // console.log('JS: Nav becoming un-sticky');
@@ -74,10 +74,10 @@
     // Set initial main padding after a tiny delay for rendering accuracy
     requestAnimationFrame(adjustMainPadding);
 
-
     // --- Event Listeners ---
     window.addEventListener('scroll', onScroll, { passive: true }); // Use passive listener for scroll performance
-    window.addEventListener('resize', () => { // Recalculate on resize
+    window.addEventListener('resize', () => {
+      // Recalculate on resize
       // We don't need to change body padding here as it's fixed in CSS
       adjustBreadcrumbTop();
       adjustMainPadding();
@@ -90,10 +90,8 @@
     }
     const navObserver = new ResizeObserver(adjustBreadcrumbTop);
     navObserver.observe(navigation);
-
   }
   // --- END: Sticky Header Logic ---
-
 
   // --- START: OG Preview Effect Function ---
   function initializeOgPreviewEffects() {
@@ -141,7 +139,6 @@
   }
   // --- END: OG Preview Effect Function ---
 
-
   // --- Background-images ---
   $('[data-background]').each(function () {
     $(this).css({
@@ -149,7 +146,6 @@
     });
   });
   // --- End Background-images ---
-
 
   $(document).ready(function () {
     // <<< Initialize Sticky Header Logic >>>
@@ -182,7 +178,12 @@
     let calInitialized = false;
 
     function showFormView() {
-      if (formContainer && calendarContainer && showFormBtn && showCalendarBtn) {
+      if (
+        formContainer &&
+        calendarContainer &&
+        showFormBtn &&
+        showCalendarBtn
+      ) {
         formContainer.classList.remove('d-none');
         calendarContainer.classList.add('d-none');
         showFormBtn.classList.add('btn-light');
@@ -193,7 +194,13 @@
     }
 
     function showCalendarView() {
-      if (formContainer && calendarContainer && showFormBtn && showCalendarBtn && calEmbedDiv) {
+      if (
+        formContainer &&
+        calendarContainer &&
+        showFormBtn &&
+        showCalendarBtn &&
+        calEmbedDiv
+      ) {
         formContainer.classList.add('d-none');
         calendarContainer.classList.remove('d-none');
         showCalendarBtn.classList.add('btn-light');
@@ -210,16 +217,20 @@
               } else {
                 if (!calendarContainer.querySelector('.cal-error-message')) {
                   const errorMsg = document.createElement('p');
-                  errorMsg.className = 'text-warning text-center small mt-4 cal-error-message';
-                  errorMsg.textContent = "Trying to load calendar... If it doesn't appear, please refresh.";
+                  errorMsg.className =
+                    'text-warning text-center small mt-4 cal-error-message';
+                  errorMsg.textContent =
+                    "Trying to load calendar... If it doesn't appear, please refresh.";
                   calendarContainer.appendChild(errorMsg);
                 }
               }
             } catch (e) {
               if (!calendarContainer.querySelector('.cal-error-message')) {
                 const errorMsg = document.createElement('p');
-                errorMsg.className = 'text-danger text-center small mt-4 cal-error-message';
-                errorMsg.textContent = 'Error initializing calendar. Please refresh or use the message form.';
+                errorMsg.className =
+                  'text-danger text-center small mt-4 cal-error-message';
+                errorMsg.textContent =
+                  'Error initializing calendar. Please refresh or use the message form.';
                 calendarContainer.appendChild(errorMsg);
               }
               calInitialized = false;
@@ -228,15 +239,18 @@
         } else {
           if (!calendarContainer.querySelector('.cal-error-message')) {
             const errorMsg = document.createElement('p');
-            errorMsg.className = 'text-danger text-center small mt-4 cal-error-message';
-            errorMsg.textContent = 'Calendar components failed to load. Please refresh or use the message form.';
+            errorMsg.className =
+              'text-danger text-center small mt-4 cal-error-message';
+            errorMsg.textContent =
+              'Calendar components failed to load. Please refresh or use the message form.';
             calendarContainer.appendChild(errorMsg);
           }
         }
         if (!calEmbedDiv.dataset.calLink) {
           if (!calendarContainer.querySelector('.cal-error-message')) {
             const errorMsg = document.createElement('p');
-            errorMsg.className = 'text-danger text-center small mt-4 cal-error-message';
+            errorMsg.className =
+              'text-danger text-center small mt-4 cal-error-message';
             errorMsg.textContent = 'Calendar configuration error.';
             calendarContainer.appendChild(errorMsg);
           }
@@ -245,7 +259,8 @@
     }
 
     if (showFormBtn) showFormBtn.addEventListener('click', showFormView);
-    if (showCalendarBtn) showCalendarBtn.addEventListener('click', showCalendarView);
+    if (showCalendarBtn)
+      showCalendarBtn.addEventListener('click', showCalendarView);
     if (formContainer && calendarContainer && showFormBtn && showCalendarBtn) {
       showFormView(); // Start with form visible
     }
@@ -253,7 +268,9 @@
     // <<< AJAX Contact Form Submission >>>
     const contactForm = document.getElementById('contact-message-form');
     const formFeedback = document.getElementById('form-feedback');
-    const submitButton = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
+    const submitButton = contactForm
+      ? contactForm.querySelector('button[type="submit"]')
+      : null;
 
     if (contactForm && formFeedback && submitButton) {
       contactForm.addEventListener('submit', function (event) {
@@ -262,20 +279,25 @@
         const submitButtonOriginalText = submitButton.innerHTML;
 
         submitButton.disabled = true;
-        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+        submitButton.innerHTML =
+          '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
         formFeedback.innerHTML = '';
         formFeedback.className = 'mt-3 small';
 
         fetch(contactForm.action, {
           method: 'POST',
           body: formData,
-          headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' },
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            Accept: 'application/json',
+          },
         })
-          .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          .then((response) => {
+            if (!response.ok)
+              throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
           })
-          .then(data => {
+          .then((data) => {
             if (data.status === 'success') {
               formFeedback.textContent = data.message;
               formFeedback.classList.add('alert', 'alert-success');
@@ -285,9 +307,10 @@
               formFeedback.classList.add('alert', 'alert-danger');
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.error('Form submission error:', error);
-            formFeedback.textContent = 'A network error occurred sending your message. Please try again.';
+            formFeedback.textContent =
+              'A network error occurred sending your message. Please try again.';
             formFeedback.classList.add('alert', 'alert-danger');
           })
           .finally(() => {
@@ -296,7 +319,5 @@
           });
       });
     }
-
   }); // END $(document).ready()
-
 })(jQuery);

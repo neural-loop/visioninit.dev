@@ -39,9 +39,9 @@ $social-icon-height-tablet: 32px; // Define icon height for calculation
   border-radius: $border-radius;
   overflow: hidden;
   box-shadow:
-    0 4px 12px rgba($black, 0.1),
-    0 0 0 1px rgba($white, 0.1),
-    0 0 20px rgba($white, 0.3);
+    0 4px 12px rgba($black, 0.3),
+    0 0 0 1px rgba($white, 0.3),
+    0 0 20px rgba($white, 0.6);
   transition:
     transform $transition-duration ease,
     box-shadow $transition-duration ease;

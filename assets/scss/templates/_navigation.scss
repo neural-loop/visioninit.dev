@@ -203,19 +203,18 @@ link:focus,
   height: 1.5em;
 }
 
-
 // --- START: Added rules for sticky header height reduction ---
 
 // Reduce padding on nav links when sticky
 .navigation.nav-bg .navbar-expand-lg .navbar-nav .nav-link {
-  padding-top: 15px;    // Reduced top padding
+  padding-top: 15px; // Reduced top padding
   padding-bottom: 15px; // Reduced bottom padding
 }
 
 // Reduce logo size when sticky
 .navigation.nav-bg .navbar-brand img.header-logo {
   max-height: 40px; // Target height
-  width: auto;      // Allow width to adjust
+  width: auto; // Allow width to adjust
   transition: max-height 0.2s ease; // Add transition for logo height
 }
 
@@ -223,7 +222,11 @@ link:focus,
 .navigation.nav-bg .navbar .dropdown-menu {
   // New height ~50px + buffer. Adjust this value if needed after testing.
   top: 60px;
-  transition: top 0.2s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; // Combine transitions
+  transition:
+    top 0.2s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease; // Combine transitions
 }
 
 .navigation.nav-bg .navbar-expand-lg .navbar-nav .nav-link {
@@ -237,5 +240,9 @@ link:focus,
 }
 .navigation.nav-bg .navbar .dropdown-menu {
   top: $sticky-nav-height; // Use variable
-  transition: top 0.2s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  transition:
+    top 0.2s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease;
 }
