@@ -3,7 +3,7 @@ const { readdir, readFile, writeFile, unlink, stat } = require('fs/promises');
 const { execSync } = require('child_process');
 
 // --- Configuration ---
-const CONTENT_ROOT_DIR = join(process.cwd(), 'content', 'english');
+const CONTENT_ROOT_DIR = join(process.cwd(), 'content');
 const TEMPLATE_PATH = join(
   process.cwd(),
   'assets',

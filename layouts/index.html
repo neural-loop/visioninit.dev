@@ -64,17 +64,17 @@
   {{/* --- START: Subscription Tiers Section (Using Original Offset Layout) --- */}}
   {{ $tiers_data := $data.homepage.subscription_tiers }}
   {{ if and $tiers_data.enable $tiers_data.tiers }}
-  <section class="bg-gray overflow-md-hidden pb-lg-5"> {{/* <<< Original outer section classes */}}
+  <section class="bg-light overflow-md-hidden pb-lg-5"> {{/* <<< Original outer section classes */}}
     <div class="container-fluid p-0">
       <div class="row no-gutters">
 
         {{/* Left Offset Column (Empty) - Creates the visual offset */}}
-        <div class="col-xl-4 col-lg-5 align-self-end">
+        <div class="col-xl-4 col-lg-3 align-self-end">
           {{/* This space remains empty */}}
         </div>
 
         {{/* Right Content Column - Contains the actual content including tiers */}}
-        <div class="col-xl-8 col-lg-7">
+        <div class="col-xl-8 col-lg-9">
           <div class="row feature-blocks bg-gray"> {{/* <<< Original inner row for padding/bg */}}
             <div class="col-12"> {{/* Make content span the full width of this right column */}}
 

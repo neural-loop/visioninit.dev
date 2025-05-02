@@ -146,8 +146,8 @@ a h4 {
     mask-repeat: repeat;
 
     // Position: Where the mask starts if not repeating or sized differently.
-    -webkit-mask-position: center center;
-    mask-position: center center;
+    -webkit-mask-position: bottom center;
+    mask-position: bottom center;
 
     // Mode: 'luminance' uses brightness (lighter reveals more).
     // 'alpha' uses transparency (if the mask were a PNG with transparency).
@@ -724,16 +724,4 @@ a[target='_blank'] {
 // Reusable Static Offset Shadow Box Style
 .offset-shadow-box {
   border: 1px solid $border-color; // Base border
-  border-radius: 0px; // Ensure blocky corners
-  // Apply the static offset shadow (adjust color/opacity as needed)
-  box-shadow: -5px 5px 0 0 rgba($black, 0.075);
-
-  // Override potential default Bootstrap shadows if combined
-  &.shadow,
-  &.shadow-sm,
-  &.shadow-lg {
-    box-shadow: -5px 5px 0 0 rgba($black, 0.075) !important;
-  }
-
-  // No hover effect defined here, shadow is always present
 }

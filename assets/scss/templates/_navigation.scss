@@ -47,15 +47,22 @@
 }
 
 .nav-bg {
-  background-color: #737f90;
+  // Use RGBA for transparency - adjust alpha (0.85) as needed
+  background-color: rgba(115, 127, 144, 0.85); // RGBA equivalent of #737f90
+
+  // Add the blur effect - adjust blur amount (8px) as needed
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); // Vendor prefix for Safari
+
+  // Keep existing sticky positioning and shadow
   position: fixed;
   top: 0;
-  left: 0; // Add left: 0
-  right: 0; // Add right: 0
+  left: 0;
+  right: 0;
   width: 100%;
   z-index: 1030; // Ensure it's above breadcrumbs
-  box-shadow: 0 2px 5px rgba($black, 0.1); // Add shadow when sticky
-  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 5px rgba($black, 0.15); // Slightly increased shadow for better contrast
+  transition: background-color 0.2s ease; // Keep transition for background color
 }
 .nav-item {
   .nav-link {
