@@ -76,8 +76,8 @@ a h4 {
 }
 
 .section {
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 
   &-sm {
     padding-top: 40px;
@@ -111,27 +111,55 @@ a h4 {
     width: 100%;
     top: 0;
     left: 0;
+    z-index: -1; // Keep behind content within .overlay if needed
 
-    // --- Gradient Overlay ---
-    // Define the base color for the overlay.
-    // Using $secondary-color (black by default) as a common choice.
-    // Replace with $primary-color or another variable/hex if needed.
+    // --- The Original Gradient ---
     $overlay-base-color: $primary-contrast-color;
     $overlay-second-color: #8889ae;
     background: linear-gradient(
-      to top,
-      // Direction: from bottom to top
-      rgba($overlay-second-color, 1) 0%,
-      // Start at bottom: 100% opaque
-      rgba($overlay-base-color, 0.3) 20%,
-      // At 20% height: 30% opaque
-      rgba($overlay-base-color, 0) 40%,
-      // At 40% height: 0% opaque (transparent)
-      rgba($overlay-base-color, 0) 100% // Stays transparent to the top
+        to top, // Direction: from bottom to top
+        rgba($overlay-second-color, 1.0) 0%,    // Start at bottom: 100% opaque
+        rgba($overlay-base-color, 0.3) 20%,   // At 20% height: 30% opaque
+        rgba($overlay-base-color, 0.0) 40%,   // At 40% height: 0% opaque (transparent)
+        rgba($overlay-base-color, 0.0) 100%  // Stays transparent to the top
     );
 
-    // Remove the separate opacity property, it's now handled by the gradient alpha values
-    // opacity: 0.8; // REMOVE THIS
+    // --- ADD MASKING ---
+    // Define the mask image path
+    // IMPORTANT: Assumes 'interference-pattern.jpeg' is copied to '/images/' in your final 'public' directory.
+    // Adjust the path if needed based on your Hugo build process (e.g., if using Hugo Pipes).
+    $mask-image-url: '/images/interference-pattern.jpeg';
+
+    // Apply the mask
+    -webkit-mask-image: url($mask-image-url);
+    mask-image: url($mask-image-url);
+
+    // --- Control how the mask behaves ---
+    // Size: 'cover' stretches it, 'contain' fits it, 'auto' uses original size,
+    // or specify dimensions like '100px 100px'. 'auto' or specific size often best with repeat.
+    -webkit-mask-size: auto;
+    mask-size: auto;
+
+    // Repeat: 'repeat' tiles the mask, 'no-repeat' shows it once.
+    // For a pattern, 'repeat' is likely what you want.
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+
+    // Position: Where the mask starts if not repeating or sized differently.
+    -webkit-mask-position: center center;
+    mask-position: center center;
+
+    // Mode: 'luminance' uses brightness (lighter reveals more).
+    // 'alpha' uses transparency (if the mask were a PNG with transparency).
+    // If the image has white patterns on black, luminance reveals the pattern.
+    // If it has black patterns on white, luminance hides the pattern (reveals background).
+    // Adjust based on your image and desired effect.
+    -webkit-mask-mode: luminance;
+    mask-mode: luminance;
+
+    // Blend mode for the mask layer itself (less commonly needed for single mask)
+    // -webkit-mask-composite: source-over; // Default behavior
+    // mask-composite: source-over;
   }
 }
 .outline-0 {
@@ -696,7 +724,7 @@ a[target='_blank'] {
 // Reusable Static Offset Shadow Box Style
 .offset-shadow-box {
   border: 1px solid $border-color; // Base border
-  border-radius: 0; // Ensure blocky corners
+  border-radius: 0px; // Ensure blocky corners
   // Apply the static offset shadow (adjust color/opacity as needed)
   box-shadow: -5px 5px 0 0 rgba($black, 0.075);
 

@@ -13,13 +13,14 @@
       </div>
       {{/* Small Sidebar CTA Box */}}
       <div class="col-lg-4 mt-4 mt-lg-0">
-        <div class="service-cta-box offset-shadow-box bg-light p-4 text-center rounded-0 d-flex flex-column h-100"> {{/* Added flex for alignment */}}
+        <div class="service-cta-box offset-shadow-box bg-light p-4 text-center rounded-0 d-flex flex-column mb-4"> {{/* Added flex for alignment */}}
           <p class="mb-4">Let's discuss how this service can help achieve your specific goals.</p>
           <a href="#schedule-consultation" class="btn btn-primary btn-sm mb-3"> {{/* Added mb-3 */}}
             Schedule Consultation
           </a>
+        </div>
+        <div class="service-cta-box offset-shadow-box bg-light p-4 text-center rounded-0 d-flex flex-column"> {{/* Added flex for alignment */}}
           {{/* --- Integrated Subscription Link --- */}}
-          <hr class="w-75 mx-auto my-3"> {{/* Optional divider */}}
           <p class="small mb-2">Need ongoing security support?</p>
           <a href="{{ "/security-sidekick/" | relLangURL }}" class="btn btn-outline-secondary btn-sm mt-auto"> {{/* Use secondary outline, pushed down */}}
           Learn About Subscriptions

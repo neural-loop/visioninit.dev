@@ -11,7 +11,7 @@ Expects a dictionary context with:
   {{/* --- Icon --- */}}
   {{ $icon := $service.Params.icon | default "fa-solid fa-gear" }}
   <div class="mb-4"> {{/* Wrapper div for icon spacing */}}
-    <i class="{{ $icon }} feature-icon" style="font-size: 50px; color: {{ site.Params.primary_color | default `#1796b2` }};"></i>
+    <i class="{{ $icon }} feature-icon" style="font-size: 50px; color: {{ site.Params.primary_color }};"></i>
   </div>
 
   {{/* --- Title --- */}}
