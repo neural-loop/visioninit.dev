@@ -6,24 +6,34 @@
   z-index: 1020; // Below main nav (1030), above content
   background-color: $light;
   box-shadow: 0 2px 4px rgba($black, 0.08);
-  // Set a consistent base font size for the bar
-  font-size: 0.85rem; // Adjust as needed
+  width: 100%;
+  font-size: 0.85rem; // Base font size for the bar
+  display: flex;
+  align-items: center;
+  min-height: $sticky-breadcrumb-height; // Target height
+  transition: top 0.2s ease;
 
-  // Control padding within the sticky bar via the container
   > .container {
-    padding-top: 0.3rem;    // Reduced padding
-    padding-bottom: 0.3rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    width: 100%;
   }
 
   .custom-breadcrumb {
-    margin-bottom: 0 !important; // Remove list margin
-    line-height: 1.4; // Consistent line height
+    margin-bottom: 0 !important;
+    line-height: 1.5; // Ensure consistent line height for alignment
 
     li {
-      vertical-align: middle; // Align items vertically
-      display: inline-flex;   // Use flex for alignment
+      vertical-align: middle;
+      display: inline-flex;
       align-items: center;
       margin-right: 0.25rem;
+
+      // Reset inherited heading styles JUST IN CASE
+      &.h2, &.h3, &.h5 {
+        font-size: inherit !important;
+        margin-bottom: 0 !important;
+      }
 
       // General Link Styling (Ancestors)
       a:not(.breadcrumb-home-link) {
@@ -35,6 +45,7 @@
         border-bottom: 1px solid transparent;
         padding-bottom: 1px;
         transition: color 0.2s ease, border-color 0.2s ease;
+        span { font-size: inherit; } // Ensure span inherits
         &:hover {
           color: $primary-color;
           border-bottom-color: $primary-color;
@@ -48,12 +59,13 @@
         border-radius: 50em;
         padding: 0.3em 0.6em;
         line-height: 1;
-        font-size: 1em; // Make icon link text size match others
+        font-size: inherit; // <<< Inherit size like others
         margin: 0;
         border-bottom: none !important;
         i {
           color: $primary-color !important;
-          font-size: 0.9em; // Slightly smaller icon within the link
+          font-size: 0.9em; // Icon slightly smaller than text
+          line-height: 1;
         }
         &:hover {
           background-color: rgba($primary-color, 0.15);
@@ -64,43 +76,40 @@
       }
 
       // Separator Icons
-      &.h5 i { // Target the list item containing the icon
+      i.fa-angle-right {
         color: $text-color-light;
         font-size: 0.8em;
-        margin: 0 0.25rem;
-        line-height: 1.4; // Match breadcrumb line-height
+        margin: 0 0.3rem; // Increased margin slightly
+        line-height: 1.5;
       }
 
-      // Current Page Text (Targeting the span now)
+      // Current Page Text (Span)
       &.breadcrumb-current-page span {
         color: $text-color-dark;
-        font-family: $primary-font; // Use primary font
-        font-weight: 600; // Make current page bolder
-        font-size: inherit; // Inherit base size from wrapper
-        padding-bottom: 1px; // Align baseline
-        line-height: 1.4;
+        font-family: $primary-font;
+        font-weight: 600;
+        font-size: inherit; // <<< Make sure this inherits the wrapper's font-size
+        padding-bottom: 1px;
+        line-height: 1.5;
+        white-space: nowrap;
+        display: inline-block;
       }
     }
   }
 }
 
 // --- Body Padding for FIXED Navigation ---
-// Apply padding equal to the SHRUNK nav height always.
-// This prevents content jumping when the nav sticks/unsticks.
 body {
   padding-top: $sticky-nav-height;
 }
 
 // --- Main Content Padding for STICKY Breadcrumbs ---
-// Target the <main> element (or adjust selector if needed)
 main {
-  // JS will dynamically set this padding based on breadcrumb height
-  padding-top: $sticky-breadcrumb-height; // Set fallback initial padding
+  padding-top: $sticky-breadcrumb-height;
 }
 
 // --- Page Title Section Padding Reset ---
-// This section scrolls, it doesn't need padding related to sticky elements above it.
 .page-title-section {
-  padding-top: 90px; // Restore its own internal top padding
-  padding-bottom: 80px; // Restore its own internal bottom padding
+  padding-top: 90px;
+  padding-bottom: 80px;
 }

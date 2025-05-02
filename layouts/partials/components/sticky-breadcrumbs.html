@@ -7,7 +7,7 @@
       {{/* Home Link */}}
       <li class="list-inline-item h2 breadcrumb-home-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         {{- $data.Set "counter" 0 }}{{- $data.Add "counter" 1 }}
-        <a class="breadcrumb-home-link font-secondary" itemprop="item" href="{{ site.BaseURL | relLangURL }}" aria-label="Home">
+        <a class="breadcrumb-home-link" itemprop="item" href="{{ site.BaseURL | relLangURL }}" aria-label="Home"> {{/* Removed font-secondary */}}
           <i class="fa-solid fa-house" aria-hidden="true"></i>
         </a>
         <meta itemprop="position" content='{{ $data.Get "counter" }}' />
@@ -29,7 +29,8 @@
       <li class="list-inline-item h5"><i class="fa-solid fa-angle-right text-muted"></i></li>
       <li class="list-inline-item breadcrumb-current-page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         {{- $data.Add "counter" 1 }}
-        <span class="text-dark font-secondary" itemprop="name" style="font-size: 1rem; font-weight: 600;">{{ .Title }}</span> {{/* Use span, style inline or via CSS */}}
+        {{/* <<< REMOVED text-dark, font-secondary and inline style >>> */}}
+        <span itemprop="name">{{ .Title }}</span>
         <meta itemprop="position" content='{{ $data.Get "counter" }}' />
       </li>
     </ul>
