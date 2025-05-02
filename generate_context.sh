@@ -24,7 +24,7 @@ This file contains the content of key configuration, source code, layout, and co
 5.  **Note Dependencies:** Identify key dependencies from go.mod/go.sum and package.json.
 6.  **Ignore Irrelevant Data:** Skip over binary data representations or verbose dependency code if accidentally included. The file list provided *before* this context might be inaccurate due to excluded directories like .git, node_modules, static assets, tmp, etc. Focus on the content provided below.
 7.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.
-
+8.  Provide Code with focus toward with minimal commenting and focus towards simplicity of copying and replacing within the IDE.
 --- FILE CONTENTS START ---
 EOL
 

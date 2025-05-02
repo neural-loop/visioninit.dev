@@ -31,7 +31,5 @@ Thumbs.db
 /.hugo_build.lock
 /hugo_stats.json
 /output.txt
-/package-lock.json
-/go.sum
 /.idea/stylesheetLinters/stylelint.xml
 /tmp/
