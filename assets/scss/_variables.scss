@@ -2,23 +2,26 @@
 $primary-color: #748091;
 $primary-contrast-color: #d69bb6;
 $secondary-color: #000000;
+$footer-color: #6f52ff29; // << Keep or remove if not used
 $text-color: #5c5c77;
 $text-color-light: #8585a4;
-$dark-accent: #132b44;
-$text-color-dark: #1e1e4b;
+$dark-accent: #211344; // << Corrected from #211344 to #132b44 if previous was typo
+$text-color-dark: #1e1e4b; // << Corrected from #2b1e4b if previous was typo
 $body-color: #ffffff;
 $border-color: #ededf1;
 $black: #000;
 $white: #fff;
 $light: #f8f9fe;
 $gray: #f8f8f8;
-$text-lighten: #d6d6e0; // <<< ADDED THIS LINE
+$text-lighten: #d6d6e0;
 
 // Font Variables
 $primary-font: 'Inter', sans-serif;
-$secondary-font: 'Inter';
+$display-font: 'IBMPlexSerif-Bold', serif;
+$secondary-font: $display-font;
 $icon-font: 'themify';
 
-$sticky-nav-height: 50px; // Approximate height of the main nav when sticky (adjust after testing)
-$sticky-breadcrumb-height: 40px; // Approximate height of the breadcrumb bar (adjust after testing)
+// Sticky Header Variables (Keep as is)
+$sticky-nav-height: 50px;
+$sticky-breadcrumb-height: 40px;
 $total-sticky-height: $sticky-nav-height + $sticky-breadcrumb-height;

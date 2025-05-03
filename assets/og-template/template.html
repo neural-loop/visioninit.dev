@@ -9,42 +9,40 @@
       width: 1200px;
       height: 630px;
       font-family: 'Inter', sans-serif;
-      /* Changed: Plain background color - using a light gray similar to the theme */
       background-color: #f8f9fa;
-      /* Removed: linear-gradient */
-      display: flex; /* Use flex to help align content */
-      align-items: center; /* Center vertically */
-      justify-content: center; /* Center horizontally */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-sizing: border-box;
     }
 
     .container {
-      width: 1000px; /* Content width */
+      width: 1000px;
       max-height: 550px;
-      /* Removed background, border-radius, box-shadow */
       display: flex;
       flex-direction: column;
-      /* Changed: Align items to the start (left) */
       align-items: flex-start;
-      /* Changed: Text align left */
       text-align: left;
       box-sizing: border-box;
-      overflow: hidden; /* Ensures content doesn't overflow */
+      overflow: hidden;
     }
 
     .logo {
-      max-height: 150px; /* Slightly smaller logo perhaps */
+      max-height: 150px;
       max-width: 250px;
-      margin-bottom: 20px; /* Space below logo */
+      margin-bottom: 20px;
+      display: block; /* Default display */
+    }
+    img.logo[src=""] {
+      display: none; /* Hide if src is empty */
     }
 
     .title {
       font-size: 50px;
       font-weight: 600;
       line-height: 1.2;
-      color: #1e1e4b; /* Theme's dark text color */
-      margin: 0 0 20px 0; /* Margin bottom */
-      /* Limit title lines */
+      color: #1e1e4b;
+      margin: 0 0 20px 0;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
@@ -53,12 +51,11 @@
     }
 
     .description {
-      font-size: 30px; /* Slightly larger description */
+      font-size: 30px;
       font-weight: 400;
       line-height: 1.45;
-      color: #5c5c77; /* Theme's text color */
-      margin: 0 0 30px 0; /* Margin bottom */
-      /* Limit description lines */
+      color: #5c5c77;
+      margin: 0 0 30px 0;
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
@@ -69,9 +66,10 @@
     .site-name {
       font-size: 26px;
       font-weight: 600;
-      color: #1796b2; /* Theme's primary color */
-      margin-top: auto; /* Push to bottom */
-      align-self: flex-start; /* Ensure it stays left aligned */
+      /* <<< FIX HERE: Use the placeholder >>> */
+      color: PRIMARY_COLOR_PLACEHOLDER;
+      margin-top: auto;
+      align-self: flex-start;
     }
 
   </style>

@@ -128,7 +128,7 @@ a h4 {
     // Define the mask image path
     // IMPORTANT: Assumes 'interference-pattern.jpeg' is copied to '/images/' in your final 'public' directory.
     // Adjust the path if needed based on your Hugo build process (e.g., if using Hugo Pipes).
-    $mask-image-url: '/images/interference-pattern.jpeg';
+    $mask-image-url: '/images/interference-pattern5.jpeg';
 
     // Apply the mask
     -webkit-mask-image: url($mask-image-url);
@@ -719,6 +719,16 @@ a[target='_blank'] {
 .social-share-overlay .social-icon[href*="x.com"]::after, // More generic target for X link
 .copyright .list-inline a[target='_blank']::after {
   content: none !important; /* Remove the icon content */
+}
+
+// Reusable white glow effect for text backgrounds
+.text-glow-white {
+  // Adjust spread (25px) and opacity (0.7) as needed for desired intensity
+  box-shadow: 0 0 25px rgba($white, 0.75);
+  // Optional: Add a subtle background to make text more readable over complex images
+  // background-color: rgba($white, 0.95);
+  // Optional: Add rounded corners if desired
+  // border-radius: 5px;
 }
 
 // Reusable Static Offset Shadow Box Style

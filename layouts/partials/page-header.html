@@ -1,14 +1,14 @@
 <!-- layouts/partials/page-header.html -->
-<!-- Page title section without breadcrumbs -->
 <section class="page-title-section overlay">
   <div class="container">
     <div class="row align-items-center">
-      <!-- Left Column - Title (Now H1) and Description -->
-      <div class="col-lg-8 col-md-7">
-        {{/* Title is now the main H1 for the page */}}
-        <h1 class="text-white font-secondary mb-3 h2">{{ .Title }}</h1>
-        {{/* Page Description remains */}}
-        <p class="text-lighten bg-white">{{ .Params.Description | markdownify }}</p>
+      <!-- Left Column - Title and Description -->
+      {{/* <<< MODIFIED: Added bg-white, p-4, and text-glow-white classes >>> */}}
+      <div class="col-lg-8 col-md-7 bg-white px-4 pt-4 text-glow-white">
+        {{/* <<< MODIFIED: Changed h1 color to text-dark >>> */}}
+        <h1 class="text-dark font-secondary mb-3 h2">{{ .Title }}</h1>
+        {{/* <<< MODIFIED: Changed p color to text-muted >>> */}}
+        <p class="text-muted">{{ .Params.Description | markdownify }}</p>
       </div>
 
       <!-- Right Column - OG Image Preview Partial -->

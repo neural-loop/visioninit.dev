@@ -33,3 +33,4 @@ Thumbs.db
 /output.txt
 /.idea/stylesheetLinters/stylelint.xml
 /tmp/
+/static/og.png

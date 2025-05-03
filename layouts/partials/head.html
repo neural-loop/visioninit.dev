@@ -1,14 +1,13 @@
 <head>
   <meta charset="utf-8">
-  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else if eq .Title site.Title }}{{ .Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
   <!-- Standard Meta Tags -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary | default site.Params.description }}{{ end }}">
   <meta name="author" content="{{ .Params.author | default site.Params.author }}">
 
   <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="{{ .Title }} | {{ site.Title }}">
+  <meta property="og:title" content="{{ .Title }}{{ if not .IsHome }} | {{ site.Title }}{{ end }}">
   <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary | default site.Params.description }}{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
@@ -16,18 +15,48 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ .Title }} | {{ site.Title }}">
+  <meta name="twitter:title" content="{{ .Title }}{{ if not .IsHome }} | {{ site.Title }}{{ end }}">
   <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary | default site.Params.description }}{{ end }}">
 
-  <!-- Image Handling -->
+  <!-- === START OG IMAGE LOGIC (REVISED) === -->
   {{ $ogImage := "" }}
-  {{ with .Resources.GetMatch "og.png" }}
-  {{ $ogImage = .Permalink }}
+  {{ if .IsHome }}
+  {{/* Homepage: Directly reference the file expected in static */}}
+  {{ $ogImage = "/og.png" | absURL }}
+  {{ else }}
+  {{/* Other pages: Look for page resource og.png first */}}
+  {{ $pageOg := .Resources.GetMatch "og.png" }}
+  {{ if $pageOg }}
+  {{ $ogImage = $pageOg.Permalink }}
+  {{ else }}
+  {{/* Fallback to static/og.png if page resource not found */}}
+  {{ $staticOg := resources.Get "og.png" }}
+  {{ if $staticOg }}
+  {{ $ogImage = $staticOg.Permalink }}
+  {{ end }}
+  {{ end }}
   {{ end }}
 
+  {{/* Final fallback: Site logo if no specific or static OG image found */}}
+  {{ if not $ogImage }}
+  {{ with site.Params.logo }}
+  {{ $ogImage = . | absURL }}
+  {{ end }}
+  {{ end }}
 
+  {{/* Render meta tags ONLY if we found an image */}}
+  {{ if $ogImage }}
   <meta property="og:image" content="{{ $ogImage }}">
   <meta name="twitter:image" content="{{ $ogImage }}">
+  {{/* Optional: Add image dimensions if known (improves loading performance for crawlers) */}}
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {{ else }}
+  {{/* Optional: Log warning during build if no image found */}}
+  {{ warnf "OG Image not found for page %s. Check static/og.png and page resources." .Permalink }}
+  {{ end }}
+  <!-- === END OG IMAGE LOGIC === -->
+
 
   <!-- Canonical URL -->
   <link rel="canonical" href="{{ .Permalink }}">
@@ -53,26 +82,23 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{ `/favicon-32x32.png` | absURL }}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ `/favicon-16x16.png` | absURL }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ `/apple-touch-icon.png` | absURL }}">
-  {{/* Add other relevant links if you created the files */}}
-  {{/* <link rel="manifest" href="{{ `/site.webmanifest` | absURL }}"> */}}
-  {{/* <link rel="mask-icon" href="{{ `/safari-pinned-tab.svg` | absURL }}" color="#5bbad5"> */}} {{/* Replace color */}}
   <link rel="shortcut icon" href="{{ `/favicon.ico` | absURL }}">
-  {{/* <meta name="msapplication-TileColor" content="#da532c"> */}} {{/* Example color */}}
+  {{/* Optional: Add other manifest/theme links if needed */}}
+  {{/* <link rel="manifest" href="{{ `/site.webmanifest` | absURL }}"> */}}
   {{/* <meta name="theme-color" content="#ffffff"> */}} {{/* Example color */}}
-  <link rel="shortcut icon" href="{{ `images/favicon.png` | absURL }}" type="image/x-icon">
-  <link rel="icon" href="{{ `images/favicon.png` | absURL }}" type="image/x-icon">
 
   {{/* --- START: Google Analytics --- */}}
   {{ if hugo.IsProduction }}
-  <!-- Google tag (gtag.js) - Direct Paste -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNVVVFY1DH"></script>
+  {{ with site.Config.Services.GoogleAnalytics.ID }}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    gtag('config', 'G-JNVVVFY1DH');
+    gtag('config', '{{ . }}');
   </script>
+  {{ end }}
   {{ end }}
   {{/* --- END: Google Analytics --- */}}
 </head>

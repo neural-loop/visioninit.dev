@@ -1,5 +1,5 @@
 const { join } = require('path');
-const { readdir, readFile, writeFile, unlink, stat } = require('fs/promises');
+const { readdir, readFile, writeFile, unlink, stat, mkdir } = require('fs/promises');
 const { execSync } = require('child_process');
 
 // --- Configuration ---
@@ -15,6 +15,15 @@ const SITE_NAME = 'https://visioninit.dev'; // Your site's name or domain
 const OUTPUT_FILENAME = 'og.png';
 const TEMP_HTML_FILENAME = 'temp-og.html';
 const DEBUG = true; // Set to false to reduce console output
+
+const VARIABLES_SCSS_PATH = join(process.cwd(), 'assets', 'scss', '_variables.scss');
+const DEFAULT_PRIMARY_COLOR = '#748091'; // Fallback color if reading fails
+const STATIC_DIR = join(process.cwd(), 'static');
+const HOMEPAGE_OUTPUT_PATH = join(STATIC_DIR, 'og.png'); // Output to static root
+const HOMEPAGE_TEMP_HTML_PATH = join(process.cwd(), 'temp-homepage-og.html'); // Temp file in project root
+// ** IMPORTANT: Get these values from config/_default/config.toml **
+const HOMEPAGE_TITLE = "VisionInit - Professional IT Services & Solutions";
+const HOMEPAGE_DESCRIPTION = "Expert IT consultancy: Full-stack web development, cloud solutions, and web security assessments. Partner with Justin Riddiough for technical solutions.";
 
 // --- Helper Functions ---
 function debugLog(...messages) {
@@ -66,6 +75,8 @@ async function findMarkdownFiles(dir) {
 
 /**
  * Extracts title, description, and draft status from Markdown front matter.
+ * Removes trailing comments (#...) from title and description lines *after* capture.
+ * Handles optional quotes around values correctly.
  * @param {string} content Markdown file content.
  * @returns {{title: string|null, description: string|null, isDraft: boolean}}
  */
@@ -77,33 +88,55 @@ function extractFrontMatter(content) {
 
   if (frontMatterMatch && frontMatterMatch[1]) {
     const frontMatterContent = frontMatterMatch[1];
-    const titleMatch = frontMatterContent.match(
-      /^(?:title|Title):\s*["']?(.*?)["']?\s*$/m
-    );
-    // Look for description, allow multi-line descriptions enclosed in quotes or basic single line
-    const descriptionMatch = frontMatterContent.match(
-      /^(?:description|Description):\s*["']?([\s\S]*?)["']?\s*$/m
-    );
+
+    const titleRegex = /^(?:title|Title):\s*(.*)\s*$/m;
+    const descriptionRegex = /^(?:description|Description):\s*([\s\S]*?)\s*$/m;
+
+    const titleMatch = frontMatterContent.match(titleRegex);
+    const descriptionMatch = frontMatterContent.match(descriptionRegex);
     const draftMatch = frontMatterContent.match(/^draft:\s*(true)\s*$/m);
 
     if (titleMatch && titleMatch[1]) {
-      title = titleMatch[1].trim().replace(/\\"/g, '"'); // Handle escaped quotes
+      let rawValue = titleMatch[1];
+      // 1. Remove trailing comment first
+      rawValue = rawValue.split('#')[0].trim();
+      // 2. Remove surrounding quotes (double or single)
+      if ((rawValue.startsWith('"') && rawValue.endsWith('"')) || (rawValue.startsWith("'") && rawValue.endsWith("'"))) {
+        rawValue = rawValue.substring(1, rawValue.length - 1);
+      }
+      // 3. Handle escaped quotes *after* removing delimiters
+      title = rawValue.replace(/\\"/g, '"').replace(/\\'/g, "'").trim(); // Added final trim
     }
+
     if (descriptionMatch && descriptionMatch[1]) {
-      // Remove potential leading/trailing quotes and trim whitespace heavily
-      description = descriptionMatch[1]
-        .replace(/^["']|["']$/g, '') // Remove leading/trailing quotes
-        .replace(/\s+/g, ' ') // Collapse whitespace
-        .replace(/\\"/g, '"') // Handle escaped quotes
-        .trim();
+      let rawValue = descriptionMatch[1];
+
+      // --- START Corrected Description Handling ---
+      // 1. Handle escaped quotes FIRST to preserve internal characters
+      rawValue = rawValue.replace(/\\"/g, '"').replace(/\\'/g, "'");
+
+      // 2. Remove trailing comments (handle multi-line safely)
+      const lines = rawValue.split('\n');
+      if (lines.length > 0) {
+        lines[lines.length - 1] = lines[lines.length - 1].split('#')[0]; // Remove comment from last line
+      }
+      rawValue = lines.join(' ').replace(/\s+/g, ' ').trim(); // Join, collapse whitespace, trim
+
+      // 3. Remove surrounding quotes NOW from the cleaned, single-line value
+      if ((rawValue.startsWith('"') && rawValue.endsWith('"')) || (rawValue.startsWith("'") && rawValue.endsWith("'"))) {
+        rawValue = rawValue.substring(1, rawValue.length - 1);
+      }
+
+      description = rawValue.trim(); // Final trim just in case
+      // --- END Corrected Description Handling ---
     }
+
     if (draftMatch) {
       isDraft = true;
     }
   }
   return { title, description, isDraft };
 }
-
 /**
  * Reads an image file and returns a base64 data URI.
  * @param {string} filePath Absolute path to the image file.
@@ -121,12 +154,41 @@ async function getImageDataUri(filePath) {
   }
 }
 
+/**
+ * Reads _variables.scss and extracts the $primary-color value.
+ * @returns {Promise<string>} The primary color hex code or a default.
+ */
+async function getPrimaryColorFromScss() {
+  try {
+    debugLog(`Attempting to read primary color from: ${VARIABLES_SCSS_PATH}`);
+    if (!(await pathExists(VARIABLES_SCSS_PATH))) {
+      console.warn(`⚠️ SCSS variables file not found at ${VARIABLES_SCSS_PATH}. Using default color.`);
+      return DEFAULT_PRIMARY_COLOR;
+    }
+
+    const scssContent = await readFile(VARIABLES_SCSS_PATH, 'utf8');
+    // Regex to find $primary-color: #XXXXXX; (allows 3 or 6 hex chars)
+    const colorMatch = scssContent.match(/^\$primary-color:\s*(#[0-9a-fA-F]{3,6})\s*;/m);
+
+    if (colorMatch && colorMatch[1]) {
+      debugLog(`Found primary color: ${colorMatch[1]}`);
+      return colorMatch[1];
+    } else {
+      console.warn(`⚠️ Could not find $primary-color definition in ${VARIABLES_SCSS_PATH}. Using default color.`);
+      return DEFAULT_PRIMARY_COLOR;
+    }
+  } catch (err) {
+    console.error(`❌ Error reading or parsing ${VARIABLES_SCSS_PATH}: ${err.message}`);
+    console.warn(`Using default primary color: ${DEFAULT_PRIMARY_COLOR}`);
+    return DEFAULT_PRIMARY_COLOR;
+  }
+}
 // --- Main Generation Logic ---
 async function generateOGImages() {
   const absoluteLogoPath = join(process.cwd(), LOGO_PATH_RELATIVE_TO_ROOT);
   let logoDataUri = null;
 
-  // Pre-read and encode the logo
+  // Pre-read and encode the logo (existing logic - unchanged)
   debugLog(`Attempting to load logo from: ${absoluteLogoPath}`);
   if (await pathExists(absoluteLogoPath)) {
     logoDataUri = await getImageDataUri(absoluteLogoPath);
@@ -144,29 +206,28 @@ async function generateOGImages() {
   }
 
   try {
-    // 1. Verify content dir and template exist
+    // 1. Verify content dir and template exist (existing logic - unchanged)
     debugLog(`Content directory: ${CONTENT_ROOT_DIR}`);
     debugLog(`Template path: ${TEMPLATE_PATH}`);
     if (!(await pathExists(CONTENT_ROOT_DIR))) {
-      /* ... */
-    } // Existing checks...
+      console.error(`❌ Error: Content directory not found at ${CONTENT_ROOT_DIR}`);
+      process.exit(1);
+    }
     if (!(await pathExists(TEMPLATE_PATH))) {
-      /* ... */
+      console.error(`❌ Error: OG template not found at ${TEMPLATE_PATH}`);
+      process.exit(1);
     }
 
-    // 2. Find markdown files
+    // 2. Find markdown files (existing logic - unchanged)
     debugLog('Searching for index.md and _index.md files...');
     const markdownFiles = await findMarkdownFiles(CONTENT_ROOT_DIR);
-    debugLog(`Found ${markdownFiles.length} potential markdown files`);
-    if (markdownFiles.length === 0) {
-      /* ... */ return;
-    }
+    debugLog(`Found ${markdownFiles.length} potential markdown files for content pages.`);
 
     debugLog('Reading template file...');
     const template = await readFile(TEMPLATE_PATH, 'utf8');
     debugLog('Template loaded successfully.');
 
-    // 3. Process each markdown file
+    // 3. Process each markdown file (existing loop - unchanged)
     let successCount = 0;
     let skippedCount = 0;
     let errorCount = 0;
@@ -177,7 +238,7 @@ async function generateOGImages() {
       const outputPath = join(pageDirectory, OUTPUT_FILENAME);
 
       try {
-        debugLog(`\nProcessing file: ${mdFile}`);
+        debugLog(`\nProcessing content file: ${mdFile}`);
         const mdContent = await readFile(mdFile, 'utf8');
         const { title, description, isDraft } = extractFrontMatter(mdContent);
 
@@ -192,66 +253,112 @@ async function generateOGImages() {
           continue;
         }
         if (!description) {
-          // <<< Check for description
           debugLog(`No description found in ${mdFile}, skipping...`);
           skippedCount++;
           continue;
         }
 
         debugLog(`Page title: "${title}"`);
-        debugLog(`Page description: "${description.substring(0, 50)}..."`); // Log snippet
+        debugLog(`Page description: "${description.substring(0, 50)}..."`);
         debugLog(`Output will be saved to: ${outputPath}`);
 
-        // Prepare HTML content - replacing all placeholders
         const htmlContent = template
-          .replace('LOGO_SRC', logoDataUri || '') // Use encoded logo or empty string
+          .replace('LOGO_SRC', logoDataUri || '')
           .replace('PAGE_TITLE', title)
           .replace('PAGE_DESCRIPTION', description)
           .replace('SITE_NAME', SITE_NAME);
 
-        // Create temp HTML file
         debugLog(`Creating temp HTML file: ${tempHtmlPath}`);
         await writeFile(tempHtmlPath, htmlContent);
 
-        // Generate image
         const command = `wkhtmltoimage --quality 80 --width 1200 --height 630 "${tempHtmlPath}" "${outputPath}"`;
         debugLog(`Executing: ${command}`);
 
         execSync(command);
-        console.log(`✅ Generated OG image for: "${title}" (${mdFile})`);
+        console.log(`✅ Generated content OG image for: "${title}" (${mdFile})`);
         successCount++;
 
-        // Clean up temp file
         debugLog(`Removing temp file: ${tempHtmlPath}`);
         await unlink(tempHtmlPath);
       } catch (err) {
-        // ... (existing error handling) ...
         console.error(`❌ Failed processing ${mdFile}:`, err.message);
         debugLog('Full error:', err);
         errorCount++;
-        // Attempt cleanup even on error
         if (await pathExists(tempHtmlPath)) {
-          try {
-            await unlink(tempHtmlPath);
-          } catch (cleanupErr) {
-            /* Ignore cleanup error */
-          }
+          try { await unlink(tempHtmlPath); } catch (cleanupErr) { /* Ignore */ }
         }
       }
+    } // --- End of Markdown file loop ---
+
+    // --- START: Homepage Generation ---
+    console.log('\n🚀 Generating OG image for Homepage...');
+    try {
+      if (!HOMEPAGE_TITLE || !HOMEPAGE_DESCRIPTION) {
+        console.warn('⚠️ Skipping homepage OG: Title or Description is missing in script constants.');
+        skippedCount++;
+      } else {
+        await ensureDir(STATIC_DIR); // Ensure static dir exists
+
+        debugLog(`Homepage title: "${HOMEPAGE_TITLE}"`);
+        debugLog(`Homepage description: "${HOMEPAGE_DESCRIPTION.substring(0, 50)}..."`);
+        debugLog(`Output will be saved to: ${HOMEPAGE_OUTPUT_PATH}`);
+
+        const homepageHtmlContent = template
+          .replace('LOGO_SRC', logoDataUri || '')
+          .replace('PAGE_TITLE', HOMEPAGE_TITLE)
+          .replace('PAGE_DESCRIPTION', HOMEPAGE_DESCRIPTION)
+          .replace('SITE_NAME', SITE_NAME);
+
+        debugLog(`Creating temp HTML file: ${HOMEPAGE_TEMP_HTML_PATH}`);
+        await writeFile(HOMEPAGE_TEMP_HTML_PATH, homepageHtmlContent);
+
+        const command = `wkhtmltoimage --quality 90 --width 1200 --height 630 "${HOMEPAGE_TEMP_HTML_PATH}" "${HOMEPAGE_OUTPUT_PATH}"`;
+        debugLog(`Executing: ${command}`);
+
+        execSync(command);
+        console.log(`✅ Generated homepage OG image! (${HOMEPAGE_OUTPUT_PATH})`);
+        successCount++; // Increment success count
+
+        debugLog(`Removing temp file: ${HOMEPAGE_TEMP_HTML_PATH}`);
+        await unlink(HOMEPAGE_TEMP_HTML_PATH);
+      }
+    } catch (err) {
+      console.error(`❌ Failed processing Homepage:`, err.message);
+      debugLog('Full error:', err);
+      errorCount++;
+      // Attempt cleanup even on error
+      if (await pathExists(HOMEPAGE_TEMP_HTML_PATH)) {
+        try { await unlink(HOMEPAGE_TEMP_HTML_PATH); } catch (cleanupErr) { /* Ignore */ }
+      }
     }
+    // --- END: Homepage Generation ---
+
 
     console.log('\n✨ OG image generation complete!');
     console.log(
       `📊 Summary: ${successCount} generated, ${skippedCount} skipped, ${errorCount} errors.`
     );
   } catch (err) {
-    // ... (existing error handling) ...
     console.error('\n🔥 Critical error during script execution:', err.message);
     debugLog('Full error:', err);
     process.exit(1);
   }
 }
 
+// --- Helper function ensureDir (Add this if it doesn't exist) ---
+async function ensureDir(dirPath) {
+  try {
+    await mkdir(dirPath, { recursive: true });
+    debugLog(`Directory ensured: ${dirPath}`);
+  } catch (err) {
+    if (err.code !== 'EEXIST') { // Ignore if directory already exists
+      throw err;
+    }
+    debugLog(`Directory already exists: ${dirPath}`);
+  }
+}
+
+// ... (rest of the script, including the final execution wrapper) ...
 // --- Execution ---
 // Check if wkhtmltoimage and mime-types are installed
 try {

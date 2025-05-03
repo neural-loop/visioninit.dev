@@ -39,10 +39,21 @@
 
 .navbar-nav {
   background: $primary-color;
-
+  margin-top: 10px;
+  margin-bottom: 10px;
   @include desktop {
     padding-left: 0;
     background: $secondary-color;
+  }
+}
+
+// Remove background from collapsed nav menu *only* when sticky
+.navigation.nav-bg { // Target when the main navigation is sticky
+  @include desktop { // Apply only below the desktop breakpoint (when menu is typically collapsed)
+    .navbar-nav {
+      background: none; // Remove the background
+      // or you could use: background-color: transparent;
+    }
   }
 }
 

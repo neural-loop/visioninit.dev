@@ -11,19 +11,18 @@
     "lint:scss:fix": "stylelint \"assets/scss/**/*.scss\" --fix",
     "project-setup": "node ./scripts/projectSetup.js",
     "theme-setup": "node ./scripts/themeSetup.js",
-    "og-images": "node scripts/generateOGImages.js",
+    "og-images": "node scripts/collectOgData.js && node scripts/generateImagesFromData.js",
     "generate-favicons": "node scripts/generateFavicons.js",
     "format": "prettier --write ."
   },
-  "dependencies": {
-    "mime-types": "^3.0.1"
-  },
   "devDependencies": {
+    "mime-types": "^3.0.1",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.5.3",
     "prettier-plugin-go-template": "^0.0.15",
     "prettier-plugin-toml": "^2.0.4",
     "stylelint": "^16.19.1",
-    "stylelint-config-standard-scss": "^14.0.0"
+    "stylelint-config-standard-scss": "^14.0.0",
+    "toml": "^3.0.0"
   }
 }

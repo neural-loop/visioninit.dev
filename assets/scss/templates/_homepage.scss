@@ -1,3 +1,5 @@
+/* assets/scss/templates/_homepage.scss */
+
 /* banner feature */
 .feature-icon {
   font-size: 50px;
@@ -34,34 +36,55 @@
     }
   }
 }
-
 /* /banner feature */
 
-/* course */
-.card-btn {
-  font-size: 12px;
-  padding: 5px 10px;
-}
+/* Service Card Title Underline */
+a.card.hover-shadow h3,
+a.card.service-card-link h3 { // Add other potential card link classes if used
+  position: relative; // Needed for pseudo-element positioning
+  display: inline-block; // Ensure underline only spans text width
+  padding-bottom: 4px; // Add a little space for the underline
 
-.flex-basis-33 {
-  flex-basis: 33.3333%;
-}
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0; // Position at the very bottom
+    width: 100%; // Full width of the text
+    height: 2px; // Thickness of the underline
+    background-color: $primary-color; // Use theme's primary color
 
-.hover-shadow {
-  border: 1px solid $border-color; // Add a default border instead of shadow
-  transition:
-    box-shadow 0.2s ease-in-out,
-    transform 0.2s ease-in-out; // Add transform transition back if desired
-
-  &:hover {
-    // Apply the offset shadow effect
-    box-shadow: -5px 5px 0 0 rgba($black, 0.05); // Adjusted offset slightly
-    // Optional: Add back a subtle lift if you like it with the new shadow
-    // transform: translateY(-3px);
+    // --- Animation ---
+    transform: scaleX(0); // Start hidden (scaled to zero width)
+    transform-origin: left; // Animate width from the left
+    transition: transform 0.3s ease-in-out; // Smooth transition
   }
 }
 
-/* /course */
+// Show Underline on Parent Link Hover
+a.card.hover-shadow:hover h3::after,
+a.card.service-card-link:hover h3::after {
+  transform: scaleX(1); // Scale to full width on hover
+}
+
+
+/* Modern Hover Shadow for Cards */
+.hover-shadow {
+  border: 1px solid $border-color; // Keep the base border for definition
+  // Optional: Add a very subtle base shadow for a slight initial lift
+  box-shadow: 0 1px 3px rgba($black, 0.04);
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out; // Ensure transform and box-shadow are transitioned
+
+  &:hover {
+    // Apply a modern elevation effect on hover
+    transform: translateY(-4px); // Subtle lift
+    box-shadow: 0 5px 15px rgba($black, 0.08); // Softer, more diffused shadow
+  }
+}
+/* /course (Original comment, kept for context) */
+
 
 /* success story */
 .success-video {
@@ -137,8 +160,8 @@
     }
   }
 }
-
 /* /success story */
+
 
 /* events */
 .card-date {
@@ -157,117 +180,4 @@
   }
 }
 
-/* /events */
-
-/* teacher */
-.teacher-info {
-  width: 70%;
-  bottom: 0;
-  right: 0;
-}
-
-/* /teacher */
-
-/* footer */
-.newsletter {
-  background-image: linear-gradient(
-    to right,
-    transparent 50%,
-    $primary-color 50%
-  );
-  margin-bottom: -170px;
-  position: relative;
-  z-index: 1;
-
-  &-block {
-    padding-left: 50px;
-
-    @include mobile {
-      padding-left: 15px;
-    }
-  }
-}
-
-.input-wrapper {
-  position: relative;
-
-  button {
-    position: absolute;
-    right: 25px;
-    top: 50%;
-    transform: translateY(-50%);
-
-    @include mobile {
-      position: static;
-      transform: translateY(-10px);
-      width: 100%;
-      outline: 5px solid #fff;
-      outline-offset: -5px;
-    }
-  }
-}
-
-.form-control {
-  height: 60px;
-  background: $white;
-  border-radius: 0;
-  padding-left: 25px;
-
-  &:focus {
-    border-color: $primary-color;
-    box-shadow: none;
-  }
-}
-
-.newsletter-block {
-  .form-control {
-    height: 80px;
-    padding-right: 160px;
-
-    @include mobile {
-      padding-right: 25px;
-    }
-  }
-}
-
-.bg-footer {
-  background-color: #182b45;
-}
-
-.logo-footer {
-  margin-top: -20px;
-  display: inline-block;
-}
-
-.footer {
-  border-color: #494a43 !important;
-  padding-top: 275px;
-  color: #8996a7;
-
-  a {
-    color: #8996a7;
-    text-transform: capitalize;
-    text-decoration: none !important;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 1px;
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease;
-
-    &:hover {
-      color: $white;
-      border-bottom-color: $primary-color;
-    }
-  }
-}
-
-.copyright .text-primary {
-  color: #fff !important;
-}
-
-.copyright p {
-  color: #fff;
-  text-transform: capitalize;
-}
-
-/* /footer */
+/* --- NO FOOTER STYLES HERE ANYMORE --- */

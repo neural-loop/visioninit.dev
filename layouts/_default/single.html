@@ -6,7 +6,7 @@
     <div class="row">
 
       {{ if .TableOfContents }} {{/* Only show ToC if it has some content (adjust len 15 as needed) */}}
-      <div class="col-lg-3 order-lg-2 mb-4 mb-lg-0">
+      <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0">
         <nav id="toc" class="toc-sidebar card rounded-0 border-0 bg-light p-3">
           <h4 class="mb-3 toc-title">On This Page</h4>
           {{ .TableOfContents }}
@@ -17,7 +17,7 @@
       {{/* Main Content Area - Adjusted Column Width */}}
       {{ $contentColumnClass := "col-lg-12" }} {{/* Default: full width if no ToC */}}
       {{ if len .TableOfContents }}
-      {{ $contentColumnClass = "col-lg-9 order-lg-1" }} {{/* Use 9 cols if ToC is present */}}
+      {{ $contentColumnClass = "col-lg-8 order-lg-1" }} {{/* Use 9 cols if ToC is present */}}
       {{ end }}
       <div class="{{ $contentColumnClass }}">
         <div class="row">
