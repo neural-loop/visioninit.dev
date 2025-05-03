@@ -10,7 +10,10 @@
   margin-bottom: -170px;
   position: relative;
   z-index: 1;
-
+  .newsletter-block {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+  }
   &-block {
     padding-left: 50px;
 
@@ -150,3 +153,46 @@
   }
 }
 /* -- End Footer Styling -- */
+// assets/scss/templates/_footer.scss
+
+// --- Add styles for the new button toggle container ---
+.button-toggle-container {
+  display: inline-flex; // Use flex to keep buttons on one line and allow gap
+  align-items: center; // Vertically align items if heights differ slightly
+  background-color: $white;
+  border-radius: 50em; // Large value for pill shape
+  padding: 5px 8px; // Adjust vertical and horizontal padding as needed
+  box-shadow: 0 2px 5px rgba($black, 0.2); // Optional subtle shadow
+  gap: 5px; // Adds space between the buttons
+
+  .btn {
+    // Override default button margins if they cause issues
+    margin: 0 !important;
+
+    // Ensure buttons have appropriate colors for the white background
+    // The JS will toggle between btn-primary and btn-outline-primary now
+    // You might need minor adjustments here if default btn styles conflict
+    &.btn-primary {
+      // Ensure text is white as defined in _buttons.scss
+      color: $white !important;;
+    }
+    &.btn-outline-primary {
+      // Ensure text is primary color as defined in _buttons.scss
+      color: $primary-color !important;
+      // Ensure hover state changes text to white
+      &:hover, &:active, &:focus {
+        color: $white !important;
+
+      }
+    }
+  }
+}
+#show-calendar-btn {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+#show-form-btn {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+// --- End button toggle container styles ---

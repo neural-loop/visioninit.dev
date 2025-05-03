@@ -186,10 +186,10 @@
       ) {
         formContainer.classList.remove('d-none');
         calendarContainer.classList.add('d-none');
-        showFormBtn.classList.add('btn-light');
-        showFormBtn.classList.remove('btn-outline-light');
-        showCalendarBtn.classList.add('btn-outline-light');
-        showCalendarBtn.classList.remove('btn-light');
+        showFormBtn.classList.add('btn-primary');
+        showFormBtn.classList.remove('btn-outline-primary');
+        showCalendarBtn.classList.add('btn-outline-primary');
+        showCalendarBtn.classList.remove('btn-primary');
       }
     }
 
@@ -203,10 +203,10 @@
       ) {
         formContainer.classList.add('d-none');
         calendarContainer.classList.remove('d-none');
-        showCalendarBtn.classList.add('btn-light');
-        showCalendarBtn.classList.remove('btn-outline-light');
-        showFormBtn.classList.add('btn-outline-light');
-        showFormBtn.classList.remove('btn-light');
+        showCalendarBtn.classList.add('btn-primary');
+        showCalendarBtn.classList.remove('btn-outline-primary');
+        showFormBtn.classList.add('btn-outline-primary');
+        showFormBtn.classList.remove('btn-primary');
 
         if (typeof Cal === 'function') {
           if (!calInitialized || !calEmbedDiv.querySelector('iframe')) {
@@ -261,8 +261,9 @@
     if (showFormBtn) showFormBtn.addEventListener('click', showFormView);
     if (showCalendarBtn)
       showCalendarBtn.addEventListener('click', showCalendarView);
+
     if (formContainer && calendarContainer && showFormBtn && showCalendarBtn) {
-      showFormView(); // Start with form visible
+      showFormView(); // Start with form visible (this function now sets the correct classes)
     }
 
     // <<< AJAX Contact Form Submission >>>

@@ -15,13 +15,15 @@
           <p class="text-white mb-4">{{ .content | markdownify }}</p>
 
           {{/* --- Toggle Buttons --- */}}
-          <div class="mb-4 text-center">
-            <button id="show-form-btn" class="btn btn-sm btn-light mr-2">
-              <i class="fa-solid fa-paper-plane mr-2" aria-hidden="true"></i>Send a Message
-            </button>
-            <button id="show-calendar-btn" class="btn btn-sm btn-outline-light">
-              <i class="fa-solid fa-calendar-check mr-2" aria-hidden="true"></i>Schedule a Meeting
-            </button>
+          <div class="mb-4">
+            <div class="button-toggle-container">
+              <button id="show-form-btn" class="btn btn-sm mr-1"> {{/* Removed initial style classes */}}
+                <i class="fa-solid fa-paper-plane mr-2" aria-hidden="true"></i>Send a Message
+              </button>
+              <button id="show-calendar-btn" class="btn btn-sm ml-1"> {{/* Removed initial style classes */}}
+                <i class="fa-solid fa-calendar-check mr-2" aria-hidden="true"></i>Schedule a Meeting
+              </button>
+            </div>
           </div>
 
           {{/* --- Contact Form Container --- */}}
@@ -83,8 +85,6 @@
           </a>
           <ul class="list-unstyled">
             {{ with site.Params.email }}<li class="mb-3"><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:{{ . }}" class="text-color">{{ . }}</a></li>{{ end }}
-            {{/* Removed Chrome Web Store Link Example */}}
-            {{/* {{ with site.Params.chrome_web_store_link }}<li class="mb-3"><i class="fa-solid fa-bag-shopping mr-2"></i> <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">Chrome Web Store</a></li>{{ end }} */}}
             {{ with site.Params.github_repo }}<li class="mb-3"><i class="fa-brands fa-github mr-2"></i> <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">GitHub Repository</a></li>{{ end }}
           </ul>
         </div>
@@ -108,7 +108,6 @@
           </ul>
         </div>
 
-        <!-- Legal Links -->
         <!-- Legal Links -->
         <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-left">
           <h4 class="mb-4 text-uppercase small">Legal</h4>

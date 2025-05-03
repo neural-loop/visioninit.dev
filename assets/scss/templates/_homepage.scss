@@ -12,7 +12,7 @@
   padding-left: 70px;
   padding-top: 80px;
   padding-right: 30%;
-
+  border-top-left-radius: 50px;
   @include desktop-xl {
     padding-right: 10%;
   }
@@ -36,37 +36,6 @@
     }
   }
 }
-/* /banner feature */
-
-/* Service Card Title Underline */
-a.card.hover-shadow h3,
-a.card.service-card-link h3 { // Add other potential card link classes if used
-  position: relative; // Needed for pseudo-element positioning
-  display: inline-block; // Ensure underline only spans text width
-  padding-bottom: 4px; // Add a little space for the underline
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0; // Position at the very bottom
-    width: 100%; // Full width of the text
-    height: 2px; // Thickness of the underline
-    background-color: $primary-color; // Use theme's primary color
-
-    // --- Animation ---
-    transform: scaleX(0); // Start hidden (scaled to zero width)
-    transform-origin: left; // Animate width from the left
-    transition: transform 0.3s ease-in-out; // Smooth transition
-  }
-}
-
-// Show Underline on Parent Link Hover
-a.card.hover-shadow:hover h3::after,
-a.card.service-card-link:hover h3::after {
-  transform: scaleX(1); // Scale to full width on hover
-}
-
 
 /* Modern Hover Shadow for Cards */
 .hover-shadow {

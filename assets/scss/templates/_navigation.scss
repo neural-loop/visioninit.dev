@@ -40,11 +40,14 @@
 .navbar-nav {
   background: $primary-color;
   margin-top: 10px;
+  border-radius: 10px;
   margin-bottom: 10px;
   @include desktop {
     padding-left: 0;
     background: $secondary-color;
   }
+  box-shadow: 0 2px 5px rgba($black, 0.15); // Slightly increased shadow for better contrast
+
 }
 
 // Remove background from collapsed nav menu *only* when sticky
