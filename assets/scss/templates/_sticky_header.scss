@@ -2,7 +2,7 @@
 
 .sticky-breadcrumbs-wrapper {
   position: sticky;
-  // top offset is now handled dynamically by JavaScript
+  top: $sticky-nav-height-onload; // <<< ADD THIS LINE: Set initial top based on sticky nav height
   z-index: 1020; // Below main nav (1030), above content
   background-color: $light;
   box-shadow: 0 2px 4px rgba($black, 0.08);
@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   min-height: $sticky-breadcrumb-height; // Target height
-  transition: top 0.2s ease;
+  transition: top 0.2s ease; // Keep the transition (though JS might override)
 
   > .container {
     padding-top: 0.4rem;
@@ -119,5 +119,5 @@ main {
 // --- Page Title Section Padding Reset ---
 .page-title-section {
   padding-top: 90px;
-  padding-bottom: 50px;
+  padding-bottom: 80px;
 }

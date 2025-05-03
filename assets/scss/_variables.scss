@@ -22,6 +22,7 @@ $secondary-font: $display-font;
 $icon-font: 'themify';
 
 // Sticky Header Variables (Keep as is)
-$sticky-nav-height: 50px;
+$sticky-nav-height: 46px;
+$sticky-nav-height-onload: 118px;
 $sticky-breadcrumb-height: 40px;
 $total-sticky-height: $sticky-nav-height + $sticky-breadcrumb-height;

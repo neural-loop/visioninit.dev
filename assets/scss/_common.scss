@@ -736,14 +736,3 @@ a[target='_blank'] {
   border: 1px solid $border-color; // Base border
 }
 
-.text-glow-white {
-  // Keep the box-shadow for the glow effect if desired, or remove if only background is wanted
-  box-shadow: 0 0 25px rgba($white, 0.75);
-
-  // --- START: Added Background ---
-  background-color: rgba($white, 0.85); // White background, 85% opaque (adjust 0.85 as needed)
-  padding: 1rem 1.5rem; // Add padding inside the semi-transparent box
-  border-radius: 5px; // Optional: Slightly rounded corners for the background box
-  display: block; // Ensure it behaves as a block to contain the elements
-  // --- END: Added Background ---
-}

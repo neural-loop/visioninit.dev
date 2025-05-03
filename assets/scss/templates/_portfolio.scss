@@ -1,28 +1,10 @@
 // Import this file in main.scss: @import 'templates/portfolio';
 
-// --- Portfolio List Styles ---
-
-.portfolio-list {
-  // Add any specific section styling if needed
-}
-
-.portfolio-item-col {
-  // Ensures columns behave correctly with flex stretching
-}
-
-// themes/visioninit/assets/scss/templates/_portfolio.scss
-// themes/visioninit/assets/scss/templates/_portfolio.scss
-
 // --- Portfolio Wide Card Styles ---
 .portfolio-card-wide {
-  // ... (keep existing base styles: overflow, border-radius, border, box-shadow, transition) ...
   overflow: hidden;
   border-radius: 0;
   transition: box-shadow 0.2s ease-in-out;
-
-  .row {
-    // Ensure row takes full height if card has h-100
-  }
 
   // --- Style the Image Column (Container) ---
   .portfolio-card-wide-image-col {
@@ -59,13 +41,3 @@
     }
   }
 }
-
-// Ensure other portfolio card styles (.portfolio-card) are NOT changed for now,
-// unless they previously had conflicting hover styles that need removing.
-// For example, make sure this part is removed or commented out if present:
-/*
-.portfolio-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0.5rem 1rem rgba($black, 0.1) !important;
-}
-*/

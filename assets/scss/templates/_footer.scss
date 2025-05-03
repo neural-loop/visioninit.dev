@@ -13,9 +13,14 @@
   .newsletter-block {
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
+    box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.36);
+  }
+  .submit-button {
+    border-bottom-left-radius: 20px;
   }
   &-block {
-    padding-left: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
 
     @include mobile {
       padding-left: 15px;
@@ -33,11 +38,14 @@
       font-weight: 400;
       // color: $white; // Example if labels were white on dark bg
     }
-
+    textarea.form-control {
+      height: 80px;
+    }
     // Specific form control override for newsletter block
     .form-control {
-      height: 80px;
+      height: 50px;
       padding-right: 160px;
+
 
       @include mobile {
         padding-right: 25px;
