@@ -2,7 +2,6 @@
 
 slider:
   enable: true
-  # bg_image: "images/banner.jpg" # <<< REMOVE or COMMENT OUT this line
   slider_item:
     - title: 'Secure Development by Design'
       content: 'Building robust, scalable web solutions with security embedded from inception. Leveraging **20+ years of full-stack expertise** and proven security credentials to protect your digital assets and accelerate innovation.'
@@ -31,7 +30,7 @@ subscription_tiers:
       #   - icon: "fa-solid fa-bullseye"
       #     text: "One dedicated security request."
       button:
-        label: 'Learn More'
+        label: 'Learn about Sure Shot'
         link: '/security-sidekick/' # Links to the main page for now
 
     - name: 'Steady Shot'
@@ -45,7 +44,7 @@ subscription_tiers:
       #   - icon: "fa-solid fa-clock-rotate-left"
       #     text: "Typical 48-72hr turnaround."
       button:
-        label: 'Learn More'
+        label: 'Learn about Steady Shot'
         link: '/security-sidekick/' # Links to the main page for now
 
 # --- UPDATED VIDEO FEATURE SECTION ---

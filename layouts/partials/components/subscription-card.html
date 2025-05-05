@@ -5,11 +5,11 @@ Expects a dictionary context with:
 */}}
 {{ $tier := .context }}
 
-<div class="card subscription-card offset-shadow-box bg-white p-4 p-md-5 text-center rounded-0 h-100 d-flex flex-column"> {{/* Added h-100, d-flex, flex-column */}}
+<div class="card subscription-card offset-shadow-box bg-white p-4 p-md-5 text-center rounded-0 h-100 d-flex flex-column">
   <h3 class="h5 mb-3 text-dark font-weight-bold">{{ $tier.name }}</h3>
   <h4 class="h3 mb-3 text-primary font-weight-bold">{{ $tier.price }}<small class="text-muted font-weight-normal ml-1">{{ $tier.price_suffix }}</small></h4>
 
-  <p class="card-text text-muted small mb-4 flex-grow-1">{{ $tier.description | markdownify }}</p> {{/* Added flex-grow-1 */}}
+  <p class="card-text text-muted small mb-4 flex-grow-1">{{ $tier.description | markdownify }}</p>
 
   {{/* Optional: Display features if defined in YAML */}}
   {{ with $tier.features }}
@@ -25,7 +25,10 @@ Expects a dictionary context with:
 
   {{/* Button - Pushed to bottom */}}
   <div class="mt-auto">
-    <a href="{{ $tier.button.link | absLangURL }}" class="btn btn-primary">
+    {{/* <<< ADD aria-label HERE >>> */}}
+    <a href="{{ $tier.button.link | absLangURL }}"
+       class="btn btn-primary"
+       aria-label="Learn More about the {{ $tier.name }} Plan"> {{/* Adds descriptive context */}}
       {{ $tier.button.label }}
     </a>
   </div>
