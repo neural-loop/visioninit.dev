@@ -52,17 +52,27 @@
 
           {{/* --- Calendar Container --- */}}
           {{ $calLink := site.Params.scheduling_link | default "YOUR_CAL_LINK_MISSING_IN_HUGO.TOML" }}
+          {{ $fullCalLink := site.Params.scheduling_link | default "" }}
+          {{ $calPath := "" }}
+          {{ if $fullCalLink }}
+          {{/* Try to parse the URL and extract the path */}}
+          {{ $parsedURL := urls.Parse $fullCalLink }}
+          {{/* Remove leading slash from path if present, cal.com wants 'user' or 'user/event' */}}
+          {{ $calPath = strings.TrimPrefix "/" $parsedURL.Path }}
+          {{ end }}
+
           <div id="calendar-container" class="d-none"> {{/* Starts hidden */}}
-            {{ if ne $calLink "YOUR_CAL_LINK_MISSING_IN_HUGO.TOML" }}
-            {{/* The div Cal.com targets */}}
+            {{ if $calPath }} {{/* Check if we successfully got a path */}}
+            {{/* The div Cal.com targets - Use ONLY the path in data-cal-link */}}
             <div style="width:100%;height:100%;overflow:scroll"
                  id="my-cal-inline"
-                 data-cal-link="{{ $calLink }}">
-              {{/* Optional: Add a loading indicator here */}}
+                 data-cal-link="{{ $calPath }}"> {{/* <<< CHANGED: Use $calPath */}}
               <p class="text-center text-muted small mt-4">Loading Calendar...</p>
             </div>
             {{ else }}
-            <p class="text-warning small">Calendar scheduling link is not configured.</p>
+            <p class="text-warning small">Calendar scheduling link seems invalid or is not configured correctly in config.toml.</p>
+            {{/* Optionally log the problematic full link for debugging */}}
+            {{ warnf "Could not extract path from scheduling_link: %s" $fullCalLink }}
             {{ end }}
             {{/* Error message placeholder */}}
             <div id="cal-error-message" class="text-center small mt-4"></div>

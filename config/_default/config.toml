@@ -27,7 +27,7 @@ copyright = "Copyright © 2025 VisionInit Solutions" # Added from languages.toml
 address = "" # Add if relevant
 # Contact form action (Update if you use a form service like Formspree, Netlify Forms, etc.)
 contact_form_action = "/contact/" # Example: point to a contact page
-scheduling_link = "https://cal.com/visioninit"
+scheduling_link = "https://cal.com/visioninit/30min"
 
 # Social Links (Used in header/footer - Update links)
 [[params.social]]
@@ -70,8 +70,6 @@ link = "plugins/jQuery/jquery.min.js"
 link = "plugins/bootstrap/bootstrap.bundle.min.js" # Includes Popper
 [[params.plugins.js]]
 link = "plugins/js-cookie/js.cookie.min.js" # For cookie consent
-[[params.plugins.js]]
-link = "plugins/cal/cal.js" # For cookie consent
 
 
 ############################# Build Configuration ##############################
