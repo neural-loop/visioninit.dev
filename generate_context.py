@@ -43,6 +43,7 @@ EXCLUDED_FILES_PATTERNS = [
     str(DIFF_OUTPUT_FILE.name), # Exclude the output files by name
     "*.pyc",
     "*~", # Backup files
+    "package-lock.json", # <<< ADDED THIS LINE TO EXCLUDE package-lock.json
 ]
 
 # File patterns/names to INCLUDE
@@ -66,7 +67,7 @@ INCLUDE_PATTERNS = [
     "go.mod",
     "go.sum",
     "package.json", # Explicitly include if needed, covered by *.json otherwise
-    "package-lock.json", # Explicitly include if needed, covered by *.json otherwise
+    # "package-lock.json", # <<< REMOVED from includes (already covered by exclude)
     "nginx.conf",
 ]
 # --- End Configuration ---

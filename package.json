@@ -6,7 +6,7 @@
     "dev": "hugo server --buildFuture",
     "dev:verbose": "hugo server --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --buildDrafts --buildExpired --buildFuture --watch --forceSyncStatic -e production --minify",
     "build": "npm run clean && npm run generate-favicons && npm run og-images && hugo --gc --minify --templateMetrics --templateMetricsHints --buildExpired --buildFuture --forceSyncStatic",
-    "clean": "rm -rf public/ resources/ tmp/ static/favicon* static/apple-touch-icon.png static/logo.png content/**/og.png content/**/temp-og.html",
+    "clean": "rm -rf public/ resources/ tmp/ static/favicon* static/apple-touch-icon.png static/logo.png static/og.jpg content/**/og.jpg content/**/temp-og.html temp-homepage-og.html",
     "lint:scss": "stylelint \"assets/scss/**/*.scss\"",
     "lint:scss:fix": "stylelint \"assets/scss/**/*.scss\" --fix",
     "project-setup": "node ./scripts/projectSetup.js",

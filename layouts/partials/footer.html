@@ -1,4 +1,4 @@
-{{/* themes/visioninit/layouts/partials/footer.html */}}
+{{/* layouts/partials/footer.html */}}
 <!-- footer -->
 <footer>
   {{ $data := index site.Data  }}
@@ -17,10 +17,12 @@
           {{/* --- Toggle Buttons --- */}}
           <div class="mb-4">
             <div class="button-toggle-container">
-              <button id="show-form-btn" class="btn btn-sm mr-1"> {{/* Removed initial style classes */}}
+              {{/* <<< ADD type="button" HERE >>> */}}
+              <button type="button" id="show-form-btn" class="btn btn-sm mr-1">
                 <i class="fa-solid fa-paper-plane mr-2" aria-hidden="true"></i>Send a Message
               </button>
-              <button id="show-calendar-btn" class="btn btn-sm ml-1"> {{/* Removed initial style classes */}}
+              {{/* <<< ADD type="button" HERE >>> */}}
+              <button type="button" id="show-calendar-btn" class="btn btn-sm ml-1">
                 <i class="fa-solid fa-calendar-check mr-2" aria-hidden="true"></i>Schedule a Meeting
               </button>
             </div>
@@ -50,13 +52,14 @@
 
           {{/* --- Calendar Container --- */}}
           {{ $calLink := site.Params.scheduling_link | default "YOUR_CAL_LINK_MISSING_IN_HUGO.TOML" }}
-          <div id="calendar-container" class="d-none"> {{/* Still starts hidden */}}
+          <div id="calendar-container" class="d-none"> {{/* Starts hidden */}}
             {{ if ne $calLink "YOUR_CAL_LINK_MISSING_IN_HUGO.TOML" }}
             {{/* The div Cal.com targets */}}
-            <div style="width:100%;  overflow:scroll;"
+            <div style="width:100%;height:100%;overflow:scroll"
                  id="my-cal-inline"
                  data-cal-link="{{ $calLink }}">
               {{/* Optional: Add a loading indicator here */}}
+              <p class="text-center text-muted small mt-4">Loading Calendar...</p>
             </div>
             {{ else }}
             <p class="text-warning small">Calendar scheduling link is not configured.</p>

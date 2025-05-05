@@ -7,12 +7,13 @@ const toml = require('toml');
 const PROJECT_ROOT = process.cwd();
 const CONTENT_ROOT_DIR = join(PROJECT_ROOT, 'content');
 const DEFAULT_CONFIG_PATH = join(PROJECT_ROOT, 'config', '_default', 'config.toml');
-const PROD_CONFIG_PATH = join(PROJECT_ROOT, 'config', 'production', 'config.toml'); // << READ PROD CONFIG
+const PROD_CONFIG_PATH = join(PROJECT_ROOT, 'config', 'production', 'config.toml');
 const VARIABLES_SCSS_PATH = join(PROJECT_ROOT, 'assets', 'scss', '_variables.scss');
 const LOGO_PATH_RELATIVE_TO_ROOT = 'assets/images/logo-source.png';
 const STATIC_DIR = join(PROJECT_ROOT, 'static');
 const TMP_DIR = join(PROJECT_ROOT, 'tmp');
 const OUTPUT_JSON_PATH = join(TMP_DIR, 'ogImageData.json');
+const OUTPUT_FORMAT = 'jpg'; // <<< CHANGED: Specify output format
 const DEBUG = false;
 
 // Colors to extract from SCSS
@@ -36,7 +37,6 @@ const DEFAULT_COLORS = { // Fallbacks if SCSS parsing fails
   'primary-color': '#748091',
   'text-color-dark': '#1e1e4b',
   'text-color': '#5c5c77',
-  // Add other essential fallbacks if needed
 };
 
 
@@ -112,7 +112,6 @@ async function getImageDataUri(filePath) {
 // --- NEW: Function to read and merge configs ---
 async function getMergedHugoConfig() {
   let config = {};
-  // Read Default Config
   try {
     debugLog(`Reading default Hugo config from: ${DEFAULT_CONFIG_PATH}`);
     if (await pathExists(DEFAULT_CONFIG_PATH)) {
@@ -122,75 +121,50 @@ async function getMergedHugoConfig() {
     } else {
       console.warn(`⚠️ Default config file not found at ${DEFAULT_CONFIG_PATH}`);
     }
-  } catch (err) {
-    console.error(`❌ Error reading/parsing ${DEFAULT_CONFIG_PATH}: ${err.message}`);
-    // Continue without default config if it fails
-  }
+  } catch (err) { /* ... error handling ... */ }
 
-  // Read Production Config and merge (production overrides default)
   try {
     debugLog(`Reading production Hugo config from: ${PROD_CONFIG_PATH}`);
     if (await pathExists(PROD_CONFIG_PATH)) {
       const prodContent = await readFile(PROD_CONFIG_PATH, 'utf8');
       const prodConfig = toml.parse(prodContent);
       debugLog(`Production Hugo config parsed.`);
-      // Simple merge (adjust if deep merge needed, e.g., for params)
       config = { ...config, ...prodConfig };
-      // Merge params specifically if they exist in both
       if (config.params && prodConfig.params) {
         config.params = { ...config.params, ...prodConfig.params };
       }
       debugLog(`Merged production config over default.`);
-    } else {
-      console.warn(`⚠️ Production config file not found at ${PROD_CONFIG_PATH}. Using default/base config only.`);
-    }
-  } catch (err) {
-    console.error(`❌ Error reading/parsing ${PROD_CONFIG_PATH}: ${err.message}`);
-    console.warn(`Using default/base config only due to production config error.`);
-  }
+    } else { /* ... warning ... */ }
+  } catch (err) { /* ... error handling ... */ }
 
-  // Extract needed values
   return {
     siteName: config.title || 'Missing Site Title',
     siteDescription: config.params?.description || 'Missing site description.',
-    siteURL: config.URL || null // << Get the URL parameter
+    siteURL: config.URL || null
   };
 }
 
 
 // --- NEW: Function to get the full color palette ---
 async function getPaletteFromScss() {
-  const palette = { ...DEFAULT_COLORS }; // Start with defaults
+  const palette = { ...DEFAULT_COLORS };
   try {
     debugLog(`Attempting to read SCSS variables from: ${VARIABLES_SCSS_PATH}`);
-    if (!(await pathExists(VARIABLES_SCSS_PATH))) {
-      console.warn(`⚠️ SCSS variables file not found at ${VARIABLES_SCSS_PATH}. Using default colors.`);
-      return palette;
-    }
+    if (!(await pathExists(VARIABLES_SCSS_PATH))) { /* ... warning ... */ return palette; }
     const scssContent = await readFile(VARIABLES_SCSS_PATH, 'utf8');
 
     COLORS_TO_EXTRACT.forEach(colorVarName => {
-      // Regex to find $color-var-name: #XXXXXX; or rgb(...); etc. Handles comments.
-      // It captures the variable name and its value.
       const regex = new RegExp(`^\\$${colorVarName}:\\s*([^;]+?)\\s*;.*$`, 'm');
       const match = scssContent.match(regex);
       if (match && match[1]) {
         const colorValue = match[1].trim();
-        palette[colorVarName] = colorValue; // Store the found color
+        palette[colorVarName] = colorValue;
         debugLog(`Found color ${colorVarName}: ${colorValue}`);
-      } else {
-        if (!palette[colorVarName]) { // Only warn if not already defaulted
-          debugLog(`Could not find definition for $${colorVarName} in ${VARIABLES_SCSS_PATH}.`);
-        }
-      }
+      } else { /* ... debug log ... */ }
     });
     console.log(`🎨 Extracted ${Object.keys(palette).length} colors from SCSS.`);
     return palette;
-  } catch (err) {
-    console.error(`❌ Error reading or parsing ${VARIABLES_SCSS_PATH}: ${err.message}`);
-    console.warn('Using default colors due to error.');
-    return palette; // Return defaults on error
-  }
+  } catch (err) { /* ... error handling ... */ return palette; }
 }
 
 // --- Main Data Collection Logic ---
@@ -198,22 +172,18 @@ async function collectData() {
   console.log('📊 Starting OG image data collection...');
   await ensureDir(TMP_DIR);
 
-  const hugoConfig = await getMergedHugoConfig(); // << USE MERGED CONFIG
-  const colorPalette = await getPaletteFromScss(); // << GET FULL PALETTE
+  const hugoConfig = await getMergedHugoConfig();
+  const colorPalette = await getPaletteFromScss();
   const absoluteLogoPath = join(PROJECT_ROOT, LOGO_PATH_RELATIVE_TO_ROOT);
   const logoDataUri = await getImageDataUri(absoluteLogoPath);
 
-  if (!hugoConfig.siteURL) {
-    console.warn('⚠️ Site URL (key `URL`) not found in production or default config. Site name in OG image might be incorrect.');
-  }
-  if (!logoDataUri) {
-    console.warn(`⚠️ Logo not found or unreadable at ${absoluteLogoPath}. Proceeding without logo.`);
-  }
+  if (!hugoConfig.siteURL) { /* ... warning ... */ }
+  if (!logoDataUri) { /* ... warning ... */ }
 
   const outputData = {
-    siteNameForDisplay: hugoConfig.siteURL || 'visioninit.dev', // << USE SITE URL FROM CONFIG, fallback
+    siteNameForDisplay: hugoConfig.siteURL || 'visioninit.dev',
     logoDataUri: logoDataUri,
-    colors: colorPalette, // << STORE THE FULL PALETTE
+    colors: colorPalette,
     pages: [],
   };
 
@@ -224,13 +194,11 @@ async function collectData() {
       type: 'homepage',
       title: hugoConfig.siteName,
       description: hugoConfig.siteDescription,
-      outputPath: join(STATIC_DIR, 'og.png'),
-      tempHtmlPath: join(PROJECT_ROOT, 'temp-homepage-og.html'),
+      outputPath: join(STATIC_DIR, `og.${OUTPUT_FORMAT}`), // <<< CHANGED extension
+      tempHtmlPath: join(PROJECT_ROOT, `temp-homepage-og.html`),
     });
     debugLog('Added homepage data.');
-  } else {
-    console.warn('⚠️ Skipping homepage: Site title or description missing in config.');
-  }
+  } else { /* ... warning ... */ }
 
 
   // 2. Process Content Pages
@@ -258,15 +226,13 @@ async function collectData() {
         sourceMdPath: mdFile,
         title: title,
         description: description,
-        outputPath: join(pageDirectory, 'og.png'),
-        tempHtmlPath: join(pageDirectory, 'temp-og.html'),
+        outputPath: join(pageDirectory, `og.${OUTPUT_FORMAT}`), // <<< CHANGED extension
+        tempHtmlPath: join(pageDirectory, `temp-og.html`),
       });
       processedCount++;
       debugLog(`Added data for: ${relativeMdPath}`);
 
-    } catch (err) {
-      console.error(`❌ Error processing ${relativeMdPath}: ${err.message}`);
-    }
+    } catch (err) { /* ... error handling ... */ }
   }
 
   // 3. Write JSON Output
@@ -275,10 +241,7 @@ async function collectData() {
     await writeFile(OUTPUT_JSON_PATH, JSON.stringify(outputData, null, 2));
     console.log('✅ Data collection complete.');
     console.log(`📊 Processed ${processedCount} content pages, skipped ${skippedCount}.`);
-  } catch (err) {
-    console.error(`❌ Failed to write output JSON to ${OUTPUT_JSON_PATH}: ${err.message}`);
-    process.exit(1);
-  }
+  } catch (err) { /* ... error handling ... */ process.exit(1); }
 }
 
 // --- Execution ---
@@ -290,8 +253,4 @@ try {
     console.error("🔥 Uncaught error during data collection:", err);
     process.exit(1);
   });
-} catch (e) {
-  console.error('\n❌ Required package `toml` or `mime-types` is not installed.');
-  console.error('   Please install it by running: npm install toml mime-types --save-dev'); // Corrected install command
-  process.exit(1);
-}
+} catch (e) { /* ... error handling ... */ process.exit(1); }

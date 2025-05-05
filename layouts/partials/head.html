@@ -17,20 +17,25 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ .Title }}{{ if not .IsHome }} | {{ site.Title }}{{ end }}">
   <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary | default site.Params.description }}{{ end }}">
-
-  <!-- === START OG IMAGE LOGIC (REVISED) === -->
+  <!-- === START OG IMAGE LOGIC (REVISED FOR JPG) === -->
   {{ $ogImage := "" }}
+  {{ $ogImageFormat := "jpg" }} {{/* Define format */}}
+  {{ $ogImageName := printf "og.%s" $ogImageFormat }} {{/* Construct filename */}}
+
   {{ if .IsHome }}
-  {{/* Homepage: Directly reference the file expected in static */}}
-  {{ $ogImage = "/og.png" | absURL }}
+  {{/* Homepage: Check for static/og.jpg */}}
+  {{ $staticOg := resources.Get $ogImageName }}
+  {{ if $staticOg }}
+  {{ $ogImage = $staticOg.Permalink }}
+  {{ end }}
   {{ else }}
-  {{/* Other pages: Look for page resource og.png first */}}
-  {{ $pageOg := .Resources.GetMatch "og.png" }}
+  {{/* Other pages: Look for page resource og.jpg first */}}
+  {{ $pageOg := .Resources.GetMatch $ogImageName }}
   {{ if $pageOg }}
   {{ $ogImage = $pageOg.Permalink }}
   {{ else }}
-  {{/* Fallback to static/og.png if page resource not found */}}
-  {{ $staticOg := resources.Get "og.png" }}
+  {{/* Fallback to static/og.jpg if page resource not found */}}
+  {{ $staticOg := resources.Get $ogImageName }}
   {{ if $staticOg }}
   {{ $ogImage = $staticOg.Permalink }}
   {{ end }}
@@ -40,7 +45,10 @@
   {{/* Final fallback: Site logo if no specific or static OG image found */}}
   {{ if not $ogImage }}
   {{ with site.Params.logo }}
+  {{/* Use the logo directly if it's a PNG/JPG. Avoid if it's SVG etc. */}}
+  {{ if or (strings.HasSuffix . ".png") (strings.HasSuffix . ".jpg") (strings.HasSuffix . ".jpeg") }}
   {{ $ogImage = . | absURL }}
+  {{ end }}
   {{ end }}
   {{ end }}
 
@@ -52,11 +60,9 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   {{ else }}
-  {{/* Optional: Log warning during build if no image found */}}
-  {{ warnf "OG Image not found for page %s. Check static/og.png and page resources." .Permalink }}
+  {{ warnf "OG Image not found for page %s. Check static/og.jpg and page resource og.jpg." .Permalink }}
   {{ end }}
   <!-- === END OG IMAGE LOGIC === -->
-
 
   <!-- Canonical URL -->
   <link rel="canonical" href="{{ .Permalink }}">

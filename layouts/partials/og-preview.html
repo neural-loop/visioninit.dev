@@ -1,31 +1,41 @@
 {{ $ogImage := "" }}
-{{ with .Resources.GetMatch "og.png" }}
-{{ $ogImage = .RelPermalink }}
+{{ $ogImageDisplay := "" }}
+{{ $ogImageName := "og.jpg" }} {{/* Look for JPG now */}}
+
+{{ with .Resources.GetMatch $ogImageName }}
+{{/* We found the page resource og.jpg */}}
+{{ $ogImage = . }} {{/* Store the resource object */}}
+{{ else }}
+{{/* Fallback to static/og.jpg */}}
+{{ with resources.Get $ogImageName }}
+{{ $ogImage = . }} {{/* Store the resource object */}}
+{{ end }}
 {{ end }}
 
-{{/* Only render the preview if an image is found */}}
+{{/* Only render the preview if an OG image resource was found */}}
 {{ if $ogImage }}
+{{/* Create a smaller, optimized version for display using Hugo Pipes */}}
+{{/* Adjust width (e.g., 400x) and quality (e.g., q75) as needed */}}
+{{ $resizedOg := $ogImage.Resize "400x q75" }}
+{{ $ogImageDisplay = $resizedOg.RelPermalink }}
+
 <div class="og-preview-wrapper"
      data-effect-probability="{{ site.Params.og_preview_effect_probability | default 15 }}"
      data-effect-duration="{{ site.Params.og_preview_effect_duration | default 750 }}">
   <div class="og-preview-container">
-    <div class="og-preview-image" style="background-image: url('{{ $ogImage }}')">
-      <!-- Dark overlay covering entire image area (already exists) -->
+    {{/* Use the resized image for the background */}}
+    <div class="og-preview-image" style="background-image: url('{{ $ogImageDisplay }}')">
       <div class="image-dark-overlay"></div>
-
-      <!-- ADDED: Effect Overlay -->
       <div class="og-effect-overlay"></div>
-      <!-- END ADDED -->
-
-      <!-- Social share buttons (already exists) -->
       <div class="social-share-overlay">
         <div class="social-icons-container">
+          {{/* Social links remain the same */}}
           <a href="https://x.com/intent/tweet?text={{ .Title | urlquery }}%20{{ .Permalink | absURL }}"
-             target="_blank" rel="noopener" class="social-icon twitter" title="Share on X/Twitter"> <!-- Changed title -->
-            <i class="fa-brands fa-x-twitter"></i> <!-- <<< CHANGED HERE -->
+             target="_blank" rel="noopener" class="social-icon twitter" title="Share on X/Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
           </a>
           <a href="https://bsky.app/intent/compose?text={{ .Title | urlquery }}%0A{{ .Permalink | absURL }}"
-             target="_blank" rel="noopener" class="social-icon bluesky" title="Share on Bluesky"> <!-- <<< ADDED BLUESKY -->
+             target="_blank" rel="noopener" class="social-icon bluesky" title="Share on Bluesky">
             <i class="fa-brands fa-bluesky"></i>
           </a>
           <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | absURL }}"
@@ -39,16 +49,14 @@
         </div>
       </div>
     </div>
-
-    <!-- Sharing runner at bottom (already exists) -->
     <div class="sharing-runner">
       <span>. : : Sharing is Support : : .</span>
       <div class="runner-icons">
-        <i class="fa-brands fa-x-twitter"></i> <!-- <<< CHANGED HERE -->
-        <i class="fa-brands fa-bluesky"></i> <!-- <<< ADDED BLUESKY -->
+        <i class="fa-brands fa-x-twitter"></i>
+        <i class="fa-brands fa-bluesky"></i>
         <i class="fa-brands fa-linkedin"></i>
       </div>
     </div>
   </div>
 </div>
-{{ end }}
+{{ end }} {{/* End check if $ogImage exists */}}
