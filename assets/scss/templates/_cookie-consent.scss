@@ -1,9 +1,4 @@
-/* Styles for Cookie Consent Box (_cookie-consent.scss) */
-
-// Variables (optional - use existing or define new ones)
-// $cookie-bg: rgb(71, 71, 71);
-// $cookie-text-color: #fdfdfd;
-// $cookie-z-index: 9999;
+/* assets/scss/templates/_cookie-consent.scss */
 
 .cookie-box {
   position: fixed;
@@ -11,19 +6,31 @@
   right: 0;
   bottom: 0;
   text-align: center;
-  z-index: 9999; // Use variable? $cookie-z-index;
+  z-index: 9999;
   padding: 1rem 2rem;
-  background: rgb(71, 71, 71); // Use variable? $cookie-bg;
+  background: rgb(71, 71, 71); // Dark background
   transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
-  color: #fdfdfd; // Use variable? $cookie-text-color;
+  color: #fdfdfd; // Light text for the main message (Good contrast)
 
-  // Style the button specifically within the box
   .btn {
-    margin-left: 10px; // Keep original spacing
-    // Ensure button styles are suitable on the dark background
-    // Example: border-color: $white; color: $white;
-    // &:hover { background: $white; color: $cookie-bg; }
+    margin-left: 10px;
   }
+
+  // --- START: Contrast Fix for Button ---
+  // Target the specific outline button within the cookie box
+  #js-cookie-button.btn.btn-outline-primary {
+    color: $white;         // Make text white
+    border-color: $white;  // Make border white
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $white;     // Fill with white on hover/focus
+      color: rgb(71, 71, 71);     // Change text to the dark background color for contrast
+      border-color: $white;         // Keep border white
+    }
+  }
+  // --- END: Contrast Fix for Button ---
 }
 
 .cookie-box-hide {

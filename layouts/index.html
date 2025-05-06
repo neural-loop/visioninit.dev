@@ -76,18 +76,18 @@
         {{/* Right Content Column - Contains the actual content including tiers */}}
         <div class="col-xl-8 col-lg-9">
           <div class="row feature-blocks bg-gray"> {{/* <<< Original inner row for padding/bg */}}
-            <div class="col-12"> {{/* Make content span the full width of this right column */}}
+            <div class="col-12 p-0"> {{/* Make content span the full width of this right column */}}
 
               {{/* Section Title & Subtitle (Centered within this column) */}}
               <div class="text-center mb-5"> {{/* Added text-center and margin */}}
                 {{ with $tiers_data.title }}<h2 class="section-title">{{ . | markdownify }}</h2>{{ end }}
-                {{ with $tiers_data.subtitle }}<p class="lead text-muted">{{ . | markdownify }}</p>{{ end }}
+                {{ with $tiers_data.subtitle }}<p class="lead">{{ . | markdownify }}</p>{{ end }}
               </div>
 
               {{/* Tier Cards Grid (Nested row for side-by-side placement) */}}
               <div class="row justify-content-center"> {{/* Center the cards within the available space of the right column */}}
                 {{ range $tiers_data.tiers }}
-                <div class="col-md-6 mb-4 d-flex align-items-stretch"> {{/* Two columns on medium+, stacking on smaller */}}
+                <div class="col-md-6 pr-0 mb-4 d-flex align-items-stretch"> {{/* Two columns on medium+, stacking on smaller */}}
                   {{/* Call the reusable card partial */}}
                   {{ partial "components/subscription-card.html" (dict "context" .) }}
                 </div>

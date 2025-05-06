@@ -18,8 +18,8 @@ slider:
 
 subscription_tiers:
   enable: true
-  title: 'Security Sidekick Plans' # Title for the section on the homepage
-  subtitle: 'Choose the level of ongoing security support that fits your needs.' # Subtitle
+  title: 'Security Sidekick Plans'
+  subtitle: 'Choose the level of ongoing security support that fits your needs.'
   tiers:
     - name: 'Sure Shot'
       price: '$500'

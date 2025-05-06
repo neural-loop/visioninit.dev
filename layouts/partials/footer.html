@@ -93,8 +93,14 @@
       <div class="row">
         <!-- Logo & Core Links -->
         <div class="col-lg-4 col-md-6 col-sm-6 mb-5 mb-lg-0">
+          {{ $logo1x := site.Params.logo | default "/logo.png" }}
+          {{ $logo2x := $logo1x | strings.ReplaceRE `(\.[^.]+)$` "@2x$1" }}
           <a class="logo-footer d-inline-block mb-4" href="{{ site.BaseURL | relLangURL }}">
-            <img src="{{ site.Params.logo | default "/logo.png" | absURL }}" alt="{{ site.Title }}" class="img-fluid" height="59" width="60" style="max-height: 60px;">
+            <img src="{{ $logo1x | absURL }}"
+                 srcset="{{ $logo1x | absURL }} 1x, {{ $logo2x | absURL }} 2x"
+                 alt="{{ site.Title }}"
+                 class="img-fluid"
+                 style="max-height: 60px;"> {{/* Removed fixed width/height, rely on style */}}
           </a>
           <ul class="list-unstyled">
             {{ with site.Params.email }}<li class="mb-3"><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:{{ . }}" class="text-color">{{ . }}</a></li>{{ end }}

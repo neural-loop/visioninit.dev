@@ -1,39 +1,40 @@
-const { join } = require('path'); // <<< ADD THIS LINE AT THE TOP
+// scripts/generateFavicons.js
+const { join } = require('path');
 const { execSync } = require('child_process');
 const { mkdir, stat } = require('fs/promises');
 
 // --- Configuration ---
-const SOURCE_LOGO = join(process.cwd(), 'assets', 'images', 'logo-source.png'); // Source logo (MUST be in assets)
-const STATIC_OUTPUT_DIR = join(process.cwd(), 'static'); // Base static directory
+const SOURCE_LOGO = join(process.cwd(), 'assets', 'images', 'logo-source.png');
+const STATIC_OUTPUT_DIR = join(process.cwd(), 'static');
+const DEFAULT_LOGO_HEIGHT = 80; // Define the default display height
 
 // Desired output files, sizes, and subdirectories within static/
 const IMAGE_CONFIG = [
   // Favicons (output to static root)
-  {
-    filename: 'favicon-16x16.png',
-    size: 16,
-    outputSubDir: '',
-    forceSquare: true,
-  },
-  {
-    filename: 'favicon-32x32.png',
-    size: 32,
-    outputSubDir: '',
-    forceSquare: true,
-  },
-  {
-    filename: 'apple-touch-icon.png',
-    size: 180,
-    outputSubDir: '',
-    forceSquare: true,
-  },
+  { filename: 'favicon-16x16.png', size: 16, outputSubDir: '', forceSquare: true },
+  { filename: 'favicon-32x32.png', size: 32, outputSubDir: '', forceSquare: true },
+  { filename: 'apple-touch-icon.png', size: 180, outputSubDir: '', forceSquare: true },
   { filename: 'favicon.png', size: 96, outputSubDir: '', forceSquare: true },
   { filename: 'favicon.ico', size: 32, outputSubDir: '', forceSquare: true },
-  // Main Logo (output to static/images/, resize based on height)
-  { filename: 'logo.png', height: 80, outputSubDir: '', forceSquare: false },
+
+  // Main Logo Versions (1x and 2x based on default height)
+  {
+    filename: 'logo.png', // 1x version
+    height: DEFAULT_LOGO_HEIGHT, // Target height 80px
+    outputSubDir: '',
+    forceSquare: false
+  },
+  // *** ADD THIS OBJECT ***
+  {
+    filename: 'logo@2x.png', // 2x version
+    height: DEFAULT_LOGO_HEIGHT * 2, // Target height 160px
+    outputSubDir: '',
+    forceSquare: false
+  },
+  // ***********************
 ];
 
-// --- Helper Functions ---
+// --- Helper Functions (Keep as they are) ---
 async function fileExists(filePath) {
   try {
     await stat(filePath);
@@ -51,35 +52,28 @@ async function ensureDir(dirPath) {
     await mkdir(dirPath, { recursive: true });
   } catch (err) {
     if (err.code !== 'EEXIST') {
-      // Ignore error if directory already exists
       throw err;
     }
   }
 }
 
-// --- Main Generation Logic ---
+// --- Main Generation Logic (Keep as it is) ---
 async function generateImagesWithImageMagick() {
   console.log('🚀 Starting image generation using ImageMagick...');
 
   // 1. Check if ImageMagick (convert command) is available
   try {
-    execSync('convert -version', { stdio: 'ignore' }); // Check if command exists
+    execSync('convert -version', { stdio: 'ignore' });
     console.log('✅ ImageMagick (convert) found.');
   } catch (err) {
     console.error('❌ Error: ImageMagick `convert` command not found.');
-    console.error(
-      '   Please install ImageMagick (e.g., `sudo apt-get install imagemagick` on Ubuntu/Debian)'
-    );
-    console.error('   Or ensure it is available in your PATH.');
+    console.error('   Please install ImageMagick or ensure it is in your PATH.');
     process.exit(1);
   }
 
   // 2. Check if source logo exists
   if (!(await fileExists(SOURCE_LOGO))) {
     console.error(`❌ Error: Source logo not found at ${SOURCE_LOGO}`);
-    console.error(
-      '   Ensure your logo is placed correctly in the assets/images directory.'
-    );
     process.exit(1);
   }
   console.log(`🔍 Found source logo: ${SOURCE_LOGO}`);
@@ -94,7 +88,7 @@ async function generateImagesWithImageMagick() {
 
   for (const config of IMAGE_CONFIG) {
     const outputDir = join(STATIC_OUTPUT_DIR, config.outputSubDir || '');
-    await ensureDir(outputDir); // Ensure subdirectory exists (e.g., static/images/)
+    await ensureDir(outputDir);
     const outputPath = join(outputDir, config.filename);
 
     let resizeOption = '';
@@ -102,27 +96,20 @@ async function generateImagesWithImageMagick() {
     let sizeLabel = '';
 
     if (config.size) {
-      // Used for favicons primarily
       sizeLabel = `${config.size}x${config.size}`;
       resizeOption = `-resize ${sizeLabel}`;
       if (config.forceSquare) {
         extentOption = `-background none -gravity center -extent ${sizeLabel}`;
       }
     } else if (config.height) {
-      // Used for the main logo - resize by height, width adjusts
       sizeLabel = `height ${config.height}px`;
-      resizeOption = `-resize x${config.height}`; // Resize based on height
-      // No extent needed, let width be proportional
+      resizeOption = `-resize x${config.height}`;
     } else {
-      console.warn(
-        `   ⚠️ Skipping ${config.filename}: No size or height specified.`
-      );
+      console.warn(`   ⚠️ Skipping ${config.filename}: No size or height specified.`);
       continue;
     }
 
     console.log(`   Generating ${config.filename} (${sizeLabel})...`);
-
-    // Construct the ImageMagick command
     const command = `convert "${SOURCE_LOGO}" ${resizeOption} ${extentOption} "${outputPath}"`;
 
     try {
@@ -131,9 +118,7 @@ async function generateImagesWithImageMagick() {
       console.log(`   ✅ Saved ${outputPath}`);
       successCount++;
     } catch (err) {
-      console.error(
-        `   ❌ Error generating ${config.filename}: ${err.message || 'ImageMagick command failed'}`
-      );
+      console.error(`   ❌ Error generating ${config.filename}: ${err.message || 'ImageMagick command failed'}`);
       errorCount++;
     }
   }
@@ -142,15 +127,12 @@ async function generateImagesWithImageMagick() {
   console.log('\n✨ Image generation complete!');
   console.log(`📊 Summary: ${successCount} generated, ${errorCount} errors.`);
   if (errorCount > 0) {
-    process.exitCode = 1; // Indicate failure
+    process.exitCode = 1;
   }
 }
 
 // --- Execution ---
 generateImagesWithImageMagick().catch((err) => {
-  console.error(
-    '\n🔥 Critical error during image generation script execution:',
-    err
-  );
+  console.error('\n🔥 Critical error during image generation script execution:', err);
   process.exit(1);
 });

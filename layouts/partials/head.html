@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else if eq .Title site.Title }}{{ .Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
   <!-- Standard Meta Tags -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary | default site.Params.description }}{{ end }}">
   <meta name="author" content="{{ .Params.author | default site.Params.author }}">
 
