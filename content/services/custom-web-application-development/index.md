@@ -6,7 +6,7 @@ service_tag: 'custom-web-application-development'
 icon: 'fa-solid fa-code'
 weight: 10
 service_points:
-  - 'Full-Stack Development: Proficient in PHP (Drupal 7/9), Python (Hugo, Flask/Quasar - *implied*), Node.js, JavaScript (Vue, jQuery).'
+  - 'Full-Stack Development: Proficient in PHP (Drupal 7/9), Python (Hugo, Flask/Quasar), Node.js, JavaScript (Vue, jQuery).'
   - 'CMS Specialization: Deep experience with Drupal (module/theme development, migrations, API integration like Salesforce) and static site generators like Hugo.'
   - 'Database Design & Integration: Architecting solutions involving data management, display logic, and information architecture (MapLight, Stanford GSB).'
   - 'E-commerce Solutions: Experience launching and managing online stores (Digital Sound Factory).'

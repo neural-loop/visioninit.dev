@@ -1,0 +1,229 @@
+// === START .content SECTION - WITH LINK & LIST FIXES ===
+.content {
+  // WARNING: This global rule applies margin to ALL descendants.
+  // <<< REMOVE THIS RULE >>>
+  // * {
+  //   margin-bottom: 20px;
+  // }
+  // <<< END REMOVE >>>
+
+  // <<< ADD THESE RULES INSTEAD >>>
+  // Apply margin specifically to common block-level elements
+  p,
+  h1, h2, h3, h4, h5, h6,
+  ul, ol, // The list itself, not list items
+  table,
+  blockquote,
+  pre,
+  hr,
+  figure, // Common wrapper for images/code with captions
+  dl, // Description lists
+  form,
+  fieldset {
+    margin-bottom: 1.5rem; // Use a relative unit like rem, adjust value as needed (1.5rem is often ~24px)
+  }
+
+  // <<< END ADD >>>
+
+  // --- FIX: LINK STYLES (Excluding Buttons) ---
+  // ... (rest of the .content rules for a, li, table, etc., remain unchanged) ...
+  a:not(.btn) {
+    color: $primary-color; // Default color for non-button content links
+    text-decoration: none !important;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 1px;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      color: darken($primary-color, 10%);
+      border-bottom-color: $primary-color;
+    }
+
+    &[target='_blank'] {
+    } // Inherits general ::after rule
+  }
+
+  // --- FIX: Ensure Buttons Are Unaffected ---
+  a.btn {
+    &:hover {
+      border-bottom-color: transparent !important;
+    }
+
+    // NOTE: If using Option 2, the rule added in Option 1 for `a.btn i` is no longer needed!
+  }
+
+  // --- END LINK FIXES ---
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1rem; // Specific heading margin (adjust value)
+  }
+
+  // --- LIST STYLES - REVISED FOR CONSISTENCY ---
+  ol {
+    padding-left: 20px;
+  }
+  ul {
+    padding-left: 0;
+    list-style-type: none;
+  }
+
+  li {
+    margin-bottom: 1rem; // Adjust spacing between list items
+    p {
+      margin-bottom: 0.5rem;
+    } // Adjust spacing for paragraphs *within* a list item
+    > *:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  ul li {
+    position: relative;
+    padding-left: 25px;
+    line-height: 1.5em;
+
+    &::before {
+      position: absolute;
+      content: '\f054';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 14px;
+      left: 0;
+      top: 0.74em; // Adjust vertical alignment if needed
+      transform: translateY(-50%);
+      line-height: 1;
+      color: $primary-color;
+      transition: 0.3s ease;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
+  // --- Keep other specific styles ---
+  table {
+    // table itself gets margin from block rule above
+    text-align: left;
+    width: 100%;
+    max-width: 100%;
+
+    // margin-bottom: 1rem; // Remove or keep if you want different margin than block rule
+    border: 1px solid #dee2e6;
+
+    th,
+    td {
+      padding: 0.75rem;
+      vertical-align: top;
+      border: 1px solid #dee2e6;
+      margin-bottom: 0; // Ensure cells don't inherit block margin
+    }
+    thead {
+      background: darken($color: $light, $amount: 2);
+    }
+    tbody {
+      background: $light;
+    }
+    tbody td {
+      text-align: left !important;
+    }
+  }
+
+  blockquote {
+    // blockquote itself gets margin from block rule above
+    p {
+      margin-bottom: 0;
+      color: $text-color;
+      font-style: italic !important;
+    }
+  }
+
+  pre {
+    // pre block itself gets margin from block rule above
+    padding: 10px 20px;
+    background: $light;
+
+    // margin-bottom: 20px; // Remove or keep if you want different margin than block rule
+  }
+
+  // --- START: Added Heading Size Overrides ---
+  // Add specific size overrides for headings within the content area
+  // Adjust these font-size values to match the desired look from other pages.
+  // You might need to inspect element on a "good" page to find the exact sizes.
+  h1,
+  .h1 {
+    font-size: 2rem; // Example: Adjust as needed (Default was 60px)
+    // Add line-height if needed: line-height: 1.2;
+  }
+
+  h2,
+  .h2 {
+    font-size: 1.7rem; // Example: Adjust as needed (Default was 40px)
+    // line-height: 1.2;
+    padding-bottom: 5px;
+  }
+
+  h3,
+  .h3 {
+    font-size: 1.3rem; // Example: Adjust as needed (Default was 25px)
+    // line-height: 1.2;
+  }
+
+  h4,
+  .h4 {
+    font-size: 1rem; // Example: Adjust as needed (Default was 20px)
+    // line-height: 1.2;
+  }
+
+  h5,
+  .h5 {
+    font-size: 1rem; // Example: Adjust as needed (Default was 18px)
+    // line-height: 1.2;
+  }
+
+  h6,
+  .h6 {
+    font-size: 1rem; // Example: Adjust as needed (Default was 16px)
+    // line-height: 1.2;
+  }
+
+  // Ensure headings within cards in the content area also get consistent styling
+  // (This might be slightly redundant if the cards are correctly nested, but safe)
+  .card {
+    h1,
+    .h1,
+    h2,
+    .h2,
+    h3,
+    .h3,
+    h4,
+    .h4,
+    h5,
+    .h5,
+    h6,
+    .h6 {
+      // Re-apply the desired sizes or ensure they inherit correctly
+      // If the sizes above work, you might not need this nested block.
+      // Example: Use the specific sizes again if needed
+      &.h3 {
+        font-size: 1.75rem;
+      }
+
+      &.h4 {
+        font-size: 1.5rem;
+      }
+
+      // etc.
+    }
+  }
+  // --- END: Added Heading Size Overrides ---
+
+} // === END OF .content SECTION ===

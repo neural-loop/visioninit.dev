@@ -19,6 +19,7 @@
     border-color 0.2s ease-in-out;
   overflow: hidden; // Keep this if needed for other effects, but ::before is gone
   white-space: nowrap;
+  -webkit-tap-highlight-color: transparent; // Prevent mobile tap highlight
 
   // REMOVED the ::before pseudo-element and its hover logic
 
@@ -31,6 +32,11 @@
     box-shadow: none !important;
 
     // General hover state - specific button types will override
+  }
+  // Explicit base active state to ensure outline/shadow removal
+  &:active {
+    outline: 0 !important;
+    box-shadow: none !important;
   }
 }
 
@@ -52,15 +58,22 @@
   background-color: $primary-color;
   border-color: $primary-color; // Ensure border matches bg
 
-  &:active,
   &:hover,
   &.focus,
   &:focus,
   &.active {
-    // Simple darken on hover
+    // Simple darken on hover/focus
     background-color: darken($primary-color, 10%);
     border-color: darken($primary-color, 10%);
     color: $white; // Keep text white
+  }
+  &:active {
+    // Slightly darker for active state
+    background-color: darken($primary-color, 15%) !important;
+    border-color: darken($primary-color, 15%) !important;
+    color: $white;
+    outline: 0 !important; // Add explicit outline removal for active
+    box-shadow: none !important; // Add explicit box-shadow removal for active
   }
 }
 
@@ -82,15 +95,22 @@
   //   padding: 3px 12px; // 5px - 2px, 15px - 3px
   // }
 
-  &:active,
   &:hover,
   &.focus,
   &:focus,
   &.active {
-    // Fill with primary color on hover
+    // Fill with primary color on hover/focus
     background-color: $primary-color;
     border-color: $primary-color; // Keep border color consistent
     color: $white; // Change text to white
+  }
+  &:active {
+    // Slightly darker for active state
+    background-color: darken($primary-color, 8%) !important;
+    border-color: darken($primary-color, 8%) !important;
+    color: $white;
+    outline: 0 !important; // Add explicit outline removal for active
+    box-shadow: none !important; // Add explicit box-shadow removal for active
   }
 
   // --- Specific Override for Hero Button ---
@@ -99,14 +119,21 @@
     border-color: $white !important; // Force white border
     color: $white !important; // Force white text
 
-    &:active,
     &:hover,
     &.focus,
     &:focus,
     &.active {
-      background-color: $white; // Fill with white on hover
+      background-color: $white; // Fill with white on hover/focus
       border-color: $white; // Keep border white
       color: $primary-color !important; // Change text to primary color
+    }
+    &:active {
+      // Slightly darker for active state
+      background-color: darken($white, 5%) !important;
+      border-color: darken($white, 5%) !important; // Keep border consistent
+      color: $primary-color !important;
+      outline: 0 !important; // Add explicit outline removal for active
+      box-shadow: none !important; // Add explicit box-shadow removal for active
     }
   }
 }
@@ -117,14 +144,21 @@
   background-color: $white;
   border-color: $white;
 
-  &:active,
   &:hover,
   &.focus,
   &:focus,
   &.active {
-    // Simple darken on hover
+    // Simple darken on hover/focus
     background-color: darken($white, 8%);
     border-color: darken($white, 8%);
     color: $primary-color; // Keep text primary
+  }
+  &:active {
+    // Slightly darker for active state
+    background-color: darken($white, 12%) !important;
+    border-color: darken($white, 12%) !important;
+    color: $primary-color;
+    outline: 0 !important; // Add explicit outline removal for active
+    box-shadow: none !important; // Add explicit box-shadow removal for active
   }
 }

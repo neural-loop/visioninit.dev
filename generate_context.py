@@ -182,6 +182,7 @@ This file contains ONLY the content of key files that have been MODIFIED since t
 4.  **File Identification:** Each file's content is preceded by '=== [relative/path/to/file.ext] ==='.
 5.  Provide Code with focus toward with minimal commenting and focus towards simplicity of copying and replacing within the IDE.
 6.  Files over 200 lines are targets for modular refactors
+7.  Tell me the name of the file in the code block AFTER the code block - so that I do not need to scroll up after COPYING the code block to know where to place it.
 --- MODIFIED FILE CONTENTS START ---
 """
     else: # mode == "full"
@@ -199,6 +200,7 @@ This file contains the content of key configuration, source code, layout, and co
 7.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.
 8.  Provide Code with focus toward with minimal commenting and focus towards simplicity of copying and replacing within the IDE.
 9.  Files over 200 lines are targets for modular refactors
+10.  Tell me the name of the file in the code block AFTER the code block - so that I do not need to scroll up after COPYING the code block to know where to place it.
 --- FILE CONTENTS START ---
 """
 

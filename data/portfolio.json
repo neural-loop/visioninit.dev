@@ -208,7 +208,7 @@
       "seo-content-strategy-optimization": {
         "summary": "Implemented SEO and content strategies resulting in top search rankings against industry giants, significant organic growth, and enhanced brand consistency across platforms.",
         "points": [
-          "Achieved and maintained a top 3 average search position (~2.7) for the core term 'neuromorphic computing hardware', establishing ONM as a key authority.",
+          "Achieved and maintained a top 3 average search position (~2.7) for the core term 'neuromorphic hardware', 'neuromorphic', and 'neuromorphic software', establishing ONM as a key authority.",
           "The hardware directory became a primary organic traffic driver (>4,600 clicks, >139,000 impressions in 2 years).",
           "Designed and implemented a consistent thumbnail scheme for YouTube workshops, reinforcing the ONM brand identity and improving content discoverability.",
           "Boosted overall search visibility through technical SEO, meta tag optimization, and structured content architecture."
@@ -318,6 +318,39 @@
       }
     },
     "image": "p-geoconops-1.png"
+  },
+  {
+    "id": "benetech-accessibility-docs",
+    "title": "Benetech - Accessibility Driven Development & Document Integration",
+    "date": "2008-08-31",
+    "description": "Contributed to Benetech's social good mission by enhancing platform accessibility through direct user feedback and enabling OpenOffice document processing.",
+    "tags": [
+      "PHP",
+      "Accessibility",
+      "User Feedback",
+      "Requirements Gathering",
+      "File Processing",
+      "Metadata",
+      "OpenOffice",
+      "Non-Profit",
+      "Social Good"
+    ],
+    "role": "PHP Developer (2007 - 2008)",
+    "role_overview": "As a PHP Developer at Benetech, focused on improving web applications for social good, with key contributions to accessibility testing and document format integration based on user needs and technical exploration.",
+    "service_areas": [
+      "custom-web-application-development"
+    ],
+    "service_contributions": {
+      "custom-web-application-development": {
+        "summary": "Enhanced application accessibility and functionality by directly engaging with users to refine requirements and by implementing new document processing capabilities.",
+        "points": [
+          "Conducted usability sessions with blind and vision-impaired users to assess bug impacts and gather direct feedback, informing feature requirements for a new platform.",
+          "Engineered functionality to parse metadata from OpenOffice documents, enabling users to submit content in this format and expanding platform inclusivity.",
+          "Developed and maintained PHP-based web applications supporting Benetech's mission to provide technology for social good."
+        ]
+      }
+    },
+    "image": "p-benetech.png"
   },
   {
     "id": "hp-experience-center",

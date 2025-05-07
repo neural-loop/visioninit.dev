@@ -1,3 +1,4 @@
+{{ warnf "!!! PROCESSING layouts/partials/head.html - If you see this, the file is being read! !!!" }}
 <head>
   <meta charset="utf-8">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else if eq .Title site.Title }}{{ .Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
@@ -17,50 +18,66 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ .Title }}{{ if not .IsHome }} | {{ site.Title }}{{ end }}">
   <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary | default site.Params.description }}{{ end }}">
-  <!-- === START OG IMAGE LOGIC (REVISED FOR JPG) === -->
-  {{ $ogImage := "" }}
-  {{ $ogImageFormat := "jpg" }} {{/* Define format */}}
-  {{ $ogImageName := printf "og.%s" $ogImageFormat }} {{/* Construct filename */}}
 
-  {{ if .IsHome }}
-  {{/* Homepage: Check for static/og.jpg */}}
-  {{ $staticOg := resources.Get $ogImageName }}
-  {{ if $staticOg }}
-  {{ $ogImage = $staticOg.Permalink }}
-  {{ end }}
+  <!-- === START OG IMAGE LOGIC (Refined for RelPermalink) === -->
+  {{ $ogImageRelativePath := "" }} {{/* Will hold the root-relative path */}}
+  {{ $finalOgImageAbsURL := "" }}  {{/* This will hold the final absolute URL for the meta tag */}}
+  {{ $ogImageSourceDebug := "Initial value" }}
+  {{ $ogImageName := "og.jpg" }}
+
+  {{ warnf "[OG DEBUG Start] Page: %s (%s). IsHome: %t. Looking for OG image named '%s'." .Title .Permalink .IsHome $ogImageName }}
+
+  {{/* 1. Try Page Bundle Resource first */}}
+  {{ $pageBundleOG := .Resources.GetMatch $ogImageName }}
+  {{ if $pageBundleOG }}
+  {{ $ogImageRelativePath = $pageBundleOG.RelPermalink }} {{/* .RelPermalink is root-relative */}}
+  {{ $ogImageSourceDebug = printf "Page Bundle: %s (RelPermalink: %s)" $pageBundleOG.Name $ogImageRelativePath }}
+  {{ warnf "[OG DEBUG] Priority 1: Found Page Bundle image. Source: %s" $ogImageSourceDebug }}
   {{ else }}
-  {{/* Other pages: Look for page resource og.jpg first */}}
-  {{ $pageOg := .Resources.GetMatch $ogImageName }}
-  {{ if $pageOg }}
-  {{ $ogImage = $pageOg.Permalink }}
-  {{ else }}
-  {{/* Fallback to static/og.jpg if page resource not found */}}
-  {{ $staticOg := resources.Get $ogImageName }}
-  {{ if $staticOg }}
-  {{ $ogImage = $staticOg.Permalink }}
-  {{ end }}
-  {{ end }}
+  {{ warnf "[OG DEBUG] Priority 1: No Page Bundle image '%s' found for %s. Using site-wide static as default." $ogImageName .Permalink }}
+  {{/* 2. If no Page Bundle, use the site-wide static/og.jpg path */}}
+  {{ $ogImageRelativePath = printf "/%s" $ogImageName }}
+  {{ $ogImageSourceDebug = printf "Site-wide Static: %s" $ogImageRelativePath }}
+  {{ warnf "[OG DEBUG] Priority 2: Using site-wide static image path: %s" $ogImageRelativePath }}
   {{ end }}
 
-  {{/* Final fallback: Site logo if no specific or static OG image found */}}
-  {{ if not $ogImage }}
+  {{/* 3. Convert to Absolute URL if a path was determined */}}
+  {{ if $ogImageRelativePath }}
+  {{ $finalOgImageAbsURL = $ogImageRelativePath | absURL }}
+  {{ warnf "[OG DEBUG] Root-relative path '%s' converted to absolute URL: %s (Source: %s)" $ogImageRelativePath $finalOgImageAbsURL $ogImageSourceDebug }}
+  {{ else }}
+  {{ warnf "[OG DEBUG] No root-relative $ogImageRelativePath was set. This ideally shouldn't happen if static/og.jpg fallback is in place. Attempting logo fallback." }}
+  {{ end }}
+
+  {{/* 4. Final fallback to site.Params.logo if $finalOgImageAbsURL is still empty (e.g. if /og.jpg didn't exist or some other issue) */}}
+  {{ if not $finalOgImageAbsURL }}
+  {{ $ogImageSourceDebug = printf "Fallback to site.Params.logo (previous source attempt for $ogImageRelativePath: %s)" $ogImageSourceDebug }}
+  {{ warnf "[OG DEBUG] %s" $ogImageSourceDebug }}
   {{ with site.Params.logo }}
-  {{/* Use the logo directly if it's a PNG/JPG. Avoid if it's SVG etc. */}}
-  {{ if or (strings.HasSuffix . ".png") (strings.HasSuffix . ".jpg") (strings.HasSuffix . ".jpeg") }}
-  {{ $ogImage = . | absURL }}
+  {{ $logoPath := . }}
+  {{ if or (strings.HasSuffix $logoPath ".png") (strings.HasSuffix $logoPath ".jpg") (strings.HasSuffix $logoPath ".jpeg") }}
+  {{ $finalOgImageAbsURL = $logoPath | absURL }}
+  {{ $ogImageSourceDebug = printf "site.Params.logo: %s" $logoPath }}
+  {{ warnf "[OG DEBUG] Priority 3: Using site.Params.logo as final fallback. Absolute OG Image URL: %s" $finalOgImageAbsURL }}
+  {{ else }}
+  {{ warnf "[OG DEBUG] site.Params.logo '%s' is not a PNG/JPG/JPEG, cannot use as OG image fallback." $logoPath }}
+  {{ $ogImageSourceDebug = printf "site.Params.logo: %s (invalid format for OG)" $logoPath }}
   {{ end }}
+  {{ else }}
+  {{ warnf "[OG DEBUG] site.Params.logo is not defined. No OG image fallback possible from logo."}}
+  {{ $ogImageSourceDebug = "site.Params.logo not defined" }}
   {{ end }}
   {{ end }}
 
-  {{/* Render meta tags ONLY if we found an image */}}
-  {{ if $ogImage }}
-  <meta property="og:image" content="{{ $ogImage }}">
-  <meta name="twitter:image" content="{{ $ogImage }}">
-  {{/* Optional: Add image dimensions if known (improves loading performance for crawlers) */}}
+  {{ warnf "[OG DEBUG End] Page: %s. Final OG Image URL for meta tag: '%s'. Determined by: %s" .Permalink $finalOgImageAbsURL $ogImageSourceDebug }}
+
+  {{ if $finalOgImageAbsURL }}
+  <meta property="og:image" content="{{ $finalOgImageAbsURL }}">
+  <meta name="twitter:image" content="{{ $finalOgImageAbsURL }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   {{ else }}
-  {{ warnf "OG Image not found for page %s. Check static/og.jpg and page resource og.jpg." .Permalink }}
+  {{ warnf "[OG FINAL META] NO OG Image URL was set for page %s. Social media cards might not have a preview image." .Permalink }}
   {{ end }}
   <!-- === END OG IMAGE LOGIC === -->
 
@@ -73,7 +90,6 @@
   <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
   {{ end }}
   {{ end }}
-
 
   {{ "<!-- plugins -->" | safeHTML }}
   {{ range site.Params.plugins.css }}
@@ -89,9 +105,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{{ `/favicon-16x16.png` | absURL }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ `/apple-touch-icon.png` | absURL }}">
   <link rel="shortcut icon" href="{{ `/favicon.ico` | absURL }}">
-  {{/* Optional: Add other manifest/theme links if needed */}}
-  {{/* <link rel="manifest" href="{{ `/site.webmanifest` | absURL }}"> */}}
-  {{/* <meta name="theme-color" content="#ffffff"> */}} {{/* Example color */}}
 
   {{/* --- START: Google Analytics --- */}}
   {{ if hugo.IsProduction }}
