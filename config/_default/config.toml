@@ -59,7 +59,7 @@ expire_days = 30 # Or adjust as needed
 
 # CSS Plugins
 [[params.plugins.css]]
-link = "plugins/bootstrap/bootstrap.min.css"
+link = "plugins/bootstrap-4/css/bootstrap.min.css"
 [[params.plugins.css]]
 link = "plugins/font-awesome/css/all.min.css" # Ensure this is the latest FA version you want
 
@@ -67,7 +67,7 @@ link = "plugins/font-awesome/css/all.min.css" # Ensure this is the latest FA ver
 [[params.plugins.js]]
 link = "plugins/jQuery/jquery.min.js"
 [[params.plugins.js]]
-link = "plugins/bootstrap/bootstrap.bundle.min.js" # Includes Popper
+link = "plugins/bootstrap-4/js/bootstrap.min.js" # Includes Popper
 [[params.plugins.js]]
 link = "plugins/js-cookie/js.cookie.min.js" # For cookie consent
 
