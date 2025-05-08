@@ -2,7 +2,7 @@
 title: 'Site Builder Style Guide'
 description: 'Visual reference for standard Markdown element rendering on the VisionInit website.'
 layout: 'dev/single' # Use the dev layout
-draft: false
+draft: true
 exclude_sitemap: true # Exclude this page from the sitemap.xml
 tableOfContents:
   startLevel: 2 # Start ToC from H2 headings
