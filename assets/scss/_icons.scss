@@ -1,0 +1,40 @@
+/* Add external link icon (General Rule) */
+a[target='_blank'] {
+  &::after {
+    content: '\f35d'; // <<< CHANGED: FA Unicode for fa-arrow-up-right-from-square
+    font-family: 'Font Awesome 6 Free'; // <<< CHANGED: Use Font Awesome font family
+    font-weight: 900; // <<< ADDED: Required for FA solid icons
+    display: inline-block;
+    font-size: 0.8em; // Keep original size or adjust
+    font-style: normal; // Recommended for FA
+    font-variant: normal; // Recommended for FA
+    text-rendering: auto; // Recommended for FA
+    -webkit-font-smoothing: antialiased; // Recommended for FA
+    margin-left: 4px; // Keep spacing
+    vertical-align: baseline; // Keep alignment (or try 'middle', 'text-bottom' if needed)
+    color: inherit; // Keep color inheritance
+    text-decoration: none; // Keep underline removal
+    transition: color 0.2s ease; // Keep transition
+    speak: none; // Keep accessibility attribute
+  }
+}
+
+/* --- Overrides to REMOVE external link icon in specific contexts --- */
+
+// Social icons in header, footer, team cards, campaign sidebar/orgs, OG preview runner
+.top-header .list-inline a[target='_blank']::after,
+.footer .list-inline a[target='_blank']::after,
+.team-card-socials a[target='_blank']::after,
+.author-card .social-links a[target='_blank']::after,
+.orgs-card .org-links a[target='_blank']::after,
+.runner-icons a[target='_blank']::after {
+  content: none !important; /* Remove the icon content */
+  display: none !important; /* Ensure it takes no space */
+}
+
+.social-share-overlay .social-icon[target='_blank']::after,
+.social-share-overlay .social-icon i.fa-x-twitter, // Target FA icon within the link too if needed
+.social-share-overlay .social-icon[href*="x.com"]::after, // More generic target for X link
+.copyright .list-inline a[target='_blank']::after {
+  content: none !important; /* Remove the icon content */
+}

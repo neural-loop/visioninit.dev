@@ -11,14 +11,13 @@ VERSION:	Versoin Number
 
 @import 'variables';
 @import 'mixins';
-@import 'typography';
-@import 'buttons';
 // Base and Resets
-@import 'base';
-// @import 'typography'; // Already imported above
+@import 'base';         // Moved up to ensure base styles apply first
+@import 'typography';   // Typography rules after base
 @import 'links';
 @import 'lists';
 @import 'forms';
+@import 'buttons';      // Buttons after general element styling and typography
 
 // Layout & Utilities
 @import 'utilities';

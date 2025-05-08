@@ -1,0 +1,19 @@
+.list-styled {
+  padding-left: 25px;
+
+  li {
+    position: relative;
+    margin-bottom: 15px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background: $primary-color;
+      left: -25px;
+      top: 5px;
+    }
+  }
+}
