@@ -20,7 +20,7 @@ _(This section uses a table with the `colorswatch` shortcode for visual clarity)
 
 | Variable Name       | Value     | Swatch                              | Usage Notes                                                     |
 | :------------------ | :-------- | :---------------------------------- | :-------------------------------------------------------------- |
-| `$primary-color`    | `#1797B3` | {{< colorswatch color="#1797B3" >}} | Links, accents, buttons, active states                          |
+| `$primary-color`    | `#636c7a` | {{< colorswatch color="#636c7a" >}} | Links, accents, buttons, active states                          |
 | `$secondary-color`  | `#000000` | {{< colorswatch color="#000000" >}} | Overlays, some backgrounds/accents                              |
 | `$text-color-dark`  | `#1e1e4b` | {{< colorswatch color="#1e1e4b" >}} | Primary heading color, dark text elements                       |
 | `$text-color`       | `#5c5c77` | {{< colorswatch color="#5c5c77" >}} | Standard paragraph text                                         |
