@@ -61,7 +61,7 @@ Expects a dictionary context with:
             {{ with $contribution.points }}
             <ul class="portfolio-contribution-points list-unstyled small mb-2" style="font-size: 0.85rem;">
               {{ range . }}
-              <li style="line-height: 1.4em" class="pb-1"><i class="fa-solid fa-check-circle text-success fa-fw mr-1"></i>{{ . | markdownify }}</li>
+              <li style="line-height: 1.4em" class="pb-1"><i class="fa-solid fa-check-circle text-success fa-fw me-1"></i>{{ . | markdownify }}</li>
               {{ end }}
             </ul>
             {{ end }}
@@ -102,8 +102,8 @@ Expects a dictionary context with:
           <div class="additional-contributions-toggle-wrapper mt-3 pt-2 border-top">
             <button class="additional-contributions-toggle-btn"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#additionalContributions-{{ $projectData.id | urlize }}"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#additionalContributions-{{ $projectData.id | urlize }}"
                     aria-expanded="false"
                     aria-controls="additionalContributions-{{ $projectData.id | urlize }}">
               {{ $buttonLabel }}
@@ -125,7 +125,7 @@ Expects a dictionary context with:
                   {{ with $contribution.points }}
                   <ul class="portfolio-contribution-points list-unstyled small mb-2" style="font-size: 0.85rem;">
                     {{ range . }}
-                    <li style="line-height: 1.4em" class="pb-1"><i class="fa-solid fa-check-circle text-success fa-fw mr-1"></i>{{ . | markdownify }}</li>
+                    <li style="line-height: 1.4em" class="pb-1"><i class="fa-solid fa-check-circle text-success fa-fw me-1"></i>{{ . | markdownify }}</li>
                     {{ end }}
                   </ul>
                   {{ end }}
@@ -148,7 +148,7 @@ Expects a dictionary context with:
         {{ with $projectData.tags }}
         <div class="portfolio-card-tags mt-auto">
           {{ range first 20 . }}
-          <span class="badge badge-light mr-1 mb-1 p-2 border">{{ . }}</span>
+          <span class="badge badge-light me-1 mb-1 p-2 border">{{ . }}</span>
           {{ end }}
         </div>
         {{ end }}

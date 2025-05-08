@@ -42,10 +42,10 @@
     {{ with $item.Params.tags }}
     <div class="portfolio-card-tags mt-auto"> {{/* Pushed to bottom */}}
       {{ range first 3 . }}
-      <span class="badge badge-light mr-1 mb-1 p-2 border">{{ . }}</span>
+      <span class="badge badge-light me-1 mb-1 p-2 border">{{ . }}</span>
       {{ end }}
       {{ if gt (len .) 3 }}
-      <span class="badge badge-light mr-1 mb-1 p-2 border">…</span>
+      <span class="badge badge-light me-1 mb-1 p-2 border">…</span>
       {{ end }}
     </div>
     {{ end }}

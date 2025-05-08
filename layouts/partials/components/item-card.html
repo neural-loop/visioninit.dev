@@ -53,7 +53,7 @@ Expects a dictionary context with:
     {{ with $item.Params.tags }}
     <div class="mb-3">
       {{ range first 4 . }} {{/* Show max 4 tags */}}
-      <span class="badge badge-light mr-1 mb-1 small p-2">{{ . }}</span>
+      <span class="badge badge-light me-1 mb-1 small p-2">{{ . }}</span>
       {{ end }}
     </div>
     {{ end }}

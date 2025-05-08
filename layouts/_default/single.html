@@ -25,8 +25,8 @@
           <div class="col-12">
             <ul class="list-inline text-muted small mb-4">
               {{ with .Params.Author }}
-              <li class="list-inline-item mr-3">
-                <i class="fas fa-user fa-fw mr-1"></i>
+              <li class="list-inline-item me-3">
+                <i class="fas fa-user fa-fw me-1"></i>
                 {{/* Link author if author pages exist, otherwise just display name */}}
                 {{ $authorPage := site.GetPage (printf "author/%s" (. | urlize)) }}
                 {{ if $authorPage }}
@@ -37,8 +37,8 @@
               </li>
               {{ end }}
               {{ with .Params.Categories }}
-              <li class="list-inline-item mr-3">
-                <i class="fas fa-folder-open fa-fw mr-1"></i>
+              <li class="list-inline-item me-3">
+                <i class="fas fa-folder-open fa-fw me-1"></i>
                 {{ range $index, $element := . }}
                 <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ if ne $index 0 }}, {{ end }}{{ . | title }}</a>
                 {{ end }}

@@ -27,7 +27,7 @@
             {{ $button_link = .button.link | absLangURL }}
             {{ end }}
             <a href="{{ $button_link | safeURL }}"
-               class="btn btn-primary mr-2 mb-2"
+               class="btn btn-primary me-2 mb-2"
                {{ $button_target_rel | safeHTMLAttr }}>
               {{ .button.label }}
             </a>
@@ -66,7 +66,7 @@
   {{ if and $tiers_data.enable $tiers_data.tiers }}
   <section class="bg-light overflow-md-hidden pb-lg-5"> {{/* <<< Original outer section classes */}}
     <div class="container-fluid p-0">
-      <div class="row no-gutters">
+      <div class="row g-0">
 
         {{/* Left Offset Column (Empty) - Creates the visual offset */}}
         <div class="col-xl-4 col-lg-3 align-self-end">
@@ -87,7 +87,7 @@
               {{/* Tier Cards Grid (Nested row for side-by-side placement) */}}
               <div class="row justify-content-center"> {{/* Center the cards within the available space of the right column */}}
                 {{ range $tiers_data.tiers }}
-                <div class="col-md-6 pr-0 mb-4 d-flex align-items-stretch"> {{/* Two columns on medium+, stacking on smaller */}}
+                <div class="col-md-6 pe-0 mb-4 d-flex align-items-stretch"> {{/* Two columns on medium+, stacking on smaller */}}
                   {{/* Call the reusable card partial */}}
                   {{ partial "components/subscription-card.html" (dict "context" .) }}
                 </div>

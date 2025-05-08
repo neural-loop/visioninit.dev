@@ -10,19 +10,19 @@
           {{ end }}
           <h1 class="h4 mb-3">{{ .Title }}</h1>
           <ul class="list-inline mb-4 small text-muted">
-            <li class="list-inline-item"><i class="fas fa-calendar-alt fa-fw mr-1"></i> {{ .PublishDate.Format "January 2, 2006" }}</li>
+            <li class="list-inline-item"><i class="fas fa-calendar-alt fa-fw me-1"></i> {{ .PublishDate.Format "January 2, 2006" }}</li>
             {{ with .Params.Author }}
-            <li class="list-inline-item"><i class="fas fa-user fa-fw mr-1"></i> {{ . }}</li>
+            <li class="list-inline-item"><i class="fas fa-user fa-fw me-1"></i> {{ . }}</li>
             {{ end }}
             {{ with .Params.categories }}
-            <li class="list-inline-item"><i class="fas fa-folder-open fa-fw mr-1"></i>
+            <li class="list-inline-item"><i class="fas fa-folder-open fa-fw me-1"></i>
               {{ range $index, $category := . }}
               <a href="{{ `categories/` | relLangURL }}{{ . | urlize | lower }}">{{ if gt $index 0 }}, {{ end }}{{ . | title }}</a>
               {{ end }}
             </li>
             {{ end }}
             {{ with .Params.tags }}
-            <li class="list-inline-item"><i class="fas fa-tags fa-fw mr-1"></i>
+            <li class="list-inline-item"><i class="fas fa-tags fa-fw me-1"></i>
               {{ range $index, $tag := . }}
               <a href="{{ `tags/` | relLangURL }}{{ . | urlize | lower }}">{{ if gt $index 0 }}, {{ end }}{{ . | humanize }}</a>
               {{ end }}

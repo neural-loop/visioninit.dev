@@ -13,7 +13,7 @@
         {{ if .social }}
         <ul class="list-inline team-card-socials mb-0">
           {{ range .social }}
-          <li class="list-inline-item mr-3">
+          <li class="list-inline-item me-3">
             <a href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" class="text-color" title="{{ .title }}">
               {{ if eq .icon "ti-twitter" }}
               <i class="fa-brands fa-x-twitter"></i>

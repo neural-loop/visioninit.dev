@@ -7,17 +7,17 @@
 
   {{/* --- Button Examples --- */}}
   {{ if eq $component "buttons" }}
-  <button class="btn btn-primary mr-2">Primary Button</button>
-  <button class="btn btn-outline-primary mr-2">Outline Primary</button>
-  <button class="btn btn-light mr-2">Light Button</button>
+  <button class="btn btn-primary me-2">Primary Button</button>
+  <button class="btn btn-outline-primary me-2">Outline Primary</button>
+  <button class="btn btn-light me-2">Light Button</button>
   {{ else if eq $component "buttons_sm" }}
-  <button class="btn btn-sm btn-primary mr-2">Primary Small</button>
-  <button class="btn btn-sm btn-outline-primary mr-2">Outline Small</button>
-  <button class="btn btn-sm btn-light mr-2">Light Small</button>
+  <button class="btn btn-sm btn-primary me-2">Primary Small</button>
+  <button class="btn btn-sm btn-outline-primary me-2">Outline Small</button>
+  <button class="btn btn-sm btn-light me-2">Light Small</button>
   {{ else if eq $component "buttons_xs" }}
-  <button class="btn btn-xs btn-primary mr-2">Primary XS</button>
-  <button class="btn btn-xs btn-outline-primary mr-2">Outline XS</button>
-  <button class="btn btn-xs btn-light mr-2">Light XS</button>
+  <button class="btn btn-xs btn-primary me-2">Primary XS</button>
+  <button class="btn btn-xs btn-outline-primary me-2">Outline XS</button>
+  <button class="btn btn-xs btn-light me-2">Light XS</button>
   {{ else if eq $component "buttons_hero" }}
   <button class="btn btn-outline-primary text-white border-white">Hero Outline Button</button>
 
@@ -40,11 +40,11 @@
   <div style="max-width: 350px;"> {{/* Constrain width for demo */}}
     <div class="card subscription-card offset-shadow-box bg-white p-4 p-md-5 text-center rounded-0 h-100 d-flex flex-column">
       <h3 class="h5 mb-3 text-dark font-weight-bold">Sample Plan</h3>
-      <h4 class="h3 mb-3 text-primary font-weight-bold">$99<small class="text-muted font-weight-normal ml-1">/month</small></h4>
+      <h4 class="h3 mb-3 text-primary font-weight-bold">$99<small class="text-muted font-weight-normal ms-1">/month</small></h4>
       <p class="card-text text-muted small mb-4 flex-grow-1">Description of the plan benefits.</p>
-      <ul class="list-unstyled text-left mb-4 subscription-features small">
-        <li class="mb-2 d-flex align-items-start"><i class="fa-solid fa-check text-success mr-2 mt-1 fa-fw"></i><span>Feature A</span></li>
-        <li class="mb-2 d-flex align-items-start"><i class="fa-solid fa-check text-success mr-2 mt-1 fa-fw"></i><span>Feature B</span></li>
+      <ul class="list-unstyled text-start mb-4 subscription-features small">
+        <li class="mb-2 d-flex align-items-start"><i class="fa-solid fa-check text-success me-2 mt-1 fa-fw"></i><span>Feature A</span></li>
+        <li class="mb-2 d-flex align-items-start"><i class="fa-solid fa-check text-success me-2 mt-1 fa-fw"></i><span>Feature B</span></li>
       </ul>
       <div class="mt-auto">
         <a href="javascript:void(0);" class="btn btn-primary">Example Button</a>
@@ -55,27 +55,27 @@
   {{/* --- Form Elements Example --- */}}
   {{ else if eq $component "form_elements" }}
   <form action="javascript:void(0);"> <!-- Demo: prevent submission -->
-    <div class="form-group mb-3">
+    <div class="mb-3">
       <label for="styleguide-form-demo-name-single" class="visually-hidden">Name</label>
       <input type="text" id="styleguide-form-demo-name-single" class="form-control form-control-sm" placeholder="Your Name">
     </div>
-    <div class="form-group mb-3">
+    <div class="mb-3">
       <label for="styleguide-form-demo-email-single" class="visually-hidden">Email</label>
       <input type="email" id="styleguide-form-demo-email-single" class="form-control form-control-sm" placeholder="Your Email">
     </div>
-    <div class="form-group mb-3">
+    <div class="mb-3">
       <label for="styleguide-form-demo-message-single" class="visually-hidden">Message</label>
       <textarea id="styleguide-form-demo-message-single" class="form-control form-control-sm" rows="4" placeholder="Your Message"></textarea>
     </div>
-    <button type="submit" class="btn btn-light btn-block">Example Submit</button>
+    <button type="submit" class="btn btn-light w-100">Example Submit</button>
   </form>
   <hr style="border-color: rgba(255,255,255,0.2);">
   <p>Toggle Buttons:</p>
-  <button class="btn btn-sm btn-light mr-2">
-    <i class="fa-solid fa-paper-plane mr-2" aria-hidden="true"></i>Message
+  <button class="btn btn-sm btn-light me-2">
+    <i class="fa-solid fa-paper-plane me-2" aria-hidden="true"></i>Message
   </button>
   <button class="btn btn-sm btn-outline-light">
-    <i class="fa-solid fa-calendar-check mr-2" aria-hidden="true"></i>Schedule
+    <i class="fa-solid fa-calendar-check me-2" aria-hidden="true"></i>Schedule
   </button>
 
   {{/* --- Error/Default Case --- */}}

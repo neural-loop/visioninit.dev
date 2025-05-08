@@ -177,10 +177,13 @@ link:focus,
       }
 
       &.show {
-        visibility: hidden;
+        visibility: visible; // Corrected: should be visible when .show is active
+        opacity: 1; // Ensure opacity is 1 when .show is active
+        transform: translateY(0); // Ensure transform is reset when .show is active
 
         @include desktop {
-          visibility: visible;
+          // Bootstrap 5 typically handles display via .show,
+          // but ensure it's block if specific desktop styling requires it.
           display: block;
         }
       }
@@ -242,28 +245,10 @@ link:focus,
 // Adjust dropdown menu position when sticky
 .navigation.nav-bg .navbar .dropdown-menu {
   // New height ~50px + buffer. Adjust this value if needed after testing.
-  top: 60px;
+  top: 60px; // Set to a fixed value, adjust if $sticky-nav-height was defined and different
   transition:
     top 0.2s ease,
     opacity 0.3s ease,
     transform 0.3s ease,
     visibility 0.3s ease; // Combine transitions
-}
-
-.navigation.nav-bg .navbar-expand-lg .navbar-nav .nav-link {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-.navigation.nav-bg .navbar-brand img.header-logo {
-  max-height: 40px;
-  width: auto;
-  transition: max-height 0.2s ease;
-}
-.navigation.nav-bg .navbar .dropdown-menu {
-  top: $sticky-nav-height; // Use variable
-  transition:
-    top 0.2s ease,
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    visibility 0.3s ease;
 }

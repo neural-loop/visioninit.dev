@@ -1,11 +1,13 @@
-// Requires jQuery to be loaded first
-jQuery(function ($) {
+document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   // --- Background-images ---
-  $('[data-background]').each(function () {
-    $(this).css({
-      'background-image': 'url(' + $(this).data('background') + ')',
-    });
+  const elementsWithDataBackground = document.querySelectorAll('[data-background]');
+  
+  elementsWithDataBackground.forEach(function (element) {
+    const backgroundUrl = element.dataset.background; // Or element.getAttribute('data-background');
+    if (backgroundUrl) {
+      element.style.backgroundImage = 'url(' + backgroundUrl + ')';
+    }
   });
 });

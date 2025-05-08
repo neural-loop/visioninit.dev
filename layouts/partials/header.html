@@ -6,7 +6,7 @@
   {{ if site.Params.top_header }}
   <div class="top-header py-2 bg-white">
     <div class="container">
-      <div class="row no-gutters align-items-center">
+      <div class="row g-0 align-items-center">
         <div class="col-lg-4 text-center text-lg-left">
         </div>
         <div class="col-lg-8 text-center text-lg-right">
@@ -31,21 +31,21 @@
                class="img-fluid header-logo"
                width="79" height="80">
         </a>
-        <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
+        <button class="navbar-toggler rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
                 aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         {{/* --- Collapsible Navbar Content --- */}}
         <div class="collapse navbar-collapse text-center" id="navigation">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <a class="nav-link" href="{{ site.BaseURL | relLangURL }}">{{ site.Params.Home }}</a>
             </li>
             {{ range site.Menus.main }}
             {{ if .HasChildren }}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 {{ .Name }}
               </a>
               <div class="dropdown-menu">
