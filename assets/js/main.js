@@ -4,6 +4,7 @@
 // Import your ES6 module-based scripts first.
 // esbuild will resolve their internal imports.
 import './contact-calendar-toggle.js';
+import './accordion.js'; // <<< ADD THIS LINE
 
 // Import other "classic" scripts.
 // Their DOMContentLoaded or jQuery(function(){}) wrappers will still function correctly
