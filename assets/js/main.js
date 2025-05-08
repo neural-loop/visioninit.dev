@@ -1,17 +1,23 @@
 // assets/js/main.js
+'use strict';
+
+// Import your ES6 module-based scripts first.
+// esbuild will resolve their internal imports.
+import './contact-calendar-toggle.js';
+
+// Import other "classic" scripts.
+// Their DOMContentLoaded or jQuery(function(){}) wrappers will still function correctly
+// when the bundled script is executed.
+import './ajax-form.js';
+import './background-images.js'; // Ensure jQuery is loaded globally before this bundle executes
+import './cookie-consent.js';
+import './og-effects.js';
+import './sticky-header.js';
+
+// You can keep or integrate the original console log for initialization.
 document.addEventListener('DOMContentLoaded', function () {
-  'use strict';
+  console.log("VisionInit Main JS (Bundled with esbuild via Hugo Pipes) Initialized");
 
-  // This file acts as the main entry point for custom JavaScript.
-  // Since other modules are self-contained with their own DOMContentLoaded listeners,
-  // this file might remain empty or be used for:
-  // 1. Initializing third-party libraries that don't auto-initialize.
-  // 2. Orchestrating interactions *between* different modules if needed.
-  // 3. Adding minor, site-wide scripts that don't fit into other modules.
-
-  console.log("VisionInit Main JS Initialized");
-
-  // Example: If you needed to initialize a lightbox library on all images with a certain class:
-  // const lightbox = GLightbox({ selector: '.glightbox' });
-
-}); // End DOMContentLoaded
+  // If you had any other global initializations in the old main.js, put them here.
+  // e.g., const lightbox = GLightbox({ selector: '.glightbox' });
+});

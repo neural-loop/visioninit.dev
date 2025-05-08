@@ -17,11 +17,9 @@
           {{/* --- Toggle Buttons --- */}}
           <div class="mb-4">
             <div class="button-toggle-container">
-              {{/* <<< ADD type="button" HERE >>> */}}
               <button type="button" id="show-form-btn" class="btn btn-sm mr-1">
                 <i class="fa-solid fa-paper-plane mr-2" aria-hidden="true"></i>Send a Message
               </button>
-              {{/* <<< ADD type="button" HERE >>> */}}
               <button type="button" id="show-calendar-btn" class="btn btn-sm ml-1">
                 <i class="fa-solid fa-calendar-check mr-2" aria-hidden="true"></i>Schedule a Meeting
               </button>
@@ -30,7 +28,6 @@
 
           {{/* --- Contact Form Container --- */}}
           <div id="contact-form-container">
-            {{/* Points to PHP script, ID for JS */}}
             <form id="contact-message-form" action="/send-email.php" method="POST">
               <div class="form-group mb-3">
                 <label for="name" class="visually-hidden text-white h4">Your Name</label>
@@ -44,7 +41,6 @@
                 <label for="message" class="visually-hidden text-white h4">Your Message</label>
                 <textarea name="message" id="message" class="form-control form-control-sm" rows="4" placeholder="Your Message" required></textarea>
               </div>
-              {{/* Div for feedback messages */}}
               <div id="form-feedback" class="mt-3 small"></div>
               <button type="submit" class="submit-button btn btn-light btn-block">Send Message</button>
             </form>
@@ -55,26 +51,21 @@
           {{ $fullCalLink := site.Params.scheduling_link | default "" }}
           {{ $calPath := "" }}
           {{ if $fullCalLink }}
-          {{/* Try to parse the URL and extract the path */}}
           {{ $parsedURL := urls.Parse $fullCalLink }}
-          {{/* Remove leading slash from path if present, cal.com wants 'user' or 'user/event' */}}
           {{ $calPath = strings.TrimPrefix "/" $parsedURL.Path }}
           {{ end }}
 
-          <div id="calendar-container" class="d-none"> {{/* Starts hidden */}}
-            {{ if $calPath }} {{/* Check if we successfully got a path */}}
-            {{/* The div Cal.com targets - Use ONLY the path in data-cal-link */}}
+          <div id="calendar-container" class="d-none">
+            {{ if $calPath }}
             <div style="width:100%;height:100%;overflow:scroll"
                  id="my-cal-inline"
-                 data-cal-link="{{ $calPath }}"> {{/* <<< CHANGED: Use $calPath */}}
+                 data-cal-link="{{ $calPath }}">
               <p class="text-center text-muted small mt-4">Loading Calendar...</p>
             </div>
             {{ else }}
             <p class="text-warning small">Calendar scheduling link seems invalid or is not configured correctly in config.toml.</p>
-            {{/* Optionally log the problematic full link for debugging */}}
             {{ warnf "Could not extract path from scheduling_link: %s" $fullCalLink }}
             {{ end }}
-            {{/* Error message placeholder */}}
             <div id="cal-error-message" class="text-center small mt-4"></div>
           </div>
         </div>
@@ -85,13 +76,10 @@
   </div>
   {{ end }}
   {{ end }}
-  {{/* --- End CTA Section --- */}}
 
-  <!-- Footer Content -->
   <div class="footer bg-footer section border-bottom">
     <div class="container">
       <div class="row">
-        <!-- Logo & Core Links -->
         <div class="col-lg-4 col-md-6 col-sm-6 mb-5 mb-lg-0">
           {{ $logo1x := site.Params.logo | default "/logo.png" }}
           {{ $logo2x := $logo1x | strings.ReplaceRE `(\.[^.]+)$` "@2x$1" }}
@@ -100,7 +88,7 @@
                  srcset="{{ $logo1x | absURL }} 1x, {{ $logo2x | absURL }} 2x"
                  alt="{{ site.Title }}"
                  class="img-fluid"
-                 style="max-height: 60px;"> {{/* Removed fixed width/height, rely on style */}}
+                 style="max-height: 60px;">
           </a>
           <ul class="list-unstyled">
             {{ with site.Params.email }}<li class="mb-3"><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:{{ . }}" class="text-color">{{ . }}</a></li>{{ end }}
@@ -108,7 +96,6 @@
           </ul>
         </div>
 
-        <!-- Quick Links (Using Main Menu) -->
         <div class="col-lg-2 col-md-3 col-sm-6 col-6 mb-5 mb-lg-0">
           <h4 class="mb-4 text-uppercase small">Links</h4>
           <ul class="list-unstyled">
@@ -127,15 +114,12 @@
           </ul>
         </div>
 
-        <!-- Legal Links -->
         <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-left">
           <h4 class="mb-4 text-uppercase small">Legal</h4>
           <ul class="list-unstyled">
             {{ range site.Menus.footer }}
-            {{/* --- START: Conditional Style Guide Link --- */}}
             {{ $isDevOnly := .Params.developmentOnly }}
             {{ if and $isDevOnly (not hugo.IsProduction) }}
-            {{/* Show only in development */}}
             <li class="mb-3">
               {{ $legalFooterURL := .URL }}
               {{ $processedLegalFooterURL := "" }}
@@ -144,10 +128,9 @@
               {{ else }}
               {{ $processedLegalFooterURL = $legalFooterURL | absLangURL }}
               {{ end }}
-              <a class="text-warning" href="{{ $processedLegalFooterURL }}">{{ .Name }}</a> {{/* Highlight dev link */}}
+              <a class="text-warning" href="{{ $processedLegalFooterURL }}">{{ .Name }}</a>
             </li>
             {{ else if not $isDevOnly }}
-            {{/* Show non-dev links */}}
             <li class="mb-3">
               {{ $legalFooterURL := .URL }}
               {{ $processedLegalFooterURL := "" }}
@@ -159,15 +142,12 @@
               <a class="text-color" href="{{ $processedLegalFooterURL }}">{{ .Name }}</a>
             </li>
             {{ end }}
-            {{/* --- END: Conditional Style Guide Link --- */}}
             {{ else }}
-            {{/* Fallback if no footer menu defined */}}
             <li class="mb-3"><a href="{{ "/privacy/" | relLangURL }}" class="text-color">Privacy Policy</a></li>
             <li class="mb-3"><a href="{{ "/terms/" | relLangURL }}" class="text-color">Terms of Service</a></li>
             {{ end }}
           </ul>
         </div>
-        <!-- Social Links -->
         <div class="col-lg-3 col-md-12 col-sm-6 text-sm-left text-lg-right">
           <h4 class="mb-4 text-uppercase small">Connect</h4>
           <ul class="list-inline footer-socials">
@@ -179,9 +159,7 @@
       </div>
     </div>
   </div>
-  <!-- /Footer Content -->
 
-  <!-- Copyright -->
   <div class="copyright py-4 bg-primary text-light">
     <div class="container">
       <div class="row">
@@ -192,31 +170,33 @@
     </div>
   </div>
 </footer>
-<!-- /footer -->
+
 {{ "<!-- JS Plugins (Load BEFORE the main bundle) -->" | safeHTML }}
 {{ range site.Params.plugins.js }}
-<script src="{{ .link | absURL }}"></script> {{/* Keep these loading normally, usually without defer if bundle depends on them */}}
+<script src="{{ .link | absURL }}"></script>
 {{ end }}
-
 
 {{ "<!-- Main Application Script Bundle -->" | safeHTML }}
-{{/* Match all .js files within assets/js/ (including subdirectories) */}}
-{{ $jsResources := resources.Match "js/**.js" }}
-
-{{/* Process the matched resources */}}
-{{ if gt (len $jsResources) 0 }}
-{{/* Concatenate, minify, and fingerprint the matched JS files */}}
-{{ $jsBundle := $jsResources | resources.Concat "js/bundle.js" | minify | fingerprint "sha512" }}
-
-{{/* Output the script tag, adding 'defer' for better performance */}}
+{{ $mainJS := resources.Get "js/main.js" }}
+{{ if $mainJS }}
+{{/*
+js.Build options:
+- targetPath: output path for the bundled file (relative to assets dir if not specified with a leading /)
+- minify: boolean, true for production
+- sourceMap: "external" or "inline" for dev, false or unset for production
+- format: "iife", "esm", "cjs" (defaults to "iife" for browser usually, which is good)
+*/}}
+{{ $buildOptions := dict "targetPath" "js/bundle.js" "minify" hugo.IsProduction }}
+{{ if not hugo.IsProduction }}
+{{ $buildOptions = merge $buildOptions (dict "sourceMap" "inline") }}
+{{ end }}
+{{ $jsBundle := $mainJS | js.Build $buildOptions | fingerprint "sha512" }}
 <script src="{{ $jsBundle.Permalink }}" integrity="{{ $jsBundle.Data.Integrity }}" defer></script>
-{{ warnf "Bundled %d JS files from assets/js/ into bundle.js" (len $jsResources) }}
+{{ warnf "Built JS bundle from entry point js/main.js to %s" $jsBundle.RelPermalink }}
 {{ else }}
-{{ warnf "No JavaScript files found matching 'js/**.js'. Application script bundle not created." }}
+{{ warnf "Entry point assets/js/main.js not found. Application script bundle not created." }}
 {{ end }}
 
-
-<!-- Cookie Consent HTML (Only if enabled) -->
 {{ if site.Params.cookies.enable }}
 <div id="js-cookie-box"
      class="cookie-box cookie-box-hide"
