@@ -59,7 +59,7 @@
               <a class="nav-link dropdown-toggle" href="#" role="button"> {{/* Removed data-bs-toggle="dropdown" */}}
                 {{ .Name }}
               </a>
-              <div class="dropdown-menu">
+              <div class="dropdown-menu{{ if or (eq .Name "Services") (eq .Identifier "services") }} dropdown-menu-end{{ end }}">
                 {{ range .Children }}
                 {{ $childURL := .URL }}
                 {{ $processedChildURL := "" }}

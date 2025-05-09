@@ -75,8 +75,7 @@
       // This div holds the content revealed by the collapse
       // Bootstrap's .collapse class handles the hide/show.
       // Add a separator line when content is open.
-      border-top: 1px solid $border-color;
-      margin-top: 0.5rem;
+      margin-bottom: 1rem;
     }
   }
   // ... (keep existing styles for content column, card-body, tags etc.) ...

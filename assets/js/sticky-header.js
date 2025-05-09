@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let isNavSticky = false;
     const topHeaderHeight = topHeader ? topHeader.offsetHeight : 0;
-    let initialHeaderOffsetTop = header.offsetTop; // Cache initial offset
+    let initialHeaderOffsetTop; // Will be set after DOM settle
 
     const adjustBreadcrumbTop = () => {
       if (!breadcrumbs) return;
@@ -60,17 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initial Setup
     requestAnimationFrame(() => {
-      // adjustBreadcrumbTop(); // Potentially redundant, onScroll will handle if state changes
-      // adjustMainPadding(); // Potentially redundant, onScroll will handle if state changes
-      onScroll(); // Call onScroll once on load to set initial state
-      // If breadcrumbs/nav heights are dynamic and affect layout even when not sticky,
-      // we might need to ensure these are called once if onScroll doesn't trigger a change.
-      // For now, let's see if onScroll is sufficient.
-      // One initial call to set positions based on non-sticky nav might still be needed
-      // if their default CSS state doesn't account for the nav height correctly.
-      // Let's add them back but ensure they are called based on the *current* (non-sticky or sticky) state.
-      // The onScroll function already does this.
-      // The ResizeObservers should also handle initial sizing correctly.
+      initialHeaderOffsetTop = header.offsetTop; // Calculate initial offset after DOM has a chance to settle
+
+      // Optional: If you want to ensure the correct state is set if page loads at the very top
+      // without waiting for a scroll event, you could call onScroll() here.
+      // However, this might re-introduce a slight reflow on initial load.
+      // Test without it first to see if the "header not showing" issue is resolved by deferring offset calculation.
+      // If still an issue, uncommenting the onScroll() below might be necessary.
+      onScroll(); // Call onScroll() here to set initial state based on current scroll position
     });
 
     window.addEventListener('scroll', onScroll, { passive: true });

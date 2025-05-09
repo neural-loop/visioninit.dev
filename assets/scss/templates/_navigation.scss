@@ -12,7 +12,7 @@
 
 .navigation {
   //background: linear-gradient(to right, transparent 50%, $primary-color 50%);
-  transition: 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease; // More specific transitions
   z-index: 1030; // Ensure nav is above breadcrumbs even when not sticky
 
   @include desktop {
@@ -194,6 +194,7 @@ link:focus,
         // top: 96px; // This is already set above, keep it there for non-sticky desktop
         position: absolute; // Ensure absolute positioning for desktop too
         left: auto; // Reset left for desktop
+        right: 0; // Align to the right edge of the parent nav-item
         width: auto; // Reset width for desktop
       }
 

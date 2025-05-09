@@ -17,3 +17,16 @@
     }
   }
 }
+
+.icon-list-item {
+  position: relative;
+  padding-left: 2em; // Adjust as needed for icon size + desired gap
+
+  > i {
+    position: absolute;
+    left: 0;
+    top: 0.35em; // Adjust for vertical alignment with text (depends on line-height)
+    width: 1.5em; // Ensure icon has a defined width for positioning
+    text-align: center; // Center icon if its actual width is less than 1.5em
+  }
+}

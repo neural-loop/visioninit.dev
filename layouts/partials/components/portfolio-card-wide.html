@@ -50,8 +50,16 @@ Expects a dictionary context with:
           {{ if and $currentServiceTag (isset $contributionsMap $currentServiceTag) }}
           {{ $contribution := index $contributionsMap $currentServiceTag }}
           {{ $servicePage := site.GetPage (printf "services/%s" $currentServiceTag) }}
-          {{ $serviceTitle := $currentServiceTag | humanize | title }}
-          {{ if $servicePage }}{{ $serviceTitle = $servicePage.Title }}{{ end }}
+          {{ $serviceTitle := "" }}
+          {{ if $servicePage }}
+            {{ $serviceTitle = $servicePage.Title }}
+          {{ else if eq (lower $currentServiceTag) "ai-data-integration-services" }} {{/* Handle specific tags */}}
+            {{ $serviceTitle = "AI Data Integration Services" }} {{/* Or just "AI" if preferred for brevity */}}
+          {{ else if eq (lower $currentServiceTag) "seo-content-strategy-optimization" }}
+            {{ $serviceTitle = "SEO Content Strategy Optimization" }} {{/* Or just "SEO" */}}
+          {{ else }}
+            {{ $serviceTitle = $currentServiceTag | humanize | title }}
+          {{ end }}
 
           <div class="mb-3 current-service-contribution">
             <h6 class="text-dark small text-uppercase font-weight-bold" style="font-size: 0.8rem;">Contribution to {{ $serviceTitle }}:</h6>
@@ -61,7 +69,7 @@ Expects a dictionary context with:
             {{ with $contribution.points }}
             <ul class="portfolio-contribution-points list-unstyled small mb-2" style="font-size: 0.85rem;">
               {{ range . }}
-              <li style="line-height: 1.7em" class="pb-1"><i class="fa-solid fa-check-circle text-success fa-fw me-1"></i>{{ . | markdownify }}</li>
+              <li style="line-height: 1.7em" class="pb-1 icon-list-item"><i class="fa-solid fa-check-circle text-success fa-fw me-1"></i>{{ . | markdownify }}</li>
               {{ end }}
             </ul>
             {{ end }}
@@ -73,8 +81,16 @@ Expects a dictionary context with:
           {{ if ne $serviceTagKey $currentServiceTag }}
           {{ $otherContributionsExist = true }}
           {{ $sPage := site.GetPage (printf "services/%s" $serviceTagKey) }}
-          {{ $sTitle := $serviceTagKey | humanize | title }}
-          {{ if $sPage }}{{ $sTitle = $sPage.Title }}{{ end }}
+          {{ $sTitle := "" }}
+          {{ if $sPage }}
+            {{ $sTitle = $sPage.Title }}
+          {{ else if eq (lower $serviceTagKey) "ai-data-integration-services" }}
+            {{ $sTitle = "AI" }} {{/* Using short form for button label */}}
+          {{ else if eq (lower $serviceTagKey) "seo-content-strategy-optimization" }}
+            {{ $sTitle = "SEO" }} {{/* Using short form for button label */}}
+          {{ else }}
+            {{ $sTitle = $serviceTagKey | humanize | title }}
+          {{ end }}
           {{ $otherServiceTitles = $otherServiceTitles | append $sTitle }}
           {{ end }}
           {{ end }}
@@ -113,8 +129,16 @@ Expects a dictionary context with:
                 {{ range $serviceTagKey, $contribution := $contributionsMap }}
                 {{ if ne $serviceTagKey $currentServiceTag }}
                 {{ $servicePage := site.GetPage (printf "services/%s" $serviceTagKey) }}
-                {{ $serviceTitle := $serviceTagKey | humanize | title }}
-                {{ if $servicePage }}{{ $serviceTitle = $servicePage.Title }}{{ end }}
+                {{ $serviceTitle := "" }}
+                {{ if $servicePage }}
+                  {{ $serviceTitle = $servicePage.Title }}
+                {{ else if eq (lower $serviceTagKey) "ai-data-integration-services" }}
+                  {{ $serviceTitle = "AI Data Integration Services" }}
+                {{ else if eq (lower $serviceTagKey) "seo-content-strategy-optimization" }}
+                  {{ $serviceTitle = "SEO Content Strategy Optimization" }}
+                {{ else }}
+                  {{ $serviceTitle = $serviceTagKey | humanize | title }}
+                {{ end }}
 
                 <div class="mb-3 other-service-contribution">
                   <h6 class="text-muted small font-weight-bold mb-1" style="font-size: 0.75rem;">{{ $serviceTitle }}:</h6> {{/* Changed p to h6 */}}
@@ -124,7 +148,7 @@ Expects a dictionary context with:
                   {{ with $contribution.points }}
                   <ul class="portfolio-contribution-points list-unstyled small mb-2" style="font-size: 0.85rem;">
                     {{ range . }}
-                    <li style="line-height: 1.7em" class="pb-1"><i class="fa-solid fa-check-circle text-success fa-fw me-1"></i>{{ . | markdownify }}</li>
+                    <li style="line-height: 1.7em" class="pb-1 icon-list-item"><i class="fa-solid fa-check-circle text-success fa-fw me-1"></i>{{ . | markdownify }}</li>
                     {{ end }}
                   </ul>
                   {{ end }}
