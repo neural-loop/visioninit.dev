@@ -1,6 +1,6 @@
 ---
 title: 'Custom Web Application Development'
-description: 'Developing high-performance, secure, and user-friendly web applications tailored to unique business requirements, backed by 20+ years of full-stack experience.' # Enhanced description
+description: "Justin builds the custom digital platforms that serve as the backbone for your online communication, ensuring they are user-friendly, scalable, and aligned with your strategic goals."
 draft: false
 service_tag: 'custom-web-application-development'
 icon: 'fa-solid fa-code'
@@ -13,6 +13,6 @@ service_points:
   - 'API Design & Integration: Connecting disparate systems and services.'
 ---
 
-Leveraging **over two decades of hands-on experience**, VisionInit specializes in crafting bespoke web applications that precisely match your business needs. From complex content management systems and data-driven platforms to e-commerce solutions and community portals, we manage the full development lifecycle – from initial concept and architecture through secure coding, deployment, and ongoing maintenance. Our background includes successful projects for universities (Stanford GSB), government-related initiatives (GeoCONOPS), non-profits (MapLight), agencies (Four Kitchens), and independent ventures (AI Models).
+Leveraging **over two decades of his hands-on experience**, Justin Riddiough specializes in crafting bespoke web applications that precisely match your business needs. From complex content management systems and data-driven platforms to e-commerce solutions and community portals, he manages the full development lifecycle – from initial concept and architecture through secure coding, deployment, and ongoing maintenance. His background includes successful projects for universities (Stanford GSB), government-related initiatives (GeoCONOPS), non-profits (MapLight), agencies (Four Kitchens), and independent ventures (AI Models).
 
-- **Value Delivered:** You receive a web application built on a foundation of extensive real-world experience, ensuring it's not just functional but also scalable, maintainable, secure, and strategically aligned with your operational processes. We translate complex requirements into reliable digital solutions.
+- **Value Delivered:** Clients receive a web application built on a foundation of Justin's extensive real-world experience, ensuring it's not just functional but also scalable, maintainable, secure, and strategically aligned with their operational processes. He translates complex requirements into reliable digital solutions.

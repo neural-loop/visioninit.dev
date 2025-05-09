@@ -17,7 +17,7 @@ hasCJKLanguage = false # Keep false unless you use CJK languages
 logo = "/logo.png" # <<< NEW: Path to your consultancy logo (relative to static/)
 favicon = "/favicon.ico" # Path to your favicon (relative to static/)
 # Meta data
-description = "Expert IT consultancy: Full-stack web development, cloud solutions, and web security assessments. Partner with Justin Riddiough for technical solutions."
+description = "Justin Riddiough offers expert digital solutions: full-stack web development, cloud infrastructure, web security assessments, and strategic technical partnership."
 author = "Justin Riddiough"
 
 home = "Home" # Added from languages.toml
@@ -40,7 +40,7 @@ icon = "fa-brands fa-github"
 link = "https://github.com/neural-loop" # Your GitHub
 
 # Consultancy Specific Params (Optional, can be used in layouts)
-tagline = "Developing Excellence, Securing Futures"
+tagline = "Elevating Digital Communication Through Technology"
 # Example Call to Action params
 [params.cta]
 enable = true # Used in index.html potentially

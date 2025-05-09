@@ -3,8 +3,8 @@
 slider:
   enable: true
   slider_item:
-    - title: "Your Expert in Digital Strategy & Technical Solutions"
-      content: 'With over 20+ years of full-stack expertise, I embed security from inception to protect your digital assets and accelerate your innovation.'
+    - title: "Expert Digital Strategy & Technical Solutions"
+      content: 'With over 20+ years of full-stack expertise, Justin embeds security from inception to protect your digital assets and accelerate innovation.'
       button:
         enable: true
         label: 'Schedule Consultation with Justin'
@@ -15,6 +15,14 @@ slider:
         label: 'Explore Services'
         link: '#core-services'
         style: 'btn-outline-primary'
+
+philosophy_section:
+  enable: true
+  title: "Justin's Approach & Philosophy"
+  content: |
+    Justin Riddiough's core philosophy centers on leveraging technology not just to solve problems, but to elevate a client's entire digital presence and communication strategy. In a landscape rapidly reshaped by AI and evolving security threats, he believes in a proactive, integrated approach. This means building secure, resilient systems from the ground up and strategically incorporating advancements like AI—often inspired by and contributing back to open-source innovation—to create more effective, engaging, and intelligent digital experiences.
+  
+    Justin partners with clients to understand their unique needs, then applies two decades of technical expertise to craft solutions that are both innovative and pragmatic. His goal is to ensure technology serves as a powerful enabler for clear communication, efficient operations, and sustained growth in the digital age.
 
 subscription_tiers:
   enable: true
@@ -61,7 +69,7 @@ cta:
   enable: true
   title: 'Ready to Build with Confidence?' # More engaging title
   subtitle: 'Secure Your Digital Future'
-  content: "Partner with me (Justin Riddiough) to create web applications that are not only functional and scalable but also fundamentally secure. Let's discuss how I can address your specific technical and security challenges."
+  content: "Partner with Justin Riddiough to create web applications that are not only functional and scalable but also fundamentally secure. Justin can address your specific technical and security challenges."
   button:
     enable: true
     label: 'Schedule a Free Consultation with Justin' # Specific CTA

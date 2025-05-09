@@ -103,6 +103,24 @@
   </section>
   {{ end }}
   {{/* --- END: Subscription Tiers Section --- */}}
+
+  {{/* --- START: Philosophy Section --- */}}
+  {{ if $data.homepage.philosophy_section.enable }}
+  {{ with $data.homepage.philosophy_section }}
+  <section class="section bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+          {{ with .title }}<h2 class="section-title mb-4">{{ . | markdownify }}</h2>{{ end }}
+          {{ with .content }}<div class="content">{{ . | markdownify }}</div>{{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  {{ end }}
+  {{/* --- END: Philosophy Section --- */}}
+
   {{/* --- START: Core Services Section (Copied from /services/ logic) --- */}}
   {{ $servicesPages := where site.RegularPages "Section" "services" }} {{/* Get all pages in the services section */}}
   {{ $sortedServices := $servicesPages.ByWeight }} {{/* Sort them by weight */}}
@@ -116,7 +134,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center mb-5">
           <h2 class="section-title">Core Services</h2>
-          <p class="text-muted">Explore the key areas where VisionInit delivers expert solutions.</p>
+          <p class="text-muted">Explore the key areas where Justin Riddiough delivers expert solutions.</p>
         </div>
       </div>
 

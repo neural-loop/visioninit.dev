@@ -1,12 +1,12 @@
 ---
 title: 'About Justin Riddiough'
-description: 'Meet Justin Riddiough, founder of VisionInit, bringing 20+ years of hands-on software engineering, security expertise, and a pragmatic approach to your technical challenges.'
+description: 'Meet Justin Riddiough, bringing 20+ years of hands-on software engineering, security expertise, and a pragmatic approach to your technical challenges.'
 draft: false
 # Add image and text block parameters
 image1:
   src: '/images/about/justin.jpg'
   alt: 'Photo of Justin Riddiough'
-  caption: 'Justin Riddiough, Founder of VisionInit.'
+  caption: 'Justin Riddiough'
 text_block_1: | # Use | for multi-line text
   Justin's journey in technology wasn't forged in lecture halls; it began with the hands-on curiosity of exploring a Commodore 64, fostering a lifelong drive to understand how systems work – and how to make them better and more secure. This practical, self-taught foundation complements his extensive professional experience.
 
@@ -32,7 +32,7 @@ text_block_3: |
 
 ## About Justin Riddiough
 
-Welcome! Justin Riddiough, through VisionInit, offers pragmatic, secure, and effective technology solutions built on a foundation of **over two decades of his hands-on software engineering, technical leadership, and a deep-rooted passion for technology.**
+Welcome! Justin Riddiough offers pragmatic, secure, and effective technology solutions built on a foundation of **over two decades of his hands-on software engineering, technical leadership, and a deep-rooted passion for technology.**
 
 ### The Founder: Justin Riddiough
 
@@ -48,17 +48,19 @@ This diverse background shapes Justin Riddiough's core approach:
 
 - **Pragmatic & Effective:** Justin focuses on solutions that work reliably and meet your specific business goals, drawing on real-world operational experience.
 - **Security by Design:** Security isn't an add-on; it's integrated from the start, informed by years of development and direct vulnerability research experience.
+- **Championing Open Source:** Justin actively contributes to the open-source ecosystem, believing in its power to drive innovation and accessibility. His work on projects like [aimodels.org](https://aimodels.org), [Open Neuromorphic](https://open-neuromorphic.org), and [fmcheatsheet.org](https://fmcheatsheet.org) reflects his commitment to applying his technical skills in support of experts and initiatives critical to the long-term success of open source.
 - **Collaborative Partnership:** Justin believes in working closely with clients, translating technical complexities into clear terms, and ensuring alignment throughout the project – skills honed in coordinating multi-team efforts.
-- **Clear Communication:** Translating complex technical challenges for all stakeholders is paramount.
+- **Clear Communication:** **Translating complex technical challenges for all stakeholders is paramount.** This ensures everyone understands the 'why' and 'how' behind technical decisions, fostering better collaboration and outcomes.
+- **Strategic Technology Integration:** Justin stays at the forefront of technological advancements, including AI, to advise on and implement the most effective tools that not only solve technical problems but also enhance how you communicate and operate digitally.
 
-Justin's mission is to leverage this blend of deep technical skill, operational understanding, and security focus to deliver robust, maintainable, and secure technology solutions.
+Justin's mission is to leverage this blend of deep technical skill, operational understanding, security focus, and a commitment to open collaboration to deliver robust, maintainable, and secure technology solutions.
 
 ### Why Partner With Justin Riddiough?
 
 - **Decades of Experience:** Benefit from 20+ years of tackling real-world technical challenges.
 - **Proven Security Focus:** Work with a developer recognized for contributions to internet security and validated by bug bounty programs.
 - **Full-Stack Capability:** From front-end interfaces to backend logic and cloud infrastructure.
-- **Tailored Solutions:** Justin doesn't offer one-size-fits-all; Justin builds what _you_ need.
+- **Tailored Solutions:** Justin doesn't offer one-size-fits-all; he builds what _you_ need.
 - **Reliable Partnership:** Clear communication and a focus on delivering value.
 
 **Ready to discuss how Justin Riddiough can help bring your vision to life securely and efficiently?**
