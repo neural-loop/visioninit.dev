@@ -113,10 +113,10 @@
   {{ $styles := resources.Get "scss/main.scss" }}
   {{ if not hugo.IsProduction }}
     {{/* Development: Standard SCSS to CSS */}}
-    {{ $styles = $styles | toCSS (dict "enableSourceMap" true) }}
+    {{ $styles = $styles | toCSS (dict "enableSourceMap" true "includePaths" (slice "node_modules")) }}
   {{ else }}
     {{/* Production: SCSS to CSS, then PostCSS (with PurgeCSS), then Minify & Fingerprint */}}
-    {{ $options := (dict "targetPath" "css/main.css" "enableSourceMap" false "config" "./postcss.config.mjs") }}
+    {{ $options := (dict "targetPath" "css/main.css" "enableSourceMap" false "config" "./postcss.config.mjs" "includePaths" (slice "node_modules")) }}
     {{ $styles = $styles | toCSS $options | postCSS $options | minify | fingerprint "sha512" }}
     {{/* Optional: Add | resources.PostProcess to ensure post-processing happens correctly if needed */}}
   {{ end }}

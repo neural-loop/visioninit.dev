@@ -58,8 +58,8 @@ enable = true
 expire_days = 30 # Or adjust as needed
 
 # CSS Plugins
-[[params.plugins.css]]
-link = "plugins/bootstrap-5/css/bootstrap.min.css"
+# [[params.plugins.css]]
+# link = "plugins/bootstrap-5/css/bootstrap.min.css"
 [[params.plugins.css]]
 link = "plugins/font-awesome/css/all.min.css" # Ensure this is the latest FA version you want
 
