@@ -110,8 +110,17 @@
   <link rel="preload" href="/plugins/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/plugins/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   {{ "<!-- Main Stylesheet -->" | safeHTML }}
-  {{ $styles := resources.Get "scss/main.scss" | toCSS | minify | fingerprint "sha512" }}
-  <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
+  {{ $styles := resources.Get "scss/main.scss" }}
+  {{ if not hugo.IsProduction }}
+    {{/* Development: Standard SCSS to CSS */}}
+    {{ $styles = $styles | toCSS (dict "enableSourceMap" true) }}
+  {{ else }}
+    {{/* Production: SCSS to CSS, then PostCSS (with PurgeCSS), then Minify & Fingerprint */}}
+    {{ $options := (dict "targetPath" "css/main.css" "enableSourceMap" false "config" "./postcss.config.mjs") }}
+    {{ $styles = $styles | toCSS $options | postCSS $options | minify | fingerprint "sha512" }}
+    {{/* Optional: Add | resources.PostProcess to ensure post-processing happens correctly if needed */}}
+  {{ end }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $styles.Data.Integrity }}"{{ end }} media="screen">
 
   {{ "<!--Favicon-->" | safeHTML }}
   <link rel="icon" type="image/png" sizes="32x32" href="{{ `/favicon-32x32.png` | absURL }}">

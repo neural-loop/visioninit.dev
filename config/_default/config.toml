@@ -76,7 +76,7 @@ link = "plugins/js-cookie/js.cookie.min.js" # For cookie consent
 noJSConfigInAssets = false
 useResourceCacheWhen = 'fallback'
 [build.buildStats]
-enable = false # Can disable stats locally if not needed
+enable = true # Can disable stats locally if not needed
 [[build.cachebusters]]
 source = 'assets/.*\.(js|ts|jsx|tsx)'
 target = '(js|scripts|javascript)'
