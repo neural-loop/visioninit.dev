@@ -45,7 +45,7 @@
             {{ range site.Menus.main }}
             {{ if .HasChildren }}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button"> {{/* Removed data-bs-toggle="dropdown" */}}
                 {{ .Name }}
               </a>
               <div class="dropdown-menu">

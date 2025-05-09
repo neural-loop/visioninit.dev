@@ -8,26 +8,9 @@
   // background-position: center; // Parent doesn't need this
   overflow: hidden; // Keep the blur contained
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    transform: scale(1.2); // Scale up for blur edges
-    transform-origin: center center;
-    background-image: var(--bg-image-url);
-    background-size: cover; // Cover the scaled area
-    background-repeat: no-repeat;
-    background-position: center; // Static position for now
-    filter: blur(15px) brightness(0.7);
-    z-index: 1; // Behind the actual image, within this column
-  }
+  // ::before pseudo-element for blurred background removed.
 
-  // Ensure the actual image content (img tag) is above the blurred layer
+  // Ensure the actual image content (img tag) is above any potential (now removed) pseudo-element
   > * { // This targets the img tag directly inside .portfolio-card-wide-image-col
     position: relative;
     z-index: 2;
@@ -36,9 +19,9 @@
   // .portfolio-card-wide-image specific styles (if different from direct child selector)
   // This class is on the img tag itself.
   .portfolio-card-wide-image {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-    max-width: 90%;
+    max-width: 85%; // Reduced to give more space for shadow within overflow:hidden parent
     margin: 0 auto;
   }
 }

@@ -252,3 +252,32 @@ link:focus,
     transform 0.3s ease,
     visibility 0.3s ease; // Combine transitions
 }
+
+// Custom dropdown toggle arrow using Font Awesome
+.navbar-nav {
+  .nav-item.dropdown {
+    .nav-link.dropdown-toggle {
+      display: inline-flex; // Helps align text and custom arrow
+      align-items: center;
+
+      &::after {
+        content: '\f078'; // Font Awesome fa-chevron-down
+        font-family: 'Font Awesome 6 Free'; // Make sure this matches your FA version/setup
+        font-weight: 900; // For solid style
+        border: none; // Remove Bootstrap's default border-based arrow
+        vertical-align: middle; // Better alignment with text
+        font-size: 0.65em;   // Adjust size to be subtle
+        margin-left: 0.4em; // Space from text
+        transition: transform 0.2s ease-in-out;
+        display: inline-block; // Needed for transform to work
+      }
+    }
+
+    // Rotate chevron when dropdown is shown
+    // Bootstrap 5 uses .show on the .dropdown-menu, but the .dropdown-toggle's aria-expanded state is also reliable
+    // Or, more simply, when the parent .dropdown has class .show (added by Bootstrap JS)
+    &:hover > .nav-link.dropdown-toggle::after {
+      transform: rotate(-180deg);
+    }
+  }
+}

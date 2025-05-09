@@ -18,7 +18,7 @@ Expects a dictionary context with:
 {{ $image_alt := $projectData.title | default "Portfolio item image" }}
 
 {{ if $image_filename }}
-{{ $image_path = printf "/images/portfolio/%s" $image_filename | absURL }}
+{{ $image_path = printf "images/portfolio/%s" $image_filename }} {{/* Path relative to assets directory */}}
 {{ else }}
 {{ $image_path = printf "https://via.placeholder.com/%s/%s/%s?text=%s" $placeholder_dimensions $placeholder_bg $placeholder_text_color (urlquery $placeholder_text) }}
 {{ end }}
@@ -27,8 +27,8 @@ Expects a dictionary context with:
   <div class="row g-0 h-100">
 
     {{/* --- Image Column - Flexbox for alignment --- */}}
-    <div class="col-md-4 portfolio-card-wide-image-col d-flex flex-column justify-content-start align-items-center p-3" style="--bg-image-url: url('{{ $image_path }}');">
-      <img src="{{ $image_path }}" class="img-fluid portfolio-card-wide-image" alt="{{ $image_alt }}">
+    <div class="col-md-4 portfolio-card-wide-image-col d-flex flex-column justify-content-start align-items-center p-3">
+      {{ partial "components/image.html" (dict "Src" $image_path "Alt" $image_alt "Class" "img-fluid portfolio-card-wide-image" "Context" . "Loading" "lazy") }}
     </div>
 
     {{/* --- Content Column --- */}}
