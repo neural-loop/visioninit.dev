@@ -20,7 +20,7 @@
 {{ $ogImageDisplay = $resizedOg.RelPermalink }}
 
 <div class="og-preview-wrapper"
-     data-effect-probability="{{ site.Params.og_preview_effect_probability | default 15 }}"
+     data-effect-probability="{{ if .IsHome }}{{ site.Params.homepage_og_preview_effect_probability | default 100 }}{{ else }}{{ site.Params.og_preview_effect_probability | default 15 }}{{ end }}"
      data-effect-duration="{{ site.Params.og_preview_effect_duration | default 750 }}">
   <div class="og-preview-container">
     {{/* Use the resized image for the background */}}

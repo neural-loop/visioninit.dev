@@ -159,7 +159,7 @@ link:focus,
       box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
       border-bottom: 5px solid $primary-color;
       padding: 15px;
-      top: 96px; // Original top position
+      top: 98px; // Original top position
       border-radius: 0;
       display: block;
       visibility: hidden;
@@ -168,12 +168,31 @@ link:focus,
       transform: translateY(20px);
       background: $white;
 
+      @include tablet { // Styles for when navbar is collapsed
+        // For non-sticky collapsed state
+        &:not(.nav-bg .navbar .dropdown-menu) { // More specific to avoid conflict if .nav-bg is on a parent
+           top: 100%; // Position dropdown right below the parent nav item
+        }
+        left: 0; // Align to the left of the parent
+        width: 100%; // Make dropdown full width of parent or screen as needed
+        position: absolute; // Ensure it's positioned relative to the .nav-item
+
+        // Specifically for STICKY and COLLAPSED state, as per your feedback
+        .navigation.nav-bg & { // More direct targeting: if .navigation.nav-bg is an ancestor
+          top: 48px !important; // Using !important to ensure override if specificity is tricky
+        }
+      }
+
       @include desktop {
         display: none;
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
         transform-origin: unset;
+        // top: 96px; // This is already set above, keep it there for non-sticky desktop
+        position: absolute; // Ensure absolute positioning for desktop too
+        left: auto; // Reset left for desktop
+        width: auto; // Reset width for desktop
       }
 
       &.show {
@@ -187,6 +206,10 @@ link:focus,
           display: block;
         }
       }
+    }
+    // Ensure .nav-item has position: relative for dropdown positioning
+    .nav-item {
+      position: relative; // This might already be set, but ensure it for context
     }
 
     &-item {
@@ -245,7 +268,7 @@ link:focus,
 // Adjust dropdown menu position when sticky
 .navigation.nav-bg .navbar .dropdown-menu {
   // New height ~50px + buffer. Adjust this value if needed after testing.
-  top: 60px; // Set to a fixed value, adjust if $sticky-nav-height was defined and different
+  top: 48px; // Set to a fixed value, adjust if $sticky-nav-height was defined and different
   transition:
     top 0.2s ease,
     opacity 0.3s ease,
