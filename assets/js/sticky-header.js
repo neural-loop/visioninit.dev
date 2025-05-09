@@ -56,9 +56,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initial Setup
     requestAnimationFrame(() => {
-      adjustBreadcrumbTop();
-      adjustMainPadding();
+      // adjustBreadcrumbTop(); // Potentially redundant, onScroll will handle if state changes
+      // adjustMainPadding(); // Potentially redundant, onScroll will handle if state changes
       onScroll(); // Call onScroll once on load to set initial state
+      // If breadcrumbs/nav heights are dynamic and affect layout even when not sticky,
+      // we might need to ensure these are called once if onScroll doesn't trigger a change.
+      // For now, let's see if onScroll is sufficient.
+      // One initial call to set positions based on non-sticky nav might still be needed
+      // if their default CSS state doesn't account for the nav height correctly.
+      // Let's add them back but ensure they are called based on the *current* (non-sticky or sticky) state.
+      // The onScroll function already does this.
+      // The ResizeObservers should also handle initial sizing correctly.
     });
 
     window.addEventListener('scroll', onScroll, { passive: true });
