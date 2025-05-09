@@ -186,10 +186,10 @@
     }
     &.btn-outline-primary {
       // Ensure text is primary color as defined in _buttons.scss
-      color: $primary-color !important;
+      color: $primary-color; // Removed !important, as .button-toggle-container is white
       // Ensure hover state changes text to white
       &:hover, &:active, &:focus {
-        color: $white !important;
+        color: $white !important; // Keep !important here if needed to override default Bootstrap hover
 
       }
     }

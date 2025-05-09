@@ -25,11 +25,22 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg p-0">
         <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
-          <img src="/logo.png"
-               srcset="/logo.png 1x, /logo@2x.png 2x"
-               alt="{{ site.Title }}"
-               class="img-fluid header-logo"
-               width="79" height="80">
+          {{ $logoSrc := resources.Get "images/logo-source.png" }}
+          {{ if $logoSrc }}
+            {{ $logoBaseWidth := 79 }} {{/* Approximate display width based on original 79x80 */}}
+            {{ $logoSmall := $logoSrc.Resize (printf "%dx webp q85" $logoBaseWidth) }}
+            {{ $logoMedium := $logoSrc.Resize (printf "%dx webp q85" (int (mul $logoBaseWidth 1.5))) }}
+            {{ $logoLarge := $logoSrc.Resize (printf "%dx webp q85" (int (mul $logoBaseWidth 2))) }}
+            <img src="{{ $logoSmall.RelPermalink }}"
+                 srcset="{{ $logoSmall.RelPermalink }} {{ $logoSmall.Width }}w, {{ $logoMedium.RelPermalink }} {{ $logoMedium.Width }}w, {{ $logoLarge.RelPermalink }} {{ $logoLarge.Width }}w"
+                 sizes="{{ $logoBaseWidth }}px"
+                 alt="{{ site.Title }}"
+                 class="img-fluid header-logo"
+                 width="{{ $logoSmall.Width }}"
+                 height="{{ $logoSmall.Height }}">
+          {{ else }}
+            <img src="/logo.png" alt="{{ site.Title }}" class="img-fluid header-logo" width="79" height="80"> <!-- Fallback -->
+          {{ end }}
         </a>
         <button class="navbar-toggler rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
                 aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
