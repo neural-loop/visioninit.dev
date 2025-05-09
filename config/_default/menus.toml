@@ -8,31 +8,31 @@ weight = 1
 [[main]]
 parent = "Services"
 name = "Custom Web Application Development"
-url = "/services/custom-web-application-development/"
+url = "/strategic-digital-communication-technology-solutions/custom-web-application-development/"
 weight = 1
 
 [[main]]
 parent = "Services"
 name = "Web Security & Ethical Hacking"
-url = "/services/web-security-ethical-hacking/"
+url = "/strategic-digital-communication-technology-solutions/web-security-ethical-hacking/"
 weight = 2
 
 [[main]]
 parent = "Services"
 name = "SEO & Content Strategy Optimization"
-url = "/services/seo-content-strategy-optimization/"
+url = "/strategic-digital-communication-technology-solutions/seo-content-strategy-optimization/"
 weight = 3
 
 [[main]]
 parent = "Services"
 name = "AI & Data Integration Services"
-url = "/services/ai-data-integration-services/"
+url = "/strategic-digital-communication-technology-solutions/ai-data-integration-services/"
 weight = 4
 
 [[main]]
 parent = "Services"
 name = "Cloud Infrastructure & DevOps Solutions"
-url = "/services/cloud-infrastructure-devops-solutions/"
+url = "/strategic-digital-communication-technology-solutions/cloud-infrastructure-devops-solutions/"
 weight = 5
 
 [[main]]
