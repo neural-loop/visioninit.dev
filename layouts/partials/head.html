@@ -96,6 +96,15 @@
   <link rel="stylesheet" href="{{ .link | absURL }}">
   {{ end }}
 
+  {{/* Preload LCP hero image for homepage - Removed as bg_image is no longer used */}}
+  {{/*
+  {{ if .IsHome }}
+  {{ with site.Data.homepage.slider.bg_image }}
+  <link rel="preload" href="{{ . | absURL }}" as="image" fetchpriority="high">
+  {{ end }}
+  {{ end }}
+  */}}
+
   {{ "<!-- Main Stylesheet -->" | safeHTML }}
   {{ $styles := resources.Get "scss/main.scss" | toCSS | minify | fingerprint "sha512" }}
   <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" media="screen">
