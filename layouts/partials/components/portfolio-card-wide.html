@@ -27,7 +27,7 @@ Expects a dictionary context with:
   <div class="row g-0 h-100">
 
     {{/* --- Image Column - Flexbox for alignment --- */}}
-    <div class="col-md-4 portfolio-card-wide-image-col bg-light d-flex flex-column justify-content-start align-items-center p-3">
+    <div class="col-md-4 portfolio-card-wide-image-col d-flex flex-column justify-content-start align-items-center p-3" style="background-image: url('{{ $image_path }}');">
       <img src="{{ $image_path }}" class="img-fluid portfolio-card-wide-image" alt="{{ $image_alt }}">
     </div>
 

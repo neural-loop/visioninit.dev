@@ -1,0 +1,31 @@
+.portfolio-card-wide-image-col {
+  position: relative; // Needed for the ::before pseudo-element
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; // Keep the blur contained
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    right: -25px;
+    bottom: -25px;
+    background: inherit; // Inherits background-image, size, position from the parent
+    filter: blur(15px) brightness(0.7); // Adjust blur and brightness as needed
+    z-index: 1; // Places the blur layer behind the content but on top of the original background
+  }
+
+  // Ensure the actual image content is above the blurred layer
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .portfolio-card-wide-image {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); // A modern, soft shadow
+    border-radius: 4px; // Optional: if the image should have rounded corners
+    max-width: 90%; // Ensure shadow doesn't get cut off by parent padding
+    margin: 0 auto; // Center horizontally, allow flexbox to handle vertical (top) alignment
+  }
+}
