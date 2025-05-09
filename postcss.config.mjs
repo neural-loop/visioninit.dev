@@ -40,6 +40,7 @@ const purgecssPlugin = purgeCssFn({
       'nav-bg', // For sticky header
       'hide',   // For top header
       'body-nav-sticky', // For conditional body padding with sticky nav
+      'img-fluid', // For responsive images
       // Regex for accordion classes if needed, though data attributes might be better
       /^accordion-content-.*/, // If content IDs are dynamically generated
     ],

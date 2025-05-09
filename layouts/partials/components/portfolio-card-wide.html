@@ -28,7 +28,7 @@ Expects a dictionary context with:
 
     {{/* --- Image Column - Flexbox for alignment --- */}}
     <div class="col-md-4 portfolio-card-wide-image-col d-flex flex-column justify-content-start align-items-center p-3">
-      {{ partial "components/image.html" (dict "Src" $image_path "Alt" $image_alt "Class" "img-fluid portfolio-card-wide-image" "Context" . "Loading" "lazy") }}
+      {{ partial "components/image.html" (dict "Src" $image_path "Alt" $image_alt "Class" "img-fluid portfolio-card-wide-image" "Context" . "Loading" "lazy" "OmitDimensions" true) }}
     </div>
 
     {{/* --- Content Column --- */}}
