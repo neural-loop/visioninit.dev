@@ -23,7 +23,11 @@
   {{ $ogImageRelativePath := "" }} {{/* Will hold the root-relative path */}}
   {{ $finalOgImageAbsURL := "" }}  {{/* This will hold the final absolute URL for the meta tag */}}
   {{ $ogImageSourceDebug := "Initial value" }}
-  {{ $ogImageName := "og.jpg" }}
+  {{ $baseOgName := "og" }}
+  {{ if not .IsHome }}
+    {{ $baseOgName = printf "%s-%s" (.Title | urlize) "og" }}
+  {{ end }}
+  {{ $ogImageName := printf "%s.jpg" $baseOgName }}
 
   {{/* {{ warnf "[OG DEBUG Start] Page: %s (%s). IsHome: %t. Looking for OG image named '%s'." .Title .Permalink .IsHome $ogImageName }} */}}
 

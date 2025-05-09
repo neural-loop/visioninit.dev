@@ -58,6 +58,20 @@ async function ensureDir(dirPath) {
   catch (err) { if (err.code !== 'EEXIST') throw err; debugLog(`Directory already exists: ${dirPath}`); }
 }
 
+// --- NEW: Slugify function ---
+function slugify(text) {
+  if (!text) return 'untitled'; // Fallback for empty titles
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-') // Replace spaces with -
+    .replace(/[^\w-]+/g, '') // Remove all non-word chars (alphanumeric, underscore, hyphen)
+    .replace(/--+/g, '-') // Replace multiple - with single -
+    .replace(/^-+/, '') // Trim - from start of text
+    .replace(/-+$/, ''); // Trim - from end of text
+}
+// --- END: Slugify function ---
+
 async function findMarkdownFiles(dir) {
   let entries;
   try { entries = await readdir(dir); } catch (err) { console.warn(`Could not read directory ${dir}: ${err.message}`); return []; }
@@ -194,7 +208,7 @@ async function collectData() {
       type: 'homepage',
       title: hugoConfig.siteName,
       description: hugoConfig.siteDescription,
-      outputPath: join(STATIC_DIR, `og.${OUTPUT_FORMAT}`), // <<< CHANGED extension
+      outputPath: join(STATIC_DIR, `og.${OUTPUT_FORMAT}`), // Homepage keeps simple og.jpg
       tempHtmlPath: join(PROJECT_ROOT, `temp-homepage-og.html`),
     });
     debugLog('Added homepage data.');
@@ -226,7 +240,7 @@ async function collectData() {
         sourceMdPath: mdFile,
         title: title,
         description: description,
-        outputPath: join(pageDirectory, `og.${OUTPUT_FORMAT}`), // <<< CHANGED extension
+        outputPath: join(pageDirectory, `${slugify(title)}-og.${OUTPUT_FORMAT}`), // Use slugified title
         tempHtmlPath: join(pageDirectory, `temp-og.html`),
       });
       processedCount++;
