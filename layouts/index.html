@@ -122,7 +122,7 @@
   {{/* --- END: Philosophy Section --- */}}
 
   {{/* --- START: Core Services Section (Copied from /services/ logic) --- */}}
-  {{ $servicesPages := where site.RegularPages "Section" "services" }} {{/* Get all pages in the services section */}}
+  {{ $servicesPages := where site.RegularPages "Section" "strategic-digital-communication-technology-solutions" }} {{/* Get all pages in the services section */}}
   {{ $sortedServices := $servicesPages.ByWeight }} {{/* Sort them by weight */}}
   {{ $displayServices := $sortedServices | first 5 }} {{/* Limit to first 5 (adjust if needed) */}}
 

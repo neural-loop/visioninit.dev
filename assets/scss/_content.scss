@@ -25,6 +25,17 @@
 
   // <<< END ADD >>>
 
+  // Add this for readability on wider screens
+  p,
+  ul,
+  ol {
+    max-width: 75ch; // 'ch' unit is character width of '0' - good for readability
+    // Or use a rem/em/px value if you prefer, e.g., max-width: 45rem;
+    // If you want it centered within its parent column:
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   // --- FIX: LINK STYLES (Excluding Buttons) ---
   // ... (rest of the .content rules for a, li, table, etc., remain unchanged) ...
   a:not(.btn) {
@@ -227,3 +238,12 @@
   // --- END: Added Heading Size Overrides ---
 
 } // === END OF .content SECTION ===
+
+// If you have other specific text blocks outside .content:
+.service-description { // Example from layouts/services/single.html
+  p { // Target paragraphs within this specific block
+    max-width: 75ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
