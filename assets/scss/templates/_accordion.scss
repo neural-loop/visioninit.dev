@@ -87,47 +87,27 @@
     padding 0.35s ease-in-out;
 
   // Inner content styling (ensure correct spacing)
-  .content-inner {
-    // We'll wrap the content in the shortcode/partial later
-    padding: 10px 0; // Vertical padding as per request (content-inner horizontal padding is 0)
-    > *:last-child {
-      margin-bottom: 0;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
-    ul:not(.list-unstyled), // Exclude .list-unstyled from generic ul padding
-    ol {
-      margin-bottom: 1rem;
-      padding-left: 25px;
-    }
-    ul:not(.list-unstyled) li, // Exclude .list-unstyled li from generic li margin
-    ol li {
-      margin-bottom: 0.5rem;
-    }
-    h6 {
-      font-family: $secondary-font;
-      // Add any other h6 specific styles if needed, e.g., font-size, margin
-    }
+  // .content-inner class is removed from HTML, styles moved here or to .accordion-content.active
 
-    // Reuse theme list style for UL - This might conflict with .portfolio-contribution-points's own icon.
-    // Consider making this more specific if other non-iconed lists need it, or removing if not.
-    // For now, let's comment it out to prevent conflict with .portfolio-contribution-points
-    /*
-    ul:not(.list-unstyled):not(.portfolio-contribution-points) li::before {
-      position: absolute;
-      content: '\f054'; // Font Awesome check or arrow
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      font-size: 12px;
-      left: 0; // Relative to the padding-left of the li's parent ul
-      top: 0.7em;
-      transform: translateY(-50%);
-      line-height: 1;
-      color: $primary-color;
-      transition: 0.3s ease;
-    }
-    */
+  // Styles for direct children of .accordion-content
+  > *:last-child {
+    margin-bottom: 0 !important; // Ensure last element has no bottom margin
+  }
+  p {
+    margin-bottom: 1rem;
+  }
+  ul:not(.list-unstyled), // Exclude .list-unstyled from generic ul padding
+  ol {
+    margin-bottom: 1rem;
+    padding-left: 25px; // Keep standard list indentation
+  }
+  ul:not(.list-unstyled) li, // Exclude .list-unstyled li from generic li margin
+  ol li {
+    margin-bottom: 0.5rem;
+  }
+  h6 {
+    font-family: $secondary-font;
+    // Add any other h6 specific styles if needed, e.g., font-size, margin
   }
 }
 
@@ -157,7 +137,9 @@
     // Use a large enough value to accommodate content; adjust if needed
     // Using vh ensures it works for potentially very long content.
     max-height: 100vh; // Allow content to expand
-    // Padding transition handled in the base .accordion-content style
+    // Add vertical padding when active, horizontal is already on .accordion-content
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 

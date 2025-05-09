@@ -12,46 +12,45 @@
           {{ with index .slider_item 0 }}
           <h1>{{ .title | markdownify }}</h1>
           <p class="text-muted mb-4">{{ .content | markdownify }}</p>
-          <div class="hero-buttons">
-            {{/* --- Button 1 Logic (Schedule) --- */}}
-            {{ if .button.enable }}
-            {{ $button_link := "" }}
-            {{ $button_target_rel := "" }}
-            {{ if eq .button.link "schedule" }}
-            {{/* --- CHANGED: Use anchor link #schedule-consultation --- */}}
-            {{ $button_link = "#schedule-consultation" }}
-            {{ else if or (strings.HasPrefix .button.link "http://") (strings.HasPrefix .button.link "https://") }}
-            {{ $button_link = .button.link }}
-            {{ $button_target_rel = `target="_blank" rel="noopener noreferrer"` }}
-            {{ else }}
-            {{ $button_link = .button.link | absLangURL }}
-            {{ end }}
-            <a href="{{ $button_link | safeURL }}"
-               class="btn btn-primary me-2 mb-2"
-               {{ $button_target_rel | safeHTMLAttr }}>
-              {{ .button.label }}
-            </a>
-            {{ end }}
+          {{/* div.hero-buttons removed, buttons are now direct children */}}
+          {{/* --- Button 1 Logic (Schedule) --- */}}
+          {{ if .button.enable }}
+          {{ $button_link := "" }}
+          {{ $button_target_rel := "" }}
+          {{ if eq .button.link "schedule" }}
+          {{/* --- CHANGED: Use anchor link #schedule-consultation --- */}}
+          {{ $button_link = "#schedule-consultation" }}
+          {{ else if or (strings.HasPrefix .button.link "http://") (strings.HasPrefix .button.link "https://") }}
+          {{ $button_link = .button.link }}
+          {{ $button_target_rel = `target="_blank" rel="noopener noreferrer"` }}
+          {{ else }}
+          {{ $button_link = .button.link | absLangURL }}
+          {{ end }}
+          <a href="{{ $button_link | safeURL }}"
+             class="btn btn-primary me-2 mb-2"
+             {{ $button_target_rel | safeHTMLAttr }}>
+            {{ .button.label }}
+          </a>
+          {{ end }}
 
-            {{/* --- Button 2 Logic (Explore Services) --- */}}
-            {{ if .button2.enable }}
-            {{ $button2_style := .button2.style | default "btn-primary" }}
-            {{ $button2_link := .button2.link }}
-            {{ $button2_target_rel := "" }}
-            {{ if or (strings.HasPrefix $button2_link "http://") (strings.HasPrefix $button2_link "https://") }}
-            {{/* External Link */}}
-            {{ $button2_target_rel = `target="_blank" rel="noopener noreferrer"` }}
-            {{ else if not (strings.HasPrefix $button2_link "#") }}
-            {{/* Internal Page Link (not anchor) */}}
-            {{ $button2_link = $button2_link | absLangURL }}
-            {{ end }} {{/* Anchor links (#...) pass through unchanged */}}
-            <a href="{{ $button2_link | safeURL }}"
-               class="btn {{ $button2_style }} mb-2"
-               {{ $button2_target_rel | safeHTMLAttr }}>
-              {{ .button2.label }}
-            </a>
-            {{ end }}
-          </div>
+          {{/* --- Button 2 Logic (Explore Services) --- */}}
+          {{ if .button2.enable }}
+          {{ $button2_style := .button2.style | default "btn-primary" }}
+          {{ $button2_link := .button2.link }}
+          {{ $button2_target_rel := "" }}
+          {{ if or (strings.HasPrefix $button2_link "http://") (strings.HasPrefix $button2_link "https://") }}
+          {{/* External Link */}}
+          {{ $button2_target_rel = `target="_blank" rel="noopener noreferrer"` }}
+          {{ else if not (strings.HasPrefix $button2_link "#") }}
+          {{/* Internal Page Link (not anchor) */}}
+          {{ $button2_link = $button2_link | absLangURL }}
+          {{ end }} {{/* Anchor links (#...) pass through unchanged */}}
+          <a href="{{ $button2_link | safeURL }}"
+             class="btn {{ $button2_style }} mb-2"
+             {{ $button2_target_rel | safeHTMLAttr }}>
+            {{ .button2.label }}
+          </a>
+          {{ end }}
           {{ end }}
         </div>
       </div>
@@ -76,25 +75,22 @@
         {{/* Right Content Column - Contains the actual content including tiers */}}
         <div class="col-xl-8 col-lg-9">
           <div class="row feature-blocks bg-gray"> {{/* <<< Original inner row for padding/bg */}}
-            <div class="col-12 p-0"> {{/* Make content span the full width of this right column */}}
+            {{/* col-12 p-0 removed, content now direct children of feature-blocks */}}
 
-              {{/* Section Title & Subtitle (Centered within this column) */}}
-              <div class="text-center mb-5"> {{/* Added text-center and margin */}}
-                {{ with $tiers_data.title }}<h2 class="section-title">{{ . | markdownify }}</h2>{{ end }}
-                {{ with $tiers_data.subtitle }}<p class="lead">{{ . | markdownify }}</p>{{ end }}
+            {{/* Section Title & Subtitle (Centered within this column) */}}
+              {{ with $tiers_data.title }}<h2 class="section-title text-center">{{ . | markdownify }}</h2>{{ end }}
+              {{ with $tiers_data.subtitle }}<p class="lead text-center mb-5">{{ . | markdownify }}</p>{{ end }}
+
+            {{/* Tier Cards Grid (Nested row for side-by-side placement) */}}
+            <div class="row justify-content-center"> {{/* Center the cards within the available space of the right column */}}
+              {{ range $tiers_data.tiers }}
+              <div class="col-md-6 pe-0 mb-4 d-flex align-items-stretch"> {{/* Two columns on medium+, stacking on smaller */}}
+                {{/* Call the reusable card partial */}}
+                {{ partial "components/subscription-card.html" (dict "context" .) }}
               </div>
+              {{ end }}
+            </div> {{/* End nested row for cards */}}
 
-              {{/* Tier Cards Grid (Nested row for side-by-side placement) */}}
-              <div class="row justify-content-center"> {{/* Center the cards within the available space of the right column */}}
-                {{ range $tiers_data.tiers }}
-                <div class="col-md-6 pe-0 mb-4 d-flex align-items-stretch"> {{/* Two columns on medium+, stacking on smaller */}}
-                  {{/* Call the reusable card partial */}}
-                  {{ partial "components/subscription-card.html" (dict "context" .) }}
-                </div>
-                {{ end }}
-              </div> {{/* End nested row for cards */}}
-
-            </div> {{/* End col-12 */}}
           </div> {{/* End feature-blocks row */}}
         </div> {{/* End right content column */}}
 
@@ -132,9 +128,9 @@
     <div class="container">
       {{/* Section Title */}}
       <div class="row justify-content-center">
-        <div class="col-lg-8 text-center mb-5">
-          <h2 class="section-title">Core Services</h2>
-          <p class="text-muted">Explore the key areas where Justin Riddiough delivers expert solutions.</p>
+        <div class="col-lg-8">
+          <h2 class="section-title text-center">Core Services</h2>
+          <p class="text-muted text-center mb-5">Explore the key areas where Justin Riddiough delivers expert solutions.</p>
         </div>
       </div>
 

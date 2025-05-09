@@ -10,9 +10,7 @@
     </svg>
   </button>
   <div class="accordion-content {{ $bodyClass }}">
-    <!-- Wrap inner content -->
-    <div class="content-inner">
-      {{ .Inner | markdownify }}
-    </div>
+    <!-- Inner content directly -->
+    {{ .Inner | markdownify }}
   </div>
 </div>

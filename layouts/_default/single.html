@@ -50,11 +50,9 @@
           <!-- border -->
 
           <!-- Main Content -->
-          <div class="col-12 mb-5">
-            {{/* Added an ID to the content wrapper for JS targeting */}}
-            <div id="main-content" class="content">
-              {{ .Content }}
-            </div>
+          {{/* Main Content - col-12 mb-5 wrapper removed, mb-5 added to content div */}}
+          <div id="main-content" class="content mb-5">
+            {{ .Content }}
           </div>
 
           <!-- Disqus comments -->
