@@ -13,6 +13,7 @@
 .navigation {
   //background: linear-gradient(to right, transparent 50%, $primary-color 50%);
   transition: 0.2s ease;
+  z-index: 1030; // Ensure nav is above breadcrumbs even when not sticky
 
   @include desktop {
     background: $secondary-color;
@@ -167,6 +168,7 @@ link:focus,
       opacity: 0;
       transform: translateY(20px);
       background: $white;
+      z-index: 1035; // Ensure dropdown is above other elements
 
       @include tablet { // Styles for when navbar is collapsed
         // For non-sticky collapsed state

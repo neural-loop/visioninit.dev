@@ -39,6 +39,7 @@ const purgecssPlugin = purgeCssFn({
       'cookie-box-hide',
       'nav-bg', // For sticky header
       'hide',   // For top header
+      'body-nav-sticky', // For conditional body padding with sticky nav
       // Regex for accordion classes if needed, though data attributes might be better
       /^accordion-content-.*/, // If content IDs are dynamically generated
     ],

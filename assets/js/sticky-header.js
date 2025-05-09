@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let isNavSticky = false;
     const topHeaderHeight = topHeader ? topHeader.offsetHeight : 0;
+    let initialHeaderOffsetTop = header.offsetTop; // Cache initial offset
 
     const adjustBreadcrumbTop = () => {
       if (!breadcrumbs) return;
@@ -32,12 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const onScroll = () => {
       const scrollPos =
         window.pageYOffset || document.documentElement.scrollTop;
-      const navStickPoint = header.offsetTop + topHeaderHeight;
+      // Use cached initialHeaderOffsetTop for navStickPoint calculation during scroll
+      const navStickPoint = initialHeaderOffsetTop + topHeaderHeight;
       const navShouldStick = scrollPos > navStickPoint;
 
       if (navShouldStick && !isNavSticky) {
         if (topHeader) topHeader.classList.add('hide');
         navigation.classList.add('nav-bg');
+        document.body.classList.add('body-nav-sticky'); // Add class to body
         isNavSticky = true;
         requestAnimationFrame(() => {
           adjustBreadcrumbTop();
@@ -46,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else if (!navShouldStick && isNavSticky) {
         if (topHeader) topHeader.classList.remove('hide');
         navigation.classList.remove('nav-bg');
+        document.body.classList.remove('body-nav-sticky'); // Remove class from body
         isNavSticky = false;
         requestAnimationFrame(() => {
           adjustBreadcrumbTop();
@@ -72,6 +76,11 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', () => {
       requestAnimationFrame(() => { // Debounce resize adjustments slightly
+        initialHeaderOffsetTop = header.offsetTop; // Recalculate on resize
+        // Call onScroll to re-evaluate sticky state with new offset,
+        // which will also trigger breadcrumb/main padding adjustments if state changes.
+        onScroll();
+        // Explicitly call adjustments too, in case sticky state doesn't change but dimensions do.
         adjustBreadcrumbTop();
         adjustMainPadding();
       });
