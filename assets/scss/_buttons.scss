@@ -113,28 +113,28 @@
     box-shadow: none !important; // Add explicit box-shadow removal for active
   }
 
-  // --- Specific Override for Hero Button ---
-  // Targets .btn-outline-primary used with text-white and border-white classes
-  &.text-white.border-white {
-    border-color: $white !important; // Force white border
-    color: $white !important; // Force white text
+}
 
-    &:hover,
-    &.focus,
-    &:focus,
-    &.active {
-      background-color: $white; // Fill with white on hover/focus
-      border-color: $white; // Keep border white
-      color: $primary-color !important; // Change text to primary color
-    }
-    &:active {
-      // Slightly darker for active state
-      background-color: darken($white, 5%) !important;
-      border-color: darken($white, 5%) !important; // Keep border consistent
-      color: $primary-color !important;
-      outline: 0 !important; // Add explicit outline removal for active
-      box-shadow: none !important; // Add explicit box-shadow removal for active
-    }
+// --- Styling for .btn-outline-primary specifically within .hero-section ---
+.hero-section .btn-outline-primary {
+  // Resting state on hero
+  background-color: $white;
+  color: $primary-color; // Explicitly set for resting state on hero
+  border-color: $primary-color; // Explicitly set for resting state on hero
+
+  &:hover,
+  &.focus,
+  // &:focus, // :focus pseudo-class is covered by .focus in Bootstrap typically
+  &.active { // This covers the .active class often used by JS, and :active pseudo-class for click
+    background-color: $primary-color; // Standard hover/focus/active fill
+    border-color: $primary-color;   // Standard hover/focus/active border
+    color: $white;                  // Standard hover/focus/active text
+  }
+
+  &:active { // Specific :active pseudo-class for the "pushed down" effect
+    background-color: darken($primary-color, 8%) !important; // Match default .btn-outline-primary:active
+    border-color: darken($primary-color, 8%) !important;   // Match default .btn-outline-primary:active
+    color: $white;                                          // Match default .btn-outline-primary:active
   }
 }
 

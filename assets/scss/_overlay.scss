@@ -12,15 +12,16 @@
     left: 0;
     z-index: -1;
 
-    // --- The Original Gradient ---
+    // --- The Original Gradient (Adjusted to extend higher) ---
     $overlay-base-color: $primary-contrast-color;
     $overlay-second-color: #8889ae;
     background: linear-gradient(
         to top, // Direction: from bottom to top
-        rgba($overlay-second-color, 1) 0%, // Start at bottom: 100% opaque
-        rgba($overlay-base-color, 0.3) 20%, // At 20% height: 30% opaque
-        rgba($overlay-base-color, 0) 40%, // At 40% height: 0% opaque (transparent)
-        rgba($overlay-base-color, 0) 100% // Stays transparent to the top
+        rgba($overlay-second-color, 1) 0%,      // Bottom, fully opaque
+        rgba($overlay-base-color, 0.4) 30%,     // Lower mid, 40% opaque $primary-contrast-color
+        rgba($overlay-base-color, 0.2) 60%,     // Upper mid, 20% opaque $primary-contrast-color
+        rgba($overlay-base-color, 0.1) 80%,     // Higher up, 10% opaque $primary-contrast-color
+        rgba($overlay-base-color, 0) 100%       // Top, fully transparent $primary-contrast-color
     );
 
     // --- ADD MASKING (Using SVG) ---

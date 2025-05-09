@@ -1,25 +1,8 @@
 /* page title */
 .page-title-section {
   padding: 200px 0 80px; // Keep existing styles
-  p {
-    text-shadow:
-      0 0 2px #FFF, // Core 20px blur, high opacity white
-      0 0 5px #FFF, // Core 20px blur, high opacity white
-      0 0 10px #FFF, // Slightly larger spread
-      0 0 15px #FFF; // Even larger spread
-  }
   h1.page-header-title{ // Target the specific h1
     // Ensure dark text color remains dominant
     color: $text-color-dark !important;
-
-    // --- ADD THIS SHADOW FOR MASK INTERACTION ---
-    // Apply a large, blurred white shadow behind the text.
-    // This increases luminance in the area around the text,
-    // causing the ::before pseudo-element's luminance mask
-    // (the interference pattern) to reveal more of the gradient there.
-    text-shadow:
-      0 0 5px #FFF, // Core 20px blur, high opacity white
-      0 0 10px #FFF, // Slightly larger spread
-      0 0 15px #FFF; // Even larger spread
   }
 }

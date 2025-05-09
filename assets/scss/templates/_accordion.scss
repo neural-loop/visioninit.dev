@@ -3,16 +3,11 @@
 // --- Accordion Styling for VisionInit Theme (Version 2) ---
 
 .accordion {
-  border: 1px solid $border-color; // Base border
   border-radius: 0; // Blocky corners
   margin-bottom: 1rem; // Space between items
-  // Add a subtle left border emphasis using the primary color
-  border-left: 3px solid lighten($primary-color, 35%);
-  transition: border-left-color 0.2s ease-in-out; // Transition for hover
-
-  &:hover {
-    border-left-color: $primary-color; // Darken left border on hover
-  }
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); // New box shadow
+  // transition: border-left-color 0.2s ease-in-out; // Transition for hover - remove if no border hover
+  // No hover effect on the main accordion item directly, hover is on header
 }
 
 .accordion-header {
@@ -28,7 +23,7 @@
   text-align: left;
   background-color: $white; // Clean white background
   border: none; // Remove button default border
-  border-bottom: 1px solid $border-color; // Separator line when closed
+  // border-bottom: 1px solid $border-color; // Separator line when closed - REMOVED
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -122,11 +117,11 @@
 
 // Styles when the accordion item itself is active
 .accordion.active {
-  border-left-color: $primary-color; // Keep left border primary when active
+  // border-left-color: $primary-color; // Keep left border primary when active - REMOVED
 
   .accordion-header {
     color: $primary-color; // Keep header text primary
-    border-bottom-color: transparent; // Hide bottom border of header when open
+    // border-bottom-color: transparent; // Hide bottom border of header when open - REMOVED
     background-color: lighten(
       $light,
       2%
