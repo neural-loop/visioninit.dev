@@ -1,6 +1,6 @@
 ######################## VisionInit Configuration ####################
 # Base URL MUST end with a slash
-title = "VisionInit - Professional IT Services & Solutions"
+title = "Justin Riddiough - Expert Digital Solutions & Web Development"
 # Default time zone for time stamps
 timeZone = "America/New_York" # Adjust if needed
 # Pagination (can adjust later if needed)
@@ -18,10 +18,10 @@ logo = "/logo.png" # <<< NEW: Path to your consultancy logo (relative to static/
 favicon = "/favicon.ico" # Path to your favicon (relative to static/)
 # Meta data
 description = "Expert IT consultancy: Full-stack web development, cloud solutions, and web security assessments. Partner with Justin Riddiough for technical solutions."
-author = "Justin Riddiough / VisionInit"
+author = "Justin Riddiough"
 
 home = "Home" # Added from languages.toml
-copyright = "Copyright © 2025 VisionInit Solutions" # Added from languages.toml
+copyright = "Copyright © 2025 Justin Riddiough (VisionInit Solutions)" # Added from languages.toml
 
 # Contact Info (Optional, used in theme potentially)
 address = "" # Add if relevant

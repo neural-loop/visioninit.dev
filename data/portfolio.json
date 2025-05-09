@@ -12,7 +12,7 @@
       "Non-Profit"
     ],
     "role": "Drupal Developer (2013 - 2015)",
-    "role_overview": "Applied Software Development Lifecycle knowledge to develop and maintain Drupal sites (maplight.org, votersedge.org) for MapLight, a non-profit focused on political transparency. Architected data-driven solutions and ensured high performance.",
+    "role_overview": "As Drupal Developer, Justin applied Software Development Lifecycle knowledge to develop and maintain Drupal sites (maplight.org, votersedge.org) for MapLight, a non-profit focused on political transparency. Justin architected data-driven solutions and ensured high performance.",
     "service_areas": [
       "custom-web-application-development",
       "cloud-infrastructure-devops-solutions"
@@ -52,7 +52,7 @@
       "Salesforce"
     ],
     "role": "Senior Web Developer (2017 - 2020)",
-    "role_overview": "Contributed significantly to the development, enhancement, and security of the Stanford Graduate School of Business web presence. Involved full-stack Drupal development, migration support, performance tuning, security testing, and close collaboration with marketing and technical teams.",
+    "role_overview": "As Senior Web Developer, Justin contributed significantly to the development, enhancement, and security of the Stanford Graduate School of Business web presence. His work involved full-stack Drupal development, migration support, performance tuning, security testing, and close collaboration with marketing and technical teams.",
     "service_areas": [
       "custom-web-application-development",
       "web-security-ethical-hacking"
@@ -91,7 +91,7 @@
       "HackerOne"
     ],
     "role": "Independent Security Researcher",
-    "role_overview": "Identified and reported a security vulnerability through the HackerOne platform, collaborating with the affected company's security team for remediation.",
+    "role_overview": "As an Independent Security Researcher, Justin identified and reported a security vulnerability through the HackerOne platform, collaborating with the affected company's security team for remediation.",
     "service_areas": ["web-security-ethical-hacking"],
     "service_contributions": {
       "web-security-ethical-hacking": {
@@ -128,7 +128,7 @@
       "Traffic Growth"
     ],
     "role": "Founder & Lead Developer (2021 - 2024)",
-    "role_overview": "Architected, developed, and managed aimodels.org, a Hugo-based platform focused on open-source AI models. Oversaw all aspects from conception through development, cloud administration (GCP), and community engagement. Implemented successful SEO strategies driving significant organic traffic and developed a novel large-scale audio generation pipeline using RVC models, culminating in a successful acquisition.",
+    "role_overview": "As Founder & Lead Developer, Justin architected, developed, and managed aimodels.org, a Hugo-based platform focused on open-source AI models. Justin oversaw all aspects from conception through development, cloud administration (GCP), and community engagement. He implemented successful SEO strategies driving significant organic traffic and developed a novel large-scale audio generation pipeline using RVC models, culminating in a successful acquisition.",
     "service_areas": [
       "custom-web-application-development",
       "seo-content-strategy-optimization",
@@ -189,7 +189,7 @@
       "Streamyard"
     ],
     "role": "Collaborator / Web & Community Platform Specialist (via AI Models initiative)",
-    "role_overview": "As part of the AI Models community effort, contributed broad web and technical expertise to Open Neuromorphic. This involved building their core web platform, optimizing for search visibility, configuring community tools (streaming, communication), and establishing branding guidelines to elevate their presence and support the open-source neuromorphic computing community.",
+    "role_overview": "As part of his AI Models community effort, Justin contributed broad web and technical expertise to Open Neuromorphic. This involved building their core web platform, optimizing for search visibility, configuring community tools (streaming, communication), and establishing branding guidelines to elevate their presence and support the open-source neuromorphic computing community.",
     "service_areas": [
       "custom-web-application-development",
       "seo-content-strategy-optimization",
@@ -241,7 +241,7 @@
       "Academic Outreach"
     ],
     "role": "Collaborator / Lead Web Developer (via AI Models initiative)",
-    "role_overview": "Built fmcheatsheet.org using Hugo as an interactive online platform for the influential Foundation Model Development Cheatsheet paper. Collaborated closely with the paper's authors from AI2, EleutherAI, Google, Hugging Face, Masakhane, MIT, MLCommons, Princeton, Stanford CRFM, UCSB, UCL, and UW. Led an iterative web design process, incorporating multi-channel feedback to translate the academic resource into an accessible, SEO-optimized web format with a clear resource directory, enhancing its reach and promoting responsible AI development.",
+    "role_overview": "Justin built fmcheatsheet.org using Hugo as an interactive online platform for the influential Foundation Model Development Cheatsheet paper. He collaborated closely with the paper's authors from AI2, EleutherAI, Google, Hugging Face, Masakhane, MIT, MLCommons, Princeton, Stanford CRFM, UCSB, UCL, and UW. Justin led an iterative web design process, incorporating multi-channel feedback to translate the academic resource into an accessible, SEO-optimized web format with a clear resource directory, enhancing its reach and promoting responsible AI development.",
     "service_areas": [
       "custom-web-application-development",
       "seo-content-strategy-optimization"
@@ -272,7 +272,7 @@
     "description": "Contract Drupal Developer contributing to the launch of Global Academy CME, focusing on data migration features, backlog fixes, and Behat testing.",
     "tags": ["Drupal", "PHP", "Data Migration"],
     "role": "Drupal Developer (Contract, 2017)",
-    "role_overview": "Engaged by Four Kitchens agency to provide critical development support for the launch of the Global Academy for Continuing Medical Education website (globalacademycme.com), focusing on feature development and stability.",
+    "role_overview": "Justin was engaged by Four Kitchens agency to provide critical development support for the launch of the Global Academy for Continuing Medical Education website (globalacademycme.com), focusing on feature development and stability.",
     "service_areas": ["custom-web-application-development"],
     "service_contributions": {
       "custom-web-application-development": {
@@ -303,7 +303,7 @@
       "Homeland Security"
     ],
     "role": "Senior CMS Applications Developer (Consulting, 2015 - 2016)",
-    "role_overview": "As a consultant via ArdentMC, leveraged deep expertise in Drupal 7 full-stack development to build and enhance the Geospatial Concept of Operations (GeoCONOPS) portal, part of the federal GeoPlatform initiative, focusing on improving geospatial data sharing within the Homeland Security Enterprise (HSE).",
+    "role_overview": "As a consultant via ArdentMC, Justin leveraged his deep expertise in Drupal 7 full-stack development to build and enhance the Geospatial Concept of Operations (GeoCONOPS) portal, part of the federal GeoPlatform initiative, focusing on improving geospatial data sharing within the Homeland Security Enterprise (HSE).",
     "service_areas": ["custom-web-application-development"],
     "service_contributions": {
       "custom-web-application-development": {
@@ -336,7 +336,7 @@
       "Social Good"
     ],
     "role": "PHP Developer (2007 - 2008)",
-    "role_overview": "As a PHP Developer at Benetech, focused on improving web applications for social good, with key contributions to accessibility testing and document format integration based on user needs and technical exploration.",
+    "role_overview": "As a PHP Developer at Benetech, Justin focused on improving web applications for social good, with key contributions to accessibility testing and document format integration based on user needs and technical exploration.",
     "service_areas": [
       "custom-web-application-development"
     ],
@@ -359,7 +359,7 @@
     "description": "Created backend interfaces for content management powering interactive touch screens at the HP Experience Demonstration Center, facilitating client briefings and tours.",
     "tags": ["PHP", "Content Management", "Interactive Displays", "Drupal"],
     "role": "Web Developer (Part of Vision Init Self 2004-2013)",
-    "role_overview": "Developed the backend content management interface for the HP Experience Demonstration Center's interactive touch screens, enabling staff to manage dynamic content for client briefings and tours.",
+    "role_overview": "Justin developed the backend content management interface for the HP Experience Demonstration Center's interactive touch screens, enabling staff to manage dynamic content for client briefings and tours.",
     "service_areas": ["custom-web-application-development"],
     "service_contributions": {
       "custom-web-application-development": {
@@ -385,7 +385,7 @@
       "Event Technology"
     ],
     "role": "Web Developer (Part of Vision Init Self 2004-2013)",
-    "role_overview": "Developed backend systems and content management interfaces for a high-profile HP & Diane von Furstenberg event, enabling content delivery to interactive touch screens.",
+    "role_overview": "Justin developed backend systems and content management interfaces for a high-profile HP & Diane von Furstenberg event, enabling content delivery to interactive touch screens.",
     "service_areas": ["custom-web-application-development"],
     "service_contributions": {
       "custom-web-application-development": {
@@ -406,7 +406,7 @@
     "description": "Provided technical consultation and website delivery for Aflorecer, an art school and retreat center focused on community and flourishing.",
     "tags": ["Arts", "Consulting", "Web Development"],
     "role": "Web Developer / Consultant (Part of Vision Init Self 2004-2013)",
-    "role_overview": "Provided web development and technical consulting services for Aflorecer, an art school and retreat center, delivering their online presence.",
+    "role_overview": "Justin provided web development and technical consulting services for Aflorecer, an art school and retreat center, delivering their online presence.",
     "service_areas": ["custom-web-application-development"],
     "service_contributions": {
       "custom-web-application-development": {
@@ -427,7 +427,7 @@
     "description": "Launched the initial OsCommerce e-commerce site for Digital Sound Factory, providing high-quality, license-free audio sound downloads for software synthesizers.",
     "tags": ["E-commerce", "OsCommerce", "PHP", "Music Technology"],
     "role": "Web Developer (Part of Vision Init Self 2004-2013)",
-    "role_overview": "Developed and launched the original OsCommerce-based e-commerce website for Digital Sound Factory in 2007, enabling online sales for a new venture focused on high-quality digital audio sounds.",
+    "role_overview": "Justin developed and launched the original OsCommerce-based e-commerce website for Digital Sound Factory in 2007, enabling online sales for a new venture focused on high-quality digital audio sounds.",
     "service_areas": ["custom-web-application-development"],
     "service_contributions": {
       "custom-web-application-development": {

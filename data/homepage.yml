@@ -3,11 +3,11 @@
 slider:
   enable: true
   slider_item:
-    - title: 'Secure Development by Design'
-      content: 'Building robust, scalable web solutions with security embedded from inception. Leveraging **20+ years of full-stack expertise** and proven security credentials to protect your digital assets and accelerate innovation.'
+    - title: "Your Expert in Digital Strategy & Technical Solutions"
+      content: 'With over 20+ years of full-stack expertise, I embed security from inception to protect your digital assets and accelerate your innovation.'
       button:
         enable: true
-        label: 'Schedule Consultation'
+        label: 'Schedule Consultation with Justin'
         link: 'schedule'
         style: 'btn-primary'
       button2:
@@ -61,8 +61,8 @@ cta:
   enable: true
   title: 'Ready to Build with Confidence?' # More engaging title
   subtitle: 'Secure Your Digital Future'
-  content: "Partner with VisionInit to create web applications that are not only functional and scalable but also fundamentally secure. Let's discuss how we can address your specific technical and security challenges."
+  content: "Partner with me (Justin Riddiough) to create web applications that are not only functional and scalable but also fundamentally secure. Let's discuss how I can address your specific technical and security challenges."
   button:
     enable: true
-    label: 'Schedule a Free Consultation' # Specific CTA
+    label: 'Schedule a Free Consultation with Justin' # Specific CTA
     link: '{{< param scheduling_link >}}' # Use param shortcode hint (actual link in template)
