@@ -44,3 +44,10 @@ Thumbs.db
 /output_*.txt # Ignore both full and diff outputs
 /.idea/
 /.vscode/
+/static/apple-touch-icon.png
+/static/favicon.ico
+/static/favicon.png
+/static/favicon-16x16.png
+/static/favicon-32x32.png
+/static/logo.png
+/static/og.jpg
