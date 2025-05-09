@@ -27,5 +27,12 @@
     {{/* <<< End <main> wrapper >>> */}}
 
       {{- partial "footer.html" . -}}
+
+  {{/* Lightbox Structure */}}
+  <div id="imageLightbox" class="lightbox-overlay" style="display: none;">
+    <span class="lightbox-close-button">&times;</span>
+    <img class="lightbox-content" id="lightboxImage" src="#" alt="Full-size image">
+  </div>
+
 </body>
 </html>
