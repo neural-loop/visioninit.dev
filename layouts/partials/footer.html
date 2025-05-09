@@ -189,11 +189,6 @@
   </div>
 </footer>
 
-{{ "<!-- JS Plugins (Load BEFORE the main bundle) -->" | safeHTML }}
-{{ range site.Params.plugins.js }}
-<script src="{{ .link | absURL }}"></script>
-{{ end }}
-
 {{ "<!-- Main Application Script Bundle -->" | safeHTML }}
 {{ $mainJS := resources.Get "js/main.js" }}
 {{ if $mainJS }}

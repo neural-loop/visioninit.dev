@@ -122,7 +122,24 @@
   <link rel="preload" href="/plugins/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/plugins/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/fonts/IBMPlexSerif-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-  {{ "<!-- Main Stylesheet -->" | safeHTML }}
+
+  {{ "<!-- Font Awesome for Critical Path -->" | safeHTML }}
+  <link rel="stylesheet" href="{{ `/plugins/font-awesome/css/all.min.css` | absURL }}" fetchpriority="high">
+
+  {{ "<!-- Critical Styles -->" | safeHTML }}
+  {{ $criticalOptions := (dict "enableSourceMap" false "includePaths" (slice "node_modules")) }}
+  {{ if hugo.IsProduction }}
+    {{ $criticalOptions = merge $criticalOptions (dict "outputStyle" "compressed") }}
+  {{ end }}
+  {{ $criticalStyles := resources.Get "scss/critical.scss" | toCSS $criticalOptions }}
+  {{ if hugo.IsProduction }}
+    {{ $criticalStyles = $criticalStyles | postCSS (dict "config" "./postcss.config.mjs" "includePaths" (slice "node_modules")) | minify }}
+  {{ end }}
+  <style>
+    {{ $criticalStyles.Content | safeCSS }}
+  </style>
+
+  {{ "<!-- Main Stylesheet (Deferred) -->" | safeHTML }}
   {{ $styles := resources.Get "scss/main.scss" }}
   {{ if not hugo.IsProduction }}
     {{/* Development: Standard SCSS to CSS */}}
@@ -132,8 +149,9 @@
     {{ $options := (dict "targetPath" "css/main.css" "enableSourceMap" false "config" "./postcss.config.mjs" "includePaths" (slice "node_modules")) }}
     {{ $styles = $styles | toCSS $options | postCSS $options | minify | fingerprint "sha512" }}
       {{/* Optional: Add | resources.PostProcess to ensure post-processing happens correctly if needed */}}
-    {{ end }}
-    <link rel="stylesheet" href="{{ $styles.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $styles.Data.Integrity }}"{{ end }} media="screen"> {{/* Reverted to media="screen" for synchronous loading */}}
+  {{ end }}
+  <link rel="stylesheet" href="{{ $styles.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $styles.Data.Integrity }}"{{ end }} media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ $styles.Permalink }}"></noscript>
   
     {{ "<!--Favicon-->" | safeHTML }}
   <link rel="icon" type="image/png" sizes="32x32" href="{{ `/favicon-32x32.png` | absURL }}">
@@ -155,4 +173,9 @@
   {{ end }}
   {{ end }}
   {{/* --- END: Google Analytics --- */}}
+
+  {{ "<!-- JS Plugins -->" | safeHTML }}
+  {{ range site.Params.plugins.js }}
+  <script src="{{ .link | absURL }}" defer></script>
+  {{ end }}
 </head>

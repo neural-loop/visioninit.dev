@@ -2,7 +2,7 @@
   position: sticky; // Make the wrapper sticky
   // top: is set by JS (sticky-header.js)
   z-index: 1020; // Below Bootstrap's default navbar z-index (1030) but above most content
-  background-color: $secondary-color; // Or your desired breadcrumb background
+  background-color: $light; // Changed to $light to match final intended style
   // Add a subtle shadow or border if needed for separation
   // box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -12,6 +12,7 @@
     a {
       // <<< Target links within list items
       text-decoration: none !important; // Ensure no default underline
+      color: $white; // Explicitly set default link color to white
       border-bottom: 2px solid transparent; // Reserve space
       padding-bottom: 1px; // Gap
       transition:

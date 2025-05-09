@@ -33,6 +33,31 @@ const purgecssPlugin = purgeCssFn({
       'modal-backdrop',
       'modal-open',
       'dropdown-menu-end', // and other dropdown variations if used
+      // Navbar specific classes to prevent FOUC with critical CSS
+      'navbar',
+      'navbar-expand-lg',
+      'navbar-toggler',
+      'navbar-toggler-icon',
+      'navbar-collapse',
+      'navbar-nav',
+      'nav-link',
+      'ms-auto',
+      'dropdown',
+      'dropdown-toggle',
+      'dropdown-menu',
+      'dropdown-item',
+      // Breadcrumb classes
+      'breadcrumb',
+      'breadcrumb-item',
+      // Custom breadcrumb classes
+      // 'sticky-breadcrumbs-wrapper', // Already covered by deep safelist below, but can be kept for explicitness if preferred
+      // 'custom-breadcrumb', // Already covered by deep safelist below
+      'nasted', // Keep specific custom classes if not directly under the deep safelisted ones or if used elsewhere
+      'breadcrumb-home-item',
+      'breadcrumb-home-link',
+      'breadcrumb-current-page',
+      // Regex for any other breadcrumb related classes that might be dynamic
+      // /^breadcrumb-.*/, // This is broad; specific classes or deep safelisting is often better. Covered by deep.
       // Add your own classes that are added by JS and might be missed
       // e.g., /^(effect-|animate-effect)/, // Regex for your OG preview effects
       // Specific classes you know are needed:
@@ -44,7 +69,11 @@ const purgecssPlugin = purgeCssFn({
       // Regex for accordion classes if needed, though data attributes might be better
       /^accordion-content-.*/, // If content IDs are dynamically generated
     ],
-    deep: [], // For selectors like .parent .child
+    deep: [
+      // Safelist all descendant selectors for custom breadcrumbs
+      /\.sticky-breadcrumbs-wrapper/,
+      /\.custom-breadcrumb/,
+    ], // For selectors like .parent .child
     greedy: [
       // Regex for classes you want to keep regardless, e.g., for dynamic content
       // /^(effect-|animate-effect)/, // Your OG preview effects
