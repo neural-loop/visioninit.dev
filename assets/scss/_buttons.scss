@@ -162,3 +162,58 @@
     box-shadow: none !important; // Add explicit box-shadow removal for active
   }
 }
+
+// --- Animation Keyframes for Button Background Pulse ---
+@keyframes pulse-light-primary-tint {
+  0%     { background-color: $white; }                             // Initial Off
+  2.5%   { background-color: $white; }                             // End of initial delay
+
+  // Pulse 1
+  5%     { background-color: mix($white, $primary-color, 70%); }  // P1 ON (30% primary)
+  10%    { background-color: mix($white, $primary-color, 70%); }  // P1 Hold ON (30% primary)
+  12.5%  { background-color: $white; }                             // P1 OFF (Pause starts)
+
+  // Pause (Reduced: 12.5% to 20% = 7.5% duration)
+  // The state remains $white from 12.5% until P2 starts.
+  // At 20%, P2 will start, changing the color. So 20% marks the end of the $white pause.
+
+  // Pulse 2
+  20%    { background-color: mix($white, $primary-color, 70%); }  // P2 ON (30% primary)
+  25%    { background-color: mix($white, $primary-color, 70%); }  // P2 Hold ON (30% primary)
+  27.5%  { background-color: $white; }                             // P2 OFF
+
+  100%   { background-color: $white; }                             // Remainder of cycle: Off
+}
+
+// --- Apply Animation & Styles to the Schedule Button (#show-calendar-btn) in Newsletter ---
+// Assuming the button is .btn-outline-primary as suspected
+.newsletter-block #show-calendar-btn.btn-outline-primary {
+  // Button base style for animation: white background, primary text/border
+  color: $primary-color;
+  border-color: $primary-color; // Ensure border is visible
+  background-color: $white;     // Start with a white background for the pulse
+  transition: none; // Disable transition to allow animation pulse
+
+  // Apply the animation
+  animation-name: pulse-light-primary-tint;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+  // Define hover/active states explicitly to override animation
+  // These should match the standard .btn-outline-primary hover/active states
+  &:hover,
+  &.focus,
+  &.active {
+    animation-name: none; // Pause animation
+    background-color: $primary-color !important; // Fill with primary color
+    border-color: $primary-color !important;   // Keep border color consistent
+    color: $white !important;                  // Change text to white
+  }
+  &:active { // Pushed state, match .btn-outline-primary:active
+    animation-name: none; // Pause animation
+    background-color: darken($primary-color, 8%) !important;
+    border-color: darken($primary-color, 8%) !important;
+    color: $white !important;
+  }
+}
