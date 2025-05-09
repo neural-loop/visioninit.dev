@@ -7,10 +7,10 @@
   font-weight: 100 900;
   font-display: swap;
   src:
-    /* url('/fonts/Inter-VariableFont_opsz,wght.woff2') format('woff2 supports variations'), */
-    /* url('/fonts/Inter-VariableFont_opsz,wght.woff2') format('woff2-variations'), */
-    url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype supports variations'),
-    url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations');
+    url('/fonts/Inter-VariableFont_opsz,wght.woff2') format('woff2-variations'), /* Modern variable WOFF2 */
+    url('/fonts/Inter-VariableFont_opsz,wght.woff2') format('woff2'),             /* Standard WOFF2 */
+    url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations'), /* Variable TTF */
+    url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');            /* Standard TTF */
 }
 
 @font-face {

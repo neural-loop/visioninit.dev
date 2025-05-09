@@ -42,3 +42,32 @@ select {
     outline: 0;
   }
 }
+
+// Font Awesome font-display optimization
+@font-face {
+  font-family: 'Font Awesome 6 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; // Added for FCP optimization
+  src: url("/plugins/font-awesome/webfonts/fa-brands-400.eot");
+  src: url("/plugins/font-awesome/webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"),
+       url("/plugins/font-awesome/webfonts/fa-brands-400.woff2") format("woff2"),
+       url("/plugins/font-awesome/webfonts/fa-brands-400.woff") format("woff"),
+       url("/plugins/font-awesome/webfonts/fa-brands-400.ttf") format("truetype"),
+       url("/plugins/font-awesome/webfonts/fa-brands-400.svg#fontawesome") format("svg");
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap; // Added for FCP optimization
+  src: url("/plugins/font-awesome/webfonts/fa-solid-900.eot");
+  src: url("/plugins/font-awesome/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+       url("/plugins/font-awesome/webfonts/fa-solid-900.woff2") format("woff2"),
+       url("/plugins/font-awesome/webfonts/fa-solid-900.woff") format("woff"),
+       url("/plugins/font-awesome/webfonts/fa-solid-900.ttf") format("truetype"),
+       url("/plugins/font-awesome/webfonts/fa-solid-900.svg#fontawesome") format("svg");
+}
+// Note: If Font Awesome uses other weights for 'Free' or other styles (like 'Regular' for 400 weight),
+// those would need their own @font-face blocks with font-display: swap;
