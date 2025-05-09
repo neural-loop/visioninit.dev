@@ -2,7 +2,7 @@
 
 slider:
   enable: true
-  # bg_image: "/images/interference-pattern5.jpeg" # Hero background image removed
+  bg_image: "/images/inference.svg" # Hero background image
   slider_item:
     - title: "Expert Digital Strategy & Technical Solutions"
       content: 'With over 20+ years of full-stack expertise, Justin embeds security from inception to protect your digital assets and accelerate innovation.'

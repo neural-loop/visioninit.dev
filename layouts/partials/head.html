@@ -97,7 +97,8 @@
 
   {{ "<!-- plugins -->" | safeHTML }}
   {{ range site.Params.plugins.css }}
-  <link rel="stylesheet" href="{{ .link | absURL }}">
+  <link rel="stylesheet" href="{{ .link | absURL }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ .link | absURL }}"></noscript>
   {{ end }}
 
   {{/* Preload LCP hero image for homepage - Removed as bg_image is no longer used */}}
@@ -109,10 +110,18 @@
   {{ end }}
   */}}
 
+  {{/* Preload LCP hero image for homepage */}}
+  {{ if .IsHome }}
+    {{ with site.Data.homepage.slider.bg_image }}
+      <link rel="preload" href="{{ . | absURL }}" as="image" fetchpriority="high">
+    {{ end }}
+  {{ end }}
+
   {{/* Preload critical fonts */}}
   <link rel="preload" href="/fonts/Inter-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/plugins/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="preload" href="/plugins/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/IBMPlexSerif-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   {{ "<!-- Main Stylesheet -->" | safeHTML }}
   {{ $styles := resources.Get "scss/main.scss" }}
   {{ if not hugo.IsProduction }}
@@ -122,11 +131,11 @@
     {{/* Production: SCSS to CSS, then PostCSS (with PurgeCSS), then Minify & Fingerprint */}}
     {{ $options := (dict "targetPath" "css/main.css" "enableSourceMap" false "config" "./postcss.config.mjs" "includePaths" (slice "node_modules")) }}
     {{ $styles = $styles | toCSS $options | postCSS $options | minify | fingerprint "sha512" }}
-    {{/* Optional: Add | resources.PostProcess to ensure post-processing happens correctly if needed */}}
-  {{ end }}
-  <link rel="stylesheet" href="{{ $styles.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $styles.Data.Integrity }}"{{ end }} media="screen">
-
-  {{ "<!--Favicon-->" | safeHTML }}
+      {{/* Optional: Add | resources.PostProcess to ensure post-processing happens correctly if needed */}}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}" {{ if hugo.IsProduction }}integrity="{{ $styles.Data.Integrity }}"{{ end }} media="screen"> {{/* Reverted to media="screen" for synchronous loading */}}
+  
+    {{ "<!--Favicon-->" | safeHTML }}
   <link rel="icon" type="image/png" sizes="32x32" href="{{ `/favicon-32x32.png` | absURL }}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{ `/favicon-16x16.png` | absURL }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ `/apple-touch-icon.png` | absURL }}">
