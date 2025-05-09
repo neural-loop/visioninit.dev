@@ -1,31 +1,44 @@
+.card.portfolio-card-wide {
+  border: none; // Override Bootstrap's default card border
+}
+
 .portfolio-card-wide-image-col {
   position: relative; // Needed for the ::before pseudo-element
-  background-size: cover;
-  background-position: center;
+  // background-size: cover; // Parent doesn't need this if ::before handles it
+  // background-position: center; // Parent doesn't need this
   overflow: hidden; // Keep the blur contained
 
   &::before {
     content: '';
     position: absolute;
-    top: -25px;
-    left: -25px;
-    right: -25px;
-    bottom: -25px;
-    background: inherit; // Inherits background-image, size, position from the parent
-    filter: blur(15px) brightness(0.7); // Adjust blur and brightness as needed
-    z-index: 1; // Places the blur layer behind the content but on top of the original background
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.2); // Scale up for blur edges
+    transform-origin: center center;
+    background-image: var(--bg-image-url);
+    background-size: cover; // Cover the scaled area
+    background-repeat: no-repeat;
+    background-position: center; // Static position for now
+    filter: blur(15px) brightness(0.7);
+    z-index: 1; // Behind the actual image, within this column
   }
 
-  // Ensure the actual image content is above the blurred layer
-  > * {
+  // Ensure the actual image content (img tag) is above the blurred layer
+  > * { // This targets the img tag directly inside .portfolio-card-wide-image-col
     position: relative;
     z-index: 2;
   }
 
+  // .portfolio-card-wide-image specific styles (if different from direct child selector)
+  // This class is on the img tag itself.
   .portfolio-card-wide-image {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); // A modern, soft shadow
-    border-radius: 4px; // Optional: if the image should have rounded corners
-    max-width: 90%; // Ensure shadow doesn't get cut off by parent padding
-    margin: 0 auto; // Center horizontally, allow flexbox to handle vertical (top) alignment
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    max-width: 90%;
+    margin: 0 auto;
   }
 }

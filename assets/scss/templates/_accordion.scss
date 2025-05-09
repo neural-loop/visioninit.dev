@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 1rem 1.25rem; // Good padding
+  padding: 1rem 15px 1rem 10px; // top/right/bottom/left as per request
   font-family: $secondary-font; // Heading font
   font-size: 1.1rem; // Slightly larger than default
   font-weight: 600; // Bold
@@ -64,7 +64,7 @@
 .accordion-content {
   max-height: 0; // Initially hidden (controlled by JS adding .active class to .accordion)
   overflow: hidden;
-  padding: 0 1.25rem; // No vertical padding when closed
+  padding: 0 10px; // Horizontal padding as per request, vertical padding handled by .content-inner
   background-color: lighten(
     $light,
     1%
@@ -82,24 +82,32 @@
   // Inner content styling (ensure correct spacing)
   .content-inner {
     // We'll wrap the content in the shortcode/partial later
-    padding: 1.5rem 0; // Vertical padding *inside* the wrapper when open
+    padding: 10px 0; // Vertical padding as per request (content-inner horizontal padding is 0)
     > *:last-child {
       margin-bottom: 0;
     }
     p {
       margin-bottom: 1rem;
     }
-    ul,
+    ul:not(.list-unstyled), // Exclude .list-unstyled from generic ul padding
     ol {
       margin-bottom: 1rem;
       padding-left: 25px;
     }
-    li {
+    ul:not(.list-unstyled) li, // Exclude .list-unstyled li from generic li margin
+    ol li {
       margin-bottom: 0.5rem;
     }
+    h6 {
+      font-family: $secondary-font;
+      // Add any other h6 specific styles if needed, e.g., font-size, margin
+    }
 
-    // Reuse theme list style for UL
-    ul li::before {
+    // Reuse theme list style for UL - This might conflict with .portfolio-contribution-points's own icon.
+    // Consider making this more specific if other non-iconed lists need it, or removing if not.
+    // For now, let's comment it out to prevent conflict with .portfolio-contribution-points
+    /*
+    ul:not(.list-unstyled):not(.portfolio-contribution-points) li::before {
       position: absolute;
       content: '\f054'; // Font Awesome check or arrow
       font-family: 'Font Awesome 6 Free';
@@ -112,6 +120,7 @@
       color: $primary-color;
       transition: 0.3s ease;
     }
+    */
   }
 }
 

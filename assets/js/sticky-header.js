@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
     requestAnimationFrame(() => {
       adjustBreadcrumbTop();
       adjustMainPadding();
+      onScroll(); // Call onScroll once on load to set initial state
     });
-
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', () => {

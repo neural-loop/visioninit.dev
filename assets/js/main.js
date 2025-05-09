@@ -14,6 +14,7 @@ import './background-images.js'; // Ensure jQuery is loaded globally before this
 import './cookie-consent.js';
 import './og-effects.js';
 import './sticky-header.js';
+import './parallax-background.js';
 
 // You can keep or integrate the original console log for initialization.
 document.addEventListener('DOMContentLoaded', function () {
