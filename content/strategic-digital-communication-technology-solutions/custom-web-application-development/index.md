@@ -3,7 +3,8 @@ title: 'Custom Web Application Development'
 description: "Justin builds the custom digital platforms that serve as the backbone for your online communication, ensuring they are user-friendly, scalable, and aligned with your strategic goals."
 draft: false
 service_tag: 'custom-web-application-development'
-icon: 'fa-solid fa-code'
+icon_style: "solid"
+icon_name: "code"
 weight: 10
 service_points:
   - 'Full-Stack Development: Proficient in PHP (Drupal 7/9), Python (Hugo, Flask/Quasar), Node.js, JavaScript (Vue, jQuery).'

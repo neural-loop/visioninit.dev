@@ -44,7 +44,7 @@
         <div class="content service-points-list">
           <ul class="list-styled"> {{/* Use the theme's styled list */}}
             {{ range . }}
-            <li>{{ . | markdownify }}</li>
+            <li class="icon-list-item">{{ partial "components/icon.html" (dict "style" "solid" "name" "angle-right" "class" "me-2 text-primary" "aria_hidden" true) }}{{ . | markdownify }}</li>
             {{ end }}
           </ul>
         </div>

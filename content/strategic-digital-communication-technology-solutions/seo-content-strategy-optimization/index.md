@@ -3,7 +3,8 @@ title: 'SEO & Content Strategy Optimization'
 description: "Ensuring your digital message reaches the right audience effectively. Justin optimizes your online presence and content strategy for maximum visibility, engagement, and impact."
 draft: false
 service_tag: 'seo-content-strategy-optimization'
-icon: 'fa-solid fa-magnifying-glass-chart'
+icon_style: "solid"
+icon_name: "magnifying-glass-chart"
 weight: 30
 service_points:
   - 'Technical SEO: On-page optimization, meta tag strategy, schema markup (*if applicable*), site structure improvements, crawlability analysis.'

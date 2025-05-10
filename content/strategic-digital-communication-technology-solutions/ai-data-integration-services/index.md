@@ -3,7 +3,8 @@ title: 'AI & Data Integration Services'
 description: "Leveraging AI and data to create smarter, more personalized digital communication experiences. Justin helps integrate AI models and manage data pipelines to unlock new levels of engagement and efficiency."
 draft: false
 service_tag: 'ai-data-integration-services'
-icon: 'fa-solid fa-brain'
+icon_style: "solid"
+icon_name: "brain"
 weight: 40
 service_points:
   - 'AI Platform Development: Architecting and building web platforms to showcase or interact with AI models (Hugo, Python - AI Models).'

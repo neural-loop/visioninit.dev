@@ -78,46 +78,51 @@
 
   // --- LIST STYLES - REVISED FOR CONSISTENCY ---
   ol {
-    padding-left: 20px;
+    list-style-type: decimal; /* Ensure default numbering */
+    padding-left: 2em; /* Consistent padding for nesting */
   }
   ul {
-    padding-left: 0;
-    list-style-type: none;
+    /* Default styling for ULs within .content that are NOT .list-styled or using .icon-list-item via render hook */
+    /* (Render hook is currently disabled, so this will apply to all Markdown ULs) */
+    list-style-type: disc; /* Restore default disc bullets */
+    padding-left: 2em;    /* Standard indentation for bullets */
   }
 
-  li {
-    margin-bottom: 1rem; // Adjust spacing between list items
+  /* Styling for nested lists to change bullet/numbering type */
+  ul ul, ul ol,
+  ol ul, ol ol {
+    margin-bottom: 0; /* Remove bottom margin from nested lists if desired */
+    margin-top: 0.5rem; /* Add some top margin for nested lists */
+  }
+  ul ul { list-style-type: circle; }
+  ul ul ul { list-style-type: square; }
+  /* Ordered lists will naturally nest (1., 1.1., 1.1.1.) if supported, or just continue numbering */
+
+
+  li { /* General li styling within .content */
+    margin-bottom: 0.75rem; /* Adjust spacing between list items */
     p {
       margin-bottom: 0.5rem;
-    } // Adjust spacing for paragraphs *within* a list item
+    }
     > *:last-child {
       margin-bottom: 0 !important;
     }
   }
 
+  /* The render-list.html hook adds .icon-list-item to <li> elements from Markdown ULs.
+     Styling for .icon-list-item and its > .icon is handled in _lists.scss.
+     So, this specific "ul li" rule for .content is likely not needed anymore for icon placement.
+     We might only need to ensure line-height or other text properties if desired.
+  */
   ul li {
-    position: relative;
-    padding-left: 25px;
-    line-height: 1.5em;
-
-    &::before {
-      position: absolute;
-      content: '\f054';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      font-size: 14px;
-      left: 0;
-      top: 0.74em; // Adjust vertical alignment if needed
-      transform: translateY(-50%);
-      line-height: 1;
-      color: $primary-color;
-      transition: 0.3s ease;
-      display: inline-block;
-      font-style: normal;
-      font-variant: normal;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-    }
+    /* This rule is for general LIs inside ULs in .content.
+       If the UL itself has padding-left for bullets, individual LIs usually don't need extra padding-left
+       unless they are icon lists or have custom ::before elements.
+       The .icon-list-item class (from _lists.scss) handles its own padding if applied.
+    */
+    line-height: 1.7;
+    /* position: relative; // Only if using ::before on these generic LIs */
+    /* padding-left: 0; // Reset if UL handles all indent, or if using ::before */
   }
 
   // --- Keep other specific styles ---

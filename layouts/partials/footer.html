@@ -17,10 +17,10 @@
           {{/* --- Toggle Buttons --- */}}
           <div class="button-toggle-container mb-4">
               <button type="button" id="show-form-btn" class="btn btn-sm me-1">
-                <i class="fa-solid fa-paper-plane me-2" aria-hidden="true"></i>Send a Message
+                {{ partial "components/icon.html" (dict "style" "solid" "name" "paper-plane" "class" "me-2" "aria_hidden" true) }}Send a Message
               </button>
               <button type="button" id="show-calendar-btn" class="btn btn-sm ms-1">
-                <i class="fa-solid fa-calendar-check me-2" aria-hidden="true"></i>Schedule a Meeting
+                {{ partial "components/icon.html" (dict "style" "solid" "name" "calendar-check" "class" "me-2" "aria_hidden" true) }}Schedule a Meeting
               </button>
             </div>
 
@@ -109,8 +109,8 @@
             </a>
           {{ end }}
           <ul class="list-unstyled">
-            {{ with site.Params.email }}<li class="mb-3"><i class="fa-solid fa-envelope me-2"></i> <a href="mailto:{{ . }}" class="text-color">{{ . }}</a></li>{{ end }}
-            {{ with site.Params.github_repo }}<li class="mb-3"><i class="fa-brands fa-github me-2"></i> <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">GitHub Repository</a></li>{{ end }}
+            {{ with site.Params.email }}<li class="mb-3">{{ partial "components/icon.html" (dict "style" "solid" "name" "envelope" "class" "me-2" "aria_hidden" true) }} <a href="mailto:{{ . }}" class="text-color">{{ . }}</a></li>{{ end }}
+            {{ with site.Params.github_repo }}<li class="mb-3">{{ partial "components/icon.html" (dict "style" "brands" "name" "github" "class" "me-2" "aria_hidden" true) }} <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-color">GitHub Repository</a></li>{{ end }}
           </ul>
         </div>
 
@@ -170,7 +170,15 @@
           <h4 class="mb-4 text-uppercase small">Connect</h4>
           <ul class="list-inline footer-socials">
             {{ range site.Params.social }}
-            <li class="list-inline-item"><a class="d-inline-block p-2" href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .title }}"><i class="{{ .icon }} text-color" style="font-size: 1.5rem;"></i></a></li>
+            <li class="list-inline-item">
+              {{ $socialIconStyle := .icon_style | default "brands" }} {{/* Default to brands for social */}}
+              {{ $socialIconName := .icon_name | default "" }}
+
+              <a class="d-inline-block p-2" href="{{ .link | safeURL }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .title }}">
+                {{/* Removed debug span */}}
+                {{ partial "components/icon.html" (dict "style" $socialIconStyle "name" $socialIconName "class" "text-color footer-social-icon" "label" .title) }}
+              </a>
+            </li>
             {{ end }}
           </ul>
         </div>

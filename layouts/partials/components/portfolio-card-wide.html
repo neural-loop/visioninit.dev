@@ -69,7 +69,7 @@ Expects a dictionary context with:
             {{ with $contribution.points }}
             <ul class="portfolio-contribution-points list-unstyled small mb-2" style="font-size: 0.85rem;">
               {{ range . }}
-              <li style="line-height: 1.7em" class="pb-1 icon-list-item"><i class="fa-solid fa-check-circle text-success fa-fw me-1"></i>{{ . | markdownify }}</li>
+              <li style="line-height: 1.7em" class="pb-1 icon-list-item">{{ partial "components/icon.html" (dict "style" "solid" "name" "check" "class" "text-success fa-fw me-1") }}{{ . | markdownify }}</li>
               {{ end }}
             </ul>
             {{ end }}
@@ -122,7 +122,7 @@ Expects a dictionary context with:
                     aria-expanded="false"
                     aria-controls="additionalContributions-{{ $projectData.id | urlize }}">
               {{ $buttonLabel }}
-              <span class="accordion-icon"><i class="fa-solid fa-chevron-down toggle-icon"></i></span> {{/* Removed ms-2 */}}
+              {{ partial "components/icon.html" (dict "style" "solid" "name" "chevron-down" "class" "accordion-icon" "aria_hidden" true) }}
             </button>
             <div class="accordion-content" id="additionalContributions-{{ $projectData.id | urlize }}"> {{/* Removed .collapse */}}
               <div class="content-inner additional-contributions-content"> {{/* Removed pt-2 */}}
@@ -148,7 +148,7 @@ Expects a dictionary context with:
                   {{ with $contribution.points }}
                   <ul class="portfolio-contribution-points list-unstyled small mb-2" style="font-size: 0.85rem;">
                     {{ range . }}
-                    <li style="line-height: 1.7em" class="pb-1 icon-list-item"><i class="fa-solid fa-check-circle text-success fa-fw me-1"></i>{{ . | markdownify }}</li>
+                    <li style="line-height: 1.7em" class="pb-1 icon-list-item">{{ partial "components/icon.html" (dict "style" "solid" "name" "check" "class" "text-success fa-fw me-1") }}{{ . | markdownify }}</li>
                     {{ end }}
                   </ul>
                   {{ end }}

@@ -20,6 +20,12 @@
         // Ensure text aligns well next to icon
       }
     }
+  
+    // Reduce horizontal padding on buttons within subscription cards to give more space for text
+    .btn {
+      padding-left: 0.75rem; // Default is often 1rem or 1.25rem
+      padding-right: 0.75rem;
+    }
   }
 
   h3.h4 {

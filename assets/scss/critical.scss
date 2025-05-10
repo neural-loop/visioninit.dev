@@ -22,12 +22,16 @@
 @import 'base';
 @import 'typography';
 @import 'links';
+@import 'icons'; // Added for .icon and .feature-icon styles
 
 // Essential above-the-fold template styles
 @import 'templates/navigation';
 @import 'templates/sticky_header';
 @import 'templates/page-header'; // If this is consistently above the fold
 @import 'breadcrumbs'; // Added for site-specific breadcrumb styles
+@import 'templates/homepage'; // Added for homepage hero styles
+@import 'templates/slider'; // Added for slider/banner styles (if hero uses this)
+@import 'templates/og-preview'; // Added for OG image area styles
 
 // Minimal utilities API
 @import "bootstrap/scss/utilities/api";

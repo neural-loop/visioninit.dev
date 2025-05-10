@@ -33,10 +33,14 @@ scheduling_link = "https://cal.com/visioninit/30min"
 [[params.social]]
 title = "LinkedIn"
 icon = "fa-brands fa-linkedin" # Font Awesome icon class
+icon_style = "brands"
+icon_name = "linkedin"
 link = "https://www.linkedin.com/in/riddiough"
 [[params.social]]
 title = "GitHub"
 icon = "fa-brands fa-github"
+icon_style = "brands"
+icon_name = "github"
 link = "https://github.com/neural-loop" # Your GitHub
 
 # Consultancy Specific Params (Optional, can be used in layouts)
@@ -60,8 +64,6 @@ expire_days = 30 # Or adjust as needed
 # CSS Plugins
 # [[params.plugins.css]]
 # link = "plugins/bootstrap-5/css/bootstrap.min.css"
-[[params.plugins.css]]
-link = "plugins/font-awesome/css/all.min.css" # Ensure this is the latest FA version you want
 
 # JS Plugins
 [[params.plugins.js]]
@@ -113,3 +115,8 @@ changefreq = "weekly" # How frequently the content is likely to change (e.g., "a
 priority = 0.5        # Priority of this URL relative to other URLs on your site (0.0 to 1.0)
 filename = "sitemap.xml" # Default filename (usually no need to change)
 disableKinds = ['homepage']
+
+[markup]
+[markup.goldmark]
+  [markup.goldmark.renderer]
+    unsafe = true # Allow raw HTML in Markdown, needed for some render hooks

@@ -48,24 +48,19 @@
 }
 
 .accordion-icon {
-  width: 0.8em;
-  height: 0.8em;
+  width: 0.8em; /* Reverted from debug */
+  height: 0.8em; /* Reverted from debug */
   margin-left: 1rem;
-  color: $text-color-light;
+  color: $text-color-light; /* Reverted from debug */
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  // transform: rotate(0deg); // Removed from span
-  // transform-origin: center center; // Removed from span
-  transition: color 0.2s ease; // Keep color transition on span
+  transform: rotate(0deg); // Default state: pointing down
+  transform-origin: center center;
+  transition: color 0.2s ease, transform 0.3s ease; // Add transform transition here
 
-  i, .toggle-icon { // Target the <i> tag or .toggle-icon class within
-    display: inline-block; // Allow transform
-    transform-origin: center center;
-    transform: rotate(0deg); // Default state: pointing down
-    transition: transform 0.3s ease;
-  }
+  /* Remove i, .toggle-icon as the SVG is the .accordion-icon itself */
 }
 
 .accordion-content {
@@ -126,11 +121,8 @@
   }
 
   .accordion-icon {
-    // transform: rotate(-180deg); // Removed from span
-    color: $primary-color; // Ensure icon is primary (on span)
-    i, .toggle-icon { // Target the <i> tag or .toggle-icon class within
-      transform: rotate(-180deg); // Active state: pointing up
-    }
+    color: $primary-color; // Ensure icon is primary
+    transform: rotate(-180deg); // Active state: pointing up
   }
 
   .accordion-content {

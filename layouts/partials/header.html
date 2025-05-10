@@ -56,8 +56,9 @@
             {{ range site.Menus.main }}
             {{ if .HasChildren }}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button"> {{/* Removed data-bs-toggle="dropdown" */}}
+              <a class="nav-link dropdown-toggle" href="#" role="button">
                 {{ .Name }}
+                {{ partial "components/icon.html" (dict "style" "solid" "name" "chevron-down" "class" "ms-1 dropdown-arrow-svg" "aria_hidden" true) }}
               </a>
               <div class="dropdown-menu{{ if or (eq .Name "Services") (eq .Identifier "services") }} dropdown-menu-end{{ end }}">
                 {{ range .Children }}

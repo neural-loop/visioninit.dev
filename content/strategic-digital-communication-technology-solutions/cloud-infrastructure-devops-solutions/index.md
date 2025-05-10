@@ -3,7 +3,8 @@ title: 'Cloud Infrastructure & DevOps Solutions'
 description: "Providing the reliable, scalable, and efficient technological foundation essential for seamless digital communication and operations. Justin designs and manages cloud solutions that keep your digital services running smoothly."
 draft: false
 service_tag: 'cloud-infrastructure-devops-solutions'
-icon: 'fa-solid fa-cloud-arrow-up'
+icon_style: "solid"
+icon_name: "cloud-arrow-up"
 weight: 50
 service_points:
   - 'Cloud Platforms: Google Cloud Platform (Cloud Run, Cloud Build, Cloud SQL), Amazon AWS fundamentals.'

@@ -3,7 +3,8 @@ title: 'Web Security & Ethical Hacking'
 description: "Secure digital communication builds trust. Justin protects your platforms and data, ensuring your interactions with users are safe and your reputation is preserved in an era of increasing cyber threats."
 draft: false
 service_tag: 'web-security-ethical-hacking'
-icon: 'fa-solid fa-shield-halved'
+icon_style: "solid"
+icon_name: "shield-halved"
 weight: 20
 service_points:
   - 'Vulnerability Assessment & Reporting: Demonstrated ability to identify and responsibly disclose security vulnerabilities (cross-site scripting, insecure object references, etc.) through formal bug bounty programs.'

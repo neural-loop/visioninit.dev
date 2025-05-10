@@ -286,23 +286,35 @@ link:focus,
       display: inline-flex; // Helps align text and custom arrow
       align-items: center;
 
+      // Remove Bootstrap's default ::after chevron
       &::after {
-        content: '\f078'; // Font Awesome fa-chevron-down
-        font-family: 'Font Awesome 6 Free'; // Make sure this matches your FA version/setup
-        font-weight: 900; // For solid style
-        border: none; // Remove Bootstrap's default border-based arrow
-        vertical-align: middle; // Better alignment with text
-        font-size: 0.65em;   // Adjust size to be subtle
-        margin-left: 0.4em; // Space from text
-        transition: transform 0.2s ease-in-out;
-        display: inline-block; // Needed for transform to work
+        display: none !important; // Or content: none !important;
       }
+
+      /* &::after { // Removed CSS ::after chevron
+        content: '\f078';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        border: none;
+        vertical-align: middle;
+        font-size: 0.65em;
+        margin-left: 0.4em;
+        transition: transform 0.2s ease-in-out;
+        display: inline-block;
+      } */
     }
 
-    // Rotate chevron when dropdown is shown
-    // Bootstrap 5 uses .show on the .dropdown-menu, but the .dropdown-toggle's aria-expanded state is also reliable
-    // Or, more simply, when the parent .dropdown has class .show (added by Bootstrap JS)
-    &:hover > .nav-link.dropdown-toggle::after {
+    // Styling for the new SVG dropdown arrow
+    .dropdown-arrow-svg {
+      font-size: 0.65em; // Match previous ::after style's relative size
+      transition: transform 0.2s ease-in-out;
+      // .icon class from partial handles display: inline-block and vertical-align: middle
+      // .ms-1 class passed to partial handles margin-left
+    }
+
+    // Rotate SVG arrow on hover of the parent .dropdown or when .nav-link is active/expanded
+    &:hover > .nav-link.dropdown-toggle .dropdown-arrow-svg,
+    .nav-link.dropdown-toggle[aria-expanded="true"] .dropdown-arrow-svg {
       transform: rotate(-180deg);
     }
   }
