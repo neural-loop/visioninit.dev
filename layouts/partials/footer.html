@@ -6,10 +6,10 @@
   {{ if $data.homepage.cta.enable }}
   {{ with $data.homepage.cta }}
   {{/* ID for scrolling */}}
-  <div class="newsletter" id="schedule-consultation">
+  <div class="communications-cta" id="schedule-consultation">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 offset-md-1 col-lg-7 offset-lg-2 col-xl-6 offset-xl-3 bg-primary py-5 newsletter-block">
+        <div class="col-md-8 offset-md-1 col-lg-7 offset-lg-2 col-xl-6 offset-xl-3 bg-primary py-5 communications-cta-block">
           <h3 class="text-white mb-3">{{ .title | default "Missing CTA Title" }}</h3>
           {{ with .subtitle }}<h4 class="text-white font-secondary mb-3 h6">{{ . }}</h4>{{ end }}
           <p class="text-white mb-4">{{ .content | markdownify }}</p>

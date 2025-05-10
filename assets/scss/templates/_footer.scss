@@ -1,7 +1,7 @@
 // assets/scss/templates/_footer.scss
 
 /* footer */
-.newsletter {
+.communications-cta {
   background-image: linear-gradient(
       to right,
       transparent 50%,
@@ -10,7 +10,7 @@
   margin-bottom: -170px;
   position: relative;
   z-index: 1;
-  .newsletter-block {
+  .communications-cta-block {
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.36);
@@ -18,7 +18,7 @@
   .submit-button {
     border-bottom-left-radius: 20px;
   }
-  &-block {
+  .communications-cta-block { // Updated from &-block to be more explicit after renaming parent
     padding-left: 30px;
     padding-right: 30px;
 
@@ -41,7 +41,7 @@
     textarea.form-control {
       height: 80px;
     }
-    // Specific form control override for newsletter block
+    // Specific form control override for communications cta block
     .form-control {
       height: 50px;
       padding-right: 160px;

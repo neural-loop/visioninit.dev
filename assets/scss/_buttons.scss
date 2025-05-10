@@ -187,7 +187,7 @@
 
 // --- Apply Animation & Styles to the Schedule Button (#show-calendar-btn) in Newsletter ---
 // Assuming the button is .btn-outline-primary as suspected
-.newsletter-block #show-calendar-btn.btn-outline-primary {
+.communications-cta-block #show-calendar-btn.btn-outline-primary {
   // Button base style for animation: white background, dark text, primary border
   color: #4d535b !important; // Using specified dark grey for better contrast, ensure override
   border-color: $primary-color; // Keep border primary

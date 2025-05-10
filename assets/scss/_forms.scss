@@ -3,8 +3,8 @@ textarea.form-control {
   padding: 20px;
 }
 
-// Styles for form controls within the .newsletter-block (footer contact form)
-.newsletter-block {
+// Styles for form controls within the .communications-cta-block (footer contact form)
+.communications-cta-block {
   .form-control {
     $field-bg-color: #4d535b; // rgb(77, 83, 91) - new default background
     background-color: $field-bg-color;
@@ -26,7 +26,7 @@ textarea.form-control {
   }
 
   // The existing textarea.form-control rule will apply its height and padding.
-  // The .newsletter-block .form-control rules above will apply for bg, border, radius, color.
+  // The .communications-cta-block .form-control rules above will apply for bg, border, radius, color.
 }
 
 #map_canvas {
