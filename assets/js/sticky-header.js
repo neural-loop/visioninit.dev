@@ -15,19 +15,26 @@ document.addEventListener('DOMContentLoaded', function () {
     let isNavSticky = false;
     const topHeaderHeight = topHeader ? topHeader.offsetHeight : 0;
     let initialHeaderOffsetTop; // Will be set after DOM settle
+    let cachedNavHeight = 0;
+    let cachedBreadcrumbsHeight = 0;
+
+    const updateCachedDimensions = () => {
+      if (navigation) cachedNavHeight = navigation.offsetHeight;
+      if (breadcrumbs) cachedBreadcrumbsHeight = breadcrumbs.offsetHeight;
+    };
 
     const adjustBreadcrumbTop = () => {
       if (!breadcrumbs) return;
-      const currentNavHeight = navigation.offsetHeight;
-      breadcrumbs.style.top = `${currentNavHeight}px`;
+      // Use cachedNavHeight
+      breadcrumbs.style.top = `${cachedNavHeight}px`;
     };
 
     const adjustMainPadding = () => {
       if (!mainContent || !breadcrumbs) return;
       // Use a minimum padding to avoid collapse if breadcrumbs hide temporarily
-      const breadcrumbHeight = breadcrumbs ? breadcrumbs.offsetHeight : 0;
+      // Use cachedBreadcrumbsHeight
       const minPadding = 10; // Example minimum padding in pixels
-      mainContent.style.paddingTop = `${Math.max(breadcrumbHeight, minPadding)}px`;
+      mainContent.style.paddingTop = `${Math.max(cachedBreadcrumbsHeight, minPadding)}px`;
     };
 
     const onScroll = () => {
@@ -61,6 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initial Setup
     requestAnimationFrame(() => {
       initialHeaderOffsetTop = header.offsetTop; // Calculate initial offset after DOM has a chance to settle
+      updateCachedDimensions(); // Initial cache of dimensions
+      adjustBreadcrumbTop(); // Initial adjustment based on cached dimensions
+      adjustMainPadding(); // Initial adjustment
 
       // Optional: If you want to ensure the correct state is set if page loads at the very top
       // without waiting for a scroll event, you could call onScroll() here.
@@ -74,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', () => {
       requestAnimationFrame(() => { // Debounce resize adjustments slightly
         initialHeaderOffsetTop = header.offsetTop; // Recalculate on resize
+        updateCachedDimensions(); // Update cached dimensions on resize
         // Call onScroll to re-evaluate sticky state with new offset,
         // which will also trigger breadcrumb/main padding adjustments if state changes.
         onScroll();
@@ -85,11 +96,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Use ResizeObserver for reliability
     if (breadcrumbs) {
-      const breadcrumbObserver = new ResizeObserver(() => requestAnimationFrame(adjustMainPadding));
+      const breadcrumbObserver = new ResizeObserver(() => {
+        requestAnimationFrame(() => {
+          updateCachedDimensions(); // Update on breadcrumb resize
+          adjustMainPadding();
+        });
+      });
       breadcrumbObserver.observe(breadcrumbs);
     }
     if (navigation) {
-      const navObserver = new ResizeObserver(() => requestAnimationFrame(adjustBreadcrumbTop));
+      const navObserver = new ResizeObserver(() => {
+        requestAnimationFrame(() => {
+          updateCachedDimensions(); // Update on navigation resize
+          adjustBreadcrumbTop();
+          // If nav height changes, breadcrumbs top might change, which in turn might affect main padding if breadcrumbs are visible
+          if (breadcrumbs && breadcrumbs.offsetHeight > 0) {
+            adjustMainPadding();
+          }
+        });
+      });
       navObserver.observe(navigation);
     }
   }
