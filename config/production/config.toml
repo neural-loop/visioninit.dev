@@ -1,4 +1,5 @@
 baseURL = "https://visioninit.dev/"
+enableRobotsTXT = true
 
 URL = "visioninit.dev"
 

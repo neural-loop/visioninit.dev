@@ -175,4 +175,5 @@
   {{ range site.Params.plugins.js }}
   <script src="{{ .link | absURL }}" defer></script>
   {{ end }}
+{{- partial "structured-data.html" . -}}
 </head>
