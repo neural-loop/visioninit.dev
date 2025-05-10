@@ -11,6 +11,8 @@
   display: flex;
   align-items: center;
   min-height: $sticky-breadcrumb-height; // Target height
+  transition: top 0.2s ease-in-out; // <<< ADD THIS LINE
+  will-change: top;
 
   > .container {
     padding-top: 0.4rem;
@@ -113,6 +115,8 @@ body.body-nav-sticky {
 // --- Main Content Padding for STICKY Breadcrumbs ---
 main {
   padding-top: $sticky-breadcrumb-height;
+  transition: padding-top 0.2s ease-in-out; // <<< ADD THIS LINE
+  will-change: padding-top;
 }
 
 // --- Page Title Section Padding Reset ---
