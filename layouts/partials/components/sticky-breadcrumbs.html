@@ -8,7 +8,7 @@
       <li class="list-inline-item h2 breadcrumb-home-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         {{- $data.Set "counter" 0 }}{{- $data.Add "counter" 1 }}
         <a class="breadcrumb-home-link" itemprop="item" href="{{ site.BaseURL | relLangURL }}" aria-label="Home"> {{/* Removed font-secondary */}}
-          {{ partial "components/icon.html" (dict "style" "solid" "name" "house" "aria_hidden" true) }}
+          {{ partial "components/icon.html" (dict "style" "solid" "name" "house" "aria_hidden" true) }}<span itemprop="name" class="visually-hidden">Home</span>
         </a>
         <meta itemprop="position" content='{{ $data.Get "counter" }}' />
       </li>
