@@ -41,3 +41,6 @@ yarn.lock
 /content/english/services/web-security-ethical-hacking/og.png
 /content/english/services/og.png
 /output.txt
+/tmp/ogImageData.json
+/tmp/output_diff.txt
+/tmp/output_full.txt

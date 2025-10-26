@@ -6,7 +6,9 @@ theme = "visioninit" # Keep theme folder name for now
 # Default time zone for time stamps
 timeZone = "America/New_York" # Adjust if needed
 # Pagination (can adjust later if needed)
-paginate = 6
+[pagination]
+pagerSize = 6
+
 # Summary length for auto-generated excerpts
 summaryLength = 20
 
