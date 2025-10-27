@@ -13,7 +13,6 @@ import './ajax-form.js';
 import './background-images.js'; // Ensure jQuery is loaded globally before this bundle executes
 import './cookie-consent.js';
 import './og-effects.js';
-import './sticky-header.js';
 
 // You can keep or integrate the original console log for initialization.
 document.addEventListener('DOMContentLoaded', function () {

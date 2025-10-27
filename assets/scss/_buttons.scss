@@ -1,6 +1,6 @@
 /* Button style */
 .btn {
-  font-size: 16px;
+  font-size: 17px;
   font-family: $primary-font;
   text-transform: capitalize;
 
@@ -41,14 +41,14 @@
 }
 
 .btn-sm {
-  font-size: 14px;
+  font-size: 15px;
 
   // Adjust padding for sm buttons too
   padding: 8px 33px; // Original: 10px 35px -> 10-2, 35-2
 }
 
 .btn-xs {
-  font-size: 12px;
+  font-size: 13px;
   padding: 5px 15px; // Keep xs padding as is or adjust slightly if needed
 }
 

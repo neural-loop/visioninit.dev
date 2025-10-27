@@ -17,8 +17,6 @@ export function initializeViews() {
     console.warn("ViewToggle: Cannot initialize views due to missing critical DOM elements.");
     return;
   }
-  // Set initial state (show form by default)
-  showFormView();
 }
 
 export function showFormView() {

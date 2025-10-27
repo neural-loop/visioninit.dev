@@ -2,16 +2,16 @@
 
 .sticky-breadcrumbs-wrapper {
   position: sticky;
-  top: $sticky-nav-height-onload; // <<< ADD THIS LINE: Set initial top based on sticky nav height
-  z-index: 1020; // Below main nav (1030), above content
+  // Stick to the top, but offset by the height of the main navigation.
+  top: 70px;
+  z-index: 1020;
   background-color: $light;
   box-shadow: 0 2px 4px rgba($black, 0.08);
   width: 100%;
-  font-size: 0.85rem; // Base font size for the bar
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
-  min-height: $sticky-breadcrumb-height; // Target height
-  transition: top 0.2s ease-in-out; // <<< ADD THIS LINE
+  min-height: $sticky-breadcrumb-height;
   will-change: top;
 
   > .container {
@@ -22,7 +22,7 @@
 
   .custom-breadcrumb {
     margin-bottom: 0 !important;
-    line-height: 1.5; // Ensure consistent line height for alignment
+    line-height: 1.5;
 
     li {
       vertical-align: middle;
@@ -30,7 +30,6 @@
       align-items: center;
       margin-right: 0.25rem;
 
-      // Reset inherited heading styles JUST IN CASE
       &.h2,
       &.h3,
       &.h5 {
@@ -38,12 +37,11 @@
         margin-bottom: 0 !important;
       }
 
-      // General Link Styling (Ancestors)
       a:not(.breadcrumb-home-link) {
         color: $text-color-light;
         font-weight: 400;
         font-family: $primary-font;
-        font-size: inherit; // Inherit from wrapper
+        font-size: inherit;
         text-decoration: none !important;
         border-bottom: 1px solid transparent;
         padding-bottom: 1px;
@@ -52,26 +50,25 @@
           border-color 0.2s ease;
         span {
           font-size: inherit;
-        } // Ensure span inherits
+        }
         &:hover {
           color: $primary-color;
           border-bottom-color: $primary-color;
         }
       }
 
-      // Home Icon Link
       a.breadcrumb-home-link {
         background-color: rgba($primary-color, 0.08);
         color: $primary-color !important;
         border-radius: 50em;
         padding: 0.3em 0.6em;
         line-height: 1;
-        font-size: inherit; // <<< Inherit size like others
+        font-size: inherit;
         margin: 0;
         border-bottom: none !important;
         i {
           color: $primary-color !important;
-          font-size: 0.9em; // Icon slightly smaller than text
+          font-size: 0.9em;
           line-height: 1;
         }
         &:hover {
@@ -84,20 +81,18 @@
         }
       }
 
-      // Separator Icons
       i.fa-angle-right {
         color: $text-color-light;
         font-size: 0.8em;
-        margin: 0 0.3rem; // Increased margin slightly
+        margin: 0 0.3rem;
         line-height: 1.5;
       }
 
-      // Current Page Text (Span)
       &.breadcrumb-current-page span {
         color: $text-color-dark;
         font-family: $primary-font;
         font-weight: 600;
-        font-size: inherit; // <<< Make sure this inherits the wrapper's font-size
+        font-size: inherit;
         padding-bottom: 1px;
         line-height: 1.5;
         white-space: nowrap;
@@ -107,20 +102,11 @@
   }
 }
 
-// --- Body Padding for FIXED Navigation ---
-body.body-nav-sticky {
-  padding-top: $sticky-nav-height;
-}
-
-// --- Main Content Padding for STICKY Breadcrumbs ---
 main {
-  padding-top: $sticky-breadcrumb-height;
-  transition: padding-top 0.2s ease-in-out; // <<< ADD THIS LINE
-  will-change: padding-top;
+  padding-top: 0;
 }
 
-// --- Page Title Section Padding Reset ---
 .page-title-section {
-  padding-top: 90px;
+  padding-top: 80px;
   padding-bottom: 80px;
 }

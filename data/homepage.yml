@@ -21,3 +21,9 @@ philosophy_section:
     Justin's philosophy is centered on building "enabling ecosystems." He believes that the most successful open-source projects thrive not just on code, but on the digital and social infrastructure that connects their community. His approach is to be a hands-on technical leader who translates strategic vision into the tangible platforms, automated workflows, and clear contributor pathways that lower the barrier to entry and empower people to collaborate.
 
     By combining deep technical expertise with a focus on developer advocacy, Justin partners with organizations to build the central hubs where communities can flourish. His goal is to ensure technology serves as the foundation for clear communication, effective governance, and sustained growth in the open-source landscape.
+# --- ADD THIS ENTIRE 'cta' BLOCK ---
+cta:
+  enable: true
+  title: "Ready to Elevate Your Digital Ecosystem?"
+  subtitle: "Let's Connect"
+  content: "Whether you have a specific project in mind or need strategic guidance, reach out to start the conversation. Send a direct message for inquiries or schedule a discovery call to discuss your goals in detail."
