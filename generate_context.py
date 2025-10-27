@@ -176,13 +176,15 @@ This file contains ONLY the content of key files that have been MODIFIED since t
 **Checkpoint Timestamp:** {checkpoint_ts_str}
 
 **Instructions for AI:**
-1.  **Apply Updates:** Use the content below to update your understanding of the project based on the changes since the checkpoint timestamp.
-2.  **Focus on Changes:** These files represent recent modifications. Prioritize this information when it conflicts with previous context from the full checkpoint.
-3.  **Context is Limited:** Remember this is NOT the full project, only the changed files. Refer back to the full checkpoint if needed for unchanged files or broader structure.
-4.  **File Identification:** Each file's content is preceded by '=== [relative/path/to/file.ext] ==='.
-5.  Provide Code with focus toward with minimal commenting and focus towards simplicity of copying and replacing within the IDE.
-6.  Files over 200 lines are targets for modular refactors
-7.  Tell me the name of the file in the code block AFTER the code block - so that I do not need to scroll up after COPYING the code block to know where to place it.
+1.  **Analyze Structure:** Understand the Hugo project layout (config, content, layouts, assets, static structure).
+2.  **Primary Goal:** Use this information to answer questions about the website's implementation, structure, features, styling, configuration, and potential areas for improvement or troubleshooting.
+3.  Provide Code with focus toward with minimal commenting
+4. dont include {{{{/* comments */}}}}, every time it confuses hugo and causes errors
+5. If we are copying or moving files, provide the bash command to accomplish this
+6. We don't need to make backups of files before big edits - there is sufficient rollback capability in dev environment
+8. If response contains a code block, it is best to keep newlines around  ```  for maximum compatibility
+9. Format code changes in a way that is most simple for an LLM (gemini, copilot) to integrate - this could be one single code block. It is not necessary to provide human instructions that highlight the specific lines being updated.
+10. indicate which file it is to be updated, outside of the file codeblock
 --- MODIFIED FILE CONTENTS START ---
 """
     else: # mode == "full"

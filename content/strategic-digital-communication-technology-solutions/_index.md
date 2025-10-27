@@ -1,6 +1,6 @@
 ---
 title: "Strategic Digital Communication & Technology Solutions"
-description: "In today's rapidly evolving digital landscape, effective communication and robust technology are paramount. Justin Riddiough partners with clients to assess their needs, devise technical strategies, and implement solutions—from foundational web platforms to AI integrations—that ensure their message is delivered securely and effectively."
+description: "Effective open-source projects are built on more than just code—they require a thriving digital ecosystem. Justin Riddiough partners with organizations to architect the community platforms, developer programs, and strategic initiatives that foster engagement, streamline contributions, and drive sustainable growth."
 layout: 'list' # Explicitly use the list layout for the overview
 # menu:
 #   main:

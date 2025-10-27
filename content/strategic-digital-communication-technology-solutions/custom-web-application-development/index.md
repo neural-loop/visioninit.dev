@@ -1,19 +1,19 @@
 ---
-title: 'Custom Web Application Development'
-description: "Justin builds the custom digital platforms that serve as the backbone for your online communication, ensuring they are user-friendly, scalable, and aligned with your strategic goals."
+title: 'Community Platforms & Digital Ecosystems'
+description: "Architecting the central hubs where communities connect, contribute, and grow. Justin builds the foundational platforms and tooling that transform a group of users into a thriving ecosystem."
 draft: false
 service_tag: 'custom-web-application-development'
 icon_style: "solid"
 icon_name: "code"
 weight: 10
 service_points:
-  - 'Full-Stack Development: Proficient in PHP (Drupal 7/9), Python (Hugo, Flask/Quasar), Node.js, JavaScript (Vue, jQuery).'
-  - 'CMS Specialization: Deep experience with Drupal (module/theme development, migrations, API integration like Salesforce) and static site generators like Hugo.'
-  - 'Database Design & Integration: Architecting solutions involving data management, display logic, and information architecture (MapLight, Stanford GSB).'
-  - 'E-commerce Solutions: Experience launching and managing online stores (Digital Sound Factory).'
-  - 'API Design & Integration: Connecting disparate systems and services.'
+  - 'Community Hub Development: Building central platforms using Hugo, Drupal, and Python to serve as a "center of gravity" for your ecosystem.'
+  - 'Contributor Pathway Tooling: Creating systems (e.g., automated mission boards) that guide new contributors from discovery to active participation.'
+  - 'Developer & Educational Resources: Architecting platforms for technical documentation, interactive learning (fmcheatsheet.org), and model/data discovery (aimodels.org).'
+  - 'Full-Stack Technical Leadership: Leveraging deep expertise in Python, PHP, JS, and cloud infrastructure to build the right solution for the community’s needs.'
+  - 'API Design & Integration: Connecting disparate systems to create a seamless experience for developers and community members.'
 ---
 
-Leveraging **over two decades of his hands-on experience**, Justin Riddiough specializes in crafting bespoke web applications that precisely match your business needs. From complex content management systems and data-driven platforms to e-commerce solutions and community portals, he manages the full development lifecycle – from initial concept and architecture through secure coding, deployment, and ongoing maintenance. His background includes successful projects for universities (Stanford GSB), government-related initiatives (GeoCONOPS), non-profits (MapLight), agencies (Four Kitchens), and independent ventures (AI Models).
+A successful community needs a home. Leveraging **over two decades of his experience**, Justin specializes in architecting the digital ecosystems that enable open-source projects and developer communities to flourish. From central hubs and documentation sites to automated contributor funnels and interactive educational tools, he manages the full lifecycle—from strategic concept to secure deployment and long-term maintenance. His background includes building foundational platforms for AI communities (AI Models, Open Neuromorphic), academic outreach (Stanford GSB, fmcheatsheet.org), and civic technology (MapLight).
 
-- **Value Delivered:** Clients receive a web application built on a foundation of Justin's extensive real-world experience, ensuring it's not just functional but also scalable, maintainable, secure, and strategically aligned with their operational processes. He translates complex requirements into reliable digital solutions.
+- **Value Delivered:** You get more than a website; you get a strategic partner who builds the digital and social infrastructure for a healthy, engaged, and growing community. Justin translates complex ecosystem goals into the reliable, secure, and scalable platforms that foster collaboration and drive your mission forward.

@@ -1,11 +1,9 @@
-# ./data/en/homepage.yml
-
 slider:
   enable: true
   bg_image: "/images/inference.svg" # Hero background image
   slider_item:
-    - title: "Expert Digital Strategy & Technical Solutions"
-      content: 'With over 20+ years of full-stack expertise, Justin embeds security from inception to protect your digital assets and accelerate innovation.'
+    - title: "Architecting Digital Ecosystems for Open-Source Communities"
+      content: "A hands-on technical leader, Justin architects the platforms, programs, and contributor pathways that empower open-source communities to connect and grow."
       button:
         enable: true
         label: 'Schedule Consultation with Justin'
@@ -16,62 +14,10 @@ slider:
         label: 'Explore Services'
         link: '#core-services'
         style: 'btn-outline-primary'
-
 philosophy_section:
   enable: true
   title: "Justin's Approach & Philosophy"
   content: |
-    Justin Riddiough's core philosophy centers on leveraging technology not just to solve problems, but to elevate a client's entire digital presence and communication strategy. In a landscape rapidly reshaped by AI and evolving security threats, he believes in a proactive, integrated approach. This means building secure, resilient systems from the ground up and strategically incorporating advancements like AI—often inspired by and contributing back to open-source innovation—to create more effective, engaging, and intelligent digital experiences.
-  
-    Justin partners with clients to understand their unique needs, then applies two decades of technical expertise to craft solutions that are both innovative and pragmatic. His goal is to ensure technology serves as a powerful enabler for clear communication, efficient operations, and sustained growth in the digital age.
+    Justin's philosophy is centered on building "enabling ecosystems." He believes that the most successful open-source projects thrive not just on code, but on the digital and social infrastructure that connects their community. His approach is to be a hands-on technical leader who translates strategic vision into the tangible platforms, automated workflows, and clear contributor pathways that lower the barrier to entry and empower people to collaborate.
 
-subscription_tiers:
-  enable: true
-  title: 'Security Sidekick Plans'
-  subtitle: 'Choose the level of ongoing security support that fits your needs.'
-  tiers:
-    - name: 'Sure Shot'
-      price: '$500'
-      price_suffix: 'one-time' # Suffix describes the payment
-      description: 'Perfect for addressing a single, specific security question or review. Get expert eyes on one critical item.' # Short description for homepage card
-      # Optional: Add 1-2 key highlights if desired using 'features:' list like before
-      # features:
-      #   - icon: "fa-solid fa-bullseye"
-      #     text: "One dedicated security request."
-      button:
-        label: 'Learn about Sure Shot'
-        link: '/security-sidekick/' # Links to the main page for now
-
-    - name: 'Steady Shot'
-      price: '$4995'
-      price_suffix: '/month'
-      description: 'Comprehensive ongoing security guidance. Unlimited requests (one active), code reviews, vulnerability advice, and proactive support.'
-      # Optional: Add 1-2 key highlights
-      # features:
-      #   - icon: "fa-solid fa-shield-heart"
-      #     text: "Unlimited requests (one active)."
-      #   - icon: "fa-solid fa-clock-rotate-left"
-      #     text: "Typical 48-72hr turnaround."
-      button:
-        label: 'Learn about Steady Shot'
-        link: '/security-sidekick/' # Links to the main page for now
-
-# --- UPDATED VIDEO FEATURE SECTION ---
-video_feature:
-  enable: false # <<< DISABLED FOR NOW - Enable and update src if you have a relevant video
-  title: 'Understanding Secure Development' # Placeholder title
-  description: 'A brief overview of our approach to integrating security throughout the development lifecycle.' # Placeholder description
-  video_src: 'videos/your-consultancy-video.mp4' # <<< UPDATE if you re-enable
-  video_width: '800'
-  video_height: 'auto'
-
-# --- UPDATED CTA SECTION ---
-cta:
-  enable: true
-  title: 'Ready to Build with Confidence?' # More engaging title
-  subtitle: 'Secure Your Digital Future'
-  content: "Partner with Justin Riddiough to create web applications that are not only functional and scalable but also fundamentally secure. Justin can address your specific technical and security challenges."
-  button:
-    enable: true
-    label: 'Schedule a Free Consultation with Justin' # Specific CTA
-    link: '{{< param scheduling_link >}}' # Use param shortcode hint (actual link in template)
+    By combining deep technical expertise with a focus on developer advocacy, Justin partners with organizations to build the central hubs where communities can flourish. His goal is to ensure technology serves as the foundation for clear communication, effective governance, and sustained growth in the open-source landscape.
